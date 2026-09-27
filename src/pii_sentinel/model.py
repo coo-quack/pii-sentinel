@@ -7,6 +7,7 @@ import torch
 from safetensors.torch import load_file, save_file
 from torch import nn
 from transformers import AutoConfig, AutoModel, AutoTokenizer
+from transformers.initialization import no_init_weights
 
 from .labels import BIO, CATEGORIES, SENSITIVITY
 
@@ -93,6 +94,8 @@ def load(path, device="cpu"):
     if meta["bio"] != BIO or meta["categories"] != CATEGORIES:
         raise RuntimeError(f"{path} was trained with a different label set")
     config = AutoConfig.from_pretrained(meta["base_model"], revision=meta["base_revision"])
-    model = PiiSentinel(AutoModel.from_config(config))
+    # The weights are loaded right after, so skip the random initialisation (about 25 s on a laptop CPU).
+    with no_init_weights():
+        model = PiiSentinel(AutoModel.from_config(config))
     model.load_state_dict(load_file(str(path / WEIGHTS_FILE)))
     return model.to(device).eval(), load_tokenizer(meta["base_model"], meta["base_revision"]), meta
