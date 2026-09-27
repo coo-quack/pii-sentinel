@@ -98,11 +98,11 @@ def test_surname_first_names_match_either_way():
 def test_rules_add_what_the_model_missed_and_report_secrets_apart():
     from pii_sentinel.predict import add_rule_findings
 
-    text = "Key AKIA3QF7TZ9KLMN2PQRS, card 4532015112830366, mail kim@example.kr"
+    text = "Key AKIADUMMYKEY00000000, card 4000000000000002, mail kim@example.kr"
     findings = [{"type": "email", "value": "kim@example.kr", "start": 55, "end": 69, "pii": True}]
     secrets, floor = add_rule_findings(text, findings)
-    assert [s["value"] for s in secrets] == ["AKIA3QF7TZ9KLMN2PQRS"]
-    assert [f["value"] for f in findings] == ["4532015112830366", "kim@example.kr"]
+    assert [s["value"] for s in secrets] == ["AKIADUMMYKEY00000000"]
+    assert [f["value"] for f in findings] == ["4000000000000002", "kim@example.kr"]
     assert floor == "high"
     role = []
     assert add_rule_findings("Contacto: coordinador@empresa.com", role) == ([], "none")

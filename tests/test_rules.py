@@ -75,9 +75,9 @@ class TestPlaceholder:
 
     def test_real_values_not_placeholders(self):
         """Real credential values should not be placeholders."""
-        assert not is_placeholder("AKIA3QF7TZ9KLMN2PQRS")
-        assert not is_placeholder("4532015112830366")
-        assert not is_placeholder("ghp_AbCdEfGhIjKlMnOpQrStUvWxYz0123456789")
+        assert not is_placeholder("AKIADUMMYKEY00000000")
+        assert not is_placeholder("4000000000000002")
+        assert not is_placeholder("ghp_DUMMYTOKENFORTESTS000000000000000000")
 
     def test_postgres_default_detected(self):
         """Default postgres credentials should be detected."""
@@ -129,10 +129,10 @@ class TestNotSecretShaped:
 
     def test_real_secrets_are_secret_shaped(self):
         """Real secrets should be secret-shaped."""
-        assert not is_not_secret_shaped("AKIA3QF7TZ9KLMN2PQRS")
+        assert not is_not_secret_shaped("AKIADUMMYKEY00000000")
         # Card numbers are all digits, which is considered "not secret shaped"
         # So they will be filtered by luhn validator instead
-        assert is_not_secret_shaped("4532015112830366")
+        assert is_not_secret_shaped("4000000000000002")
 
 
 class TestKeyDescribes:
@@ -155,7 +155,7 @@ class TestCardLuhnValidator:
 
     def test_valid_real_card(self):
         """Real card numbers should pass."""
-        assert is_real_card_number("4532015112830366")
+        assert is_real_card_number("4000000000000002")
 
     def test_test_card_numbers_rejected(self):
         """Published test card numbers should be rejected."""
@@ -174,7 +174,7 @@ class TestAWSKeyValidator:
 
     def test_real_aws_key(self):
         """Real AWS keys (not ending in EXAMPLE) should pass."""
-        assert is_real_aws_key("AKIA3QF7TZ9KLMNPQRS")
+        assert is_real_aws_key("AKIADUMMYKEY0000000")
 
     def test_example_aws_key_rejected(self):
         """AWS documentation example keys should be rejected."""
@@ -401,12 +401,12 @@ class TestScanAWSKey:
 
     def test_detects_aws_key(self):
         """Should detect AWS access key."""
-        # 16 chars after AKIA prefix: 3QF7TZ9KLMN2PQRS (14 + 2)
-        matches = scan("My key is AKIA3QF7TZ9KLMN2PQRS and secret is xyz")
+        # AKIA followed by 16 characters
+        matches = scan("My key is AKIADUMMYKEY00000000 and secret is xyz")
         assert len(matches) > 0
         aws_matches = [m for m in matches if m.rule == "aws-access-key"]
         assert len(aws_matches) == 1
-        assert aws_matches[0].value == "AKIA3QF7TZ9KLMN2PQRS"
+        assert aws_matches[0].value == "AKIADUMMYKEY00000000"
 
     def test_ignores_example_key(self):
         """Should not detect AWS example keys."""
@@ -420,7 +420,7 @@ class TestScanCreditCard:
 
     def test_detects_valid_card(self):
         """Should detect valid credit card."""
-        matches = scan("card: 4532015112830366")
+        matches = scan("card: 4000000000000002")
         cc_matches = [m for m in matches if m.rule == "pii-credit-card"]
         assert len(cc_matches) == 1
 
@@ -481,7 +481,7 @@ class TestScanGitHubToken:
 
     def test_detects_github_pat(self):
         """Should detect GitHub Personal Access Tokens."""
-        token = "ghp_AbCdEfGhIjKlMnOpQrStUvWxYz0123456789"
+        token = "ghp_DUMMYTOKENFORTESTS000000000000000000"
         matches = scan(f"token is {token}")
         github_matches = [m for m in matches if m.rule == "github-pat"]
         assert len(github_matches) == 1
@@ -492,7 +492,7 @@ class TestScanMatchOrdering:
 
     def test_matches_sorted_by_position(self):
         """Matches should be sorted by start position."""
-        text = "card 4532015112830366 and key AKIA3QF7TZ9KLMNPQRS and email test@test.net"
+        text = "card 4000000000000002 and key AKIADUMMYKEY0000000 and email test@test.net"
         matches = scan(text)
         # Check that positions are in order
         for i in range(len(matches) - 1):

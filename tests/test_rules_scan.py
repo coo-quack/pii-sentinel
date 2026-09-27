@@ -22,14 +22,14 @@ class TestScanSecretFiltering:
 
     def test_real_secret_not_ignored(self):
         """Real secrets should not be filtered by shape checks."""
-        matches = scan("My key is AKIA3QF7TZ9KLMN2PQRS and secret is xyz")
+        matches = scan("My key is AKIADUMMYKEY00000000 and secret is xyz")
         aws_matches = [m for m in matches if m.rule == "aws-access-key"]
         assert len(aws_matches) == 1
-        assert aws_matches[0].value == "AKIA3QF7TZ9KLMN2PQRS"
+        assert aws_matches[0].value == "AKIADUMMYKEY00000000"
 
     def test_valid_credit_card_not_ignored(self):
         """Valid credit cards should pass all filters."""
-        matches = scan("payment card 4532015112830366 for processing")
+        matches = scan("payment card 4000000000000002 for processing")
         cc_matches = [m for m in matches if m.rule == "pii-credit-card"]
         assert len(cc_matches) == 1
 
@@ -46,12 +46,12 @@ class TestScanMatchSpans:
 
     def test_whole_match_span(self):
         """Without secretGroup, span should be whole match."""
-        matches = scan("found: AKIA3QF7TZ9KLMN2PQRS here")
+        matches = scan("found: AKIADUMMYKEY00000000 here")
         aws_matches = [m for m in matches if m.rule == "aws-access-key"]
         assert len(aws_matches) == 1
         m = aws_matches[0]
         # Span should cover entire match
-        assert text_at_span("found: AKIA3QF7TZ9KLMN2PQRS here", m) == m.value
+        assert text_at_span("found: AKIADUMMYKEY00000000 here", m) == m.value
 
 
 class TestScanDescription:
@@ -59,7 +59,7 @@ class TestScanDescription:
 
     def test_match_has_description(self):
         """Match objects should include rule description."""
-        matches = scan("AKIA3QF7TZ9KLMN2PQRS")
+        matches = scan("AKIADUMMYKEY00000000")
         assert len(matches) == 1
         m = matches[0]
         assert m.description != ""
@@ -67,7 +67,7 @@ class TestScanDescription:
 
     def test_all_matches_have_description(self):
         """All matches should have descriptions from the rules."""
-        matches = scan("card 4532015112830366 and key AKIA3QF7TZ9KLMN2PQRS")
+        matches = scan("card 4000000000000002 and key AKIADUMMYKEY00000000")
         for m in matches:
             assert m.description
             assert isinstance(m.description, str)
