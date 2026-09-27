@@ -4,16 +4,19 @@ Multilingual personal-information detector. It finds names, personal contacts an
 character spans, and judges how sensitive a document is (none / low / high) with 19 categories.
 
 The model, **mmBERT-pii-sentinel**, is a fine-tuned derivative of
-[jhu-clsp/mmBERT-base](https://huggingface.co/jhu-clsp/mmBERT-base). See [MODEL_CARD.md](MODEL_CARD.md).
+[jhu-clsp/mmBERT-base](https://huggingface.co/jhu-clsp/mmBERT-base), published at
+[coo-quack/mmBERT-pii-sentinel](https://huggingface.co/coo-quack/mmBERT-pii-sentinel). See [MODEL_CARD.md](MODEL_CARD.md).
 
 Languages trained and evaluated: Japanese, Chinese (Simplified), Korean, English, French, Italian, German, Spanish.
 
 ## Use
 
 ```sh
-uv run pii-sentinel scan --model models/<checkpoint> document.txt        # values masked
-uv run pii-sentinel scan --model models/<checkpoint> --json --show-values - < document.txt
+uv run pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt   # values masked
+uv run pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel --json --show-values - < document.txt
 ```
+
+`--model` takes a Hugging Face model id (downloaded once into the local cache) or a local checkpoint directory.
 
 The model's findings are combined with the regex rules of
 [sensitive-canary](https://github.com/coo-quack/sensitive-canary) (`src/pii_sentinel/canary_rules.json`):
