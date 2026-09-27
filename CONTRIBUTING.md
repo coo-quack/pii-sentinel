@@ -57,11 +57,30 @@ If the sync PR has conflicts, resolve them manually before merging.
 
 ## Release Checklist
 
+When a newly trained model is adopted, upload it to the `develop` branch of the Hub repository and record its
+hashes (the weights are not kept in Git):
+
+```bash
+hf upload coo-quack/mmBERT-pii-sentinel models/mmBERT-pii-sentinel . --revision develop \
+  --include model.safetensors --include pii_sentinel.json
+(cd models/mmBERT-pii-sentinel && shasum -a 256 model.safetensors pii_sentinel.json) > model.sha256
+```
+
 When bumping a version, open a PR from `develop` → `main` with:
 
 1. Update `version` in `pyproject.toml`
 2. Add a `## vX.Y.Z (YYYY-MM-DD)` section to `CHANGELOG.md`
+   - `release.yml` extracts that section as the GitHub Release notes, so the heading must start with `## vX.Y.Z`
 3. Update the evaluation table in `MODEL_CARD.md` when the model or the post-processing changed
+
+After merging into `main`, `release.yml` automatically:
+
+- Downloads the model from the Hub's `develop` branch and checks it against `model.sha256`
+- Uploads it with `MODEL_CARD.md` (as the Hub README), `LICENSE` and `THIRD_PARTY_NOTICES.md` to the Hub's `main`
+  branch and tags it `vX.Y.Z`
+- Creates the git tag `vX.Y.Z` and a GitHub Release with the notes from `CHANGELOG.md`
+
+It needs the repository secret `HF_TOKEN`, a Hugging Face token with write access to the model repository.
 
 ## Pull Requests
 

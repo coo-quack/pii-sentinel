@@ -1,0 +1,99 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions: {}
+
+env:
+  HF_REPO: coo-quack/mmBERT-pii-sentinel
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      should_release: ${{ steps.check.outputs.should_release }}
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - id: check
+        run: |
+          VERSION=$(python3 -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if git ls-remote --tags origin "v$VERSION" | grep -q "v$VERSION"; then
+            echo "should_release=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_release=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  release:
+    needs: check
+    if: needs.check.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+
+      - run: uv sync --frozen
+      - run: uv run --no-sync ruff check src tests
+      - run: uv run --no-sync pytest -q
+
+      # The weights are not in Git: a promoted model is uploaded to the Hub's develop branch, and model.sha256
+      # records the files that were evaluated. Only those files are published.
+      - name: Fetch the promoted model from the Hub's develop branch
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          uv run --no-sync hf download "$HF_REPO" --revision develop \
+            --include model.safetensors --include pii_sentinel.json --local-dir release-model
+          (cd release-model && sha256sum -c ../model.sha256)
+
+      - name: Publish to the Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          VERSION="v${{ needs.check.outputs.version }}"
+          rm -rf release-model/.cache
+          cp MODEL_CARD.md release-model/README.md
+          cp LICENSE THIRD_PARTY_NOTICES.md release-model/
+          uv run --no-sync hf upload "$HF_REPO" release-model . --commit-message "Release $VERSION"
+          uv run --no-sync hf repos tag create "$HF_REPO" "$VERSION" --message "Release $VERSION"
+
+      - name: Create git tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          VERSION="v${{ needs.check.outputs.version }}"
+          if git ls-remote --tags origin "$VERSION" | grep -q "$VERSION"; then
+            echo "Tag $VERSION already exists, skipping"
+          else
+            git tag "$VERSION"
+            git push origin "$VERSION"
+          fi
+
+      - name: Extract changelog
+        run: |
+          VERSION="${{ needs.check.outputs.version }}"
+          NOTES=$(awk "/^## v${VERSION}/{found=1; next} found && /^## v/{exit} found{print}" CHANGELOG.md)
+          if [ -z "$NOTES" ]; then
+            NOTES="Release v${VERSION}"
+          fi
+          printf '%s\n\nModel: https://huggingface.co/%s/tree/v%s\n' "$NOTES" "$HF_REPO" "$VERSION" > /tmp/release-notes.md
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="v${{ needs.check.outputs.version }}"
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "Release $VERSION already exists, skipping"
+          else
+            gh release create "$VERSION" \
+              --title "$VERSION" \
+              --notes-file /tmp/release-notes.md
+          fi
