@@ -241,7 +241,7 @@ def score(
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--model", type=Path, required=True)
+    ap.add_argument("--model", required=True, help="checkpoint directory or Hugging Face model id")
     ap.add_argument("--no-rules", action="store_true", help="model only, without the rule set")
     ap.add_argument("--max-length", type=int, help="window length (default: the training length)")
     ap.add_argument("corpora", nargs="+", type=Path)

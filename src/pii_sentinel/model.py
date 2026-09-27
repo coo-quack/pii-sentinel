@@ -75,7 +75,18 @@ def save(model, out: Path, meta: dict, base=BASE_MODEL, revision=BASE_REVISION):
     (out / META_FILE).write_text(json.dumps(full, ensure_ascii=False, indent=2) + "\n")
 
 
-def load(path: Path, device="cpu"):
+def resolve(model):
+    """A local checkpoint directory, or a Hugging Face model id (downloaded once into the local cache)."""
+    path = Path(model)
+    if path.exists():
+        return path
+    from huggingface_hub import snapshot_download
+
+    return Path(snapshot_download(repo_id=str(model), allow_patterns=[META_FILE, WEIGHTS_FILE]))
+
+
+def load(path, device="cpu"):
+    path = resolve(path)
     meta = json.loads((path / META_FILE).read_text())
     if meta.get("format") != FORMAT:
         raise RuntimeError(f"{path} is not a {FORMAT} checkpoint")

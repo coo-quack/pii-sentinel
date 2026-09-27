@@ -30,7 +30,7 @@ def main(argv=None):
     sub = ap.add_subparsers(dest="command", required=True)
     scan = sub.add_parser("scan", help="scan files (or stdin) for personal information")
     scan.add_argument("files", nargs="*", type=Path)
-    scan.add_argument("--model", type=Path, required=True)
+    scan.add_argument("--model", required=True, help="checkpoint directory or Hugging Face model id")
     scan.add_argument("--json", action="store_true")
     scan.add_argument("--show-values", action="store_true")
     scan.add_argument("--fail-on", choices=["low", "high"])
