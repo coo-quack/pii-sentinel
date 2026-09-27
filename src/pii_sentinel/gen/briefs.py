@@ -146,7 +146,8 @@ def main(argv=None):
     rng = random.Random(a.seed)
     table = FOCUS if a.focus else CELLS
     slots = [(s, c) for s, cells in table.items() for c, n in cells.items() for _ in range(n)]
-    assert len(slots) == a.per_language, len(slots)
+    if len(slots) != a.per_language:
+        raise SystemExit(f"the cell table has {len(slots)} slots, not --per-language {a.per_language}")
     a.out.mkdir(parents=True, exist_ok=True)
     for lang in LANGS:
         rng.shuffle(slots)

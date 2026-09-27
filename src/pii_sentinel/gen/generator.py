@@ -135,14 +135,23 @@ class Person:
     foreign: bool
 
 
+CJK_CHAR = re.compile(r"[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7a3]")
+
+
 def seen_in(name, texts):
     """Whether a name occurs in evaluation text (whole words for Latin script, any position for CJK)."""
     if len(name) < 2:
         return False
-    if re.search(r"[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7a3]", name):
+    if CJK_CHAR.search(name):
         return any(name in t for t in texts)
     pattern = re.compile(rf"(?<![^\W\d_]){re.escape(name)}(?![^\W\d_])")
     return any(pattern.search(t) for t in texts)
+
+
+def clashes(name, reserved):
+    """Whether a generator name is, or is part of, an evaluation name, or contains one ("Kim" is part of
+    "Kim Lee" but not of "Kimberly")."""
+    return name == reserved or seen_in(name, [reserved]) or seen_in(reserved, [name])
 
 
 class Lang:
@@ -152,12 +161,7 @@ class Lang:
 
         def split(xs, label):
             uniq = list(dict.fromkeys(xs))
-            kept = [
-                n
-                for n in uniq
-                if not any(r == n or (len(n) >= 2 and n in r) or r in n for r in reserved)
-                and not seen_in(n, texts)
-            ]
+            kept = [n for n in uniq if not any(clashes(n, r) for r in reserved) and not seen_in(n, texts)]
             if len(kept) < len(uniq):
                 excluded_log.append(f"{self.code}.{label}: " + " ".join(n for n in uniq if n not in kept))
             return {
@@ -910,7 +914,7 @@ def narrative(doc, L, pool):
     n = rint(1, 3)
     while len(facts) < n:
         facts.add(weighted(PERSON_FACTS, PERSON_WEIGHTS))
-    facts = list(facts) + [weighted(NEG_FACTS, NEG_WEIGHTS) for _ in range(rint(0, 2))]
+    facts = sorted(facts) + [weighted(NEG_FACTS, NEG_WEIGHTS) for _ in range(rint(0, 2))]
     rng.shuffle(facts)
     for i, k in enumerate(facts):
         if i:
@@ -1215,8 +1219,9 @@ def topic_article(doc, L, pool):
 
 
 def long_doc(doc, L, pool):
-    # Several blocks in one document, so the deciding fact can sit anywhere in a long text.
-    limit = 420 if L.cjk else 1300
+    # Several blocks in one document, so the deciding fact can sit anywhere in a long text; nearly half are
+    # longer than one 512-token window.
+    limit = rint(420, 1600) if L.cjk else rint(1300, 4800)
     while len(doc.text) < limit * 0.6:
         if doc.text:
             doc.add("\n\n")
@@ -1348,7 +1353,9 @@ def slot_doc(doc, L, pool):
     level = SENS_LEVEL[t["sensitivity"]]
     doc.personal = level >= 1
     doc.high = level == 2
-    doc.cats.discard("person_name") if not any(k == "PERSON" for *_, k in doc.spans) else None
+    # A person picked out by an identifier alone ({P1.id}) is still an identified person.
+    if not any(k == "PERSON" for *_, k in doc.spans) and not re.search(r"\{P\d\.id\}", t["text"]):
+        doc.cats.discard("person_name")
 
 
 def lookalike_doc(doc, L, pool):
@@ -1406,7 +1413,10 @@ def load_slot_templates(root, skip=frozenset()):
     from .slots import problems
 
     kept = Counter()
-    for path in sorted(Path(root).glob("*.json")):
+    paths = sorted(Path(root).glob("*.json"))
+    if not paths:
+        raise SystemExit(f"--templates: no *.json files in {root}")
+    for path in paths:
         try:
             templates = json.loads(path.read_text())["templates"]
         except (json.JSONDecodeError, KeyError):
@@ -1452,7 +1462,8 @@ def make_doc(L, pool):
     if re.search(r"\{[A-Za-z_]+\}", doc.text):
         raise ValueError(f"leftover placeholder in {L.code}: {doc.text}")
     for s, e, _ in doc.spans:
-        assert doc.text[s:e].strip() == doc.text[s:e] and e > s, (doc.text, s, e)
+        if not (e > s and doc.text[s:e].strip() == doc.text[s:e]):
+            raise ValueError(f"span {s}-{e} is empty or has surrounding spaces in {L.code}: {doc.text!r}")
     return {
         "lang": L.code,
         "format": fn.__name__,
@@ -1502,6 +1513,10 @@ def main(argv=None):
     ap.add_argument("--skip-cells", default="", help="slot template cells to leave out, comma-separated")
     a = ap.parse_args(argv)
     rng.seed(a.seed)
+    # main() filters these tables and fills SLOT_T, so start each run from the files.
+    TABLES.clear()
+    TABLES.update(json.loads((HERE / "tables.json").read_text()))
+    SLOT_T.clear()
     global SLOT_WEIGHT
     SLOT_WEIGHT = a.template_weight
     if a.templates:
@@ -1543,7 +1558,9 @@ def main(argv=None):
             "categories": Counter(c for d in docs for c in d["categories"]),
             "max_chars": max(len(d["text"]) for d in docs),
         }
-    assert set(CATEGORIES) >= {c for p in report["pools"].values() for c in p["categories"]}
+    unknown = {c for p in report["pools"].values() for c in p["categories"]} - set(CATEGORIES)
+    if unknown:
+        raise ValueError(f"unknown categories: {sorted(unknown)}")
     (a.out / "stats.json").write_text(json.dumps(report, ensure_ascii=False, indent=1))
     print(json.dumps(report["pools"], ensure_ascii=False, indent=1))
     print("excluded:", len(excluded))

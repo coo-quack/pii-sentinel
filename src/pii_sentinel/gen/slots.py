@@ -137,6 +137,8 @@ def problems(t, brief=None):
         out.append("numbers_of_no_person needs {HASH}, {ORG.bank} or {ORG.regno}")
     if t["sensitivity"] != "high" and any(a in HIGH_SLOTS for _, a in persons):
         out.append("an ID or account number makes the document high")
+    if t["sensitivity"] != "high" and "{PW}" in text:
+        out.append("{PW} is a person's login credential and makes the document high")
     if brief:
         lo, hi = LIMITS[brief["length"]]
         if t["lang"] in CJK:

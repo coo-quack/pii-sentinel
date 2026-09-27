@@ -39,7 +39,8 @@ def build_orders(cov, lang, rng):
         for c, n in cells.items()
         for _ in range(n)
     ]
-    assert len(slots) == cov["per_language"], (lang, len(slots))
+    if len(slots) != cov["per_language"]:
+        raise ValueError(f"{lang}: the coverage table has {len(slots)} slots, not {cov['per_language']}")
     rng.shuffle(slots)
 
     # Lengths: long formats get the long buckets, everything else short or medium.
@@ -229,7 +230,8 @@ def cmd_finalize(a):
             source = decided[t["id"]] if t["id"] in disputed else second[t["id"]]
             expected = source["expected"]
             for f in expected["findings"]:
-                assert f["value"] in t["text"], (t["id"], f["value"])
+                if f["value"] not in t["text"]:
+                    raise SystemExit(f"{t['id']}: {f['value']!r} is not in the text")
             changed[t["id"] in disputed] += 1
             out.append({**{k: v for k, v in t.items() if k != "expected"}, "expected": expected})
         (r / a.final).mkdir(exist_ok=True)
@@ -244,7 +246,8 @@ def apply_corrections(t, fix):
     exp["findings"] = [f for f in exp["findings"] if f["type"] not in fix.get("remove_types", [])]
     exp["findings"] = [f for f in exp["findings"] if f["value"] not in fix.get("remove_values", [])]
     for f in fix.get("add", []):
-        assert f["value"] in t["text"], (t["id"], f["value"])
+        if f["value"] not in t["text"]:
+            raise SystemExit(f"{t['id']}: {f['value']!r} is not in the text")
         exp["findings"].append(f)
     for change in fix.get("set_pii", []):
         for f in exp["findings"]:

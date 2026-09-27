@@ -193,7 +193,7 @@
     "lang": "zh",
     "sensitivity": "none",
     "cell": "numbers_of_no_person",
-    "text": "航空公司配置表单\n\n字段名\t值\n公司法人登记号\t{ORG.regno}\n公司对公银行账户\t{ORG.bank}\n系统配置文件版本标识\t{HASH}\n数据库访问加密密钥\t{PW}\n备用系统哈希值\t{HASH}"
+    "text": "航空公司配置表单\n\n字段名\t值\n公司法人登记号\t{ORG.regno}\n公司对公银行账户\t{ORG.bank}\n系统配置文件版本标识\t{HASH}\n数据库访问加密密钥指纹\t{HASH}\n备用系统哈希值\t{HASH}"
   },
   {
     "id": "f_zh_059",
