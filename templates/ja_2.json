@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_ja_041",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "{P1}さんへ\n寺での会議終了後、{P1.phone}へ連絡を入れてくれましたね。本当にありがとうございました。次回の行事は来月の15日を予定しています。詳しくは{P1.email}に案内を送ります。"
+  },
+  {
+   "id": "t_ja_042",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "ゲームコミュニティ利用料支払い領収書\n名義人: {P1}\nユーザーID: {P1.handle}\nプレミアム会員月額: 980円\n支払日時: {DATE}\n確認コード: {CODE}\n備考: ポイント還元は次月に加算されます。\nサポート: {ORG.email} までお問い合わせください。"
+  },
+  {
+   "id": "t_ja_043",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "航空会社マイレージクレジットカード申込者一覧\n\n{P1}: {P1.card}\n{P2}: {P2.card}\n{P3}: {P3.card}\n{P4}: {P4.card}\n\n承認日: {DATE}"
+  },
+  {
+   "id": "t_ja_044",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "航空会社内部メモ\n予約部{P1}より:\nチケット番号{CODE}の変更申請完了。{DATE}に対応。"
+  },
+  {
+   "id": "t_ja_045",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "ゲーミング大会メモ\n{P1}:\n位置情報: {GPS}\n参加確認時刻: 14:30"
+  },
+  {
+   "id": "t_ja_046",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "歯科医院 患者初診記録\n患者名: {P1}\nご住所: {P1.addr}\n連絡先: {P1.phone}\n生年月日: {P1.dob}\n\n保険情報\n保険者番号: {P1.govid}\n\nクレジットカード登録\nカード番号: {P1.card}\n有効期限: 12/28\nセキュリティコード: {CODE}\n\n初診日: {DATE}\n診療内容: 初期検査および虫歯3本の治療予定\n治療予定期間: 約3ヶ月\n治療費概算: {AMOUNT}円\nお支払い方法: 現金、クレジットカード、デンタルローン等ご選択いただけます。\n\n今後の治療スケジュールについては別途ご案内いたします。お支払いについてはご相談いただきました内容でお進めします。緊急の連絡先も記載いたしました。"
+  },
+  {
+   "id": "t_ja_047",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "不動産Webサーバー設定\nDATABASE_URL=postgres://user@localhost:5432/property_db\nAPI_KEY=sk_test_abc123xyz789"
+  },
+  {
+   "id": "t_ja_048",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "大使館での面談記録\n申請者: {P1.s}氏\n面談日時: {DATE} 10:00\n\n本人は新政権の移民政策に強く反対する旨を述べた。特に難民受け入れ枠の削減に対して批判的な発言が多かった。また、現在の国家政策全般について「市場主義偏重は危険」という意見を展開。政治的立場は明確に野党寄りである。野党の支持者であることを明言した。現在、月に一度の野党政治活動に参加しているとのこと。社会主義理論にも強い関心を示している。彼の政治見解は一貫して進歩的で、資本主義経済体制に対して強い批判を持つ。国家予算の配分についても独自の見解がある。通常の査証手続きに影響を与えるものではないが、政治的背景として記録として残す。"
+  },
+  {
+   "id": "t_ja_049",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "映画製作記録\n2024年9月\n\n脚本作成者の{P1}は、去年の強盗事件の被害者であることが判明した。トラウマの影響について本人と相談し、撮影スケジュールを調整することを決めた。プライバシー保護のため関係者以外には伝えないこと。"
+  },
+  {
+   "id": "t_ja_050",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "教会のお知らせ\n\n特別講演のご案内\n\n著名な神学者である{PUB}を招き、\n『現代の信仰と社会』をテーマに\n講演いただきます。\n\n日時: {DATE} 14:00\n場所: 本堂"
+  },
+  {
+   "id": "t_ja_051",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "歯科クリニック 患者連絡票\n患者: {P1}\n住所: {P1.addr}\nご連絡先: {P1.phone}\n\n3ヶ月目の定期検診のご案内です。\n下記の日時でご予約をお取りしております。\nご都合がつかない場合はお知らせください。\n予約日時: {DATE} 14:30"
+  },
+  {
+   "id": "t_ja_052",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "歯科クリニック 先代院長の略歴\n院長 {DEAD}\n生年: {DEAD.born}\n没年: {DEAD.died}\n\n1965年に当クリニックを開設し、\n50年以上にわたり地域の歯科医療に貢献した。\nその治療技術と患者思いの姿勢は多くの患者から信頼を得た。"
+  },
+  {
+   "id": "t_ja_053",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "採用試験通知\n\n{P1}様\n\n適性診断の遺伝子検査結果につきましてご連絡申し上げます。\n検査日時: {DATE}\n指紋データ ID: {P1.govid}\n虹彩スキャン: 適合\n\n詳細は別紙のとおりです。"
+  },
+  {
+   "id": "t_ja_054",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "航空会社内部メール\n宛先: {P1.email}\n件名: 労働組合活動について\n\nお疲れ様です。先日の労働組合の定例会議にご参加いただきありがとうございました。\n{DATE}の次回総会のご案内をお送りします。"
+  },
+  {
+   "id": "t_ja_055",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "大学研究室チャットログ\n\n{P1}: 研究費の融資申請が通ったとのこと。{DATE}に銀行口座番号{P1.bank}で振込予定とのこと。金額は{AMOUNT}円です。振込手数料はこちらで負担いたします。\n\n{P2}: 承認ありがとうございます。ログイン資格情報は以下の通りです: ユーザーID abc_research、パスワード {PW}。このパスワードは本プロジェクト専用です。\n\n{P3}: 重要な注意事項があります。パスワードはチャットで共有しないでください。セキュアなシステムで管理してください。2要素認証の設定も推奨します。ネットワークセキュリティポリシーをお読みください。詳細はセキュリティ管理室までお問い合わせください。"
+  },
+  {
+   "id": "t_ja_056",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "スタートアップ創業者インタビュー\n創業者: {PUB}\nプロフィール: テクノロジー企業のCEO\nインタビュアー: 「事業成功の秘訣は？」\n回答: 「地道な研究とチームの信頼関係です」"
+  },
+  {
+   "id": "t_ja_057",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "農業協同組合 休業届\n\n申請者: {P1}\n\n以下の期間、妊娠による体調不良のため休業いたします。\n休業予定: {DATE}から {DATE}\n\n健康診断の結果、専門医より就業制限の指示を受けております。\nご確認・承認をよろしくお願いいたします。"
+  },
+  {
+   "id": "t_ja_058",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "大使館 査証申請ケース記録\n\n申請者: {P1.s} {P1.g}\nマイナンバー: {P1.govid}\n申請日: {DATE}\nパスポート番号: {P1.passport}\n\nステータス: 審査中"
+  },
+  {
+   "id": "t_ja_059",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "物流会社 配送スタッフ日誌\n\n2024年9月27日の配送チーム\n{P1}\n{P2}\n{P3}\n\n本日配送件数: 156件\n無事故報告: 良好\n次日予定: 東京エリア配送\n交通状況: 平常です。配送予定時刻に変更なし。"
+  },
+  {
+   "id": "t_ja_060",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "歯科医院 患者住所録\n\n{P1}\n住所: {P1.addr}\n\n正確な位置座標: {GPS}\n\nタイムアウト: 15分"
+  },
+  {
+   "id": "t_ja_061",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "マラソン大会参加者宛信\n\nご参加ありがとうございます。\n{P1}様\n\n登録住所: {P1.addr}\nご生年月日: {P1.dob}\n\n完走賞をお送りする予定です。"
+  },
+  {
+   "id": "t_ja_062",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "建設現場 安全対策フォーム\n\n現場責任者: {PUB}\n役職: 有名建築家\n\n実績: 20年以上の現場経験\n資格: 一級建築士"
+  },
+  {
+   "id": "t_ja_063",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "sex_life_or_orientation",
+   "text": "映画製作会議メモ\n\nプロジェクト: 新作映画\n製作者: {P1}\n\n{P1}はLGBTQコミュニティの当事者であり、\nこの作品で初めてその経験を作品に反映させる予定です。\n詳細な個人的背景は守秘事項として処理する。"
+  },
+  {
+   "id": "t_ja_064",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "物流会社 従業員記録\n\n氏名: {P1}\n日付: {DATE}\n\n過去に詐欺罪で有罪判決を受けた\n経歴がある。採用時の信用調査で判明した。\n本人には告知済みである。\nプロベーション期間中の監視体制を継続設定している。"
+  },
+  {
+   "id": "t_ja_065",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "研究バイオバンク 人事通知\n\n本件人事異動についてお知らせいたします。\n\n対象者: {P1}\n処分内容: 懲戒処分\n理由: 研究データ改ざん\n処分日: {DATE}\n\n詳細は別紙参照のことをお願いいたします。"
+  },
+  {
+   "id": "t_ja_066",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "保険会社 加入者統計表\n\n| 氏名 | 宗教 | 加入年月 |\n| --- | --- | --- |\n| {P1} | イスラム教 | 2020/3 |\n| {P2} | キリスト教 | 2021/5 |\n| {P3} | 仏教 | 2022/1 |"
+  },
+  {
+   "id": "t_ja_067",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "ソフトウェア企業 内部メモ\n\n採用候補者: {P1}\n民族背景: アイスランド系\n出身地: 北欧\n\n人事記録として保管。"
+  },
+  {
+   "id": "t_ja_068",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "フットボールクラブ SNS投稿\n\n本日のユース選手権大会、見事優勝しました！\n\nMVP選手: {P1}\n得点王: {P2}\n\n皆さん、応援ありがとうございました。\n次は全国大会に向けて練習を続けます。"
+  },
+  {
+   "id": "t_ja_069",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "オンラインゲームコミュニティ ケース記録\n\n報告者: {P1}\n報告日時: {DATE}\n\n詳細:\n{P2}がゲーム内で詐欺行為を行った。\n被害総額約30万円。\nプレイヤーの実生活での恐喝も疑われている。\nサポートチームにて調査中。\n\n警察報告手続き進行中。\n被害者支援プログラムの適用を検討。\n当該プレイヤーのアカウント仮停止措置を実施。\n今後のコミュニティ安全管理体制の強化が課題である。\n類似事案の予防策についても検討する。\n法執行機関との連携を強化する必要があります。\n被害者の心理的サポートも提供します。\n事件の再発防止を強く望む。本事件を教訓とします。今後同様の事案が二度と起きないよう対策を立てます。"
+  },
+  {
+   "id": "t_ja_070",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "美術館 来館者登録フォーム\n\n登録者: {P1}\nID番号: {P1.govid}\n顔認証スキャン完了\nDNA採取: {DATE}\n\n会員ステータス: 有効期限 {DATE}"
+  },
+  {
+   "id": "t_ja_071",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "介護施設 スタッフ報告書\n\n本日担当者:\n朝シフト: {P1}\n昼シフト: {P2}\n夜シフト: {P3}\n\n入居者の健康状態: 異常なし\n食事摂取量: 良好\n特別な報告事項: なし\nご質問はお気軽に。"
+  },
+  {
+   "id": "t_ja_072",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "小学校 欠席連絡メモ\n\n{P1}君\n\nご欠席連絡ありがとうございます。\n診断名は特に報告いただいていませんが、\n学級閉鎖中のため自宅休養をお勧めします。\n回復したらお知らせください。復帰のご準備をお待ちしております。"
+  },
+  {
+   "id": "t_ja_073",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "歯科医院 処遇決定通知\n\n{P1}様\n\n本日付をもって、本人の職務行為に関する\nハラスメント申立への調査を完了いたしました。\n\n調査結果に基づき、警告処分といたします。\n期間: {DATE}から6ヶ月間\n\n詳細は別途面談でお伝えします。"
+  },
+  {
+   "id": "t_ja_074",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "スーパー店長日誌\n\n{DATE}\n\n{P1}さんが来店。\n在留カード有効期限が {DATE} に切れると。\nビザ更新のため、総務に報告してくださいとお伝えした。"
+  },
+  {
+   "id": "t_ja_075",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "name_like_product_or_place",
+   "text": "マラソン大会インタビュー記録\n\n今年のコースについて、大会実行委員会にお話を伺いました。\n\n「Sakura Marathon という製品ブランドの名前をコース名に使用しているのは、スポンサーシップの関係です。市内の桜の名所をめぐる5つのルートがあります。Rose Garden を抜けるルート、Mount Fuji ビューを含むルート、Oakland Flat を経由するルート、Sunshine Valley ルート、Highland Park を通るルート。これらは実際の地名ではなく、大会スポンサーの製品名やブランド名です」。特に子どもたちに人気があります。来年も継続予定です。ご参加をお待ちしています。"
+  },
+  {
+   "id": "t_ja_076",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "政党事務所 政策アンケート回答フォーム\n\n回答者: {P1.s}氏\n回答日: {DATE}\n\n「税制改革についてのご意見をお聞かせください」\n回答: 「現在の累進課税制度は不十分であり、\n富裕層への課税をさらに強化すべき」\n\n政治的立場: 左派"
+  },
+  {
+   "id": "t_ja_077",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "病院 退院送金通知\n\n患者様へ\n\n{P1}様\n\n本日より退院となります。\n退院時請求額: {AMOUNT}円\nお支払い方法はご選択いただけます。\n銀行振込か現金払いかご指示ください。\n\n退院日: {DATE}"
+  },
+  {
+   "id": "t_ja_078",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "ジムのSNS投稿\n\nプロテイン新製品レビュー📍\n\n{P1}さんのジム通期 DNA検査結果で\n筋肥大タイプと判定されました！\n\n回復力: 優秀\n遺伝子スコア: 8.5/10\n\n個人差に合わせた栄養指導を開始です💪"
+  },
+  {
+   "id": "t_ja_079",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "保険会社 SNS投稿\n\nご存知ですか？\n\n日本人の健康寿命について、\nWHOの2023年報告では、平均寿命と健康寿命の差は\n約9年とされています。\n\n予防医療がますます重要になっています。\nぜひ皆さんの定期検診をお勧めします。"
+  },
+  {
+   "id": "t_ja_080",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "マラソン大会ケース記録\n\n{DATE}\n\n参加者 {P1} の記録:\n{P1}は大会参加中に政治的な横断幕を掲げていた。\nスローガン「環境保全を最優先に」と記載。\n環境政策への強い政治的立場が明らかである。\nただし大会規則違反ではないため特に対応せず。"
+  }
+ ]
+}

@@ -1,0 +1,1126 @@
+{
+  "tests": [
+    {
+      "id": "ev001_name_ja_kanji_full",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "田中美咲さんが新しいプロジェクトに参加しました。",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "田中美咲",
+            "pii": true,
+            "honorific": "さん"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev002_name_ja_surname_only",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "佐藤がミーティングに遅刻した。",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "佐藤",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev003_name_en_western",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Emily Carter joined our team yesterday.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Emily Carter",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev004_name_ja_katakana",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "ジョン・スミスがボストンから来日した。",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "ジョン・スミス",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev005_name_ja_romanized",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Taro Yamada's report was excellent.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Taro Yamada",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev006_name_ja_with_title",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "田中部長が決定権を持っています。",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "田中",
+            "pii": true,
+            "honorific": "部長"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev007_name_en_with_title",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Dr. Smith will present the findings.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Smith",
+            "pii": true,
+            "honorific": "Dr."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev008_name_place_negative_context",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "千葉県の工場は品質が高い。",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev009_name_place_person_context",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "千葉部長と福島さんが協力します。",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "千葉",
+            "pii": true,
+            "honorific": "部長"
+          },
+          {
+            "type": "person_name",
+            "value": "福島",
+            "pii": true,
+            "honorific": "さん"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev010_name_company_negative",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "山田電機と佐藤工業が提携した。",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev011_name_public_figure",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "夏目漱石は日本の偉大な作家です。",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "夏目漱石",
+            "pii": true,
+            "public_figure": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev012_name_brand_negative",
+      "lang": "en",
+      "format": "narrative",
+      "text": "I use Claude and iPhone daily.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev013_email_plain",
+      "lang": "en",
+      "format": "business_email",
+      "text": "Contact us at customer.support@example.com for assistance.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "email",
+            "value": "customer.support@example.com",
+            "pii": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev014_email_plus_addressing",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Send it to alice+work@company.io",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "email",
+            "value": "alice+work@company.io",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev015_email_uppercase",
+      "lang": "en",
+      "format": "narrative",
+      "text": "His email is JOHN.SMITH@CORP.CO.UK",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "email",
+            "value": "JOHN.SMITH@CORP.CO.UK",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev016_email_noreply",
+      "lang": "en",
+      "format": "business_email",
+      "text": "From: noreply@notifications.service.com",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "email",
+            "value": "noreply@notifications.service.com",
+            "pii": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev017_email_noreply_variant",
+      "lang": "en",
+      "format": "business_email",
+      "text": "Reply-to: noreply.alerts@monitoring.jp",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "email",
+            "value": "noreply.alerts@monitoring.jp",
+            "pii": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev018_email_angle_brackets",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Contact support at <support@company.com>.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "email",
+            "value": "support@company.com",
+            "pii": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev019_email_in_url_query",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Visit https://service.com/invite?email=sarah.lee@domain.org to register.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "email",
+            "value": "sarah.lee@domain.org",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev020_phone_jp_mobile",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "090-1234-5678に電話ください。",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "phone",
+            "value": "090-1234-5678",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev021_phone_jp_landline",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "電話: 03-1234-5678",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "phone",
+            "value": "03-1234-5678",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev022_phone_jp_with_parentheses",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "電話番号は(03)1234-5678です。",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "phone",
+            "value": "(03)1234-5678",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev023_phone_jp_format_variant",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "Call 0570-000-123 for support.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "phone",
+            "value": "0570-000-123",
+            "pii": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev024_phone_jp_international",
+      "lang": "en",
+      "format": "narrative",
+      "text": "International: +81-90-1234-5678",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "phone",
+            "value": "+81-90-1234-5678",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev025_phone_jp_tollfree",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "フリーダイアル: 0120-123-456",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "phone",
+            "value": "0120-123-456",
+            "pii": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev026_phone_jp_050",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "050から始まる番号は05055556666です。",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "phone",
+            "value": "05055556666",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev027_phone_us",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Call me at (415) 555-1234.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "phone",
+            "value": "(415) 555-1234",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev028_phone_uk",
+      "lang": "en",
+      "format": "narrative",
+      "text": "UK number: +44 20 7946 0958",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "phone",
+            "value": "+44 20 7946 0958",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev029_number_negative_date",
+      "lang": "en",
+      "format": "narrative",
+      "text": "The meeting is on 2024-12-15 at 3pm.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev030_number_negative_order",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Order No. 123456789 was placed.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev031_number_mynumber_labeled",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "マイナンバー: 123456789012",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "number",
+            "value": "123456789012",
+            "pii": true,
+            "number_type": "my_number"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev032_number_mynumber_unlabeled",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "確認番号は123456789012です。",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "number",
+            "value": "123456789012",
+            "pii": false,
+            "number_type": "other"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev033_number_credit_card",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Card: 4532-1234-5678-9012",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "number",
+            "value": "4532-1234-5678-9012",
+            "pii": true,
+            "number_type": "credit_card"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev034_number_bank_account",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "銀行口座: 0123456789",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "number",
+            "value": "0123456789",
+            "pii": true,
+            "number_type": "bank_account"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev035_number_passport",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Passport: AB123456",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "number",
+            "value": "AB123456",
+            "pii": true,
+            "number_type": "driver_licence_or_passport"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev036_number_driver_license",
+      "lang": "en",
+      "format": "narrative",
+      "text": "License #: 12345678",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "number",
+            "value": "12345678",
+            "pii": true,
+            "number_type": "driver_licence_or_passport"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev037_number_tracking",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Tracking: 1234567890123456",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "number",
+            "value": "1234567890123456",
+            "pii": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev038_csv_header_format",
+      "lang": "en",
+      "format": "data",
+      "text": "Name,Email,Phone,Salary\nJohn Doe,john@work.com,090-1234-5678,50000",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "John Doe",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "john@work.com",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "090-1234-5678",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev039_form_layout",
+      "lang": "en",
+      "format": "form",
+      "text": "Full Name: Sarah Johnson\nEmail: sarah.j@example.net\nPhone: (415) 222-3333",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Sarah Johnson",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "sarah.j@example.net",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "(415) 222-3333",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev040_markdown_table",
+      "lang": "en",
+      "format": "markdown",
+      "text": "| Name | Contact |\n|------|----------|\n| Alice Wong | alice@org.io / 0312345678 |",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Alice Wong",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "alice@org.io",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "0312345678",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev041_json_log_format",
+      "lang": "en",
+      "format": "json_log",
+      "text": "{\"user\": \"bob.smith\", \"email\": \"bob@company.co.uk\"}",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "email",
+            "value": "bob@company.co.uk",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev042_signature_block",
+      "lang": "en",
+      "format": "signature",
+      "text": "---\nDr. Katherine Moore\nSenior Manager, Product Design\nChapter Industries Ltd.\nPhone: 03 3456 7890\nEmail: k.moore@chapter.co.nz",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Katherine Moore",
+            "pii": true,
+            "honorific": "Dr."
+          },
+          {
+            "type": "phone",
+            "value": "03 3456 7890",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "k.moore@chapter.co.nz",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev043_chat_with_timestamp",
+      "lang": "en",
+      "format": "chat",
+      "text": "[2026-09-20 14:30] User: My name is Robert Martinez\n[2026-09-20 14:31] Agent: Nice to meet you, Robert. How can I help?\n[2026-09-20 14:32] User: Call me at 415-123-4567 or robert.m@corp.example.com",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Robert Martinez",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "415-123-4567",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "robert.m@corp.example.com",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Robert",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev044_long_document_4500_chars",
+      "lang": "en",
+      "format": "narrative",
+      "text": "This is a long document to test chunking. John Davis works in our organization. His email is john.davis@org.io and his phone is 415-999-8888. The document continues with more text to reach sufficient length for testing purposes. We need to ensure that the PII detection works correctly even when text is split across multiple chunks. Another person mentioned is Lisa Anderson, who can be reached at lisa.anderson@org.io. More filler text here to increase the document length. The system should handle this gracefully by processing each chunk independently and then aggregating the results. More content continues here. David Wilson is also part of the team. His contact is david.w@org.io. We continue adding text to ensure the document is long enough. The evaluation should verify that no findings are lost during chunking. More text here. Another team member is Emma Thompson. She uses emma.thompson@org.io. Continuing with more narrative to fill the document. The process involves splitting at paragraph boundaries. Let's add more information. Mark Johnson joined last month. His email is mark.j@org.io. The system processes each chunk with the PII gate and locate functions. More filler text to continue. Rachel Green is one of our senior staff. Contact her at rachel.green@org.io. We keep adding content to test the chunking mechanism. This is important for ensuring the robustness of the system. Finally, we mention Tom Baker whose email is tom.baker@org.io. That completes our list of team members in this long document test case. \n\nLet us also mention some additional team members for comprehensive documentation. \n\nSamantha Chen is our project manager. You can reach her at samantha.chen@org.io for project coordination. She has been with the company for several years and has extensive experience.\n\nAnother important contact is Charles Wilson, our lead architect. His email is charles.w@org.io. His expertise spans multiple domains and technologies.\n\nWe should also note Patricia Anderson who manages our operations. Contact details: patricia.anderson@org.io. She ensures smooth day-to-day operations.\n\nFinally, we want to mention Gregory Martinez as our finance lead. His email is gregory.m@org.io for any financial inquiries. \n\nKevin Hayes is another key team member. You can email him at kevin.hayes@org.io. He has significant contributions to our recent projects.\n\nThis extended document now contains more team member information and demonstrates how the chunking mechanism handles longer texts with multiple PII references scattered throughout different sections. The system should correctly identify and extract all these contacts across the document boundaries. With this additional content, we have sufficient text length to properly test the chunking behavior when documents exceed the 4000-character chunk limit.\n\nThroughout this document, we've covered the essential information about our organization and team structure. The detailed contact information provided helps facilitate communication and collaboration across departments. Each team member brings unique expertise and perspectives to their respective roles.\n\nThe organization's success depends on effective communication between departments and clear reporting structures. Regular meetings are conducted to ensure alignment on organizational goals and project priorities. Management reviews performance metrics quarterly to assess progress towards targets.\n\nOur company values innovation and continuous improvement in all processes. Employees are encouraged to share ideas and suggestions for enhancing workflows and productivity. Training programs are available to help staff develop new skills and stay current with industry trends.\n\nThe document management system ensures that all records are properly archived and retrievable. Backup procedures are in place to prevent data loss. Security protocols are strictly enforced to protect sensitive information and customer data.\n\nProcurement processes follow standardized procedures to ensure quality and cost-effectiveness. Vendors are selected based on competitive bidding and evaluation criteria. Contracts include terms for service levels and quality standards.\n\nThe human resources department manages recruitment, hiring, and employee development. Benefits packages are competitive and designed to attract talented professionals. Career advancement opportunities exist for high-performing employees.\n\nFinancial management follows established accounting principles and regulatory requirements. Monthly financial statements are prepared for management review. Budgets are planned annually and monitored for variances.\n\nInformation technology infrastructure supports business operations across the organization. Systems are maintained for reliability and performance. Cybersecurity measures protect against unauthorized access and data breaches.\n\nCustomer service is a priority and feedback is regularly collected to improve service quality. Support teams are trained to handle inquiries professionally and efficiently. Response times are monitored to ensure customer satisfaction.\n\nMarketing initiatives are designed to promote brand awareness and generate business. Campaigns are targeted to reach specific customer segments. Analytics are used to measure campaign effectiveness and return on investment.\n\nQuality assurance processes ensure products and services meet established standards. Testing procedures are implemented before release to customers. Continuous monitoring identifies areas for improvement.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "John Davis",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "john.davis@org.io",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "415-999-8888",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Lisa Anderson",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "lisa.anderson@org.io",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "David Wilson",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "david.w@org.io",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Emma Thompson",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "emma.thompson@org.io",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Mark Johnson",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "mark.j@org.io",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Rachel Green",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "rachel.green@org.io",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Tom Baker",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "tom.baker@org.io",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Samantha Chen",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "samantha.chen@org.io",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Charles Wilson",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "charles.w@org.io",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Patricia Anderson",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "patricia.anderson@org.io",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Gregory Martinez",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "gregory.m@org.io",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Kevin Hayes",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "kevin.hayes@org.io",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev045_sensitivity_low_business_context",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Meeting attendees: Margaret Chen and Peter Park will present their findings.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Margaret Chen",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Peter Park",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev046_sensitivity_high_healthcare_context",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Patient Michael Brown (DOB: 1975-08-12) diagnosed with Type 2 diabetes. Treatment plan includes metformin. Follow-up appointment scheduled.",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Michael Brown",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev047_sensitivity_high_complaint_list",
+      "lang": "en",
+      "format": "list",
+      "text": "Employees with complaints:\n- Jennifer Lopez: sexual harassment\n- Marcus Stone: wage theft\n- Sophia Chen: discrimination",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Jennifer Lopez",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Marcus Stone",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Sophia Chen",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev048_sensitivity_high_religion",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Members of the congregation: Rabbi David Goldman, Imam Hassan Al-Rashid, and Priest Timothy Murphy attended the interfaith meeting.",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "David Goldman",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Hassan Al-Rashid",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Timothy Murphy",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev049_negative_no_pii",
+      "lang": "en",
+      "format": "narrative",
+      "text": "The weather is sunny today. The temperature is 25°C. We recommend wearing light clothing.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev050_negative_code_snippet",
+      "lang": "en",
+      "format": "code",
+      "text": "function validateEmail(email: string): boolean {\n  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;\n  return pattern.test(email);\n}",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev051_negative_recipe",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Mix 2 cups flour with 1 cup sugar. Add 3 eggs and blend until smooth. Bake at 350°F for 30 minutes.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev052_negative_config_file",
+      "lang": "en",
+      "format": "config",
+      "text": "server:\n  host: localhost\n  port: 8080\n  debug: true\ndatabase:\n  name: myapp_db\n  poolSize: 10",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev053_negative_commit_message",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Fix: resolve issue #12345 with authentication module",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev054_negative_isbn",
+      "lang": "en",
+      "format": "narrative",
+      "text": "The book ISBN is 978-3-16-148410-0 and published in 2022.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev055_negative_variable_name",
+      "lang": "en",
+      "format": "code",
+      "text": "const user_id_12345 = 99887766;",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ev056_edge_case_chunk_boundary_name",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. William Rodriguez is a software engineer. He works remotely from his office. Contact him at w.rodriguez@tech.io",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "William Rodriguez",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "w.rodriguez@tech.io",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev057_email_local_part_name",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Please email tanaka.misaki@company.jp for details.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "email",
+            "value": "tanaka.misaki@company.jp",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev058_multiple_sensitivity_contexts",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Conference attendee James Mitchell (credit card on file: 4111-1111-1111-1111) needs to be contacted.",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "James Mitchell",
+            "pii": true
+          },
+          {
+            "type": "number",
+            "value": "4111-1111-1111-1111",
+            "pii": true,
+            "number_type": "credit_card"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev059_mixed_ja_en_names",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "プロジェクトマネージャーはTanaka Hanakoと山田太郎です。",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Tanaka Hanako",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "山田太郎",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ev060_info_email_variant",
+      "lang": "en",
+      "format": "business_email",
+      "text": "Contact: info@company.com for general inquiries.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "email",
+            "value": "info@company.com",
+            "pii": false
+          }
+        ]
+      }
+    }
+  ]
+}

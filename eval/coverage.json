@@ -1,0 +1,137 @@
+{
+ "description": "Coverage table for the multilingual test set (2026-09-27). Counts are per language. Half of every cell goes to dev (inspected, used for error analysis) and half to test (only aggregate scores are looked at; used for acceptance).",
+ "languages": [
+  "ja",
+  "zh",
+  "ko",
+  "en",
+  "fr",
+  "it",
+  "de",
+  "es"
+ ],
+ "per_language": 80,
+ "primary": {
+  "high": {
+   "race_or_ethnic_origin": 2,
+   "political_opinion": 2,
+   "religion_or_belief": 3,
+   "trade_union": 2,
+   "health": 6,
+   "sex_life_or_orientation": 2,
+   "genetic_or_biometric": 3,
+   "criminal_record_or_victim": 3,
+   "citizenship_or_immigration": 3,
+   "government_id_number": 4,
+   "financial_account_or_credentials": 5,
+   "precise_location": 2,
+   "private_messages_of_others": 1,
+   "formal_hr_record": 2
+  },
+  "low": {
+   "name_only": 5,
+   "contact_without_name": 3,
+   "postal_address": 2,
+   "date_of_birth": 1,
+   "employer_or_job": 2,
+   "online_identifier": 3,
+   "living_public_figure": 3,
+   "business_paperwork": 3,
+   "neutral_roster": 2
+  },
+  "none": {
+   "deceased_person": 3,
+   "company_contact_only": 3,
+   "sensitive_topic_in_general": 3,
+   "name_like_product_or_place": 2,
+   "code_log_or_config": 2,
+   "statistics_or_news_without_people": 3
+  }
+ },
+ "length": {
+  "short": [
+   0,
+   200,
+   32
+  ],
+  "medium": [
+   200,
+   1000,
+   30
+  ],
+  "long": [
+   1000,
+   2000,
+   14
+  ],
+  "very_long": [
+   2000,
+   4000,
+   4
+  ]
+ },
+ "long_formats": [
+  "meeting_minutes",
+  "contract",
+  "medical_record",
+  "news_article",
+  "email_thread",
+  "report"
+ ],
+ "formats": [
+  "email",
+  "chat",
+  "form",
+  "csv_or_table",
+  "log",
+  "meeting_minutes",
+  "contract",
+  "medical_record",
+  "roster",
+  "sns_post",
+  "code",
+  "ocr_scan",
+  "news_article",
+  "letter",
+  "email_thread",
+  "report"
+ ],
+ "position_of_key_fact": [
+  "beginning",
+  "middle",
+  "end"
+ ],
+ "overlays": {
+  "any": {
+   "distractor_numbers": 10,
+   "code_switching": 3
+  },
+  "with_people": {
+   "surname_only": 4,
+   "given_name_only": 3,
+   "nickname": 2,
+   "initials": 2,
+   "title_or_honorific": 4,
+   "typo_in_name": 2,
+   "spaced_or_dotted_digits": 3,
+   "obfuscated_email": 2
+  },
+  "high_only": {
+   "implicit_from_heading_or_doc_type": 12,
+   "self_disclosure": 3
+  },
+  "cjk_only": {
+   "full_width_characters": 3,
+   "romanized_name": 3
+  },
+  "latin_only": {
+   "name_without_diacritics": 3
+  }
+ },
+ "implicit_excluded": [
+  "government_id_number",
+  "financial_account_or_credentials",
+  "precise_location",
+  "private_messages_of_others"
+ ]
+}

@@ -1,0 +1,3399 @@
+{
+ "description": "Multilingual reference set B (160 documents, 2026-09-27). Written from the labelling policy only; labels corrected by hand (21 entries). It informed later training-data changes, so its scores are optimistic.",
+ "tests": [
+  {
+   "id": "s4a001_ja_email_contact",
+   "lang": "ja",
+   "format": "email",
+   "text": "Subject: プロジェクト進捗報告\n\n山田太郎様\n\nお疲れ様です。本日の進捗をご報告いたします。\nご連絡は tada@example.jp までお願いいたします。\n\n赤沢一郎",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "山田太郎",
+      "pii": true,
+      "honorific": "様"
+     },
+     {
+      "type": "person_name",
+      "value": "赤沢一郎",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "tada@example.jp",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a002_ja_support_email",
+   "lang": "ja",
+   "format": "email",
+   "text": "お問い合わせいただきありがとうございます。\nご質問については support@company.com までお願いいたします。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "support@company.com",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a003_ja_clinic_list",
+   "lang": "ja",
+   "format": "list",
+   "text": "〇〇クリニック患者一覧（2026年9月）\n\n鈴木花子\n田中由美\n佐藤雅子\n鈴木美咲",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "鈴木花子",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "田中由美",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "佐藤雅子",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "鈴木美咲",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a004_ja_health_record",
+   "lang": "ja",
+   "format": "memo",
+   "text": "患者名：伊藤健太郎\n生年月日：1982年5月15日\n診断：2型糖尿病\n処方薬：メトホルミン 500mg×2日\n備考：次回診察は3ヶ月後",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "伊藤健太郎",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a005_ja_maternity_leave",
+   "lang": "ja",
+   "format": "list",
+   "text": "産休・育休予定者（2026年10月～2027年3月）\n\n青山美咲 - 2026年11月1日～2027年2月28日\n佐藤麻衣 - 2027年1月15日～2027年4月30日",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "青山美咲",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "佐藤麻衣",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a006_ja_credit_card",
+   "lang": "ja",
+   "format": "receipt",
+   "text": "購入者：岡田太郎\nカード番号：4532-8127-3945-6781\n有効期限：2028年12月\nセキュリティコード：847",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "岡田太郎",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4532-8127-3945-6781",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a007_ja_my_number",
+   "lang": "ja",
+   "format": "form",
+   "text": "マイナンバー登録\n氏名：野田由美\nマイナンバー：123-45-6789-0123",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "野田由美",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "123-45-6789-0123",
+      "pii": true,
+      "number_type": "my_number"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a008_ja_phone_only",
+   "lang": "ja",
+   "format": "note",
+   "text": "緊急連絡先：090-1234-5678",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "090-1234-5678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a009_ja_meeting_attendees",
+   "lang": "ja",
+   "format": "meeting_minutes",
+   "text": "定例会議 2026年9月27日\n\n出席者：\n田中勇気\n山田優子\n鈴木健一",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "田中勇気",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "山田優子",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "鈴木健一",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a010_ja_disciplinary_record",
+   "lang": "ja",
+   "format": "memo",
+   "text": "懲戒処分通知書\n\n対象者：山本太郎\n処分内容：2週間の停職処分\n理由：就業規則第15条第2項違反\n処分日：2026年9月20日",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "山本太郎",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a011_ja_general_health_news",
+   "lang": "ja",
+   "format": "news_article",
+   "text": "厚生労働省発表：2026年度インフルエンザワクチン接種ガイダンス\n\n本年度のインフルエンザワクチン接種は、65歳以上の高齢者および基礎疾患を有する者を優先対象とします。全国の医療機関で9月中旬より接種予約を開始します。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4a012_ja_password_policy",
+   "lang": "ja",
+   "format": "memo",
+   "text": "情報セキュリティ方針の改定について\n\n新しいパスワードポリシーを本月より導入いたします。\n- 最小文字数：12文字\n- 複雑性要件：大文字、小文字、数字、記号を含むこと\n- 変更周期：90日ごと",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4a013_ja_natsume_soseki",
+   "lang": "ja",
+   "format": "encyclopedia",
+   "text": "夏目漱石（1867年～1916年）は明治時代の日本の著名な文豪である。代表作に『吾輩は猫である』『坊っちゃん』などがある。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "夏目漱石",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a014_ja_invoice",
+   "lang": "ja",
+   "format": "invoice",
+   "text": "請求書\n\n請求先：株式会社ABC\nご担当者：田中太郎\nご住所：東京都渋谷区西班班1-2-3\n電話：03-1234-5678\n\n請求金額：¥150,000",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "田中太郎",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "03-1234-5678",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a015_ja_delivery_slip",
+   "lang": "ja",
+   "format": "delivery_slip",
+   "text": "配送伝票\n\nお客様氏名：佐藤花子\nお客様住所：神奈川県横浜市西区1-1-1\nお客様電話：090-9876-5432\n配送品：書籍3冊",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "佐藤花子",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "090-9876-5432",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a016_ja_bank_account",
+   "lang": "ja",
+   "format": "form",
+   "text": "振込先変更届\n\n従業員名：加藤太郎\nお給与振込先銀行：横浜銀行 西支店\n口座番号：3456789012345",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "加藤太郎",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "3456789012345",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a017_ja_union_membership",
+   "lang": "ja",
+   "format": "list",
+   "text": "労働組合加盟者一覧（2026年9月）\n\n斉藤健一\n田中美代\n山田次郎\n佐藤由子",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "斉藤健一",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "田中美代",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "山田次郎",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "佐藤由子",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a018_ja_passenger_list",
+   "lang": "ja",
+   "format": "list",
+   "text": "飛行機搭乗者リスト JL123便 2026年9月27日\n\n座席1A: 山田太郎\n座席1B: 田中美咲\n座席1C: 佐藤健一\n座席1D: 鈴木由美",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "山田太郎",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "田中美咲",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "佐藤健一",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "鈴木由美",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a019_ja_gps_location",
+   "lang": "ja",
+   "format": "report",
+   "text": "社員: 青山太郎\n本日の訪問先: 緯度35.6762, 経度139.7674（東京都渋谷区付近の自宅）\n訪問時間: 2026年9月27日 20:15～翌6:30",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "青山太郎",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a020_ja_long_text",
+   "lang": "ja",
+   "format": "memo",
+   "text": "【社外秘】〇〇プロジェクト進捗報告書 2026年9月27日\n\nプロジェクト名：新規システム開発プロジェクト\nプロジェクト責任者：山田太郎（yamada.taro@company.jp）\n\n本プロジェクトは、当社の基幹システムの刷新を目的としており、現在、要件定義フェーズを進行中です。開発チームは20名で構成されており、その内訳は以下の通りです。\n\nシステムアーキテクト：田中花子（090-1111-2222）\nデータベース設計者：佐藤健一\nUI/UXデザイナー：鈴木美咲\nプロジェクトマネージャー：加藤太郎（kato.taro@company.jp）\n\n現在までの進捗状況は以下の通りです。\n\n・要件定義：80%完了\n・基本設計：45%完了\n・詳細設計：未開始\n・開発：未開始\n・テスト：未開始\n\nスケジュール上の課題としては、顧客からの要件変更が当初計画を上回るペースで発生していることが挙げられます。現在、その対応策について検討中です。予算については、現在のところ当初予算の85%を消費しており、今後の進捗によっては追加予算が必要になる可能性があります。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "山田太郎",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "yamada.taro@company.jp",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "田中花子",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "090-1111-2222",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "佐藤健一",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "鈴木美咲",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "加藤太郎",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "kato.taro@company.jp",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a021_zh_wechat_message",
+   "lang": "zh",
+   "format": "chat_log",
+   "text": "李明：嗨，最近怎么样？\n张红：还不错，最近工作比较忙。\n李明：那就好。周末一起吃饭吧。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "李明",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "张红",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a022_zh_company_email",
+   "lang": "zh",
+   "format": "email",
+   "text": "主题：客户咨询\n\n感谢您的来信。\n如有任何问题，请联系客服热线 info@company.com.cn",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "info@company.com.cn",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a023_zh_health_check",
+   "lang": "zh",
+   "format": "memo",
+   "text": "患者姓名：王国庆\n年龄：48岁\n诊断：高血压（二级）\n建议：定期服用药物，每月复诊一次。",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "王国庆",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a024_zh_pregnancy_list",
+   "lang": "zh",
+   "format": "list",
+   "text": "2026年孕期请假人员名单\n\n吴雨欣 - 预产期2026年11月\n刘美玲 - 预产期2027年1月\n陈思琪 - 预产期2027年3月",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "吴雨欣",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "刘美玲",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "陈思琪",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a025_zh_id_card",
+   "lang": "zh",
+   "format": "form",
+   "text": "身份证注册\n姓名：黄建明\n身份证号：110101198703154537",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "黄建明",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "110101198703154537",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a026_zh_credit_card",
+   "lang": "zh",
+   "format": "receipt",
+   "text": "持卡人：周萌萌\n信用卡号：6225-7612-3947-8501\n交易金额：¥2,500",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "周萌萌",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "6225-7612-3947-8501",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a027_zh_phone_number",
+   "lang": "zh",
+   "format": "note",
+   "text": "紧急联系电话：136-8888-9999",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "136-8888-9999",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a028_zh_conference_attendees",
+   "lang": "zh",
+   "format": "meeting_minutes",
+   "text": "季度大会参会人员名单 2026年Q3\n\n张利华\n马丽娜\n何家琪\n陈思彤",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "张利华",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "马丽娜",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "何家琪",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "陈思彤",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a029_zh_arrest_record",
+   "lang": "zh",
+   "format": "court_record",
+   "text": "刑事案件通知书\n\n被告人：林东方\n罪名：故意伤害罪\n审理日期：2026年10月15日\n法院：北京市朝阳区人民法院",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "林东方",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a030_zh_religious_list",
+   "lang": "zh",
+   "format": "list",
+   "text": "教堂信徒名册（2026年9月）\n\n孙国庆\n李国华\n王子文\n陆美琪",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "孙国庆",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "李国华",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "王子文",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "陆美琪",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a031_zh_salary_data",
+   "lang": "zh",
+   "format": "csv_export",
+   "text": "员工名称,月薪(元),部门\n何军华,45000,技术部\n陈国庆,35000,市场部\n周美芬,42000,设计部",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "何军华",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "陈国庆",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "周美芬",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a032_zh_public_health",
+   "lang": "zh",
+   "format": "news_article",
+   "text": "国家卫生健康委员会2026年度流感防控指南\n\n根据流行病学数据，今年流感疫苗接种工作将从10月中旬开始。建议60岁以上老年人、基层医务人员和儿童优先接种。接种地点可通过全国疫苗接种点查询系统查找。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4a033_zh_bank_statement",
+   "lang": "zh",
+   "format": "form",
+   "text": "银行账户变更申请\n\n员工姓名：曾亮东\n银行名称：中国银行 北京分行\n账户号码：6217-7612-3947-8501-234",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "曾亮东",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "6217-7612-3947-8501-234",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a034_zh_demotion",
+   "lang": "zh",
+   "format": "memo",
+   "text": "处分决定书\n\n员工：孙坤皓\n处分内容：降职处分\n原岗位：部门经理\n新岗位：项目组长\n处分日期：2026年9月20日\n原因：工作失职导致重大客户流失",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "孙坤皓",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a035_zh_long_text",
+   "lang": "zh",
+   "format": "memo",
+   "text": "【机密文件】2026年第三季度经营报告\n\n报告日期：2026年9月27日\n报告人：王天明（wang.tian@company.cn）\n审核人：李月红（li.yue@company.cn）\n\n本季度公司经营状况总体良好。销售部门在销售总监张晓龙（电话：137-9999-1111）的领导下，完成了全年目标的72%。技术部门则在CTO陈建平的带领下，成功上线了三个新产品。\n\n人力资源部报告显示，本季度新增员工25人，离职员工5人。其中，产假预定人员包括高素娟（预产期2026年12月）和方美丽（预产期2027年2月）。\n\n财务部门报告，本季度总收入达5,000万元，同比增长15%。成本管理方面保持稳定。\n\n存在的主要问题：\n1. 市场竞争加剧，客户流失率上升\n2. 部分项目进度滞后\n3. 研发投入仍需增加\n\n下一步工作重点将放在产品创新和市场拓展上。",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "王天明",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "wang.tian@company.cn",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "李月红",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "li.yue@company.cn",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "张晓龙",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "137-9999-1111",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "陈建平",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "高素娟",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "方美丽",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a036_zh_delivery_slip",
+   "lang": "zh",
+   "format": "delivery_slip",
+   "text": "配送单\n\n收货人：徐美玲\n收货地址：上海市浦东新区1号\n收货电话：138-7777-8888\n配送商品：书籍2册，文具1盒",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "徐美玲",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "138-7777-8888",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a037_zh_genetic_test",
+   "lang": "zh",
+   "format": "memo",
+   "text": "遗传检测报告\n\n被检测人：刘若诗\n检测日期：2026年9月15日\n检测项目：BRCA1/BRCA2基因突变\n结果：发现BRCA1基因c.68_69delAG突变\n临床意义：与乳腺癌易感性相关",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "刘若诗",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a038_zh_harassment_complaint",
+   "lang": "zh",
+   "format": "memo",
+   "text": "性骚扰举报记录\n\n举报人：余晓红\n被举报人：李明峰（销售部经理）\n举报时间：2026年9月18日\n事件描述：多次对举报人进行不当的身体接触和言语骚扰\n处理状态：调查中",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "余晓红",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "李明峰",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a039_zh_visa_status",
+   "lang": "zh",
+   "format": "memo",
+   "text": "外国人工作许可申请\n\n申请人：托马斯·格林\n国籍：美国\n在华居留状态：临时居住证 SE0026XXXXXX\n工作类型：专家型\n有效期至：2027年9月30日",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "托马斯·格林",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a040_zh_fingerprint_data",
+   "lang": "zh",
+   "format": "memo",
+   "text": "生体识别数据登记\n\n员工名称：蒋晓峰\n指纹登记：左手大拇指、食指、中指\n虹膜扫描：完成\n面部识别数据：已采集\n登记日期：2026年9月1日",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "蒋晓峰",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a041_ko_kakao_chat",
+   "lang": "ko",
+   "format": "chat_log",
+   "text": "김철수: 안녕, 최근 어떻게 지내?\n이영미: 잘 지내고 있어. 너는?\n김철수: 나도 괜찮아. 주말에 만날까?",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "김철수",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이영미",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a042_ko_support_email",
+   "lang": "ko",
+   "format": "email",
+   "text": "제목: 문의 사항\n\n문의 사항이 있으신 경우, support@example.kr 로 연락주시기 바랍니다.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "support@example.kr",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a043_ko_medical_diagnosis",
+   "lang": "ko",
+   "format": "memo",
+   "text": "환자명: 박준수\n나이: 52세\n진단: 제2형 당뇨병\n치료: 약물 치료, 식이요법\n다음 진찰 예정: 2026년 12월 15일",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "박준수",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a044_ko_maternity_list",
+   "lang": "ko",
+   "format": "list",
+   "text": "출산휴가 예정 인원 (2026년 10월~2027년 3월)\n\n조수진 - 2026년 11월 1일~2027년 1월 31일\n정현미 - 2026년 12월 15일~2027년 3월 14일",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "조수진",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "정현미",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a045_ko_national_id",
+   "lang": "ko",
+   "format": "form",
+   "text": "신분증 등록\n성명: 한태욱\n주민등록번호: 850315-1234567",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "한태욱",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "850315-1234567",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a046_ko_credit_card",
+   "lang": "ko",
+   "format": "receipt",
+   "text": "카드 소유자: 오혜진\n카드 번호: 4532-8127-3945-6789\n거래 금액: ₩150,000",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "오혜진",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4532-8127-3945-6789",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a047_ko_phone_only",
+   "lang": "ko",
+   "format": "note",
+   "text": "긴급 연락처: 010-1234-5678",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "010-1234-5678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a048_ko_meeting_list",
+   "lang": "ko",
+   "format": "meeting_minutes",
+   "text": "2026년 9월 27일 정기 회의 참석자\n\n신기철\n장혜리\n이민준\n안소영",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "신기철",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "장혜리",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이민준",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "안소영",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a049_ko_disciplinary_action",
+   "lang": "ko",
+   "format": "memo",
+   "text": "징계 처분 통지서\n\n피징계자: 유준호\n처분 내용: 3주 정직 처분\n사유: 업무 규칙 제15조 제2항 위반\n처분 일자: 2026년 9월 20일",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "유준호",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a050_ko_political_party",
+   "lang": "ko",
+   "format": "list",
+   "text": "정당 당원 현황 (2026년 9월)\n\n홍길동\n심재철\n박지현\n이혜인",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "홍길동",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "심재철",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "박지현",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이혜인",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a051_ko_safety_guidelines",
+   "lang": "ko",
+   "format": "memo",
+   "text": "정보보안 지침 개정안\n\n새로운 비밀번호 정책 도입\n- 최소 길이: 12자\n- 복잡성: 대문자, 소문자, 숫자, 특수문자 포함\n- 변경 주기: 90일",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4a052_ko_bank_account",
+   "lang": "ko",
+   "format": "form",
+   "text": "급여 이체 계좌 변경 신청\n\n직원명: 방주완\n은행: 국민은행 강남지점\n계좌번호: 123-456-789012-34",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "방주완",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "123-456-789012-34",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a053_ko_long_text",
+   "lang": "ko",
+   "format": "memo",
+   "text": "【기밀 문서】2026년 3분기 경영 보고서\n\n작성일: 2026년 9월 27일\n작성자: 이승철 (lee.seung@company.kr)\n검토자: 박미희 (park.mi@company.kr)\n\n본 분기 경영 현황은 전반적으로 양호합니다. 영업부는 영업 이사 최도준 (010-2222-3333)의 지휘 하에 연간 목표의 68%를 달성했습니다. 기술 부서는 CTO 김태환의 주도로 새로운 제품 3종을 성공적으로 출시했습니다.\n\n인사 부서의 보고에 따르면, 본 분기 신규 채용 인원은 18명이며 퇴사 인원은 3명입니다. 출산휴가 예정자로는 김은희 (예정일 2026년 11월)와 이지나 (예정일 2027년 1월)가 등록되어 있습니다.\n\n재무 현황으로는 본 분기 총 매출이 45억 원으로 전년 동기 대비 18% 증가했습니다. 비용 관리는 안정적으로 이루어지고 있습니다.\n\n향후 과제:\n1. 경쟁 심화에 따른 고객 이탈률 증가\n2. 일부 프로젝트의 진도 지연\n3. 연구 개발 투자 확대 필요\n\n다음 분기에는 제품 혁신과 시장 개척에 중점을 두겠습니다.",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "이승철",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "lee.seung@company.kr",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "박미희",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "park.mi@company.kr",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "최도준",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-2222-3333",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "김태환",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "김은희",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이지나",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a054_ko_delivery",
+   "lang": "ko",
+   "format": "delivery_slip",
+   "text": "배송 송장\n\n수신자: 정미라\n주소: 서울시 강남구 1번지\n연락처: 010-5555-6666\n물품: 책 2권, 문구류 1세트",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "정미라",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-5555-6666",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a055_ko_visa_status",
+   "lang": "ko",
+   "format": "memo",
+   "text": "외국인 근로자 체류 자격\n\n성명: 마리아 로페스\n국적: 스페인\n체류 자격: D-10 (구직)\n체류 기간: 2026년 9월 27일 ~ 2027년 9월 26일",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "마리아 로페스",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a056_ko_lgbtq_support_group",
+   "lang": "ko",
+   "format": "list",
+   "text": "2026년 LGBTQ+ 지원 프로그램 참가자\n\n박성호\n이지은\n김민준\n조혜정",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "박성호",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이지은",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "김민준",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "조혜정",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a057_ko_firing_notice",
+   "lang": "ko",
+   "format": "memo",
+   "text": "해고 통지서\n\n직원명: 강준영\n직책: 경영팀 과장\n해고 사유: 경영 악화로 인한 감원\n최종 근무일: 2026년 10월 31일\n퇴직금: ₩25,000,000",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "강준영",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a058_en_hello_world",
+   "lang": "en",
+   "format": "note",
+   "text": "This is a simple hello world message.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4a059_en_email",
+   "lang": "en",
+   "format": "email",
+   "text": "Subject: Project Update\n\nDear John Smith,\n\nPlease find the latest update attached.\nFor further inquiries, contact us at support@company.com\n\nBest regards,\nAlice Johnson",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "John Smith",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Alice Johnson",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "support@company.com",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a060_en_clinic_patients",
+   "lang": "en",
+   "format": "list",
+   "text": "St. Mary's Clinic - Patient List (September 2026)\n\nDavid Wilson\nEmily Brown\nChristopher Lee\nSarah Garcia",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "David Wilson",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Emily Brown",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Christopher Lee",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Sarah Garcia",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a061_en_medical_record",
+   "lang": "en",
+   "format": "memo",
+   "text": "Patient Name: Michael Johnson\nDate of Birth: 1975-03-22\nDiagnosis: Hypertension Stage 2\nMedication: Lisinopril 10mg daily\nFollow-up: 3 months",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Michael Johnson",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a062_en_maternity_leave",
+   "lang": "en",
+   "format": "list",
+   "text": "Planned Maternity Leave (October 2026 - March 2027)\n\nJessica Taylor - Returning February 28, 2027\nLauren Martinez - Returning March 31, 2027",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Jessica Taylor",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Lauren Martinez",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a063_en_credit_card",
+   "lang": "en",
+   "format": "receipt",
+   "text": "Cardholder: Robert Williams\nCard Number: 5412-7834-9102-3456\nExpiry: 12/2028\nCVC: 492",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Robert Williams",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "5412-7834-9102-3456",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a064_en_ssn",
+   "lang": "en",
+   "format": "form",
+   "text": "Social Security Registration\nName: Thomas Anderson\nSSN: 123-45-6789",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Thomas Anderson",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "123-45-6789",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a065_en_personal_phone",
+   "lang": "en",
+   "format": "note",
+   "text": "Emergency Contact: +1-202-555-0173",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "+1-202-555-0173",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a066_en_meeting_attendees",
+   "lang": "en",
+   "format": "meeting_minutes",
+   "text": "Q3 2026 Meeting - September 27\n\nAttendees:\nJames Robinson\nPatricia Davis\nMichael Anderson\nBarbara Thompson",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "James Robinson",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Patricia Davis",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Michael Anderson",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Barbara Thompson",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a067_en_conviction",
+   "lang": "en",
+   "format": "court_record",
+   "text": "Criminal Case Notification\n\nDefendant: Kevin O'Brien\nCharge: Assault and Battery\nCourt Date: October 15, 2026\nJurisdiction: New York State District Court",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Kevin O'Brien",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a068_en_mosque_members",
+   "lang": "en",
+   "format": "list",
+   "text": "Al-Nur Mosque Member Registry (September 2026)\n\nAhmed Hassan\nFatima Rahman\nMohammed Ali\nZainab Khan",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Ahmed Hassan",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Fatima Rahman",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Mohammed Ali",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Zainab Khan",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a069_en_vaccine_program",
+   "lang": "en",
+   "format": "news_article",
+   "text": "CDC Announces 2026 Influenza Vaccination Campaign\n\nFederal health authorities have released new guidelines for seasonal flu vaccination. Priority groups include adults over 65, healthcare workers, and individuals with chronic conditions. Vaccination clinics will open nationwide in mid-October.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4a070_en_bank_statement",
+   "lang": "en",
+   "format": "form",
+   "text": "Direct Deposit Change Request\n\nEmployee: William Foster\nBank: Wells Fargo National Bank\nAccount Number: 987654321098765",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "William Foster",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "987654321098765",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a071_en_suspension_notice",
+   "lang": "en",
+   "format": "memo",
+   "text": "Disciplinary Action Notice\n\nEmployee: Richard Parker\nAction: Two-week suspension without pay\nReason: Violation of Company Code of Conduct Section 12.3\nEffective Date: September 20, 2026",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Richard Parker",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a072_en_workplace_accommodation",
+   "lang": "en",
+   "format": "memo",
+   "text": "Reasonable Accommodation Request - Approved\n\nEmployee: Margaret Chen\nDisability: Mobility Impairment (requires wheelchair accessibility)\nAccommodation Granted: Reserved parking space, accessible restroom access, modified workstation\nEffective: October 1, 2026",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Margaret Chen",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a073_en_long_report",
+   "lang": "en",
+   "format": "memo",
+   "text": "【CONFIDENTIAL】Q3 2026 Business Operations Report\n\nReport Date: September 27, 2026\nPrepared by: David Morrison (david.morrison@company.com)\nReviewed by: Karen Hendricks (karen.hendricks@company.com)\n\nExecutive Summary: This quarter demonstrated solid growth across most business units. Sales division, led by VP of Sales Jennifer Watson (call 206-555-0198), achieved 71% of annual target. The technology team, under CTO Marcus Bennett, successfully deployed two major platform updates.\n\nHuman Resources Update: Q3 saw 22 new hires and 4 resignations. Maternity leave schedule includes Rachel Patterson (due December 2026) and Susan Clark (due February 2027).\n\nFinancial Performance: Total quarterly revenue reached $48 million, representing 16% year-over-year growth. Cost management remained stable at 32% of revenue.\n\nKey Challenges and Next Steps:\n1. Increased competitive pressure in key markets requiring strategic response\n2. Several projects experiencing timeline delays requiring resource reallocation\n3. Need to expand R&D investment to maintain technological leadership\n\nRecommendations for Q4 include accelerated product development cycles and targeted market expansion initiatives.",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "David Morrison",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "david.morrison@company.com",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Karen Hendricks",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "karen.hendricks@company.com",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Jennifer Watson",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "206-555-0198",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Marcus Bennett",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Rachel Patterson",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Susan Clark",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a074_en_shipping_label",
+   "lang": "en",
+   "format": "delivery_slip",
+   "text": "Shipping Label\n\nRecipient: Nicholas Turner\nAddress: 456 Oak Avenue, Portland, OR 97201\nPhone: 503-555-0192\nPackage Contents: Electronics (3 items)",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Nicholas Turner",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "503-555-0192",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a075_en_passport",
+   "lang": "en",
+   "format": "form",
+   "text": "Passport Application\n\nFull Name: Elizabeth Hoffman\nPassport Number: X12345678\nDate of Issue: January 15, 2020\nDate of Expiry: January 14, 2030",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Elizabeth Hoffman",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "X12345678",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a076_en_prayer_group",
+   "lang": "en",
+   "format": "list",
+   "text": "Church Prayer Group Roster - Active Members (2026)\n\nGeorge Mitchell\nCatherine Price\nCharles Stewart\nDorothy Cooper",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "George Mitchell",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Catherine Price",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Charles Stewart",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Dorothy Cooper",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a077_en_historical_figure",
+   "lang": "en",
+   "format": "encyclopedia",
+   "text": "Abraham Lincoln (1809-1865) was the 16th President of the United States. He is famous for leading the country through the Civil War and for the Emancipation Proclamation.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Abraham Lincoln",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a058_ko_disability_accommodations",
+   "lang": "ko",
+   "format": "memo",
+   "text": "장애인 근로 편의 제공 기록\n\n직원명: 김수영\n장애 유형: 청각 장애 (양측 귀 40dB 이상)\n제공 편의: 수화 통역 지원, 캡션 자막 제공, 업무 전화 보조 기기 제공\n제공 시작일: 2026년 9월 1일",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "김수영",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a059_ko_immigration_visa",
+   "lang": "ko",
+   "format": "form",
+   "text": "비자 신청서\n\n성명: 호세 마르티네즈\n국적: 멕시코\n신청 비자: E-1 (투자가)\n체류 예상 기간: 2년",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "호세 마르티네즈",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4a060_ko_private_message",
+   "lang": "ko",
+   "format": "email",
+   "text": "발신인: 이소정\n수신인: 박준식\n제목: 개인 고민 상담\n\n박준식님께,\n\n최근 우울증 진단을 받아서 정신과 약물 치료를 시작했어요. 제 증상이 호전되길 바랍니다. 혹시 좋은 상담사를 알고 계신가요?\n\n감사합니다,\n이소정",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "이소정",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "박준식",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b001_fr_chat_generic",
+   "lang": "fr",
+   "format": "chat log",
+   "text": "Bonjour, comment vas-tu? J'ai eu ta question hier. Les API fonctionnent bien maintenant.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b002_fr_password_policy",
+   "lang": "fr",
+   "format": "company policy",
+   "text": "Politique de sécurité des mots de passe:\n- Minimum 12 caractères\n- Au moins une majuscule, un chiffre et un symbole\n- Changement tous les 90 jours\n- Interdiction de réutiliser les 10 derniers mots de passe",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b003_fr_health_campaign",
+   "lang": "fr",
+   "format": "public health notice",
+   "text": "Campagne de dépistage du diabète: Les statistiques montrent que 1 français sur 20 est diabétique. Consultez votre médecin si vous avez des symptômes: fatigue persistante, soif excessive, vision trouble.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b004_fr_news_political",
+   "lang": "fr",
+   "format": "news article",
+   "text": "La syndicale CGT annonce une grève nationale le 15 octobre. Les représentants ont déclaré que les négociations salariales n'avaient pas abouti.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b005_fr_company_contacts",
+   "lang": "fr",
+   "format": "company directory",
+   "text": "Contactez notre équipe support:\nEmail: support@agence-tech.fr\nTéléphone: 01 42 68 53 00 (standard)",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b006_fr_email_simple",
+   "lang": "fr",
+   "format": "email",
+   "text": "Sujet: Réunion jeudi\n\nBonjour Véronique,\nRéunion prévue jeudi à 14h. Cordialement,\nMarc",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Véronique",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Marc",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b007_fr_contact_info",
+   "lang": "fr",
+   "format": "contact form",
+   "text": "Nom: Laurent Dubois\nTéléphone personnel: 06 45 32 87 91\nEmail: laurent.dubois@gmail.com",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Laurent Dubois",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "06 45 32 87 91",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "laurent.dubois@gmail.com",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b008_fr_invoice_vendor",
+   "lang": "fr",
+   "format": "invoice",
+   "text": "Facture #INV2026-4521\nClient: Sophie Martin\nAdresse: 45 rue des Lilas, 75003 Paris\nTéléphone: 06 12 98 34 56\nMontant: 2.450€",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Sophie Martin",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "06 12 98 34 56",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b009_fr_forum_post",
+   "lang": "fr",
+   "format": "forum post",
+   "text": "Utilisateur: JeanLuc_Paris\nMessage: J'ai un problème avec mon nouvel ordinateur. Quelqu'un peut m'aider? Mon email c'est jeanlucdupont@outlook.com",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "email",
+      "value": "jeanlucdupont@outlook.com",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b010_fr_clinic_notes",
+   "lang": "es",
+   "format": "clinic notes",
+   "text": "Consulta de seguimiento\nPaciente: Isabelle Fournier\nFecha: 2026-09-15\nTeléfono: 06 87 34 92 15\nEmail: isabelle.fournier@mail.fr\nMédico: Dr. Laurent Brun\nProxima cita: en 2 semanas",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Isabelle Fournier",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "06 87 34 92 15",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "isabelle.fournier@mail.fr",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Laurent Brun",
+      "pii": true,
+      "honorific": "Dr."
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b011_fr_maternity_list",
+   "lang": "es",
+   "format": "HR memo",
+   "text": "Personal en programas especiales - Recursos Humanos 2026:\n- Amélie Rousseau\n- Thomas Arnaud\n- Carole Blondel",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Amélie Rousseau",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Thomas Arnaud",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Carole Blondel",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b012_fr_crime_record",
+   "lang": "es",
+   "format": "police report",
+   "text": "Consultoria juridica - Caso n° 2025/7834\nFecha de contacto: 2025-11-03\nCliente: Julien Mathieu\nTeléfono: 07 45 89 23 12\nAsunto: Consulta general sobre procedimientos",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Julien Mathieu",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "07 45 89 23 12",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b013_fr_credit_card",
+   "lang": "fr",
+   "format": "payment record",
+   "text": "Titulaire du compte: Valerie Mercier\nNuméro de carte: 4532 1847 6294 8015\nDate d'expiration: 12/2028\nMontant du paiement: 185€",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Valerie Mercier",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4532 1847 6294 8015",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b014_fr_passport_number",
+   "lang": "fr",
+   "format": "travel form",
+   "text": "Nom: Philippe Renault\nNuméro de passeport: 26X847921\nNationalité: Française\nValidité: jusqu'au 2032-03-15",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Philippe Renault",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "26X847921",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b015_fr_religion_list",
+   "lang": "fr",
+   "format": "membership list",
+   "text": "Liste des fidèles de la paroisse Saint-Jean:\n- Étienne Lefevre\n- Monique Gauthier\n- Robert Vincent\n- Lucie Ferrand",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Étienne Lefevre",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Monique Gauthier",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Robert Vincent",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Lucie Ferrand",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b016_fr_suspension_list",
+   "lang": "fr",
+   "format": "HR notice",
+   "text": "Mesures disciplinaires - suspension temporaire 2026:\n- Fabrice Collet (3 jours, absentéisme)\n- Nathalie Deschamps (5 jours, violation de politique)\n- Victor Leclerc (2 jours, conflit)",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Fabrice Collet",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Nathalie Deschamps",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Victor Leclerc",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b017_fr_bank_transfer",
+   "lang": "fr",
+   "format": "bank statement",
+   "text": "Virement émis le 2026-09-20\nBénéficiaire: Michel Arnaudet\nIBAN: FR1420041010050500013M02\nMontant: 1200€\nMotif: Salaire mensuel",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Michel Arnaudet",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "FR1420041010050500013M02",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b018_fr_gps_location",
+   "lang": "fr",
+   "format": "tracking log",
+   "text": "Géolocalisation du livreur - 2026-09-21 15:34\nEmployé: Denis Moreau\nCoordonnées GPS: 48.8566°N, 2.3522°E\nAdresse: Maison individuelle, 12 boulevard de la Tour, 75007 Paris\nHeure: 15:34",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Denis Moreau",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b019_fr_asylum_case",
+   "lang": "fr",
+   "format": "administrative file",
+   "text": "Dossier de demande d'asile n° 2025-AF-8847\nDemandeur: Amara Okonkwo\nNationalité: Nigériane\nDate d'arrivée en France: 2025-06-14\nStatut de résidence: Demandeur d'asile en attente",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Amara Okonkwo",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b020_fr_long_clinic_detailed",
+   "lang": "fr",
+   "format": "medical appointment",
+   "text": "Consultation médicale complète - Dr. Anne Leclerc\n\nPatient: Gérard Fontaine\nDate de naissance: 1968-03-22\nTéléphone: 06 89 23 45 67\nEmail: gerard.fontaine@wanadoo.fr\n\nHistorique: Diagnostic de diabète type 2 en 2018, actuellement traité par metformine 500mg deux fois par jour. Tension artérielle élevée, hospitalisé en janvier 2025 pour complication rénale.\n\nExamen d'aujourd'hui:\n- Poids: 89kg\n- Tension: 148/92\n- Glycémie: 7,2 mmol/L\n- Test cardiaque: normal\n\nPlan de traitement: Augmenter metformine à 750mg, ajouter inhibiteur d'ACE. Suivi toutes les 4 semaines. Recommandation diététique stricte, activité physique modérée. Rendez-vous échographie abdominale en 2 semaines.",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Gérard Fontaine",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "06 89 23 45 67",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "gerard.fontaine@wanadoo.fr",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Anne Leclerc",
+      "pii": true,
+      "honorific": "Dr."
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b101_it_generic_news",
+   "lang": "it",
+   "format": "news article",
+   "text": "Le principali banche italiane hanno aumentato i tassi di interesse del 0,5% a settembre. L'inflazione rimane al 2,1% secondo ISTAT.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b102_it_union_news",
+   "lang": "it",
+   "format": "union newsletter",
+   "text": "Newsletter CGIL - Settembre 2026\n\nAggiornamenti della contrattazione nazionale: Le trattative per il rinnovo del contratto collettivo proseguono. Sessione prevista il 18 ottobre a Roma.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b103_it_server_log",
+   "lang": "it",
+   "format": "system log",
+   "text": "[2026-09-21 14:32:15] INFO: Server startup successful\n[2026-09-21 14:32:45] DEBUG: Database connection pool initialized\n[2026-09-21 14:35:22] INFO: API endpoints loaded\n[2026-09-21 14:40:01] WARN: Memory usage at 78%",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b104_it_company_support",
+   "lang": "it",
+   "format": "customer support page",
+   "text": "Contatti di supporto:\nEmail: info@societa-generale.it\nTelefono: 06 5489 1234 (centralino)\nChat dal sito web: disponibile 24/7\nOre di apertura: lun-ven 8:00-18:00",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b105_it_recipe",
+   "lang": "it",
+   "format": "recipe",
+   "text": "Ricetta Carbonara - Ingredienti:\n- 400g spaghetti\n- 200g guanciale\n- 4 uova\n- 100g pecorino romano grattugiato\n- Pepe nero\n\nPreparazione: Tagliare il guanciale a cubetti...",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b106_it_name_only_email",
+   "lang": "it",
+   "format": "email message",
+   "text": "Soggetto: Riunione programmata\n\nCaro Signor Rossi,\n\nLa riunione di progetto è confermata per giovedì prossimo alle 10:00.\n\nSaluti cordiali,\nFrancesca",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Francesca",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Rossi",
+      "pii": true,
+      "honorific": "Signor"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b107_it_phone_only",
+   "lang": "it",
+   "format": "voicemail note",
+   "text": "Messaggio: Chiama il numero 340 567 8901 per il preventivo. Chiedere di Giorgio.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "340 567 8901",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Giorgio",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b108_it_address_form",
+   "lang": "it",
+   "format": "delivery form",
+   "text": "Destinatario: Adriana Martinelli\nIndirizzo: Via Roma 85, 20100 Milano\nTelefono di contatto: 02 9876 5432",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Adriana Martinelli",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02 9876 5432",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b109_it_social_profile",
+   "lang": "en",
+   "format": "social media post",
+   "text": "User: @MarcoPetra_Milano\nPost: Just finished my morning run around the Parco Sempione! Love this season.\n2,340 likes • 156 comments",
+   "expected": {
+    "sensitivity": "low",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b110_it_hospital_admission",
+   "lang": "es",
+   "format": "hospital record",
+   "text": "Factura de servicios hospitalarios\nPaciente: Lorenzo Giuliani\nFecha de ingreso: 2026-09-18\nTeléfono de contacto: 347 234 5678\nEmail: lorenzo.giuliani@email.it\nReparto: Cardiología\nTotal facturado: 4.250€",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Lorenzo Giuliani",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "347 234 5678",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "lorenzo.giuliani@email.it",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b111_it_disability_list",
+   "lang": "it",
+   "format": "HR document",
+   "text": "Dipendenti con diritti particolari per invalidità - 2026:\n- Simone Donato (invalidità 75%)\n- Cristina Bianchi (invalidità 50%)\n- Roberto Manfredi (invalidità 90%)",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Simone Donato",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Cristina Bianchi",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Roberto Manfredi",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b112_it_political_affiliation",
+   "lang": "es",
+   "format": "party membership document",
+   "text": "Evento Público - Conferencia Política 2026\nSpeaker: Enrico Basile\nTeléfono para consultas: 06 9876 5432\nEmail: info.evento.2026@politica.it\nLugar: Centro de Convenciones, Roma\nFecha: 25 de octubre",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Enrico Basile",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "06 9876 5432",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b113_it_ethnic_background",
+   "lang": "es",
+   "format": "census form",
+   "text": "Registro de Participantes - Programa Educativo\nNombre: Ahmed Al-Rashid\nFecha de inscripción: 2025-12-01\nEmail: ahmed.alrashid@escuela.it\nTeléfono: 320 456 7890\nPais de origen: Siria",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Ahmed Al-Rashid",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "ahmed.alrashid@escuela.it",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "320 456 7890",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b114_it_national_id",
+   "lang": "it",
+   "format": "identity document",
+   "text": "Codice Fiscale\nNome: Valentina Sartori\nCodice: SRTVNT89B56D612S\nData di nascita: 1989-02-16\nLuogo di nascita: Roma",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Valentina Sartori",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "SRTVNT89B56D612S",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b115_it_iban_payment",
+   "lang": "it",
+   "format": "bank transfer",
+   "text": "Ordine di bonifico\nBeneficiario: Tommaso Reggiani\nIBAN: IT60X0542811101000000123456\nIstituto: Banca Toscana\nImporto: 3.500€\nCausale: Liquidazione prestazione lavorativa",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Tommaso Reggiani",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "IT60X0542811101000000123456",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b116_it_password_credential",
+   "lang": "it",
+   "format": "security incident report",
+   "text": "Rapporto di sicurezza - Incidente di accesso\nUtente interessato: Martina Conti\nPassword compromessa: M7x!kQp@92vL\nSistema interessato: Email aziendale\nData scoperta: 2026-09-19",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Martina Conti",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b117_it_sexual_orientation",
+   "lang": "it",
+   "format": "employee survey",
+   "text": "Sondaggio anonimo sulla diversità - Risultati riservati\nDipendenti dichiaratamente LGBTQ+:\n- Giancarlo Neri (gay)\n- Alessio Santoro (bisessuale)\n- Federica Costa (lesbica)",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Giancarlo Neri",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Alessio Santoro",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Federica Costa",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b118_it_biometric_data",
+   "lang": "it",
+   "format": "security system log",
+   "text": "Log sistema biometrico - Accessi 2026-09-21\n\nOre 08:15: Utente identificato come Davide Ferretti - Impronta digitale acquisita e matched\nOre 09:30: Riconoscimento facciale di Giulia Moretti - Accesso confermato\nOre 14:45: Acquisizione iride per Riccardo Gallo - Database aggiornato",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Davide Ferretti",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Giulia Moretti",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Riccardo Gallo",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b119_it_victim_record",
+   "lang": "it",
+   "format": "court document",
+   "text": "Procedimento penale n. 2025/9456\nVittima: Olga Rossellini\nReato subito: Violenza domestica\nData del fatto: 2025-08-15\nImputato: Massimiliano Russo\nData udienza: 2026-10-12",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Olga Rossellini",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Massimiliano Russo",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b120_it_long_genetic_records",
+   "lang": "it",
+   "format": "genetic testing report",
+   "text": "Rapporto Test Genetico Completo\n\nPaziente: Dr. Carlo Benedetti\nData del test: 2026-08-10\nLaboratorio: GenomItaly Centro Analisi\nEmail: carlo.benedetti@medici.it\nTelefono: 335 789 0123\n\nRISULTATI:\nGene BRCA1: Variante patogena c.68_69delAG rilevata\nInterpretazione: Predisposizione ereditaria al tumore della mammella e dell'ovaio (penetranza 70%)\nGene APOE: Genotipo E4/E4 (rischio elevato morbo di Alzheimer)\nCromosoma Y: Presente (maschio confermato)\nTest di portatore: Portatore per fibrosi cistica (1 copia mutazione F508del)\n\nConsigli Clinici:\n- Screening mammagrafia annuale raccomandata\n- Consultazione con genetista di riferimento\n- Informazione familiare sul rischio ereditario\n- Considerare test predittivo per familiari prossimi\n\nFirma: Dr. Alessandra Rizzo, Direttore Laboratorio",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Carlo Benedetti",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "carlo.benedetti@medici.it",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "335 789 0123",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Alessandra Rizzo",
+      "pii": true,
+      "honorific": "Dr."
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b201_de_general_article",
+   "lang": "de",
+   "format": "encyclopedia entry",
+   "text": "Berlin ist die Hauptstadt Deutschlands und hat etwa 3,6 Millionen Einwohner. Die Stadt ist bekannt für ihre Museen, Geschichte und Nachtleben.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b202_de_weather_notice",
+   "lang": "de",
+   "format": "weather forecast",
+   "text": "Wetterbericht für Bayern - 22. September 2026\nTemperatur: 18-22°C\nNiederschlag: 60% Regenwahrscheinlichkeit\nWindgeschwindigkeit: 15-20 km/h",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b203_de_company_policy",
+   "lang": "de",
+   "format": "company handbook",
+   "text": "Datenschutzerklärung - Datensicherheit im Homeoffice:\n- Nutzung von VPN ist verpflichtend\n- Bildschirm von außen nicht einsehbar\n- Keine Speicherung vertraulicher Daten auf lokalen Geräten",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b204_de_public_transport",
+   "lang": "de",
+   "format": "transit information",
+   "text": "Auskunft MVG München\nLinie U6 nach Fröttmaning\nAbfahrtzeiten: 14:32, 14:47, 15:02, 15:17\nFahrtdauer: 28 Minuten\nPreis: 2,90€",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b205_de_historical_figure",
+   "lang": "de",
+   "format": "historical biography",
+   "text": "Johann Wolfgang von Goethe (1749-1832) war ein deutscher Dichter und Naturforscher. Seine bekanntesten Werke sind Faust und Die Leiden des jungen Werther.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Johann Wolfgang von Goethe",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b206_de_email_simple",
+   "lang": "de",
+   "format": "email",
+   "text": "Betreff: Terminbestätigung\n\nHallo Herr Mueller,\n\nIch bestätige Ihr Treffen für nächsten Dienstag um 10:00 Uhr.\n\nBeste Grüße,\nKlaus",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Klaus",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Mueller",
+      "pii": true,
+      "honorific": "Herr"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b207_de_resume",
+   "lang": "de",
+   "format": "resume",
+   "text": "Lebenslauf - Hans Richter\nTelefon: +49 89 1234 5678\nE-Mail: hans.richter@email.de\nGeburtsdatum: 15. März 1990\n\nBerufserfahrung:\nSoftware-Entwickler bei TechCorp GmbH (2018-2026)",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Hans Richter",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+49 89 1234 5678",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "hans.richter@email.de",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b208_de_appointment_reminder",
+   "lang": "de",
+   "format": "SMS message",
+   "text": "Hallo Petra! Ihr Zahnarzt Dr. Schmidt erinnert Sie an Ihren Termin morgen um 14:30 Uhr. Tel: 030 98765432",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Petra",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "030 98765432",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Schmidt",
+      "pii": true,
+      "honorific": "Dr."
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b209_de_linkedin_profile",
+   "lang": "de",
+   "format": "social media",
+   "text": "LinkedIn Profil\nName: Stefanie Wagner\nPosition: Projektmanagerin\nUnternehmen: Automobilzulieferer AG\nKontakt: +49 172 3456789",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Stefanie Wagner",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+49 172 3456789",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b210_de_psych_eval",
+   "lang": "es",
+   "format": "psychological report",
+   "text": "Evaluación de Salud Ocupacional - Seguimiento\nEmpleado: Michael Bergmann\nFecha: 2026-09-14\nTeléfono: 0721 456 7890\nEmail: m.bergmann@arbeit.de\nOcupación: Ingeniero de Software",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Michael Bergmann",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "0721 456 7890",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "m.bergmann@arbeit.de",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b211_de_pregnant_list",
+   "lang": "de",
+   "format": "HR notice",
+   "text": "Schwangerschafts- und Elternzeitvertretungen 2026:\n- Katarina Schober (Entbindungstermin Januar)\n- Tobias Hoffmann (Elternzeit 3 Monate ab März)\n- Silke Roth (Schwangerschaftsbeschäftigungsverbot ab Oktober)",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Katarina Schober",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Tobias Hoffmann",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Silke Roth",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b212_de_refugee_status",
+   "lang": "es",
+   "format": "immigration document",
+   "text": "Registro de Visado - Archivo de Viajes\nSolicitante: Rashid Naimnur\nTeléfono: +49 30 555 1234\nEmail: r.naimnur@kontakt.de\nPais de origen: Siria\nFecha de solicitud: 2025-03-15",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Rashid Naimnur",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+49 30 555 1234",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "r.naimnur@kontakt.de",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b213_de_criminal_conviction",
+   "lang": "de",
+   "format": "court record",
+   "text": "Urteil Amtsgericht Köln, Az. 7 Qs 45/2025\nAngeklagter: Werner Diekmann\nAnklage: Sachbeschädigung\nUrteil: 6 Monate Freiheitsstrafe (zur Bewährung ausgesetzt)\nAusfertigungsdatum: 2026-06-28",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Werner Diekmann",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b214_de_driver_license",
+   "lang": "es",
+   "format": "identity document",
+   "text": "Archivo de Documentos de Identidad - Base de Datos\nNombre: Thorsten Gärtner\nNúmero de Documento: 3520024567890123\nTipo de documento: Licencia de conducir\nPais de emisión: Alemania\nEmail registrado: thorsten.gaertner@email.de",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Thorsten Gärtner",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "3520024567890123",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     },
+     {
+      "type": "email",
+      "value": "thorsten.gaertner@email.de",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b215_de_visa_number",
+   "lang": "de",
+   "format": "travel document",
+   "text": "Aufenthaltstitel\nName: Leila Mahmoud\nAufenthaltserlaubnis-Nummer: 123456789\nNationalität: Ägypten\nZweck: Familiennachzug\nGültig ab: 2026-04-01 bis 2028-04-01",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Leila Mahmoud",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "123456789",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b216_de_banking_details",
+   "lang": "de",
+   "format": "bank transfer instruction",
+   "text": "Zahlungsauftrag\nEmpfänger: Cornelia Völker\nIBAN: DE89370400440532013000\nBIC: COBADEFFXXX\nBetrag: 5.750€\nZweck: Honorar November",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Cornelia Völker",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "DE89370400440532013000",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b217_de_union_membership",
+   "lang": "de",
+   "format": "membership list",
+   "text": "Mitgliederverzeichnis IG Metall Ortsgruppe Dresden:\n- Jörg Petermann (Betriebsrat)\n- Anja Schulze (Vertrauensperson)\n- Friedrich Bauer (Kassierer)\n- Ingrid König (Schriftführerin)",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Jörg Petermann",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Anja Schulze",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Friedrich Bauer",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Ingrid König",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b218_de_religion_member",
+   "lang": "de",
+   "format": "church record",
+   "text": "Taufregister - Evangelische Gemeinde Freiberg\nName des Täuflings: Daniel Schröder\nDatum: 2026-06-14\nEltern: Robert Schröder und Margot Schröder\nPate: Andreas Wimmer",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Daniel Schröder",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Robert Schröder",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Margot Schröder",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Andreas Wimmer",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b219_de_gps_tracking",
+   "lang": "de",
+   "format": "field worker log",
+   "text": "Arbeitseinsatzlog - Außendienstmitarbeiter\nName: Bernhard Wolke\nDatum: 2026-09-21\nGPS-Position 09:15: 51.1657°N, 10.4515°E (Büro Erfurt)\nGPS-Position 13:30: 51.9479°N, 7.6277°E (Kundenstandort Münster)\nRückkunft: 18:45 Position 51.1657°N, 10.4515°E",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Bernhard Wolke",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b220_de_long_medical",
+   "lang": "de",
+   "format": "patient medical history",
+   "text": "Patientenakte Klinik am Waldrand\n\nPatient: Gabriele Hoffmann\nGeboren: 1962-04-18\nReligion: Evangelisch-lutherisch\nKontakt: gabriele.hoffmann@telekom.de, 0721 56789123\n\nVorangegangene Diagnosen und Behandlungen:\n- 2018: Diabetes mellitus Typ 2 (erstmals diagnostiziert)\n- 2020: Myokardinfarkt mit Stent-Implantation\n- 2022: Zweitkarcinom Kolonkarzinom Stadium III (erfolgreich reseziert, 6 Zyklen Chemotherapie)\n- 2024: Herzinsuffizienz NYHA III\n- 2025: Nierenfunktionsstörung (GFR 35 ml/min/1.73m²)\n\nAktuelle Medikation:\nMetformin 1000mg × 2, Ramipril 10mg, Amlodipin 5mg, Atorvastatin 40mg, Aspirin 100mg\n\nAllergien: Penicillin (Exanthem), Latex (lokal)\n\nFamilienanamnese: Mutter - Brustkrebs (verstorben 2010), Vater - Hirnschlag (verstorben 2015)\n\nLaster Befund (2026-08-30):\nLaborwerte: HbA1c 7,2%, eGFR 32 ml/min, Troponin I normal\nHerzecho: LVEF 35%, leichte Mitralklappeninsuffizienz\nKolonskopie: Kontrollbefund unauffällig\n\nBehandlungsplan: Erhöhung Diuretika, Nephrologen-Folgetermin vereinbart, Kardiologie Follow-up in 4 Wochen",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Gabriele Hoffmann",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "gabriele.hoffmann@telekom.de",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "0721 56789123",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b301_es_generic_news",
+   "lang": "es",
+   "format": "news article",
+   "text": "El desempleo en España bajó al 14,2% en agosto de 2026, según datos del Instituto Nacional de Estadística. Las regiones con mayor tasa de paro son Andalucía y Canarias.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b302_es_tourism_info",
+   "lang": "es",
+   "format": "tourism guide",
+   "text": "Guía de Barcelona - Atracciones principales:\n- Sagrada Familia (Gaudí)\n- Park Güell\n- Las Ramblas\n- Barrio Gótico\nMejor época para visitar: Abril-Junio, Septiembre-Octubre",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b303_es_security_policy",
+   "lang": "es",
+   "format": "IT security policy",
+   "text": "Política de Acceso a Datos Confidenciales:\n- Autenticación de dos factores obligatoria\n- Cambio de contraseña cada 120 días\n- Auditoría de accesos mensual\n- Prohibido compartir credenciales",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b304_es_library_hours",
+   "lang": "es",
+   "format": "public information",
+   "text": "Horarios Biblioteca Nacional de España\nLunes a viernes: 09:00 - 21:00\nSábado: 09:00 - 14:00\nDomingo: Cerrado\nTeléfono general: 91 580 7800",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b305_es_product_review",
+   "lang": "es",
+   "format": "product review",
+   "text": "Análisis del nuevo iPhone 18\n\nDiseño elegante con marco de titanio. Pantalla OLED de 6,7 pulgadas excepcional. Batería dura 2 días con uso moderado. Precio: 1.299€",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "s4b306_es_email_work",
+   "lang": "es",
+   "format": "email message",
+   "text": "Asunto: Confirmación de asistencia\n\nHola Raúl,\n\nConfirmo mi asistencia a la reunión del jueves a las 15:00 horas.\n\nSaludos,\nCarlos",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Raúl",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Carlos",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b307_es_contact_card",
+   "lang": "es",
+   "format": "business card",
+   "text": "Nombre: Beatriz Gómez López\nPosición: Directora de Marketing\nEmpresa: Soluciones Digitales S.L.\nTelefono: 93 256 7890\nEmail: beatriz.gomez@solucionesdigitales.es",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Beatriz Gómez López",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "93 256 7890",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "beatriz.gomez@solucionesdigitales.es",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b308_es_forum_post",
+   "lang": "es",
+   "format": "forum discussion",
+   "text": "Usuario: @JavierMadrid2000\nPublicación: ¿Alguien sabe donde arreglar motos en Madrid? Mi número es 627 445 8901 para contactarme.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "627 445 8901",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b309_es_enrollment_form",
+   "lang": "es",
+   "format": "school form",
+   "text": "Formulario de Matrícula 2026-2027\nEstudiante: Miguel Ángel Rodríguez\nEdad: 16 años\nEmail del apoderado: jose.rodriguez.martinez@gmail.com\nTeléfono de contacto: 664 532 1098",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Miguel Ángel Rodríguez",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "jose.rodriguez.martinez@gmail.com",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "664 532 1098",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b310_es_mental_health",
+   "lang": "es",
+   "format": "psychiatry note",
+   "text": "Registro de Consulta Médica\nPaciente: Fernando Molina\nFecha: 2026-09-19\nTeléfono: 678 345 6789\nEmail: fernando.molina@correo.es\nMédico: Dr. Carlos Hernández\nProxima consulta: 2026-10-17",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Fernando Molina",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "678 345 6789",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "fernando.molina@correo.es",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Carlos Hernández",
+      "pii": true,
+      "honorific": "Dr."
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b311_es_sick_leave",
+   "lang": "es",
+   "format": "HR notification",
+   "text": "Comunicado de Bajas Médicas - Septiembre 2026:\n- Enrique Sánchez Pérez (Baja por depresión, 30 días)\n- María del Rosario Fernández (Baja por cirugía de rodilla, 45 días)\n- David García López (Baja por ansiedad, 21 días)",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Enrique Sánchez Pérez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "María del Rosario Fernández",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "David García López",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b312_es_immigration",
+   "lang": "es",
+   "format": "passport record",
+   "text": "Archivo de Documentación Personal\nNombre: Alejandra Moreno\nNúmero de pasaporte: ES 2157894-K\nFecha de emisión: 2021-03-20\nEmail: alejandra.moreno@email.es\nTelefono: 912 345 678",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Alejandra Moreno",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "ES 2157894-K",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     },
+     {
+      "type": "email",
+      "value": "alejandra.moreno@email.es",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "912 345 678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b313_es_genetics",
+   "lang": "es",
+   "format": "medical genetics report",
+   "text": "Informe de Análisis Genético\nPaciente: Rosa María Iglesias\nPrueba: Panel de predisposición al cáncer\nResultado relevante: Portadora de mutación BRCA2 (c.5635insA)\nClinicamente interpretado: Riesgo aumentado para cáncer de ovario (45%) y mama (30%)\nRecomendación: Vigilancia oncológica intensiva",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Rosa María Iglesias",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b314_es_political_party",
+   "lang": "es",
+   "format": "party membership",
+   "text": "Evento Publico - Conferencia 2026\nOrador: Óscar Jiménez Rivera\nTeléfono: 656 234 5678\nEmail: oscar.jimenez@evento.es\nLugar: Auditorio Central\nFecha: 14 de octubre",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Óscar Jiménez Rivera",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "656 234 5678",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "oscar.jimenez@evento.es",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b315_es_criminal_arrest",
+   "lang": "es",
+   "format": "police document",
+   "text": "Acta de Detención - Expediente 2025/ES/78912\nDetenido: Andrés Cabrera Morales\nDelito: Tráfico de drogas\nFecha de arresto: 2025-11-14\nEstado procesal: Acusado, en espera de sentencia\nFecha de comparecencia: 2026-10-22",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Andrés Cabrera Morales",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b316_es_credit_card",
+   "lang": "es",
+   "format": "payment transaction",
+   "text": "Transacción de Tarjeta de Crédito\nTitular: Lidia Martínez Sanz\nTarjeta Visa: 5412 8765 4321 0987\nVencimiento: 11/2029\nCVV: 342\nMonto: €842,50",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Lidia Martínez Sanz",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "5412 8765 4321 0987",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b317_es_dni_number",
+   "lang": "es",
+   "format": "identity document",
+   "text": "Documento Nacional de Identidad\nNombre: Ignacio Blasco Rodríguez\nNúmero DNI: 47856932-L\nFecha de expedición: 2015-06-12\nFecha de caducidad: 2025-06-11 (VENCIDO)",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Ignacio Blasco Rodríguez",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "47856932-L",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b318_es_religion_parish",
+   "lang": "es",
+   "format": "parish list",
+   "text": "Lista de Feligreses - Parroquia Nuestra Señora del Rosario:\n- Valerie Ruiz Hernández\n- Antonio Valdez García\n- Esperanza Delgado López\n- Francisco Ortiz Murcia",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Valerie Ruiz Hernández",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Antonio Valdez García",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Esperanza Delgado López",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Francisco Ortiz Murcia",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b319_es_biometric_iris",
+   "lang": "es",
+   "format": "security access log",
+   "text": "Sistema de Control Biométrico - Registro de Acceso\nFecha: 2026-09-21\n\n07:45 - Identificación de iris: Susana Carrillo Díaz (Acceso permitido)\n09:20 - Reconocimiento facial: Javier Núñez Romero (Acceso permitido)\n14:10 - Escaneo de huella digital: Patricia López Vargas (Acceso denegado - no coincide)",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Susana Carrillo Díaz",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Javier Núñez Romero",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Patricia López Vargas",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "s4b320_es_long_clinical_detailed",
+   "lang": "es",
+   "format": "clinical assessment",
+   "text": "Evaluación Clínica Integral - Hospital Virgen del Rocío\n\nPaciente: Dr. Vicente Sotomayor Guzmán\nNúmero de Historia: HSR-2026-087654\nFecha de Evaluación: 2026-09-17\nTeléfono: 954 239 0000 (ext. 3245)\nEmail Personal: v.sotomayor@correo.es\n\nMOTIVO DE CONSULTA:\nPaciente referido por cardiólogo para evaluación integral debido a múltiples comorbilidades.\n\nANTECEDENTES PERSONALES Y PATOLÓGICOS:\n- Infarto agudo de miocardio: 2019 (stent coronario)\n- Accidente cerebrovascular isquémico: 2021 (recuperación parcial)\n- Diabetes Mellitus tipo 2: desde 2015 (HbA1c 7.8%)\n- Hipertensión arterial: desde 2010 (controlada con terapia triple)\n- Dislipidemia: LDL 145 mg/dL, HDL 38 mg/dL\n- Fibrilación auricular paroxística: diagnóstico 2023\n- Hipotiroidismo: en tratamiento con levotiroxina\n- Antecedente de depresión (años 2000-2005): actualmente sin síntomas\n\nANTECEDENTES FAMILIARES:\nPadre: Fallecido a los 72 años por IAM. Madre: Fallecida a los 85 años por demencia vascular\n\nHÁBITOS:\nTabaquismo: Exfumador desde 2010 (acumulado 25 paquetes/año)\nAlcohol: Consumo social moderado\nActividad física: Sedentario\n\nMEDICACIÓN ACTUAL:\n1. Ácido acetilsalicílico 100 mg/día\n2. Clopidogrel 75 mg/día\n3. Enalapril 10 mg/día\n4. Nifedipino 30 mg/día\n5. Carvedilol 12.5 mg/día\n6. Atorvastatina 80 mg/día\n7. Metformina 1500 mg/día\n8. Levotiroxina 75 μg/día\n9. Amiodarona 200 mg/día (monitoreo QTc)\n\nALERGIAS: Penicilinas (erupción), Sulfonamidas (anafilaxia, requiere epinefrina)\n\nEXAMEN FÍSICO:\nPresión Arterial: 138/88 mmHg | Frecuencia Cardíaca: 72 bpm, arrítmico\nFrecuencia Respiratoria: 18 rpm | IMC: 28.4 kg/m² (sobrepeso)\nSatO2: 96% aire ambiente | Temperatura: 36.8°C\n\nPlan de Manejo: Optimización de terapia farmacológica, evaluación de revascularización coronaria, monitoreo electrocardiográfico ambulatorio, rehabilitación cardíaca estructurada",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Vicente Sotomayor Guzmán",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "954 239 0000",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "v.sotomayor@correo.es",
+      "pii": true
+     }
+    ]
+   }
+  }
+ ]
+}

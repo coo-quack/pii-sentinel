@@ -1,0 +1,1616 @@
+{
+ "FACTS": {
+  "health_extra": {
+   "cat": "health_info",
+   "t": {
+    "ja": [
+     "{P}さんは妊娠5か月で、{DATE}から産休に入る予定です。",
+     "{P}様は{DATE}から病気療養のため休職しています。",
+     "{P}さんは身体障害者手帳（2級）を持っています。",
+     "健康診断の結果、{P}さんは要精密検査（肝機能）となりました。",
+     "{P}は通院のため毎週水曜に早退します（主治医の指示）。"
+    ],
+    "zh": [
+     "{P}目前怀孕五个月，预计{DATE}开始休产假。",
+     "{P}因病自{DATE}起请病假休养。",
+     "{P}持有残疾人证（二级）。",
+     "体检结果显示{P}需要复查肝功能。",
+     "{P}每周三下午需要去医院复诊。"
+    ],
+    "ko": [
+     "{P} 씨는 임신 5개월이며 {DATE}부터 출산휴가에 들어갑니다.",
+     "{P} 님은 {DATE}부터 질병으로 병가 중입니다.",
+     "{P} 씨는 장애인 등록증(2급)을 소지하고 있습니다.",
+     "건강검진 결과 {P} 님은 간 기능 재검사 대상입니다.",
+     "{P} 씨는 매주 수요일 통원 치료를 받습니다."
+    ],
+    "en": [
+     "{P} is five months pregnant and starts maternity leave on {DATE}.",
+     "{P} has been on sick leave since {DATE}.",
+     "{P} is registered as having a hearing disability and needs captions in meetings.",
+     "{P}'s annual health check flagged elevated liver enzymes; a follow-up is required.",
+     "{P} leaves early every Wednesday for hospital outpatient treatment."
+    ],
+    "fr": [
+     "{P} est enceinte de cinq mois et partira en congé maternité le {DATE}.",
+     "{P} est en arrêt maladie depuis le {DATE}.",
+     "{P} bénéficie de la reconnaissance de travailleur handicapé (RQTH).",
+     "Le bilan de santé de {P} indique un taux de cholestérol élevé ; un contrôle est prévu.",
+     "{P} s'absente chaque mercredi pour un suivi à l'hôpital."
+    ],
+    "it": [
+     "{P} è incinta di cinque mesi e inizierà il congedo di maternità il {DATE}.",
+     "{P} è in malattia dal {DATE}.",
+     "{P} ha un'invalidità civile riconosciuta al 60%.",
+     "Dagli esami di controllo di {P} risultano valori epatici alterati.",
+     "{P} esce prima ogni mercoledì per una visita in ospedale."
+    ],
+    "de": [
+     "{P} ist im fünften Monat schwanger und geht ab {DATE} in Mutterschutz.",
+     "{P} ist seit {DATE} krankgeschrieben.",
+     "{P} hat einen Schwerbehindertenausweis (GdB 50).",
+     "Bei der Vorsorgeuntersuchung von {P} wurden erhöhte Leberwerte festgestellt.",
+     "{P} geht jeden Mittwoch früher zur ambulanten Behandlung."
+    ],
+    "es": [
+     "{P} está embarazada de cinco meses y comenzará la baja por maternidad el {DATE}.",
+     "{P} está de baja médica desde el {DATE}.",
+     "{P} tiene reconocida una discapacidad del 45 %.",
+     "El reconocimiento médico de {P} muestra niveles de colesterol altos.",
+     "{P} sale antes cada miércoles para acudir a consulta en el hospital."
+    ]
+   }
+  },
+  "ethnicity": {
+   "cat": "race_or_religion",
+   "t": {
+    "ja": [
+     "{P}さんはアイヌ民族の出身だと話していました。",
+     "{P}様の国籍・民族欄：在日コリアン",
+     "{P}さんは沖縄出身で、琉球の家系だそうです。"
+    ],
+    "zh": [
+     "{P}是维吾尔族。",
+     "{P}的民族：藏族",
+     "{P}填写的民族一栏是回族。"
+    ],
+    "ko": [
+     "{P} 씨는 조선족 출신입니다.",
+     "{P} 님의 민족: 고려인",
+     "{P} 씨는 다문화 가정 출신이라고 밝혔습니다."
+    ],
+    "en": [
+     "{P} identifies as Native American (Navajo).",
+     "Ethnicity of {P}: Black Caribbean",
+     "{P} said that her family is of Roma origin."
+    ],
+    "fr": [
+     "{P} est d'origine maghrébine.",
+     "Origine ethnique de {P} : Rom",
+     "{P} a déclaré être d'origine kabyle."
+    ],
+    "it": [
+     "{P} è di origine rom.",
+     "Origine etnica di {P}: sinti",
+     "{P} ha dichiarato di essere di origine eritrea."
+    ],
+    "de": [
+     "{P} gehört der sorbischen Minderheit an.",
+     "Ethnische Herkunft von {P}: kurdisch",
+     "{P} erzählte, dass seine Familie zu den Sinti gehört."
+    ],
+    "es": [
+     "{P} es de etnia gitana.",
+     "Origen étnico de {P}: mapuche",
+     "{P} declaró ser de origen quechua."
+    ]
+   }
+  },
+  "political": {
+   "cat": "political_or_union",
+   "t": {
+    "ja": [
+     "{P}さんは地元の政党支部の党員で、選挙のたびに応援演説をしています。",
+     "{P}様の支持政党：野党第一党",
+     "{P}さんは原発反対デモの主催者の一人です。"
+    ],
+    "zh": [
+     "{P}是某民主党派的成员。",
+     "{P}曾参加反对拆迁的抗议活动。",
+     "{P}的政治面貌：党员"
+    ],
+    "ko": [
+     "{P} 씨는 야당의 당원으로 선거 때마다 자원봉사를 합니다.",
+     "{P} 님의 지지 정당: 진보 정당",
+     "{P} 씨는 반정부 집회를 주도했습니다."
+    ],
+    "en": [
+     "{P} is a registered member of the Green Party and canvasses every election.",
+     "Political affiliation of {P}: Libertarian",
+     "{P} organised the anti-war protest outside the town hall."
+    ],
+    "fr": [
+     "{P} est militant d'un parti d'extrême gauche.",
+     "Opinion politique de {P} : écologiste",
+     "{P} a organisé la manifestation contre la réforme des retraites."
+    ],
+    "it": [
+     "{P} è iscritto a un partito di opposizione e fa campagna a ogni elezione.",
+     "Orientamento politico di {P}: centrosinistra",
+     "{P} ha guidato il corteo contro il governo."
+    ],
+    "de": [
+     "{P} ist Mitglied einer Oppositionspartei und macht Wahlkampf.",
+     "Politische Einstellung von {P}: linksliberal",
+     "{P} hat die Demonstration gegen die Regierung organisiert."
+    ],
+    "es": [
+     "{P} es afiliado a un partido de la oposición y hace campaña en cada elección.",
+     "Ideología política de {P}: independentista",
+     "{P} organizó la manifestación contra el gobierno."
+    ]
+   }
+  },
+  "union": {
+   "cat": "political_or_union",
+   "t": {
+    "ja": [
+     "{P}さんは{DATE}に労働組合に加入しました。",
+     "{P}様は{ORG}労働組合の執行委員です。",
+     "組合費の天引き対象：{P}（{DEPT}）"
+    ],
+    "zh": [
+     "{P}于{DATE}加入了工会。",
+     "{P}是{ORG}工会的委员。",
+     "代扣工会会费名单：{P}（{DEPT}）"
+    ],
+    "ko": [
+     "{P} 씨는 {DATE}에 노동조합에 가입했습니다.",
+     "{P} 님은 {ORG} 노조의 대의원입니다.",
+     "조합비 공제 대상: {P} ({DEPT})"
+    ],
+    "en": [
+     "{P} joined the union on {DATE}.",
+     "{P} is a shop steward for the {ORG} workers' union.",
+     "Union dues deduction: {P} ({DEPT})"
+    ],
+    "fr": [
+     "{P} a adhéré au syndicat le {DATE}.",
+     "{P} est délégué syndical chez {ORG}.",
+     "Cotisation syndicale prélevée : {P} ({DEPT})"
+    ],
+    "it": [
+     "{P} si è iscritto al sindacato il {DATE}.",
+     "{P} è delegato sindacale presso {ORG}.",
+     "Trattenuta quota sindacale: {P} ({DEPT})"
+    ],
+    "de": [
+     "{P} ist am {DATE} der Gewerkschaft beigetreten.",
+     "{P} ist Betriebsrat und Gewerkschaftsmitglied bei {ORG}.",
+     "Gewerkschaftsbeitrag einbehalten: {P} ({DEPT})"
+    ],
+    "es": [
+     "{P} se afilió al sindicato el {DATE}.",
+     "{P} es delegado sindical en {ORG}.",
+     "Cuota sindical descontada: {P} ({DEPT})"
+    ]
+   }
+  },
+  "orientation": {
+   "cat": "sex_life_or_orientation",
+   "t": {
+    "ja": [
+     "{P}さんは同性のパートナーと暮らしていると打ち明けてくれました。",
+     "{P}様はパートナーシップ宣誓制度に登録済みです（同性）。",
+     "{P}さんはゲイであることを職場ではまだ公表していません。"
+    ],
+    "zh": [
+     "{P}私下告诉我他是同性恋。",
+     "{P}与同性伴侣同居。",
+     "{P}的性取向：双性恋"
+    ],
+    "ko": [
+     "{P} 씨는 동성 파트너와 함께 산다고 털어놓았습니다.",
+     "{P} 님은 자신이 레즈비언이라고 밝혔습니다.",
+     "{P} 씨의 성적 지향: 양성애"
+    ],
+    "en": [
+     "{P} told me in confidence that he is gay.",
+     "{P} lives with her same-sex partner.",
+     "Sexual orientation of {P}: bisexual"
+    ],
+    "fr": [
+     "{P} m'a confié qu'il est homosexuel.",
+     "{P} vit avec sa compagne.",
+     "Orientation sexuelle de {P} : bisexuelle"
+    ],
+    "it": [
+     "{P} mi ha confidato di essere gay.",
+     "{P} convive con la sua compagna.",
+     "Orientamento sessuale di {P}: bisessuale"
+    ],
+    "de": [
+     "{P} hat mir anvertraut, dass er schwul ist.",
+     "{P} lebt mit ihrer Partnerin zusammen.",
+     "Sexuelle Orientierung von {P}: bisexuell"
+    ],
+    "es": [
+     "{P} me confesó que es gay.",
+     "{P} vive con su pareja del mismo sexo.",
+     "Orientación sexual de {P}: bisexual"
+    ]
+   }
+  },
+  "genetic": {
+   "cat": "biometric_or_genetic",
+   "t": {
+    "ja": [
+     "{P}さんの遺伝子検査でBRCA1の変異が見つかりました。",
+     "{P}様のDNA鑑定の結果、親子関係が確認されました。",
+     "{P}さんは家族性高コレステロール血症の遺伝子を持っています。"
+    ],
+    "zh": [
+     "{P}的基因检测发现BRCA1突变。",
+     "{P}的DNA亲子鉴定结果已出。",
+     "{P}携带地中海贫血基因。"
+    ],
+    "ko": [
+     "{P} 씨의 유전자 검사에서 BRCA1 변이가 발견되었습니다.",
+     "{P} 님의 DNA 친자 확인 결과가 나왔습니다.",
+     "{P} 씨는 헌팅턴병 유전자 보인자입니다."
+    ],
+    "en": [
+     "{P}'s genetic test found a BRCA1 mutation.",
+     "DNA paternity test result for {P}: confirmed.",
+     "{P} carries the gene for cystic fibrosis."
+    ],
+    "fr": [
+     "Le test génétique de {P} a révélé une mutation BRCA1.",
+     "Résultat du test ADN de paternité de {P} : positif.",
+     "{P} est porteur du gène de la mucoviscidose."
+    ],
+    "it": [
+     "Il test genetico di {P} ha rilevato una mutazione BRCA1.",
+     "Esito del test del DNA di paternità di {P}: positivo.",
+     "{P} è portatore sano di talassemia."
+    ],
+    "de": [
+     "Der Gentest von {P} ergab eine BRCA1-Mutation.",
+     "Ergebnis des DNA-Vaterschaftstests von {P}: bestätigt.",
+     "{P} ist Träger des Gens für Mukoviszidose."
+    ],
+    "es": [
+     "El test genético de {P} detectó una mutación BRCA1.",
+     "Resultado de la prueba de ADN de paternidad de {P}: positivo.",
+     "{P} es portador del gen de la fibrosis quística."
+    ]
+   }
+  },
+  "victim": {
+   "cat": "hr_or_criminal_record",
+   "t": {
+    "ja": [
+     "{P}さんは{DATE}に特殊詐欺の被害に遭い、警察に被害届を出しました。",
+     "{P}様はストーカー被害で警察に相談しています。",
+     "被害者：{P}（{PLACE}署で事情聴取済み）"
+    ],
+    "zh": [
+     "{P}于{DATE}遭遇电信诈骗，已向警方报案。",
+     "{P}因遭受跟踪骚扰向派出所求助。",
+     "受害人：{P}（已在{PLACE}派出所做笔录）"
+    ],
+    "ko": [
+     "{P} 씨는 {DATE}에 보이스피싱 피해를 입고 경찰에 신고했습니다.",
+     "{P} 님은 스토킹 피해로 경찰에 상담 중입니다.",
+     "피해자: {P} ({PLACE} 경찰서 조사 완료)"
+    ],
+    "en": [
+     "{P} was the victim of an assault on {DATE} and filed a police report.",
+     "{P} has reported being stalked to the police.",
+     "Victim: {P} (statement taken at the {PLACE} station)"
+    ],
+    "fr": [
+     "{P} a été victime d'une agression le {DATE} et a porté plainte.",
+     "{P} a signalé à la police être harcelée.",
+     "Victime : {P} (audition au commissariat de {PLACE})"
+    ],
+    "it": [
+     "{P} è stato vittima di una rapina il {DATE} e ha sporto denuncia.",
+     "{P} ha denunciato atti di stalking.",
+     "Vittima: {P} (sentita in questura a {PLACE})"
+    ],
+    "de": [
+     "{P} wurde am {DATE} Opfer eines Überfalls und hat Anzeige erstattet.",
+     "{P} hat Stalking bei der Polizei angezeigt.",
+     "Geschädigte: {P} (Vernehmung bei der Polizei {PLACE})"
+    ],
+    "es": [
+     "{P} fue víctima de un robo el {DATE} y presentó denuncia.",
+     "{P} ha denunciado acoso a la policía.",
+     "Víctima: {P} (declaró en la comisaría de {PLACE})"
+    ]
+   }
+  },
+  "immigration": {
+   "cat": "citizenship_or_immigration",
+   "t": {
+    "ja": [
+     "{P}さんの在留資格は技能実習で、在留期限は{DATE}です。",
+     "{P}様は難民認定を申請中です。",
+     "{P}さんの在留カードの更新手続きが遅れています（在留資格：家族滞在）。"
+    ],
+    "zh": [
+     "{P}的签证类型为工作签证，有效期至{DATE}。",
+     "{P}正在申请难民身份。",
+     "{P}已加入外国国籍。"
+    ],
+    "ko": [
+     "{P} 씨의 체류 자격은 E-9(비전문취업)이며 만료일은 {DATE}입니다.",
+     "{P} 님은 난민 인정을 신청 중입니다.",
+     "{P} 씨는 불법 체류 상태로 확인되었습니다."
+    ],
+    "en": [
+     "{P}'s work visa expires on {DATE}.",
+     "{P} has applied for asylum and is awaiting a decision.",
+     "Immigration status of {P}: undocumented"
+    ],
+    "fr": [
+     "Le titre de séjour de {P} expire le {DATE}.",
+     "{P} a déposé une demande d'asile.",
+     "{P} est en situation irrégulière."
+    ],
+    "it": [
+     "Il permesso di soggiorno di {P} scade il {DATE}.",
+     "{P} ha presentato domanda di protezione internazionale.",
+     "{P} risulta privo di permesso di soggiorno."
+    ],
+    "de": [
+     "Der Aufenthaltstitel von {P} läuft am {DATE} ab.",
+     "{P} hat einen Asylantrag gestellt.",
+     "{P} ist nur geduldet (Duldung)."
+    ],
+    "es": [
+     "El permiso de residencia de {P} caduca el {DATE}.",
+     "{P} ha solicitado asilo.",
+     "{P} se encuentra en situación irregular."
+    ]
+   }
+  },
+  "credentials": {
+   "cat": "credentials",
+   "t": {
+    "ja": [
+     "{P}さんの社内システムのログイン：ID {HANDLE} ／ パスワード {PW}",
+     "{P}様のパスワードを{PW}に再設定しました。",
+     "{P}のメール（{EMAIL}）のパスワードは{PW}です。"
+    ],
+    "zh": [
+     "{P}的系统账号：{HANDLE}，密码：{PW}",
+     "已将{P}的密码重置为{PW}。",
+     "{P}的邮箱{EMAIL}的密码是{PW}。"
+    ],
+    "ko": [
+     "{P} 님의 로그인 정보: 아이디 {HANDLE} / 비밀번호 {PW}",
+     "{P} 씨의 비밀번호를 {PW}(으)로 초기화했습니다.",
+     "{P}의 메일({EMAIL}) 비밀번호는 {PW}입니다."
+    ],
+    "en": [
+     "Login for {P}: username {HANDLE}, password {PW}",
+     "I reset {P}'s password to {PW}.",
+     "{P}'s email {EMAIL} password is {PW}."
+    ],
+    "fr": [
+     "Identifiants de {P} : {HANDLE} / mot de passe {PW}",
+     "J'ai réinitialisé le mot de passe de {P} : {PW}",
+     "Le mot de passe de la messagerie {EMAIL} de {P} est {PW}."
+    ],
+    "it": [
+     "Credenziali di {P}: utente {HANDLE}, password {PW}",
+     "Ho reimpostato la password di {P} a {PW}.",
+     "La password della casella {EMAIL} di {P} è {PW}."
+    ],
+    "de": [
+     "Zugangsdaten von {P}: Benutzer {HANDLE}, Passwort {PW}",
+     "Ich habe das Passwort von {P} auf {PW} zurückgesetzt.",
+     "Das Passwort für {P}s Postfach {EMAIL} lautet {PW}."
+    ],
+    "es": [
+     "Credenciales de {P}: usuario {HANDLE}, contraseña {PW}",
+     "He restablecido la contraseña de {P} a {PW}.",
+     "La contraseña del correo {EMAIL} de {P} es {PW}."
+    ]
+   }
+  },
+  "location": {
+   "cat": "precise_location",
+   "t": {
+    "ja": [
+     "{P}さんのスマホの現在地：{GPS}（{DATE} 23:10）",
+     "{P}様の位置情報履歴：{GPS} に毎晩滞在",
+     "見守りGPS：{P}さんは{GPS}付近にいます。"
+    ],
+    "zh": [
+     "{P}手机当前定位：{GPS}（{DATE} 23:10）",
+     "{P}的位置记录：每晚停留在{GPS}",
+     "{P}的实时位置：{GPS}"
+    ],
+    "ko": [
+     "{P} 씨의 휴대폰 현재 위치: {GPS} ({DATE} 23:10)",
+     "{P} 님의 위치 기록: 매일 밤 {GPS}에 머묾",
+     "{P} 씨의 실시간 위치: {GPS}"
+    ],
+    "en": [
+     "{P}'s phone location: {GPS} ({DATE}, 11:10 pm)",
+     "Location history of {P}: stays at {GPS} every night",
+     "Live GPS of {P}: {GPS}"
+    ],
+    "fr": [
+     "Position du téléphone de {P} : {GPS} ({DATE}, 23 h 10)",
+     "Historique de localisation de {P} : {GPS} chaque nuit",
+     "Position GPS en direct de {P} : {GPS}"
+    ],
+    "it": [
+     "Posizione del telefono di {P}: {GPS} ({DATE}, ore 23:10)",
+     "Cronologia posizioni di {P}: {GPS} ogni notte",
+     "Posizione GPS in tempo reale di {P}: {GPS}"
+    ],
+    "de": [
+     "Standort des Handys von {P}: {GPS} ({DATE}, 23:10 Uhr)",
+     "Standortverlauf von {P}: jede Nacht bei {GPS}",
+     "Live-Standort von {P}: {GPS}"
+    ],
+    "es": [
+     "Ubicación del móvil de {P}: {GPS} ({DATE}, 23:10)",
+     "Historial de ubicaciones de {P}: {GPS} todas las noches",
+     "Ubicación GPS en tiempo real de {P}: {GPS}"
+    ]
+   }
+  },
+  "messages": {
+   "cat": "private_communications",
+   "t": {
+    "ja": [
+     "{P}さんのLINEのトーク履歴（抜粋）\n「昨日のこと、誰にも言わないで」\n「わかった、秘密にする」",
+     "{P}様の私用メールの転送記録：件名「借金の返済について」本文「来月まで待ってください」",
+     "調査資料：{P}さんと元交際相手とのメッセージのスクリーンショット3枚"
+    ],
+    "zh": [
+     "{P}的微信聊天记录（节选）\n“昨天的事别告诉别人”\n“好，我保密”",
+     "{P}私人邮件的转发记录：主题“关于还钱”内容“请再宽限一个月”",
+     "调查材料：{P}与前任的聊天截图三张"
+    ],
+    "ko": [
+     "{P} 씨의 카카오톡 대화 기록(발췌)\n\"어제 일은 아무한테도 말하지 마\"\n\"알았어, 비밀로 할게\"",
+     "{P} 님의 개인 메일 전달 기록: 제목 \"빚 상환에 대해\" 본문 \"다음 달까지 기다려 주세요\"",
+     "조사 자료: {P} 씨와 전 연인의 메시지 캡처 3장"
+    ],
+    "en": [
+     "Excerpt of {P}'s WhatsApp chat:\n\"Please don't tell anyone about yesterday.\"\n\"OK, I'll keep it secret.\"",
+     "Forwarded private email of {P}: subject \"About the loan\", body \"Please give me until next month.\"",
+     "Evidence file: three screenshots of messages between {P} and her ex-partner"
+    ],
+    "fr": [
+     "Extrait de la conversation WhatsApp de {P} :\n« Ne dis rien à personne pour hier. »\n« D'accord, je garde le secret. »",
+     "Courriel privé de {P} transféré : objet « Le prêt », texte « Laisse-moi jusqu'au mois prochain. »",
+     "Pièce du dossier : trois captures des messages entre {P} et son ex"
+    ],
+    "it": [
+     "Estratto della chat WhatsApp di {P}:\n\"Non dire a nessuno di ieri.\"\n\"Va bene, resta tra noi.\"",
+     "Email privata di {P} inoltrata: oggetto \"Il prestito\", testo \"Dammi tempo fino al mese prossimo.\"",
+     "Allegato: tre screenshot dei messaggi tra {P} e l'ex compagno"
+    ],
+    "de": [
+     "Auszug aus dem WhatsApp-Chat von {P}:\n„Erzähl niemandem von gestern.“\n„Okay, bleibt unter uns.“",
+     "Weitergeleitete private E-Mail von {P}: Betreff „Das Darlehen“, Text „Gib mir bitte bis nächsten Monat.“",
+     "Beweismittel: drei Screenshots der Nachrichten zwischen {P} und dem Ex-Partner"
+    ],
+    "es": [
+     "Extracto del chat de WhatsApp de {P}:\n«No le cuentes a nadie lo de ayer.»\n«Vale, lo guardo en secreto.»",
+     "Correo privado de {P} reenviado: asunto «El préstamo», texto «Dame hasta el mes que viene.»",
+     "Prueba: tres capturas de los mensajes entre {P} y su expareja"
+    ]
+   }
+  }
+ },
+ "GENERAL": {
+  "ja": [
+   "労働組合の組織率は年々低下しています。",
+   "パスワードは12文字以上で、英数字と記号を組み合わせてください。",
+   "位置情報の共有は設定画面からオンとオフを切り替えられます。",
+   "産休・育休の制度について、就業規則の第32条を改定しました。",
+   "在留資格の種類と申請手続きは出入国在留管理庁のサイトで確認できます。",
+   "遺伝子検査のサービスを選ぶときは、データの扱いを確認しましょう。",
+   "性的少数者への差別をなくすための研修を全社で実施します。",
+   "特殊詐欺の被害額は前年より増えました。",
+   "インフルエンザの予防接種は10月から始まります。持病のある方はかかりつけ医に相談してください。",
+   "糖尿病の患者数は全国で約1,000万人と推計されています。",
+   "がん検診の受診率を上げるため、自治体が無料クーポンを配布しています。"
+  ],
+  "zh": [
+   "全国工会会员人数逐年下降。",
+   "密码应至少12位，包含字母、数字和符号。",
+   "可以在设置中开启或关闭位置共享。",
+   "公司修订了产假和育儿假制度。",
+   "签证类型和申请流程请查阅移民管理局网站。",
+   "选择基因检测服务时请注意数据隐私。",
+   "公司将开展反对性少数群体歧视的培训。",
+   "电信诈骗案件数量较去年有所上升。",
+   "流感疫苗接种将于10月开始，有基础疾病者请先咨询医生。",
+   "全国糖尿病患者估计超过一亿人。",
+   "为提高癌症筛查率，社区发放免费体检券。"
+  ],
+  "ko": [
+   "노동조합 조직률은 해마다 낮아지고 있습니다.",
+   "비밀번호는 12자 이상, 영문과 숫자, 기호를 섞어 주세요.",
+   "위치 공유는 설정 화면에서 켜고 끌 수 있습니다.",
+   "출산휴가와 육아휴직 제도를 개정했습니다.",
+   "체류 자격의 종류와 신청 절차는 출입국 관리 사무소 누리집에서 확인할 수 있습니다.",
+   "유전자 검사 서비스를 고를 때는 데이터 처리 방침을 확인하세요.",
+   "성소수자 차별을 없애기 위한 교육을 전사적으로 실시합니다.",
+   "보이스피싱 피해액이 작년보다 늘었습니다.",
+   "독감 예방접종은 10월부터 시작됩니다. 지병이 있는 분은 주치의와 상담하세요.",
+   "국내 당뇨병 환자는 약 600만 명으로 추정됩니다.",
+   "암 검진 수검률을 높이기 위해 지자체가 무료 쿠폰을 배포합니다."
+  ],
+  "en": [
+   "Union membership has declined for the tenth year in a row.",
+   "Passwords must be at least 12 characters and mix letters, numbers and symbols.",
+   "You can turn location sharing on or off in Settings.",
+   "We have updated the parental leave policy in section 32 of the handbook.",
+   "Visa categories and application steps are listed on the immigration office website.",
+   "Check how a genetic testing company stores your data before you buy a kit.",
+   "All staff will attend training on preventing discrimination against LGBTQ+ people.",
+   "Reported phone scams rose by 12% compared with last year.",
+   "Flu vaccinations start in October; people with chronic conditions should talk to their doctor first.",
+   "An estimated 38 million people in the country live with diabetes.",
+   "The health department is mailing free screening vouchers to raise cancer screening rates."
+  ],
+  "fr": [
+   "Le taux de syndicalisation continue de baisser.",
+   "Le mot de passe doit comporter au moins 12 caractères, dont des chiffres et des symboles.",
+   "Le partage de position peut être activé ou désactivé dans les réglages.",
+   "La politique de congé parental a été mise à jour.",
+   "Les types de titres de séjour sont détaillés sur le site de la préfecture.",
+   "Avant d'acheter un test génétique, vérifiez la politique de confidentialité.",
+   "Une formation contre les discriminations envers les personnes LGBT+ est prévue.",
+   "Les escroqueries par téléphone ont augmenté cette année.",
+   "La vaccination contre la grippe commence en octobre ; les personnes atteintes de maladies chroniques doivent consulter leur médecin.",
+   "On estime que 4 millions de personnes vivent avec le diabète en France.",
+   "La caisse d'assurance maladie envoie des bons de dépistage gratuits."
+  ],
+  "it": [
+   "Il tasso di iscrizione ai sindacati è in calo.",
+   "La password deve avere almeno 12 caratteri, con numeri e simboli.",
+   "La condivisione della posizione si attiva o disattiva dalle impostazioni.",
+   "È stata aggiornata la policy sul congedo parentale.",
+   "Le tipologie di permesso di soggiorno sono indicate sul sito della questura.",
+   "Prima di acquistare un test genetico, leggete l'informativa sulla privacy.",
+   "È prevista una formazione contro la discriminazione delle persone LGBT+.",
+   "Le truffe telefoniche sono aumentate rispetto all'anno scorso.",
+   "La vaccinazione antinfluenzale inizia a ottobre; chi ha malattie croniche consulti il medico.",
+   "Si stima che 4 milioni di italiani abbiano il diabete.",
+   "L'ASL invia buoni gratuiti per lo screening oncologico."
+  ],
+  "de": [
+   "Der gewerkschaftliche Organisationsgrad sinkt weiter.",
+   "Passwörter müssen mindestens 12 Zeichen lang sein und Ziffern sowie Sonderzeichen enthalten.",
+   "Die Standortfreigabe lässt sich in den Einstellungen ein- und ausschalten.",
+   "Die Regelung zur Elternzeit wurde aktualisiert.",
+   "Die Arten von Aufenthaltstiteln sind auf der Website der Ausländerbehörde beschrieben.",
+   "Prüfen Sie vor dem Kauf eines Gentests die Datenschutzhinweise.",
+   "Alle Beschäftigten nehmen an einer Schulung gegen Diskriminierung von LGBTQ+ teil.",
+   "Die Zahl der Telefonbetrugsfälle ist gestiegen.",
+   "Die Grippeimpfung beginnt im Oktober; chronisch Kranke sollten vorher ärztlichen Rat einholen.",
+   "Schätzungsweise 9 Millionen Menschen in Deutschland haben Diabetes.",
+   "Die Krankenkassen verschicken Gutscheine für die Krebsvorsorge."
+  ],
+  "es": [
+   "La afiliación sindical sigue bajando.",
+   "La contraseña debe tener al menos 12 caracteres, con números y símbolos.",
+   "Puedes activar o desactivar la ubicación compartida en Ajustes.",
+   "Se ha actualizado la política de permisos por nacimiento.",
+   "Los tipos de permiso de residencia se explican en la web de extranjería.",
+   "Antes de comprar un test genético, revisa la política de privacidad.",
+   "Toda la plantilla recibirá formación contra la discriminación de las personas LGTBI.",
+   "Las estafas telefónicas han aumentado este año.",
+   "La vacunación contra la gripe empieza en octubre; las personas con enfermedades crónicas deben consultar a su médico.",
+   "Se calcula que 5 millones de personas tienen diabetes en España.",
+   "El servicio de salud envía cupones gratuitos para el cribado de cáncer."
+  ]
+ },
+ "HEAD_LISTS": {
+  "maternity": {
+   "cat": "health_info",
+   "titles": {
+    "ja": [
+     "産休・育休予定者リスト",
+     "産前産後休業の取得予定者"
+    ],
+    "zh": [
+     "产假人员名单",
+     "预计休产假员工"
+    ],
+    "ko": [
+     "출산휴가 예정자 명단",
+     "육아휴직 대상자"
+    ],
+    "en": [
+     "Staff going on maternity leave",
+     "Parental leave schedule – expecting employees"
+    ],
+    "fr": [
+     "Salariées en congé maternité",
+     "Liste des futures mamans – congés"
+    ],
+    "it": [
+     "Dipendenti in maternità",
+     "Elenco congedi di maternità"
+    ],
+    "de": [
+     "Mitarbeiterinnen im Mutterschutz",
+     "Liste Mutterschutz / Elternzeit"
+    ],
+    "es": [
+     "Empleadas con baja por maternidad",
+     "Previsión de bajas por maternidad"
+    ]
+   }
+  },
+  "sick_leave": {
+   "cat": "health_info",
+   "titles": {
+    "ja": [
+     "病気休職者一覧",
+     "長期療養中の社員"
+    ],
+    "zh": [
+     "病假人员名单",
+     "长期病休员工"
+    ],
+    "ko": [
+     "병가자 명단",
+     "장기 요양 중인 직원"
+    ],
+    "en": [
+     "Employees on long-term sick leave",
+     "Sick leave register"
+    ],
+    "fr": [
+     "Salariés en arrêt maladie",
+     "Liste des arrêts de travail"
+    ],
+    "it": [
+     "Dipendenti in malattia",
+     "Elenco assenze per malattia"
+    ],
+    "de": [
+     "Langzeiterkrankte Mitarbeiter",
+     "Krankmeldungen – Übersicht"
+    ],
+    "es": [
+     "Empleados de baja médica",
+     "Registro de bajas por enfermedad"
+    ]
+   }
+  },
+  "disability": {
+   "cat": "health_info",
+   "titles": {
+    "ja": [
+     "障害者雇用枠の社員名簿",
+     "合理的配慮の対象者"
+    ],
+    "zh": [
+     "残疾员工名单",
+     "需无障碍支持的员工"
+    ],
+    "ko": [
+     "장애인 고용 직원 명단",
+     "편의 지원 대상자"
+    ],
+    "en": [
+     "Employees with registered disabilities",
+     "Workplace accommodation list (disability)"
+    ],
+    "fr": [
+     "Salariés reconnus travailleurs handicapés",
+     "Liste RQTH"
+    ],
+    "it": [
+     "Dipendenti appartenenti alle categorie protette",
+     "Elenco invalidi civili"
+    ],
+    "de": [
+     "Schwerbehinderte Beschäftigte",
+     "Liste der Schwerbehinderten"
+    ],
+    "es": [
+     "Empleados con discapacidad reconocida",
+     "Listado de personas con discapacidad"
+    ]
+   }
+  },
+  "clinic": {
+   "cat": "health_info",
+   "titles": {
+    "ja": [
+     "心療内科 本日の予約者",
+     "透析センター 通院患者"
+    ],
+    "zh": [
+     "精神科今日预约患者",
+     "透析中心患者名单"
+    ],
+    "ko": [
+     "정신건강의학과 오늘 예약자",
+     "투석실 환자 명단"
+    ],
+    "en": [
+     "Psychiatry clinic – today's appointments",
+     "Dialysis unit patient list"
+    ],
+    "fr": [
+     "Consultations psychiatrie du jour",
+     "Patients du service de dialyse"
+    ],
+    "it": [
+     "Ambulatorio di psichiatria – appuntamenti",
+     "Pazienti in dialisi"
+    ],
+    "de": [
+     "Psychiatrische Ambulanz – Termine heute",
+     "Dialysepatienten"
+    ],
+    "es": [
+     "Consultas de psiquiatría de hoy",
+     "Pacientes de hemodiálisis"
+    ]
+   }
+  },
+  "suspended": {
+   "cat": "hr_or_criminal_record",
+   "titles": {
+    "ja": [
+     "出勤停止処分者",
+     "懲戒解雇者一覧"
+    ],
+    "zh": [
+     "停职人员名单",
+     "被开除员工名单"
+    ],
+    "ko": [
+     "정직 처분자 명단",
+     "징계 해고자 목록"
+    ],
+    "en": [
+     "Employees suspended from work",
+     "Dismissed for misconduct"
+    ],
+    "fr": [
+     "Salariés mis à pied",
+     "Licenciés pour faute grave"
+    ],
+    "it": [
+     "Sospesi dal servizio",
+     "Licenziati per giusta causa"
+    ],
+    "de": [
+     "Vom Dienst suspendierte Mitarbeiter",
+     "Fristlos gekündigte Mitarbeiter"
+    ],
+    "es": [
+     "Empleados suspendidos de empleo y sueldo",
+     "Despedidos por falta grave"
+    ]
+   }
+  },
+  "union": {
+   "cat": "political_or_union",
+   "titles": {
+    "ja": [
+     "労働組合 組合員名簿",
+     "組合費控除対象者"
+    ],
+    "zh": [
+     "工会会员名册",
+     "代扣工会会费员工"
+    ],
+    "ko": [
+     "노동조합 조합원 명부",
+     "조합비 공제 대상자"
+    ],
+    "en": [
+     "Union members – local branch",
+     "Union dues payroll deduction"
+    ],
+    "fr": [
+     "Adhérents du syndicat",
+     "Liste des syndiqués"
+    ],
+    "it": [
+     "Iscritti al sindacato",
+     "Elenco tesserati sindacali"
+    ],
+    "de": [
+     "Gewerkschaftsmitglieder",
+     "Mitgliederliste der Gewerkschaft"
+    ],
+    "es": [
+     "Afiliados al sindicato",
+     "Listado de afiliados sindicales"
+    ]
+   }
+  },
+  "victims": {
+   "cat": "hr_or_criminal_record",
+   "titles": {
+    "ja": [
+     "特殊詐欺 被害者一覧",
+     "DV相談者リスト"
+    ],
+    "zh": [
+     "诈骗案受害人名单",
+     "家暴求助者名单"
+    ],
+    "ko": [
+     "보이스피싱 피해자 명단",
+     "가정폭력 상담자 목록"
+    ],
+    "en": [
+     "Fraud victims – case file",
+     "Domestic abuse helpline callers"
+    ],
+    "fr": [
+     "Victimes de l'escroquerie",
+     "Personnes accueillies – violences conjugales"
+    ],
+    "it": [
+     "Vittime della truffa",
+     "Utenti del centro antiviolenza"
+    ],
+    "de": [
+     "Geschädigte des Betrugsfalls",
+     "Schutzsuchende im Frauenhaus"
+    ],
+    "es": [
+     "Víctimas de la estafa",
+     "Usuarias del servicio contra la violencia de género"
+    ]
+   }
+  },
+  "immigration": {
+   "cat": "citizenship_or_immigration",
+   "titles": {
+    "ja": [
+     "在留期限が近い外国人社員",
+     "技能実習生名簿"
+    ],
+    "zh": [
+     "签证即将到期的外籍员工",
+     "难民申请人名单"
+    ],
+    "ko": [
+     "체류 기간 만료 예정 외국인 직원",
+     "난민 신청자 명단"
+    ],
+    "en": [
+     "Staff with expiring work visas",
+     "Asylum seekers – intake list"
+    ],
+    "fr": [
+     "Salariés dont le titre de séjour expire",
+     "Demandeurs d'asile accueillis"
+    ],
+    "it": [
+     "Dipendenti con permesso di soggiorno in scadenza",
+     "Richiedenti asilo ospitati"
+    ],
+    "de": [
+     "Mitarbeiter mit ablaufendem Aufenthaltstitel",
+     "Asylbewerber – Aufnahmeliste"
+    ],
+    "es": [
+     "Empleados con permiso de residencia a punto de caducar",
+     "Solicitantes de asilo acogidos"
+    ]
+   }
+  }
+ },
+ "DECEASED_T": {
+  "ja": [
+   "{P}（{B}-{D}）は明治期の植物学者で、多くの新種を記載した。",
+   "{P}は{B}年に生まれ、{D}年に没した江戸時代の商人である。",
+   "郷土の偉人：{P}（{B}年〜{D}年）。村に初めて学校を開いた。"
+  ],
+  "zh": [
+   "{P}（{B}—{D}）是清代著名学者，著有多部史书。",
+   "{P}生于{B}年，卒于{D}年，是民国时期的画家。",
+   "地方名人：{P}（{B}年—{D}年），创办了当地第一所学校。"
+  ],
+  "ko": [
+   "{P}({B}~{D})는 조선 후기의 실학자이다.",
+   "{P}는 {B}년에 태어나 {D}년에 세상을 떠난 화가이다.",
+   "향토 인물: {P}({B}년~{D}년), 마을에 처음으로 학교를 세웠다."
+  ],
+  "en": [
+   "{P} ({B}–{D}) was a Victorian botanist who described hundreds of species.",
+   "Born in {B} and died in {D}, {P} was a shipbuilder in Glasgow.",
+   "Local history: {P} ({B}–{D}) founded the town's first library."
+  ],
+  "fr": [
+   "{P} ({B}-{D}) fut un botaniste du XIXe siècle.",
+   "Né en {B} et mort en {D}, {P} était un peintre lyonnais.",
+   "Histoire locale : {P} ({B}-{D}) a fondé la première école du village."
+  ],
+  "it": [
+   "{P} ({B}-{D}) fu un botanico dell'Ottocento.",
+   "Nato nel {B} e morto nel {D}, {P} fu un pittore veneziano.",
+   "Storia locale: {P} ({B}-{D}) fondò la prima scuola del paese."
+  ],
+  "de": [
+   "{P} ({B}–{D}) war ein Botaniker des 19. Jahrhunderts.",
+   "{P}, geboren {B}, gestorben {D}, war ein Kaufmann in Lübeck.",
+   "Ortsgeschichte: {P} ({B}–{D}) gründete die erste Schule des Dorfes."
+  ],
+  "es": [
+   "{P} ({B}-{D}) fue un botánico del siglo XIX.",
+   "Nacido en {B} y fallecido en {D}, {P} fue un pintor sevillano.",
+   "Historia local: {P} ({B}-{D}) fundó la primera escuela del pueblo."
+  ]
+ },
+ "TRANSACTION": {
+  "ja": [
+   "請求書 No.{CODE}\n請求先：{P}様\n合計金額：{AMT}\n振込期限：{DATE}",
+   "領収書 {CODE}\nお名前：{P}様\n品名：{PRODUCT}\n金額：{AMT}",
+   "給与明細（{DATE}支給）\n氏名：{P}\n支給額：{AMT}\n控除額：{AMT}",
+   "納品書\nお届け先：{P}様\n住所：{ADDR}\n注文番号：{CODE}",
+   "アカウント停止のお知らせ\nユーザー名：{P}\n理由：利用規約違反\nお問い合わせ：{GEMAIL}",
+   "このメールはメールマガジンに登録された{EMAIL}宛にお送りしています。配信停止：{GEMAIL}",
+   "賃貸契約書\n借主：{P}\n物件：{ADDR}\n月額賃料：{AMT}",
+   "秘密保持契約書\n署名者：{P}\n締結日：{DATE}\n立会人：{P2}"
+  ],
+  "zh": [
+   "发票号：{CODE}\n购买方：{P}\n金额：{AMT}\n开票日期：{DATE}",
+   "收据 {CODE}\n客户：{P}\n商品：{PRODUCT}\n金额：{AMT}",
+   "工资条（{DATE}）\n姓名：{P}\n应发：{AMT}\n扣款：{AMT}",
+   "送货单\n收货人：{P}\n地址：{ADDR}\n订单号：{CODE}",
+   "账号封禁通知\n用户名：{P}\n原因：违反用户协议\n客服：{GEMAIL}",
+   "您收到此邮件是因为{EMAIL}订阅了我们的新闻通讯。退订：{GEMAIL}",
+   "租赁合同\n承租人：{P}\n房屋：{ADDR}\n月租金：{AMT}",
+   "保密协议\n签署人：{P}\n日期：{DATE}\n见证人：{P2}"
+  ],
+  "ko": [
+   "청구서 번호: {CODE}\n청구 대상: {P} 님\n합계: {AMT}\n납부 기한: {DATE}",
+   "영수증 {CODE}\n고객명: {P}\n품목: {PRODUCT}\n금액: {AMT}",
+   "급여 명세서 ({DATE} 지급)\n성명: {P}\n지급액: {AMT}\n공제액: {AMT}",
+   "배송 확인서\n받는 분: {P}\n주소: {ADDR}\n주문 번호: {CODE}",
+   "계정 정지 안내\n사용자명: {P}\n사유: 약관 위반\n문의: {GEMAIL}",
+   "이 메일은 뉴스레터를 구독하신 {EMAIL}(으)로 발송되었습니다. 수신 거부: {GEMAIL}",
+   "임대차 계약서\n임차인: {P}\n물건지: {ADDR}\n월세: {AMT}",
+   "비밀유지계약서\n서명인: {P}\n체결일: {DATE}\n입회인: {P2}"
+  ],
+  "en": [
+   "Invoice {CODE}\nBill to: {P}\nTotal: {AMT}\nDue: {DATE}",
+   "Receipt {CODE}\nCustomer: {P}\nItem: {PRODUCT}\nAmount: {AMT}",
+   "Payslip – {DATE}\nEmployee: {P}\nGross pay: {AMT}\nDeductions: {AMT}",
+   "Delivery note\nShip to: {P}\nAddress: {ADDR}\nOrder: {CODE}",
+   "Account suspended\nUsername: {P}\nReason: violation of the terms of service\nContact: {GEMAIL}",
+   "You are receiving this email because {EMAIL} subscribed to our newsletter. Unsubscribe: {GEMAIL}",
+   "Tenancy agreement\nTenant: {P}\nProperty: {ADDR}\nMonthly rent: {AMT}",
+   "Non-disclosure agreement\nSigned by: {P}\nDate: {DATE}\nWitness: {P2}"
+  ],
+  "fr": [
+   "Facture {CODE}\nFacturé à : {P}\nTotal : {AMT}\nÉchéance : {DATE}",
+   "Reçu {CODE}\nClient : {P}\nArticle : {PRODUCT}\nMontant : {AMT}",
+   "Bulletin de paie – {DATE}\nSalarié : {P}\nSalaire brut : {AMT}\nRetenues : {AMT}",
+   "Bon de livraison\nDestinataire : {P}\nAdresse : {ADDR}\nCommande : {CODE}",
+   "Compte suspendu\nUtilisateur : {P}\nMotif : non-respect des conditions d'utilisation\nContact : {GEMAIL}",
+   "Vous recevez cet email car {EMAIL} est inscrit à notre newsletter. Se désabonner : {GEMAIL}",
+   "Contrat de location\nLocataire : {P}\nLogement : {ADDR}\nLoyer mensuel : {AMT}",
+   "Accord de confidentialité\nSigné par : {P}\nDate : {DATE}\nTémoin : {P2}"
+  ],
+  "it": [
+   "Fattura {CODE}\nIntestata a: {P}\nTotale: {AMT}\nScadenza: {DATE}",
+   "Ricevuta {CODE}\nCliente: {P}\nArticolo: {PRODUCT}\nImporto: {AMT}",
+   "Cedolino – {DATE}\nDipendente: {P}\nLordo: {AMT}\nTrattenute: {AMT}",
+   "Documento di trasporto\nDestinatario: {P}\nIndirizzo: {ADDR}\nOrdine: {CODE}",
+   "Account sospeso\nUtente: {P}\nMotivo: violazione dei termini di servizio\nContatto: {GEMAIL}",
+   "Ricevi questa email perché {EMAIL} è iscritto alla nostra newsletter. Disiscriviti: {GEMAIL}",
+   "Contratto di locazione\nConduttore: {P}\nImmobile: {ADDR}\nCanone mensile: {AMT}",
+   "Accordo di riservatezza\nFirmato da: {P}\nData: {DATE}\nTestimone: {P2}"
+  ],
+  "de": [
+   "Rechnung {CODE}\nRechnungsempfänger: {P}\nGesamtbetrag: {AMT}\nFällig: {DATE}",
+   "Quittung {CODE}\nKunde: {P}\nArtikel: {PRODUCT}\nBetrag: {AMT}",
+   "Gehaltsabrechnung – {DATE}\nMitarbeiter: {P}\nBrutto: {AMT}\nAbzüge: {AMT}",
+   "Lieferschein\nEmpfänger: {P}\nAnschrift: {ADDR}\nBestellnummer: {CODE}",
+   "Konto gesperrt\nBenutzername: {P}\nGrund: Verstoß gegen die Nutzungsbedingungen\nKontakt: {GEMAIL}",
+   "Sie erhalten diese E-Mail, weil {EMAIL} unseren Newsletter abonniert hat. Abmelden: {GEMAIL}",
+   "Mietvertrag\nMieter: {P}\nObjekt: {ADDR}\nMonatsmiete: {AMT}",
+   "Geheimhaltungsvereinbarung\nUnterzeichnet von: {P}\nDatum: {DATE}\nZeuge: {P2}"
+  ],
+  "es": [
+   "Factura {CODE}\nFacturado a: {P}\nTotal: {AMT}\nVencimiento: {DATE}",
+   "Recibo {CODE}\nCliente: {P}\nArtículo: {PRODUCT}\nImporte: {AMT}",
+   "Nómina – {DATE}\nEmpleado: {P}\nBruto: {AMT}\nRetenciones: {AMT}",
+   "Albarán de entrega\nDestinatario: {P}\nDirección: {ADDR}\nPedido: {CODE}",
+   "Cuenta suspendida\nUsuario: {P}\nMotivo: incumplimiento de las condiciones de uso\nContacto: {GEMAIL}",
+   "Recibes este correo porque {EMAIL} está suscrito a nuestro boletín. Darse de baja: {GEMAIL}",
+   "Contrato de arrendamiento\nArrendatario: {P}\nVivienda: {ADDR}\nRenta mensual: {AMT}",
+   "Acuerdo de confidencialidad\nFirmado por: {P}\nFecha: {DATE}\nTestigo: {P2}"
+  ]
+ },
+ "CURRENCY": {
+  "ja": [
+   "¥{n},{m}",
+   "{n},{m}円"
+  ],
+  "zh": [
+   "¥{n},{m}",
+   "{n}{m}元"
+  ],
+  "ko": [
+   "{n},{m}원",
+   "₩{n},{m}"
+  ],
+  "en": [
+   "${n},{m}.00",
+   "£{n}.{c}"
+  ],
+  "fr": [
+   "{n} {m},{c} €",
+   "€{n}.{m},{c}"
+  ],
+  "it": [
+   "€ {n}.{m},{c}",
+   "{n}.{m},{c} €"
+  ],
+  "de": [
+   "{n}.{m},{c} €",
+   "€{n}.{m},{c}"
+  ],
+  "es": [
+   "{n}.{m},{c} €",
+   "€{n}.{m},{c}"
+  ]
+ },
+ "PUBLIC_ROLE_T": {
+  "ja": [
+   "{ORG}の社長、{P}氏は記者会見で新製品を発表した。",
+   "{P}首相は{PLACE}で演説し、経済対策を説明した。",
+   "サッカー日本代表の{P}選手が2得点を挙げた。",
+   "歌手の{P}さんが{PLACE}でコンサートを開いた。"
+  ],
+  "zh": [
+   "{ORG}总裁{P}在发布会上宣布了新产品。",
+   "{P}市长在{PLACE}发表讲话，介绍了经济措施。",
+   "国家队球员{P}在比赛中攻入两球。",
+   "歌手{P}在{PLACE}举办了演唱会。"
+  ],
+  "ko": [
+   "{ORG} 대표 {P}는 기자회견에서 신제품을 발표했다.",
+   "{P} 시장은 {PLACE}에서 경제 대책을 설명했다.",
+   "국가대표 {P} 선수가 두 골을 넣었다.",
+   "가수 {P}가 {PLACE}에서 콘서트를 열었다."
+  ],
+  "en": [
+   "{ORG} CEO {P} unveiled the new product at a press conference.",
+   "Mayor {P} spoke in {PLACE} about the city budget.",
+   "Striker {P} scored twice for the national team.",
+   "Singer {P} played a sold-out show in {PLACE}."
+  ],
+  "fr": [
+   "Le PDG de {ORG}, {P}, a présenté le nouveau produit.",
+   "Le maire {P} a présenté le budget à {PLACE}.",
+   "L'attaquant {P} a marqué deux buts pour l'équipe de France.",
+   "La chanteuse {P} a donné un concert à {PLACE}."
+  ],
+  "it": [
+   "L'amministratore delegato di {ORG}, {P}, ha presentato il nuovo prodotto.",
+   "Il sindaco {P} ha illustrato il bilancio a {PLACE}.",
+   "L'attaccante {P} ha segnato due gol per la Nazionale.",
+   "La cantante {P} ha tenuto un concerto a {PLACE}."
+  ],
+  "de": [
+   "{ORG}-Chef {P} stellte das neue Produkt vor.",
+   "Bürgermeister {P} erläuterte in {PLACE} den Haushalt.",
+   "Stürmer {P} erzielte zwei Tore für die Nationalmannschaft.",
+   "Die Sängerin {P} gab ein Konzert in {PLACE}."
+  ],
+  "es": [
+   "El consejero delegado de {ORG}, {P}, presentó el nuevo producto.",
+   "El alcalde {P} explicó el presupuesto en {PLACE}.",
+   "El delantero {P} marcó dos goles con la selección.",
+   "La cantante {P} dio un concierto en {PLACE}."
+  ]
+ },
+ "NEUTRAL_HEADS": {
+  "ja": [
+   "定例会議 出席者",
+   "搭乗者名簿",
+   "社内テニス部 部員",
+   "懇親会 参加者",
+   "掃除当番表",
+   "研修の受講者"
+  ],
+  "zh": [
+   "例会出席人员",
+   "乘客名单",
+   "羽毛球社成员",
+   "聚餐参加人员",
+   "值日表",
+   "培训学员名单"
+  ],
+  "ko": [
+   "정기 회의 참석자",
+   "탑승자 명단",
+   "사내 테니스 동호회 회원",
+   "회식 참가자",
+   "청소 당번표",
+   "교육 수강자"
+  ],
+  "en": [
+   "Weekly meeting attendees",
+   "Passenger manifest",
+   "Tennis club members",
+   "Team dinner sign-up",
+   "Cleaning rota",
+   "Training course participants"
+  ],
+  "fr": [
+   "Participants à la réunion",
+   "Liste des passagers",
+   "Membres du club de tennis",
+   "Inscrits au repas d'équipe",
+   "Planning de ménage",
+   "Participants à la formation"
+  ],
+  "it": [
+   "Partecipanti alla riunione",
+   "Elenco passeggeri",
+   "Soci del circolo di tennis",
+   "Iscritti alla cena di squadra",
+   "Turni di pulizia",
+   "Partecipanti al corso"
+  ],
+  "de": [
+   "Teilnehmer der Besprechung",
+   "Passagierliste",
+   "Mitglieder des Tennisclubs",
+   "Anmeldungen Teamessen",
+   "Putzplan",
+   "Teilnehmer der Schulung"
+  ],
+  "es": [
+   "Asistentes a la reunión",
+   "Lista de pasajeros",
+   "Socios del club de tenis",
+   "Inscritos a la cena del equipo",
+   "Turnos de limpieza",
+   "Participantes del curso"
+  ]
+ },
+ "FORM_HEADS_HIGH": {
+  "health": {
+   "cat": "health_info",
+   "titles": {
+    "ja": [
+     "診療予約の確認",
+     "産業医面談記録",
+     "心療内科 問診票",
+     "人間ドック 受診票"
+    ],
+    "zh": [
+     "门诊预约确认",
+     "职业健康随访记录",
+     "心理科问诊表",
+     "体检登记表"
+    ],
+    "ko": [
+     "진료 예약 확인",
+     "산업보건 면담 기록",
+     "정신건강의학과 문진표",
+     "건강검진 접수표"
+    ],
+    "en": [
+     "Appointment confirmation – cardiology clinic",
+     "Occupational health follow-up",
+     "Mental health intake form",
+     "Health screening registration"
+    ],
+    "fr": [
+     "Confirmation de rendez-vous – cardiologie",
+     "Suivi de médecine du travail",
+     "Questionnaire de consultation psychiatrique",
+     "Inscription au bilan de santé"
+    ],
+    "it": [
+     "Conferma appuntamento – cardiologia",
+     "Visita di medicina del lavoro",
+     "Scheda di accesso al centro di salute mentale",
+     "Registrazione al check-up"
+    ],
+    "de": [
+     "Terminbestätigung – Kardiologie",
+     "Arbeitsmedizinische Nachuntersuchung",
+     "Aufnahmebogen Psychiatrie",
+     "Anmeldung Vorsorgeuntersuchung"
+    ],
+    "es": [
+     "Confirmación de cita – cardiología",
+     "Seguimiento de salud laboral",
+     "Ficha de ingreso en salud mental",
+     "Registro de chequeo médico"
+    ]
+   }
+  },
+  "immigration": {
+   "cat": "citizenship_or_immigration",
+   "titles": {
+    "ja": [
+     "在留期間更新許可申請書",
+     "査証申請書",
+     "難民認定申請 受付票"
+    ],
+    "zh": [
+     "居留许可延期申请表",
+     "签证申请表",
+     "难民身份申请受理单"
+    ],
+    "ko": [
+     "체류 기간 연장 허가 신청서",
+     "사증 발급 신청서",
+     "난민 인정 신청 접수증"
+    ],
+    "en": [
+     "Visa application",
+     "Residence permit renewal",
+     "Asylum claim intake"
+    ],
+    "fr": [
+     "Demande de visa",
+     "Renouvellement du titre de séjour",
+     "Enregistrement de demande d'asile"
+    ],
+    "it": [
+     "Domanda di visto",
+     "Rinnovo del permesso di soggiorno",
+     "Registrazione della domanda di asilo"
+    ],
+    "de": [
+     "Visumantrag",
+     "Verlängerung des Aufenthaltstitels",
+     "Erfassung Asylantrag"
+    ],
+    "es": [
+     "Solicitud de visado",
+     "Renovación del permiso de residencia",
+     "Registro de solicitud de asilo"
+    ]
+   }
+  },
+  "criminal": {
+   "cat": "hr_or_criminal_record",
+   "titles": {
+    "ja": [
+     "被害届 受理票",
+     "事情聴取の呼出状",
+     "保護観察 面接記録"
+    ],
+    "zh": [
+     "报案受理回执",
+     "询问通知书",
+     "社区矫正面谈记录"
+    ],
+    "ko": [
+     "피해 신고 접수증",
+     "출석 요구서",
+     "보호관찰 면담 기록"
+    ],
+    "en": [
+     "Crime report receipt",
+     "Summons for questioning",
+     "Probation meeting record"
+    ],
+    "fr": [
+     "Récépissé de dépôt de plainte",
+     "Convocation à une audition",
+     "Suivi de mise à l'épreuve"
+    ],
+    "it": [
+     "Ricevuta di denuncia",
+     "Convocazione in questura",
+     "Colloquio di messa alla prova"
+    ],
+    "de": [
+     "Bestätigung der Strafanzeige",
+     "Vorladung zur Vernehmung",
+     "Termin bei der Bewährungshilfe"
+    ],
+    "es": [
+     "Justificante de denuncia",
+     "Citación para declarar",
+     "Entrevista de libertad condicional"
+    ]
+   }
+  },
+  "hr": {
+   "cat": "hr_or_criminal_record",
+   "titles": {
+    "ja": [
+     "懲戒委員会 呼出状",
+     "退職勧奨 面談記録"
+    ],
+    "zh": [
+     "纪律委员会约谈通知",
+     "劝退面谈记录"
+    ],
+    "ko": [
+     "징계위원회 출석 통지",
+     "권고사직 면담 기록"
+    ],
+    "en": [
+     "Disciplinary hearing notice",
+     "Termination meeting record"
+    ],
+    "fr": [
+     "Convocation à un entretien disciplinaire",
+     "Compte rendu d'entretien de licenciement"
+    ],
+    "it": [
+     "Convocazione disciplinare",
+     "Verbale di licenziamento"
+    ],
+    "de": [
+     "Einladung zum Disziplinargespräch",
+     "Protokoll Kündigungsgespräch"
+    ],
+    "es": [
+     "Citación a expediente disciplinario",
+     "Acta de despido"
+    ]
+   }
+  }
+ },
+ "FORM_HEADS_LOW": {
+  "ja": [
+   "会員登録",
+   "配送先の登録",
+   "イベント参加申込書",
+   "資料請求フォーム"
+  ],
+  "zh": [
+   "会员注册",
+   "收货地址登记",
+   "活动报名表",
+   "资料索取表"
+  ],
+  "ko": [
+   "회원 가입",
+   "배송지 등록",
+   "행사 참가 신청서",
+   "자료 요청 양식"
+  ],
+  "en": [
+   "Membership sign-up",
+   "Shipping address",
+   "Event registration",
+   "Brochure request"
+  ],
+  "fr": [
+   "Inscription",
+   "Adresse de livraison",
+   "Inscription à l'événement",
+   "Demande de documentation"
+  ],
+  "it": [
+   "Iscrizione",
+   "Indirizzo di spedizione",
+   "Iscrizione all'evento",
+   "Richiesta di informazioni"
+  ],
+  "de": [
+   "Registrierung",
+   "Lieferadresse",
+   "Anmeldung zur Veranstaltung",
+   "Prospektanforderung"
+  ],
+  "es": [
+   "Alta de socio",
+   "Dirección de envío",
+   "Inscripción al evento",
+   "Solicitud de información"
+  ]
+ },
+ "NATIONALITY": {
+  "ja": [
+   [
+    "国籍",
+    "出身国"
+   ],
+   [
+    "ベトナム",
+    "ネパール",
+    "フィリピン",
+    "ブラジル",
+    "ミャンマー",
+    "インドネシア"
+   ]
+  ],
+  "zh": [
+   [
+    "国籍",
+    "原籍国"
+   ],
+   [
+    "越南",
+    "缅甸",
+    "朝鲜",
+    "巴基斯坦",
+    "尼日利亚",
+    "菲律宾"
+   ]
+  ],
+  "ko": [
+   [
+    "국적",
+    "출신 국가"
+   ],
+   [
+    "베트남",
+    "우즈베키스탄",
+    "네팔",
+    "필리핀",
+    "캄보디아",
+    "중국"
+   ]
+  ],
+  "en": [
+   [
+    "Nationality",
+    "Country of origin",
+    "Citizenship"
+   ],
+   [
+    "Syria",
+    "Afghanistan",
+    "Mexico",
+    "Nigeria",
+    "Ukraine",
+    "Honduras"
+   ]
+  ],
+  "fr": [
+   [
+    "Nationalité",
+    "Pays d'origine"
+   ],
+   [
+    "Algérie",
+    "Mali",
+    "Syrie",
+    "Haïti",
+    "Afghanistan",
+    "Tunisie"
+   ]
+  ],
+  "it": [
+   [
+    "Cittadinanza",
+    "Paese di origine"
+   ],
+   [
+    "Marocco",
+    "Albania",
+    "Senegal",
+    "Bangladesh",
+    "Eritrea",
+    "Ucraina"
+   ]
+  ],
+  "de": [
+   [
+    "Staatsangehörigkeit",
+    "Herkunftsland"
+   ],
+   [
+    "Syrien",
+    "Afghanistan",
+    "Türkei",
+    "Eritrea",
+    "Irak",
+    "Ukraine"
+   ]
+  ],
+  "es": [
+   [
+    "Nacionalidad",
+    "País de origen"
+   ],
+   [
+    "Venezuela",
+    "Marruecos",
+    "Colombia",
+    "Senegal",
+    "Honduras",
+    "Siria"
+   ]
+  ]
+ },
+ "STAFF_ID": {
+  "ja": [
+   "社員番号",
+   "会員番号"
+  ],
+  "zh": [
+   "工号",
+   "会员号"
+  ],
+  "ko": [
+   "사번",
+   "회원 번호"
+  ],
+  "en": [
+   "Employee ID",
+   "Member ID"
+  ],
+  "fr": [
+   "Matricule",
+   "N° d'adhérent"
+  ],
+  "it": [
+   "Matricola",
+   "N. socio"
+  ],
+  "de": [
+   "Personalnummer",
+   "Mitgliedsnummer"
+  ],
+  "es": [
+   "N.º de empleado",
+   "N.º de socio"
+  ]
+ },
+ "SELF_T": {
+  "ja": [
+   "実は先月、{DIAG}と診断されました。しばらく通院しながら働きます。\n{P}",
+   "私ごとですが、{DATE}から病気療養で休職します。\n{P}",
+   "妊娠がわかったので、来年の春から産休をいただきたいです。\n{P}"
+  ],
+  "zh": [
+   "其实我上个月被诊断出{DIAG}，接下来会边治疗边工作。\n{P}",
+   "我从{DATE}起因病请假休养。\n{P}",
+   "我怀孕了，明年春天想休产假。\n{P}"
+  ],
+  "ko": [
+   "사실 지난달에 {DIAG} 진단을 받았습니다. 당분간 통원하면서 일하겠습니다.\n{P}",
+   "개인적인 일이지만 {DATE}부터 병가를 냅니다.\n{P}",
+   "임신해서 내년 봄부터 출산휴가를 쓰고 싶습니다.\n{P}"
+  ],
+  "en": [
+   "I was diagnosed with {DIAG} last month and will keep working while in treatment.\n{P}",
+   "I'll be on sick leave from {DATE}.\n{P}",
+   "I'm pregnant and would like to start maternity leave next spring.\n{P}"
+  ],
+  "fr": [
+   "On m'a diagnostiqué {DIAG} le mois dernier ; je continue à travailler pendant le traitement.\n{P}",
+   "Je serai en arrêt maladie à partir du {DATE}.\n{P}",
+   "Je suis enceinte et je souhaite partir en congé maternité au printemps.\n{P}"
+  ],
+  "it": [
+   "Il mese scorso mi hanno diagnosticato {DIAG}; continuerò a lavorare durante le cure.\n{P}",
+   "Sarò in malattia dal {DATE}.\n{P}",
+   "Sono incinta e vorrei iniziare il congedo di maternità in primavera.\n{P}"
+  ],
+  "de": [
+   "Bei mir wurde letzten Monat {DIAG} festgestellt; ich arbeite während der Behandlung weiter.\n{P}",
+   "Ich bin ab {DATE} krankgeschrieben.\n{P}",
+   "Ich bin schwanger und möchte im Frühjahr in Mutterschutz gehen.\n{P}"
+  ],
+  "es": [
+   "El mes pasado me diagnosticaron {DIAG}; seguiré trabajando durante el tratamiento.\n{P}",
+   "Estaré de baja médica desde el {DATE}.\n{P}",
+   "Estoy embarazada y quiero empezar la baja por maternidad en primavera.\n{P}"
+  ]
+ }
+}

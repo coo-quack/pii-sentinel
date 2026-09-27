@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_es_081",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "RECIBO DE AFILIACIÓN SINDICAL\nSindicato de Trabajadores de la Construcción\nFecha: {DATE}\nLugar: {PLACE}\n\nAfiliado: {P1}\nDocumento de identidad: {P1.govid}\nFecha de afiliación: {DATE}\n\nCuota de afiliación mensual: {AMOUNT}\nEstado de afiliación: confirmado\nDerechos de voto: sí\nBeneficiarios: {P1} y familiares designados\n\nBeneficios incluidos:\n- Seguro de accidentes laborales\n- Asesoría legal\n- Cobertura médica complementaria\n\nAutorizado por: {P2.s}\nFirma: _______________\nOficina: {PLACE}\nReferencia: {CODE}\n\nNota: Requerimientos de estatus residencial evaluados y confirmados para acceso a beneficios sindicales completos."
+  },
+  {
+   "id": "t_es_082",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "ENTREVISTA REGISTRADA\nFecha: {DATE}\nLugar: Hotel {ORG}\nTema: Historia de la gerencia de hoteles en el siglo XX\n\nEntrevistador: ¿Cuénteme sobre los hoteles clásicos del siglo XX.\nEntrevistado: Bueno, hoteles como el que fundó {DEAD} en {DEAD.born} fueron pioneros. {DEAD} trabajó en la industria hotelera desde los años treinta. Su visión fue revolucionaria para la época.\nEntrevistador: ¿Qué cambió después de su era?\nEntrevistado: {DEAD} murió en {DEAD.died}, pero su legado continúa en la arquitectura de muchas ciudades europeas. Los principios de hospitalidad que estableció persisten hoy.\nEntrevistador: Fascinante. Gracias por compartir esto.\nEntrevistado: De nada. Fue un honor hablar sobre esta importante figura histórica."
+  },
+  {
+   "id": "t_es_083",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "De: {ORG.email}\nAsunto: Solicitud de póliza\n\nPuede comunicarse con nuestro equipo en {ORG.phone} o responder este correo."
+  },
+  {
+   "id": "t_es_084",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "FORMULARIO DE SOLICITUD\nEmbajada de {PLACE}\n\nNombre: {P1}\nAfilación política: Apoyo a la democracia liberal\nPostura sobre integración regional: A favor"
+  },
+  {
+   "id": "t_es_085",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "private_messages_of_others",
+   "text": "MENSAJES PRIVADOS INTERCEPTADOS\nEmbajada de {PLACE}\n\n- {P1} a {P2}: \"No confío en el proceso\"\n- {P2} a {P1}: \"Tenemos que hablar en privado\""
+  },
+  {
+   "id": "t_es_086",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "sex_life_or_orientation",
+   "text": "Empleado de la semana: {P1}. Sé auténtico en el trabajo. {P1} es abiertamente gay y un gran ejemplo para nuestro equipo inclusivo. #Diversidad"
+  },
+  {
+   "id": "t_es_087",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "¡Gran trabajo esta semana! {P1}, {P2}, {P3} y {P4} han hecho un excelente trabajo en reabastecimiento de productos frescos y organización de la tienda. Gracias a todos nuestros empleados comprometidos con la calidad. Continuamos mejorando el servicio al cliente. #Equipo #Trabajo"
+  },
+  {
+   "id": "t_es_088",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "statistics_or_news_without_people",
+   "text": "Informe mensual de seguridad - Comisaría\nFecha: {DATE}\n\nIncidentes reportados: 23\nDelitos contra la propiedad: 8\nDesórdenes públicos: 5\nIncidentes de tránsito: 10\nTasa de resolución: 67%\nAsignación de recursos: aumentada un 12%\nCapacitación del personal: realizada\nEquipamiento: renovado"
+  },
+  {
+   "id": "t_es_089",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "Diario de trabajo - Refugio comunitario\n{DATE}\n\nHoy recibimos a {P1} procedente de {PLACE}. Se ha asignado alojamiento especial dado el contexto de su origen. Lengua materna de {P1}: no es español. Necesidades de integración: evaluadas. Documentación: recibida. Seguimiento: programado para {DATE}."
+  },
+  {
+   "id": "t_es_090",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "statistics_or_news_without_people",
+   "text": "MEMORÁNDUM\nOficina del Partido\nFecha: {DATE}\n\nResultados de encuestas: 58% apoyo general\nParticipación en mítines: aumentada 15%"
+  },
+  {
+   "id": "t_es_091",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "Chat de servicio al cliente - Aerolínea\nCliente: Necesito verificar mi pago\nAgente: Dígame su número de tarjeta: {P1.card}\nCliente: Listo\nAgente: Confirmado el pago."
+  },
+  {
+   "id": "t_es_092",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "Mi visita hoy a la oficina sindical\nFecha: {DATE}\n\nNecesitaba contactar con recursos humanos. Llamé al {ORG.phone} y respondieron de inmediato. Muy profesional."
+  },
+  {
+   "id": "t_es_093",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "ENVÍO COMPLETADO\nNombre: {P1}\nPedido #{CODE}\nTotal: {AMOUNT}\n¡Gracias por comprar en línea!"
+  },
+  {
+   "id": "t_es_094",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "name_like_product_or_place",
+   "text": "MEMORÁNDUM\nDepartamento de Oncología\nFecha: {DATE}\nLugar: {PLACE}\n\nNuevo medicamento recibido: {PRODUCT}\nProveedor: {ORG}\nUnidades en stock: 150\nFecha de vencimiento: {DATE}\nAlmacén: Sala 412\nTemperatura de almacenamiento: controlada\nÚltima revisión de inventario: {DATE}\nResponsable: Personal de farmacia"
+  },
+  {
+   "id": "t_es_095",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "Charla educativa gratuita - Todos bienvenidos\nTema: Prevención de fraude inmobiliario y protección del consumidor\nFecha: {DATE}\nLugar: {PLACE}\nOrador: {ORG}\nDuración: 2 horas\nRegistración: disponible en línea\n¡Aprender a proteger tus inversiones!"
+  },
+  {
+   "id": "t_es_096",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "ACTA DE REUNIÓN SINDICAL\nHotel {ORG}\nFecha: {DATE}\nHora: {DATE}\n\nAsistentes: {P1}, {P2} (delegados sindicales)\nOrden del día:\n1. Negociación de nuevo convenio laboral\n2. Reporte de membresía sindical: {P1} reporta 200 miembros activos\n3. Próxima acción: movilización programada para {DATE}\n4. Resolución: votada y aprobada por mayoría"
+  },
+  {
+   "id": "t_es_097",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "ENTREVISTA - Cooperativa agrícola\nFecha: {DATE}\nLugar: {PLACE}\nEntrevistado: {P1}\nEntrevistador: {P2}\nTema: Organización sindical y derechos laborales\n\nE: ¿Cuándo se sindicalizó la cooperativa?\nR: Hace 5 años. {P1} fue elegido secretario general.\nE: ¿Cuál es la afiliación actual?\nR: {P1} reporta 45 miembros registrados y activos.\nE: ¿Qué beneficios concretos han obtenido?\nR: Mejores salarios, seguro de salud complementario, capacitación técnica. {P2} y {P3} también participan en el directorio. \nE: ¿Planes para el próximo trimestre?\nR: Expansión a 60 miembros y negociación de beneficios adicionales.\nE: Gracias por la entrevista."
+  },
+  {
+   "id": "t_es_098",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "NOTA INTERNA\nEmbajada de {PLACE}\nFecha: {DATE}\nDato: {CODE}\n\nSolicitante: {P1}\nFecha de nacimiento: {P1.dob}\nDomicilio actual: {P1.addr}\nEstado de solicitud: en proceso de revisión\nCita programada: {DATE}\nDocumentación: completa\nNota: Seguimiento requerido"
+  },
+  {
+   "id": "t_es_099",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "ENTREVISTA - Estudio cinematográfico\nFecha: {DATE}\nEntrevistador: Productor\nActor: {PUB}\n\nP: Cuénteme sobre su biografía profesional.\nA: Nací el {PUB.s}, en {PLACE}. Mi residencia actual es en {P1.addr}.\nP: ¿Disponibilidad para filmar proyectos largos?\nA: Sí, con disponibilidad flexible según el cronograma.\nP: Perfecto, nos contactaremos para los próximos pasos."
+  },
+  {
+   "id": "t_es_100",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "REGISTRO DE PERMISOS MUNICIPALES\nAyuntamiento de {PLACE}\nFecha: {DATE}\nOficina: Departamento de Licencias\n\nSolicitante,Tipo de Permiso,Monto,Referencia\n{P1},Construcción,{AMOUNT},{CODE}\n{P2},Comercio Minorista,{AMOUNT},{CODE}\n{P3},Reforma Doméstica,{AMOUNT},{CODE}\n\nTotal procesado: {AMOUNT}"
+  },
+  {
+   "id": "t_es_101",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "ACTA - Residencia de ancianos {ORG}\nFecha: {DATE}\nDirector: {P1}\n\nTema: Elección de representante del consejo de residentes\n{P2} fue elegido. Postura política: defensor de políticas de seguridad social robusta.\n{P3} también presentó su posición: partidario de cambios económicos liberales.\nVotación finalizada: 8 votos a favor, 5 en contra\nResolución: aprobada"
+  },
+  {
+   "id": "t_es_102",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "INVENTARIO SEMANAL\nSúpermarket {ORG}\nFecha: {DATE}\nVerificado por: {P1}\n\nProducto,SKU,Cantidad,Valor\nPan tostado,{CODE},45,{AMOUNT}\nLeche entera,{CODE},120,{AMOUNT}\nFruta fresca,{CODE},78,{AMOUNT}\nCereales,{CODE},32,{AMOUNT}\n\nTotal de valor: {AMOUNT}\nNota: Reabastecimiento requerido para algunos productos"
+  },
+  {
+   "id": "t_es_103",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "ASISTENCIA - Clase de español\nFecha: {DATE}\n\n{P1}\n{P2}\n{P3}"
+  },
+  {
+   "id": "t_es_104",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "FORMULARIO DE REGISTRO HOTELERO\nHotel de lujo {ORG}\nFecha de ingreso: {DATE}\n\nNombre: {PUB}\nOcupación: Actor reconocido internacionalmente\nDesde: {DATE}\nHasta: {DATE}\nHabitación: Suite presidencial\nContacto de emergencia: Representante artístico\nNota especial: Solicita discreción"
+  },
+  {
+   "id": "t_es_105",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "NOTA DE CASO\nONG de caridad: {ORG}\nFecha: {DATE}\nTicket: {CODE}\nOficina: {PLACE}\n\nSolicitud de información: El donante contactó a {ORG.email} para preguntar sobre programas de la organización.\nRespuesta enviada: Sí\nFecha de respuesta: {DATE}\nDetalles: Se proporcionó información completa sobre iniciativas comunitarias y alcance de programas. \nContacto principal: {ORG.phone}\nFecha de seguimiento programada: {DATE}\nEstado: en progreso\nIntención: posible donación mensual\nMonto estimado: {AMOUNT}\nDocumentación enviada: propuestas de proyectos\nProximas acciones: evaluación y respuesta formal de interés del donante"
+  },
+  {
+   "id": "t_es_106",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "De: Tesorería municipal\nAsunto: Verificación de cuenta bancaria\n\nCiudadano: {P1}\nCuenta bancaria: {P1.bank}\nÚltimo pago: {AMOUNT}\nRequerimiento: Confirmación inmediata"
+  },
+  {
+   "id": "t_es_107",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "sex_life_or_orientation",
+   "text": "REGISTRO ESTUDIANTIL\nEscuela de idiomas {ORG}\nFecha: {DATE}\nLugar: {PLACE}\n\nEstudiante,Identidad de Género,Orientación Sexual,Documentación\n{P1},Cisgénero,Heterosexual,confirmada\n{P2},Transgénero,Homosexual,confirmada\n{P3},Cisgénero,Bisexual,confirmada"
+  },
+  {
+   "id": "t_es_108",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "TICKET - Servicio al cliente\nHotel {ORG}\nFecha: {DATE}\nTicket: {CODE}\n\nCliente: {P1}\nProblema: Llave de habitación perdida\nResolución: {P2} emitió nueva llave"
+  },
+  {
+   "id": "t_es_109",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "[{DATE}] Solicitud recibida: {P1}\n[{DATE}] Antecedentes penales: sí, robo {DATE}\n[{DATE}] Evaluación: rechazada"
+  },
+  {
+   "id": "t_es_110",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "Reflexión laboral - {DATE}\n\n{P1} asistió a la reunión. El ambiente fue profesional."
+  },
+  {
+   "id": "t_es_111",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "FORMULARIO DE CONTACTO DE EMERGENCIA\nEscuela primaria {ORG}\nFecha: {DATE}\nEstudiante: {P1}\n\nTutor legal principal: {P2}\nTeléfono de contacto: {P2.phone}\nCorreo electrónico: {P2.email}\nDomicilio: {P2.addr}\nTutor alterno: {P3}\nTeléfono alterno: {P3.phone}"
+  },
+  {
+   "id": "t_es_112",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "ACTA DE REUNIÓN - Comisaría\nFecha: {DATE}\nLugar: {PLACE}\nPresente: Inspector {P1}\n\nTema: Seguridad para evento público de importancia\nPersonalidad protegida: {PUB}\nNivel de riesgo estimado: bajo\nPlan de operativo: estándar\nFecha del evento: {DATE}\nRevisado: sí"
+  },
+  {
+   "id": "t_es_113",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "ANUNCIO OFICIAL\nMuseo Nacional\n\nSe requiere verificación de estatus migratorio para acceder a ciertos programas de voluntariado.\nCandidatos: {P1}, {P2}\nDocumentación de ciudadanía: solicitada"
+  },
+  {
+   "id": "t_es_114",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "NOTA DE SEGURIDAD - Maratón\nFecha: {DATE}\nTicket: {CODE}\nLugar: {PLACE}\n\nParticipante: {P1}\nAntecedentes: Registrados en sistema\nEstado legal: Requiere supervisión especial\nAutorización: Bajo condiciones especiales\nContacto responsable: Oficial {P2}\nFecha de revisión: {DATE}"
+  },
+  {
+   "id": "t_es_115",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "MEMO - Privado\nGimnasio {ORG}\nFecha: {DATE}\n\nUbicación de cámara de vigilancia para {P1}: {GPS}\nHorario de asistencia: documentado"
+  },
+  {
+   "id": "t_es_116",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "[{DATE}] Prueba genética solicitada: {P1}\n[{DATE}] Resultados: alto riesgo\n[{DATE}] Archivo: almacenado con datos biométricos"
+  },
+  {
+   "id": "t_es_117",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "NOTA EDUCATIVA - Escuela\nFecha: {DATE}\nTicket: {CODE}\nLugar: {PLACE}\n\nTema: Taller educativo sobre bullying y prevención de violencia\nFacilitador: {ORG}\nAudencia: Estudiantes de educación media\nResultados: buena participación\nDuración: 2 horas\nMaterial distribuido: sí"
+  },
+  {
+   "id": "t_es_118",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "En la clínica dental hoy. {P1} pasó por un accidente grave años atrás que dejó secuelas significativas en su dentadura. Ahora está en el proceso de reconstrucción dental después de un incidente criminal del pasado. Qué fuerte pero qué valiente. #Recuperación #Salud"
+  },
+  {
+   "id": "t_es_119",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "REPORTE - Restaurante {ORG}\nFecha: {DATE}\nIncidente: Reclamación de cliente\nCliente: {P1}\nTeléfono: {P1.phone}\nResolución: Contacto pendiente"
+  },
+  {
+   "id": "t_es_120",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "ACTA DE REUNIÓN - Aerolínea {ORG}\nFecha: {DATE}\nLugar: {PLACE}\nTema: Gestión de quejas y retroalimentación de pasajeros\n\nRepresentante presente: {P1}\nContacto directo: {P1.email}\nCasos revisados: 5 casos\nSeguimiento: {P2} coordinará contactos posteriores al {DATE}"
+  }
+ ]
+}

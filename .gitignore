@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+/data/
+/models/
+/runs/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+.DS_Store
+# The test half stays private so that it remains a fair test; its working files contain the same texts.
+/eval/test.json
+/eval/work/

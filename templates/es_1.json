@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_es_001",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Reunión del 15 de marzo, 2024\n\nAsistentes: {P1}, {P2}, {P3}\n\nTemas tratados:\n- Revisión de documentación para visas: {P1} completó los formularios iniciales\n- {P2} informó sobre los cambios en los requisitos\n- {P3} presentó el plan de atención al público\n\nPróxima reunión: 22 de marzo"
+  },
+  {
+   "id": "t_es_002",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "Ticket #{CODE}: Sistema de almacenamiento de muestras\n\nEstado: Resuelto\nFecha de creación: {DATE}\nÚltima actualización: {DATE}\n\nDescripción:\nOptimizar la configuración de la base de datos para consultas de larga duración y mejorar el rendimiento del sistema de almacenamiento de muestras biológicas en el banco de investigación.\n\nDetalles técnicos implementados:\n- Índices de base de datos: CREATE INDEX idx_samples ON biosamples(collection_date)\n- Query timeout configurado: 300000 milisegundos\n- Buffer pool size: 2GB de memoria asignada\n- Log rotation: rotación diaria de registros\n- Backup schedule: ejecución diaria a las 02:00 UTC\n- Replicación de datos: habilitada en servidor secundario\n- Compresión de archivos: activa para datos históricos\n\nSolución implementada:\nAjuste de parámetros de caché y reindexación completa de tablas principales. Rendimiento mejorado un 40% en consultas complejas. Tiempo de respuesta promedio reducido de 5 segundos a 3 segundos."
+  },
+  {
+   "id": "t_es_003",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "Notas de la reunión del equipo - 16 de marzo\n\nPresentes:\n- {P1}\n- {P2}\n- {P3}\n\nTemas: Estrategia de la temporada, actualizaciones pendientes"
+  },
+  {
+   "id": "t_es_004",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "name_like_product_or_place",
+   "text": "Estimado cliente,\n\nSu póliza Victoria Plus ha sido renovada exitosamente. El seguro continúa activo hasta el próximo período de facturación.\n\nSaludos cordiales,\nDepartamento de Seguros"
+  },
+  {
+   "id": "t_es_005",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "11:23 - Dev: He actualizado la configuración completa del servidor de producción con nuevos parámetros de rendimiento\n11:24 - DevOps: ¿Cuáles fueron específicamente los cambios que realizaste?\n11:25 - Dev: Cambié POSTGRES_MAX_CONNECTIONS a 200, aumenté CACHE_TTL a 3600 segundos, y modifiqué LOG_LEVEL a DEBUG para mejor monitoreo\n11:26 - Dev: También ajusté el timeout de API_GATEWAY_TIMEOUT a 30 segundos y habilité compression en responses\n11:27 - DevOps: Perfecto, voy a verificar todos esos cambios en el ambiente de staging\n11:28 - DevOps: Environment variables completamente actualizadas en archivo .env.production\n11:29 - Dev: Excelente, el deployment está completamente listo para mañana por la mañana\n11:30 - QA: ¿Se han ejecutado todos los tests de regresión?\n11:31 - Dev: Sí, todos los tests pasan correctamente. Coverage del código es 85% en general"
+  },
+  {
+   "id": "t_es_006",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "AVISO IMPORTANTE - Residencia de Mayores San Antonio\n\nActualización de datos de residentes\n\nPor favor, confirmar que los siguientes datos están correctos en nuestro sistema:\n\n{P1} - DNI: {P1.govid}\nFecha de ingreso: enero 2023\n\n{P2} - DNI: {P2.govid}\nFecha de ingreso: noviembre 2022\n\nSi hay cambios, contactar a administración dentro de 7 días."
+  },
+  {
+   "id": "t_es_007",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "Recepción: Habitación 305, aquí traemos el desayuno especial que solicitó {P1}\nHuésped: Gracias, déjalo en la entrada por favor"
+  },
+  {
+   "id": "t_es_008",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "14:35 - Coordinador: ¿{P1} podrá asistir a la conferencia de mañana?\n14:36 - Asistente: No, está en el hospital. Le practicaron una cirugía ayer\n14:37 - Coordinador: Entiendo, que se recupere pronto. ¿Cuándo le dan de alta?\n14:38 - Asistente: Probablemente en una semana. Necesita reposo total"
+  },
+  {
+   "id": "t_es_009",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "MEMORÁNDUM INTERNO\n\nContacto de voluntarios - Marzo 2024\n\n{P1}: {P1.phone}\nEmail: {P1.email}\n\n{P2}: {P2.phone}\nEmail: {P2.email}\n\nResponsables de actividades semanales. Por favor confirmar disponibilidad."
+  },
+  {
+   "id": "t_es_010",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "{DATE} 09:00 - Evento histórico comentado en clase\n{DATE} 09:15 - {DEAD} fue un escritor importante del siglo XIX\n{DATE} 09:45 - Análisis de obras clásicas completado"
+  },
+  {
+   "id": "t_es_011",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "FACTURA - Hotel Plaza Mayor\nFecha: {DATE}\n\nCliente: {P1}\nHabitación: 412\nNoches: 3 (14-17 marzo)\nTarifa base: €180.00\n\nServicios especiales:\nComidas kosher preparadas: €45.00\nTrasporte a sinagoga local: €25.00\n\nTotal: €250.00"
+  },
+  {
+   "id": "t_es_012",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Recordatorio: Reunión delegados\n\n{P1}: Delegado sección A\n{P2}: Delegado sección B\n\nMiércoles 20h, Sala 3"
+  },
+  {
+   "id": "t_es_013",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "Nombre,Acción,Fecha,Motivo\n{P1},Despido,{DATE},Incumplimiento de normas\n{P2},Suspensión,{DATE},Conflicto laboral"
+  },
+  {
+   "id": "t_es_014",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "REPORTE DE INCIDENTE\nFecha: {DATE}\nNombre: {P1}\nProblema: Reacción alérgica a frutos secos\nAcción: Transporte de emergencia solicitado"
+  },
+  {
+   "id": "t_es_015",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "Asunto: Notificación de medida disciplinaria\n\nEstimado {P1},\n\nPor este medio se le notifica que ha sido suspendido de sus funciones por un período de 5 días laborales a partir del {DATE}, debido a incumplimiento reiterado de protocolos de seguridad.\n\nDebe reportarse a Recursos Humanos para formalidades.\n\nSaludos,\nDepartamento de RRHH"
+  },
+  {
+   "id": "t_es_016",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "¡Gran noticia! {P1} acaba de comprar el nuevo modelo X-500. Lo recogerá en nuestra sucursal ubicada en el centro comercial. Dirección exacta: Calle Principal 125, Madrid. Coordenadas GPS: {GPS}. ¡Felicidades por tu compra! 🎉 #VehículoNuevo"
+  },
+  {
+   "id": "t_es_017",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "FORMULARIO DE CONTACTO DE EMERGENCIA\n\nNombre completo: {P1}\nTeléfono: {P1.phone}\nCorreo electrónico: {P1.email}\nDirección: {P1.addr}"
+  },
+  {
+   "id": "t_es_018",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "10:00 - Usuario: Hola, necesito contactar al ayuntamiento\n10:01 - Bot: Claro, puedo ayudarte con eso\n10:02 - Bot: Puedes escribir a {ORG.email} o llamar al {ORG.phone}\n10:03 - Usuario: Perfecto, gracias\n10:04 - Bot: De nada, ¿hay algo más?"
+  },
+  {
+   "id": "t_es_019",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "FORMULARIO DE REGISTRO DE EVENTO POLÍTICO\n\nFecha: {DATE}\nLugar: Centro de Convenciones Nacional\nCapacidad total: 500 personas registradas\n\nOradores confirmados para la jornada:\n{PUB} - Presidente de la Federación de Comerciantes\nTema: Políticas económicas, empleo y desarrollo sostenible\nCurrículo: Más de 20 años de experiencia en el sector\n\n{P1} - Coordinador local de eventos y logística\n{P2} - Responsable de logística técnica y audiovisuales\n{P3} - Asistente de coordinación general\n\nTiempo de presentación: 45 minutos más sesión de preguntas\nMaterial técnico requerido: Micrófono inalámbrico, proyector HD, acceso a internet de alta velocidad, conexión para laptop"
+  },
+  {
+   "id": "t_es_020",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Entrevista - Delegado de Conflictos\nFecha: {DATE}\n\nP: ¿Cuáles son las principales demandas de los trabajadores?\nR: {P1} y {P2} han presentado solicitudes oficiales sobre condiciones de trabajo y seguridad.\n\nP: ¿Qué respuesta tuvieron de la dirección?\nR: Aún estamos en negociaciones complejas. {P3} está coordinando las reuniones entre ambas partes."
+  },
+  {
+   "id": "t_es_021",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "{DATE} 08:30 - Solicitud de donación recibida\n{DATE} 08:45 - Contactar a {ORG.email} para confirmación\n{DATE} 09:00 - Respuesta enviada exitosamente"
+  },
+  {
+   "id": "t_es_022",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "ANUNCIO HISTÓRICO\n\nNoticias del transporte de época\n\n{DEAD} ({DEAD.born}-{DEAD.died}) fue pionero en la industria de logística. Su contribución al desarrollo de rutas comerciales es ampliamente reconocida en los textos históricos sobre el comercio europeo."
+  },
+  {
+   "id": "t_es_023",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "MEMORÁNDUM CONFIDENCIAL\n\nFecha: {DATE}\n\nTema: Solicitudes de regularización de estado migratorio\n\n{P1}: Solicitante - Estado migratorio en proceso de regularización\nDocumentación: Visa temporal válida, solicitud de residencia permanente pendiente de aprobación\n\n{P2}: Solicitante - Nacionalidad extranjera, en trámite activo de naturalización\n\nNota: Información sensible - Circulación restringida a personal autorizado"
+  },
+  {
+   "id": "t_es_024",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "Transcripción de entrevista - Reclamación de seguros de daño\nFecha: {DATE}\nCódigo de caso: {CODE}\n\nSolicitante: {P1}\nDocumento de identidad: {P1.govid}\nPóliza de seguros: {CODE}\nTipo de cobertura: Seguros de propiedad e inmuebles\n\nP: ¿Cuál es la naturaleza específica del reclamo que presenta?\nR: Daños extensos en propiedad residencial por siniestro total, incluyendo estructura principal y contenidos.\n\nP: ¿Tiene documentación de respaldo de los daños?\nR: Sí, adjunto informe completo de tasador profesional certificado.\n\nP: ¿Existen testigos de los eventos descritos?\nR: Sí. {P2}, documento de pasaporte: {P2.passport}, presente durante los eventos\n{P3}, documento de pasaporte: {P3.passport}, también testigo directo\n\nP: Procederemos con la evaluación completa de su reclamo."
+  },
+  {
+   "id": "t_es_025",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "Asunto: Nómina - Marzo 2024\n\nEstimado {P1},\n\nAdjunto encontrará su recibo de sueldo correspondiente al mes de marzo.\n\nConcepto: Salario base €2.500,00\nDescuentos: Seguridad Social €375,00\nNeto a recibir: €2.125,00\n\nSaludos,\nDepartamento de Nóminas"
+  },
+  {
+   "id": "t_es_026",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "15:00 - Dirección: ¿{P1}, tienes listos todos los recibos de compra para este mes?\n15:02 - {P2} Administración: Sí claro, aquí están todos los documentos del proveedor de seguridad e instalaciones\n15:03 - Dirección: ¿Cuál es el monto total de gastos de operación?\n15:04 - {P2} Administración: Servicios de vigilancia y seguridad: €8.500, Equipos de monitoreo y cámaras digitales: €3.200\n15:05 - {P2} Administración: Tenemos facturas del {ORG} fechadas el {DATE}\n15:06 - Dirección: Bien, procesa todos esos gastos para el mes fiscal correspondiente\n15:07 - {P2} Administración: Entendido, estarán todos listos para mañana en la mañana con detalles completos\n15:08 - Dirección: ¿Hay algún otro gasto pendiente de registrar?\n15:09 - {P2} Administración: No, creo que es todo por ahora"
+  },
+  {
+   "id": "t_es_027",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "AVISO PÚBLICO\n\nPersona de interés: {P1}\nDirección IP registrada: {P1.ip}\nFecha: {DATE}\n\nPara denuncias, contactar a investigaciones"
+  },
+  {
+   "id": "t_es_028",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "name_like_product_or_place",
+   "text": "Nuestro nuevo producto Justicia Plus está revolucionando el mercado legal. Con herramientas avanzadas de análisis de contratos y gestión de casos, es la solución más moderna para despachos de abogados. ¡Conoce más en nuestro sitio web! #LegalTech #Innovación"
+  },
+  {
+   "id": "t_es_029",
+   "lang": "es",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "LISTA DE ASISTENCIA - REUNIÓN DE EQUIPO MENSUAL\nFecha: {DATE}\nLugar: Sala de Conferencias Principal\n\nNombre,Departamento,Presente,Hora llegada\n{P1},Desarrollo,Sí,10:00\n{P2},Diseño,Sí,10:05\n{P3},Producto,Sí,10:02\n{P4},Marketing,No,Ausente"
+  },
+  {
+   "id": "t_es_030",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "{DATE} 09:00 - Clase de Historia iniciada\n{DATE} 09:15 - Tema: Contexto político internacional del siglo XX\n{DATE} 09:45 - Análisis de sistemas de gobierno comparativos\n{DATE} 10:30 - Conclusión: Estudio completado sin incidentes"
+  },
+  {
+   "id": "t_es_031",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "MEMO - SISTEMA DE SEGURIDAD BIOMÉTRICO\nFecha: {DATE}\n\nManteni­miento de dispositivos de reconocimiento facial\n\nPersonal autorizado con acceso confirmado:\n{P1}: Huella digital registrada\n{P2}: Datos faciales verificados\n\nÚltima calibración: {DATE}"
+  },
+  {
+   "id": "t_es_032",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "private_messages_of_others",
+   "text": "Asunto: Mensajes privados - Reporte de abuso\n\nAdjunto encontrará transcripción de mensajes privados entre {P1} y {P2} intercambiados el {DATE}:\n\n\"{P1}: Hola, ¿cómo estás?\n{P2}: Bien, jugando esta noche\n{P1}: Genial, te espero en el servidor\"\n\nEsta comunicación ha sido reportada por violación de términos de servicio."
+  },
+  {
+   "id": "t_es_033",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "AVISO AL PERSONAL - WARD C\n\nCapacitación obligatoria\n\nTema: Protocolos de privacidad y confidencialidad en atención sanitaria\nFecha: {DATE}, 14:00\nUbicación: Sala de Conferencias 2\n\nTodos los empleados deben asistir. Duración: 2 horas"
+  },
+  {
+   "id": "t_es_034",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "Ticket #{CODE}: Sistema de cronometraje para maratón\nEstado: En progreso\nFecha de creación: {DATE}\n\nProblema: El chip de tiempo en las pulseras de participantes no sincroniza con el servidor central\n\nDetalles técnicos:\n- API endpoint: POST /api/timing/sync\n- Timeout configurado: 5000ms\n- Frecuencia de actualización: cada 10 segundos\n- Buffer de eventos: 10000 registros máximo\n\nSolución propuesta: Aumentar el timeout a 8000ms y reducir frecuencia a 15 segundos"
+  },
+  {
+   "id": "t_es_035",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "FORMULARIO DE ACCIÓN DISCIPLINARIA\n\nEmpleado: {P1}\nFecha: {DATE}\nMotivo: Inasistencia injustificada\nAcción: Advertencia formal\nFirmado por: Recursos Humanos"
+  },
+  {
+   "id": "t_es_036",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "¡Felicidades {P1}! Acabas de ganar nuestro concurso de lealtad. Tu premio se entregará en nuestra sucursal central. Localización exacta: Calle Comercio 456, local A-15, GPS: {GPS}. ¡Preséntate mañana! 🎁"
+  },
+  {
+   "id": "t_es_037",
+   "lang": "es",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "REPORTE DE INCIDENTE HISTÓRICO\nFecha: {DATE}\n\nEspacio de tributo en tienda central\n\nEn conmemoración de {DEAD} ({DEAD.born}-{DEAD.died}), considerado fundador de las redes comerciales en esta región, hemos instalado una placa informativa en el área de entrada principal."
+  },
+  {
+   "id": "t_es_038",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "Nombre,Origen étnico,Programa asignado,Fecha de inscripción\n{P1},Gitano,Integración laboral,{DATE}\n{P2},Minoría norteafricana,Capacitación técnica,{DATE}\n{P3},Pueblo nómada,Vivienda de emergencia,{DATE}\n{P4},Comunidad indígena,Apoyo educativo,{DATE}"
+  },
+  {
+   "id": "t_es_039",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "sex_life_or_orientation",
+   "text": "FACTURA DE SERVICIOS - Clínica de Salud Reproductiva y Bienestar\nFecha: {DATE}\nNúmero de factura: {CODE}\n\nPaciente: {P1}\nDocumento de identidad: {P1.govid}\nTipo de documento: Nacional\nFecha de nacimiento: {P1.dob}\n\nServicios prestados durante el período:\n- Consulta especializada en medicina reproductiva: €150.00\n- Tratamiento de fertilidad (Ciclo 3 de programa): €2.500.00\n- Análisis hormonales completos y citología: €200.00\n- Asesoramiento para parejas del mismo sexo: €120.00\n- Seguimiento posquirúrgico: €75.00\n\nNota de cobertura: Los servicios fueron prestados respetando confidencialidad total\n\nTotal a pagar: €3.045.00\n\nMétodo de pago: Transferencia bancaria al {ORG}\n\nDocumento confidencial de salud - Manejo reservado"
+  },
+  {
+   "id": "t_es_040",
+   "lang": "es",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "10:15 - Agente: Hola {P1}, llamamos para verificar los detalles de la propiedad que deseas vender\n10:16 - {P1}: Claro, ¿qué información necesitas de mí?\n10:17 - Agente: He notado en los registros públicos que hubo un incidente grave registrado en esta propiedad hace aproximadamente 3 años\n10:18 - {P1}: Sí, fue una agresión. La investigación policial concluyó hace tiempo pero prefiero no hablar en detalle de eso\n10:19 - Agente: Entendemos completamente tu posición. Eso no afecta la valuación del inmueble, solo necesitaba confirmarlo para nuestros registros\n10:20 - {P1}: Gracias por ser discreto y respetuoso con el tema\n10:21 - Agente: Por supuesto, {P1}. Continuaremos con el proceso de venta normalmente sin inconvenientes"
+  }
+ ]
+}

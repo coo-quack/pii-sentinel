@@ -1,0 +1,720 @@
+{
+ "lang": "en",
+ "name_order": "given_first",
+ "name_joiner": " ",
+ "surnames": [
+  "Smith",
+  "Johnson",
+  "Williams",
+  "Brown",
+  "Jones",
+  "Garcia",
+  "Miller",
+  "Davis",
+  "Rodriguez",
+  "Martinez",
+  "Hernandez",
+  "Lopez",
+  "Gonzalez",
+  "Wilson",
+  "Anderson",
+  "Thomas",
+  "Taylor",
+  "Moore",
+  "Jackson",
+  "Martin",
+  "Lee",
+  "Perez",
+  "Thompson",
+  "White",
+  "Harris",
+  "Sanchez",
+  "Clark",
+  "Ramirez",
+  "Lewis",
+  "Robinson",
+  "Walker",
+  "Young",
+  "Allen",
+  "King",
+  "Wright",
+  "Scott",
+  "Torres",
+  "Peterson",
+  "Phillips",
+  "Campbell",
+  "Parker",
+  "Evans",
+  "Edwards",
+  "Collins",
+  "Reeves",
+  "Stewart",
+  "Morris",
+  "Morales",
+  "Murphy",
+  "Cook"
+ ],
+ "given_male": [
+  "James",
+  "John",
+  "Robert",
+  "Michael",
+  "William",
+  "David",
+  "Richard",
+  "Joseph",
+  "Charles",
+  "Donald",
+  "Matthew",
+  "Mark",
+  "Daniel",
+  "Paul",
+  "Steven",
+  "Andrew",
+  "Kenneth",
+  "George",
+  "Edward",
+  "Brian",
+  "Ronald",
+  "Anthony",
+  "Frank",
+  "Ryan",
+  "Gary",
+  "Nicholas",
+  "Eric",
+  "Jonathan",
+  "Stephen",
+  "Larry"
+ ],
+ "given_female": [
+  "Mary",
+  "Patricia",
+  "Jennifer",
+  "Linda",
+  "Barbara",
+  "Elizabeth",
+  "Susan",
+  "Jessica",
+  "Sarah",
+  "Karen",
+  "Nancy",
+  "Lisa",
+  "Betty",
+  "Margaret",
+  "Sandra",
+  "Ashley",
+  "Kimberly",
+  "Emily",
+  "Donna",
+  "Michelle",
+  "Dorothy",
+  "Carol",
+  "Amanda",
+  "Melissa",
+  "Deborah",
+  "Stephanie",
+  "Rebecca",
+  "Sharon",
+  "Cynthia",
+  "Kathleen"
+ ],
+ "foreign_full_names": [
+  "Sophie Martin",
+  "Hans Mueller",
+  "Alessandro Rossi",
+  "Anna van der Berg",
+  "Peter Johnson",
+  "Maria Garcia",
+  "Carlos Perez",
+  "Jean Dubois",
+  "Paolo Romano",
+  "Francesca Novelli"
+ ],
+ "honorific_prefix_male": [
+  "Mr.",
+  "Dr.",
+  "Prof."
+ ],
+ "honorific_prefix_female": [
+  "Ms.",
+  "Mrs.",
+  "Dr.",
+  "Prof."
+ ],
+ "ambiguous_surname_places": [
+  "Jordan",
+  "Austin",
+  "Dallas",
+  "Jackson"
+ ],
+ "places": [
+  "New York",
+  "Los Angeles",
+  "Chicago",
+  "Houston",
+  "Phoenix",
+  "Philadelphia",
+  "San Antonio",
+  "San Diego",
+  "Dallas",
+  "San Jose",
+  "Austin",
+  "Jacksonville",
+  "Boston",
+  "Memphis",
+  "Nashville",
+  "Baltimore",
+  "Louisville",
+  "Milwaukee",
+  "Portland",
+  "Las Vegas",
+  "Denver",
+  "Washington",
+  "Seattle",
+  "Atlanta",
+  "Miami"
+ ],
+ "orgs": [
+  "TechVision Corporation",
+  "Global Networks Inc.",
+  "Digital Solutions LLC",
+  "Strategic Consulting Group",
+  "Innovation Labs Tokyo",
+  "Creative Design Studios",
+  "CloudScale Systems",
+  "Market Analytics Co.",
+  "Enterprise Development Inc.",
+  "Business Support Services",
+  "Logistics Japan Ltd.",
+  "Talent Development Center",
+  "Data Analytics Association",
+  "EcoSystems Solutions Inc.",
+  "Communications Technology Corp"
+ ],
+ "depts": [
+  "Sales Department",
+  "Planning Division",
+  "Manufacturing Department",
+  "Quality Assurance",
+  "Human Resources",
+  "Finance Department",
+  "Audit Division",
+  "Development Team",
+  "Customer Support",
+  "Administrative Office"
+ ],
+ "products": [
+  "DataMaster Pro System",
+  "CloudBackup 1000",
+  "AI Marketing Suite",
+  "SecurityGuard 2024",
+  "MobileApp Framework",
+  "API Gateway Platform",
+  "Analytics Hub",
+  "AutoFlow Tool X",
+  "CRM Enterprise",
+  "Workflow Manager"
+ ],
+ "common_words": [
+  "report",
+  "file",
+  "project",
+  "test",
+  "meeting",
+  "request",
+  "approval",
+  "delivery",
+  "invoice",
+  "deadline",
+  "quality",
+  "efficiency",
+  "risk",
+  "response",
+  "improvement",
+  "target",
+  "results",
+  "budget",
+  "planning",
+  "management",
+  "integration",
+  "connection",
+  "version",
+  "license",
+  "compliance",
+  "standards",
+  "manual",
+  "guidelines",
+  "support",
+  "inquiry"
+ ],
+ "days": [
+  "Monday",
+  "Tuesday",
+  "next week",
+  "end of month",
+  "March 15",
+  "next Friday",
+  "yesterday",
+  "tomorrow"
+ ],
+ "job_titles": [
+  "Director",
+  "Manager",
+  "Supervisor",
+  "Senior Engineer",
+  "Project Manager",
+  "Sales Representative",
+  "Systems Administrator",
+  "Data Analyst",
+  "Designer",
+  "Customer Success Manager",
+  "Business Analyst",
+  "Executive"
+ ],
+ "diagnoses": [
+  "diabetes",
+  "hypertension",
+  "depression",
+  "fracture",
+  "cancer",
+  "asthma",
+  "heart disease",
+  "stroke",
+  "pneumonia",
+  "insomnia",
+  "arthritis",
+  "allergies"
+ ],
+ "religions": [
+  "Buddhism",
+  "Christianity",
+  "Islam",
+  "Judaism",
+  "Taoism",
+  "Hinduism"
+ ],
+ "email_locals": [
+  "james.smith",
+  "john.johnson",
+  "robert.williams",
+  "michael.brown",
+  "william.jones",
+  "david.garcia",
+  "richard.miller",
+  "joseph.davis",
+  "charles.rodriguez",
+  "donald.martinez",
+  "matthew.hernandez",
+  "mark.lopez",
+  "daniel.gonzalez",
+  "paul.wilson",
+  "steven.anderson",
+  "andrew.thomas",
+  "kenneth.taylor",
+  "george.moore",
+  "edward.jackson",
+  "brian.martin",
+  "james85",
+  "smith2024",
+  "john.tech",
+  "robert.innovation",
+  "michael.design",
+  "thomas.admin",
+  "taylor.dev",
+  "moore.ops",
+  "jackson.infra",
+  "martin.support",
+  "scott.project",
+  "clark.contact",
+  "lewis.sales",
+  "walker.info",
+  "young.service",
+  "hall.enterprise",
+  "king.hr",
+  "wright.finance",
+  "lopez.legal",
+  "hill.operations"
+ ],
+ "generic_locals": [
+  "info",
+  "support",
+  "contact",
+  "service",
+  "noreply",
+  "inquiry",
+  "admin",
+  "sales"
+ ],
+ "email_domains_personal": [
+  "example.com",
+  "mail.example",
+  "post.test",
+  "personal.example",
+  "inbox.test",
+  "mymail.example"
+ ],
+ "email_domains_company": [
+  "techsolutions.example",
+  "example-corp.com",
+  "businesspartners.test",
+  "innovation-group.example",
+  "datasystems.example",
+  "globalnet.test"
+ ],
+ "addresses": [
+  "123 Main Street, New York, NY 10001",
+  "456 Broadway, Los Angeles, CA 90001",
+  "789 Lake Shore Drive, Chicago, IL 60611",
+  "321 Downtown Boulevard, Houston, TX 77001",
+  "654 Phoenix Avenue, Phoenix, AZ 85001",
+  "987 Market Street, Philadelphia, PA 19101",
+  "111 Alamo Road, San Antonio, TX 78201",
+  "222 Harbor Drive, San Diego, CA 92101",
+  "333 Elm Street, Dallas, TX 75201",
+  "444 Palm Avenue, San Jose, CA 95101",
+  "555 Congress Avenue, Austin, TX 78701",
+  "666 Beach Boulevard, Jacksonville, FL 32202",
+  "777 Beacon Hill, Boston, MA 02108",
+  "888 Main Plaza, Memphis, TN 38103",
+  "999 Broadway, Nashville, TN 37201",
+  "1010 Park Lane, Baltimore, MD 21202",
+  "1111 River Road, Louisville, KY 40202",
+  "1212 Water Street, Milwaukee, WI 53202",
+  "1313 Oak Avenue, Portland, OR 97204",
+  "1414 Desert Drive, Las Vegas, NV 89101"
+ ],
+ "month_names": [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+ ],
+ "date_formats": [
+  "{month} {d}, {y}",
+  "{m}/{d}/{y}",
+  "{d} {month} {y}"
+ ],
+ "labels": {
+  "name": [
+   "Name",
+   "Full Name"
+  ],
+  "phone": [
+   "Phone Number",
+   "Contact Number"
+  ],
+  "mobile": [
+   "Mobile Phone",
+   "Cell Phone"
+  ],
+  "email": [
+   "Email Address",
+   "Email"
+  ],
+  "address": [
+   "Address",
+   "Mailing Address"
+  ],
+  "dob": [
+   "Date of Birth",
+   "Birth Date"
+  ],
+  "dept": [
+   "Department",
+   "Division"
+  ],
+  "job": [
+   "Job Title",
+   "Position"
+  ],
+  "gov_id": [
+   "SSN",
+   "Social Security Number"
+  ],
+  "card": [
+   "Credit Card Number",
+   "Card Number"
+  ],
+  "bank": [
+   "Bank Account Number",
+   "Account Number"
+  ],
+  "iban": [
+   "IBAN",
+   "International Bank Account Number"
+  ],
+  "order": [
+   "Order Number",
+   "Order ID"
+  ],
+  "tracking": [
+   "Tracking Number",
+   "Tracking ID"
+  ],
+  "serial": [
+   "Serial Number",
+   "Model Number"
+  ],
+  "ip": [
+   "IP Address",
+   "IP"
+  ],
+  "sns": [
+   "Social Media Handle",
+   "Social Account"
+  ],
+  "diagnosis": [
+   "Diagnosis",
+   "Medical Condition"
+  ],
+  "patient_list_titles": [
+   "Clinic Patient List",
+   "Medical Facility Patient Records"
+  ],
+  "attendee_list_titles": [
+   "Seminar Attendee List",
+   "Event Participant List"
+  ]
+ },
+ "templates": {
+  "person_mention": [
+   "{HON} {P} attended the meeting in {PLACE}.",
+   "{HON} {P} went on a business trip last {DAY}.",
+   "{P} sent us a {WORD}.",
+   "{HON} {P} inquired about the {WORD}.",
+   "{P} and {P2} met in {PLACE}."
+  ],
+  "email_personal": [
+   "{HON} {P}'s email address is {EMAIL}.",
+   "{P}'s email: {EMAIL}",
+   "Please contact {EMAIL} ({HON} {P}).",
+   "For questions, please email {EMAIL} ({HON} {P}).",
+   "{P}'s personal email address: {EMAIL}"
+  ],
+  "phone_personal": [
+   "{HON} {P}'s phone number is {PHONE}.",
+   "{P}'s contact: {PHONE}",
+   "Please call {PHONE} ({HON} {P}) for inquiries.",
+   "{HON} {P}'s direct line: {PHONE}",
+   "{P}'s phone number is {PHONE}."
+  ],
+  "email_generic": [
+   "For inquiries to {ORG} {DEPT}, please email {GEMAIL}.",
+   "Please send your questions to {GEMAIL} ({ORG}).",
+   "{ORG} Customer Service: {GEMAIL}",
+   "{DEPT} inquiry email: {GEMAIL}",
+   "Feel free to contact {GEMAIL} for more information."
+  ],
+  "phone_corporate": [
+   "For inquiries to {ORG} {DEPT}, please call {CPHONE}.",
+   "Please call {CPHONE} ({ORG}) for questions.",
+   "{ORG} Customer Service Hotline: {CPHONE}",
+   "{DEPT} Support Line: {CPHONE}",
+   "For inquiries, call {CPHONE} ({ORG})."
+  ],
+  "address_personal": [
+   "{HON} {P}'s address is {ADDR}.",
+   "{P}'s home address: {ADDR}",
+   "Please send the package to {ADDR} ({HON} {P}).",
+   "{P}'s registered address is {ADDR}.",
+   "Address: {ADDR} ({HON} {P})"
+  ],
+  "address_company": [
+   "{ORG}'s headquarters is located at {ADDR}.",
+   "{ORG} Location: {ADDR}",
+   "Please visit {ADDR} ({ORG}).",
+   "{ORG}'s office is at {ADDR}.",
+   "Contact Address: {ADDR} ({ORG})"
+  ],
+  "dob": [
+   "{HON} {P}'s date of birth is {DATE}.",
+   "{P}'s birth date: {DATE}",
+   "Date of Birth: {DATE} ({HON} {P})",
+   "{HON} {P}'s birth date is recorded as {DATE}.",
+   "{P}'s date of birth: {DATE}"
+  ],
+  "date_nonbirth": [
+   "{ORG} was founded on {DATE}.",
+   "Project completion deadline: {DATE} ({WORD})",
+   "The event in {PLACE} will be held on {DATE}.",
+   "Application deadline is {DATE}.",
+   "On {DATE}, {ORG}'s {WORD} was updated."
+  ],
+  "gov_id": [
+   "{HON} {P}'s SSN is {GOVID}.",
+   "SSN Registration: {GOVID} ({P})",
+   "{P}'s Social Security Number: {GOVID}",
+   "{HON} {P}'s identification number is {GOVID}.",
+   "Government ID Verification: {GOVID} ({HON} {P})"
+  ],
+  "credit_card": [
+   "{HON} {P}'s credit card number is {CARD}.",
+   "Card Number: {CARD} ({P})",
+   "{P}'s card information: {CARD}",
+   "Payment Card Number {CARD} ({HON} {P})",
+   "{HON} {P}'s registered card: {CARD}"
+  ],
+  "bank_account": [
+   "{HON} {P}'s salary transfer account is {BANK}.",
+   "Bank Account Number: {BANK} ({P})",
+   "Refund Account: {BANK} ({HON} {P})",
+   "{P}'s account information for verification: {BANK}",
+   "Registered Account Number {BANK} ({HON} {P})"
+  ],
+  "health": [
+   "{HON} {P} was diagnosed with {DIAG}.",
+   "{P} is being treated for {DIAG}.",
+   "{HON} {P}'s medical record: {DIAG}",
+   "The doctor diagnosed {P} with {DIAG}.",
+   "{HON} {P}'s health condition: {DIAG} (regular checkup)"
+  ],
+  "health_general": [
+   "Survey on {DIAG} prevalence in {PLACE}",
+   "{DIAG} awareness campaign (sponsored by {ORG})",
+   "Health authorities issued prevention guidelines for {DIAG}.",
+   "{ORG} provides information on {DIAG}.",
+   "{DIAG} cases are increasing in {PLACE}."
+  ],
+  "biometric": [
+   "{HON} {P}'s fingerprint data has been registered.",
+   "{P}'s facial recognition template was saved to the system.",
+   "Iris scan registration: {HON} {P}",
+   "{P}'s biometric information has been recorded.",
+   "Biometric data storage: {HON} {P}"
+  ],
+  "biometric_general": [
+   "{ORG}'s {PRODUCT} supports fingerprint authentication.",
+   "{PRODUCT} features facial recognition technology.",
+   "{ORG}'s office uses iris scan authentication.",
+   "About {PRODUCT}'s biometric login feature",
+   "{ORG} deployed {PRODUCT} with face recognition system."
+  ],
+  "ip_personal": [
+   "{HON} {P}'s home network IP address is {IP}.",
+   "{P}'s device IP address: {IP}",
+   "Communication source: {IP} ({P}'s usage)",
+   "{HON} {P}'s home WiFi IP registration: {IP}",
+   "User {P}'s access IP: {IP}"
+  ],
+  "ip_server": [
+   "{ORG}'s {PRODUCT} server IP address is {IP}.",
+   "Mail server IP: {IP} ({ORG})",
+   "{PRODUCT} hosting server: {IP}",
+   "Router management IP: {IP} ({ORG})",
+   "{ORG}'s API server IP address: {IP}"
+  ],
+  "sns_personal": [
+   "{HON} {P}'s social media handle: {HANDLE}",
+   "Social media ID ({P}): {HANDLE}",
+   "{P}'s Twitter account is {HANDLE}.",
+   "Instagram Handle: {HANDLE} ({HON} {P})",
+   "{P}'s social media: {HANDLE}"
+  ],
+  "sns_brand": [
+   "{ORG}'s official account: {HANDLE}",
+   "{PRODUCT} official Twitter: {HANDLE}",
+   "Social Media ({ORG}): {HANDLE}",
+   "{ORG} official Instagram: {HANDLE}",
+   "{PRODUCT}'s official social media account: {HANDLE}"
+  ],
+  "employment": [
+   "{HON} {P} works as a {JOB} in {ORG} {DEPT}.",
+   "{P}'s position: {ORG} {DEPT} ({JOB})",
+   "Employee Information: {P} ({ORG}, {JOB})",
+   "{HON} {P} is a {JOB} at {ORG} {DEPT}.",
+   "{P} is employed at {ORG} as a {JOB}."
+  ],
+  "job_posting": [
+   "{ORG} is hiring for a {JOB} in {DEPT} (based in {PLACE}).",
+   "Job Opening: {JOB} ({ORG} {DEPT}, {PLACE})",
+   "{ORG} is recruiting new {JOB} candidates in {PLACE} for {DEPT}.",
+   "Recruitment: {JOB} position ({ORG}, {DEPT})",
+   "{ORG} is seeking experienced {JOB} professionals in {PLACE}."
+  ],
+  "religion": [
+   "{HON} {P} practices {REL}.",
+   "{P}'s faith: {REL}",
+   "Religion record: {REL} ({P})",
+   "{P} is a {REL} practitioner.",
+   "{HON} {P} attends {REL} services."
+  ],
+  "religion_general": [
+   "Statistics on {REL} followers in {PLACE}",
+   "Cultural lecture on {REL} will be held.",
+   "{REL} community activities ({PLACE})",
+   "Awareness campaign for {REL} practitioners",
+   "Information about {REL} temples in {PLACE}"
+  ],
+  "hr_record": [
+   "{HON} {P} received disciplinary action on {DATE} (frequent tardiness).",
+   "{P}'s personnel record: Termination notice from {ORG} on {DATE}.",
+   "Harassment complaint record: {HON} {P} (filed on {DATE}, received by {ORG})",
+   "{DATE}: Formal performance improvement notice for {P} ({ORG} HR)",
+   "{HON} {P} was disciplined on {DATE} for credential misrepresentation."
+  ],
+  "hr_policy": [
+   "{ORG} {DEPT} has established guidelines regarding {WORD}.",
+   "HR Policy: {ORG} maintains strict {WORD} management for all employees.",
+   "Internal rules on {WORD} ({ORG})",
+   "{ORG} {DEPT} {WORD} guidelines",
+   "Compliance: {ORG} conducts {WORD} training for employees."
+  ],
+  "order_number": [
+   "Order Number: {ORDER} ({PRODUCT} from {ORG})",
+   "{PRODUCT} Order ID: {ORDER}",
+   "{ORG} Order Number {ORDER}",
+   "Your Order Number: {ORDER} ({PRODUCT})",
+   "Order Pending: {ORDER} (from {ORG})"
+  ],
+  "tracking_number": [
+   "Shipping Tracking Number: {TRACK} ({ORG} shipment)",
+   "{ORG} package tracking ID: {TRACK}",
+   "You can track your shipment using {TRACK}.",
+   "Package Tracking: {TRACK} ({ORG})",
+   "Shipping Status: Tracking Number {TRACK} (shipped by {ORG})"
+  ],
+  "serial_number": [
+   "{PRODUCT} Serial Number: {SERIAL}",
+   "Model Number {SERIAL} ({PRODUCT})",
+   "Serial Registration: {SERIAL}",
+   "{PRODUCT} Serial: {SERIAL} (under warranty)",
+   "Device ID: {SERIAL} ({PRODUCT})"
+  ],
+  "place_distractor": [
+   "{AMB} is a major {WORD} center.",
+   "A new {WORD} facility opened in {AMB}.",
+   "An exhibition will be held in {AMB} on {DAY}.",
+   "{AMB} branch holds a {WORD} event monthly.",
+   "{AMB}'s office is enhancing its {WORD} services."
+  ],
+  "filler": [
+   "{ORG}'s {PLACE} office is working on improving {WORD}.",
+   "{PRODUCT} {WORD} initiatives start on {DAY}.",
+   "{ORG} plans to launch {PRODUCT} in {PLACE}.",
+   "{DEPT} will hold a {WORD} meeting on {DAY}.",
+   "{ORG} will explain {PRODUCT} {WORD} compliance."
+  ],
+  "greeting": [
+   "To all participants,",
+   "Dear team members,",
+   "To all stakeholders,",
+   "To our colleagues,",
+   "Attention all team members,"
+  ],
+  "closing": [
+   "Thank you for your attention.",
+   "If you have any questions, please feel free to contact us.",
+   "Please review and confirm.",
+   "We appreciate your continued support.",
+   "For more details, please reach out to us."
+  ]
+ }
+}

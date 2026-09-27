@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_ko_041",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "인터뷰 기록\n날짜: {DATE}\nQ: {P1}님은 건강상 문제가 있나요?\nA: 네, 고혈압으로 약을 복용 중입니다."
+  },
+  {
+   "id": "t_ko_042",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "메모\n\n대상 직원: {P1}\n주민등록번호: {P1.govid}\n용도: 농협 통장 개설 신청\n처리 상태: 진행 중\n처리 날짜: {DATE}\n담당자: {P2}\n비고: 신원 확인 완료 및 서류 제출"
+  },
+  {
+   "id": "t_ko_043",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "회의 기록\n\n날짜: {DATE}\n참석자: {P1}, {P2}, {P3}\n주제: 외래 환자 관리 및 문화적 지원\n\n논의 사항:\n- {P1}님은 베트남 국적이며 언어 장벽이 있습니다\n- 의료진과의 소통을 위한 통역 서비스 필요\n결정: 통역 서비스 제공 추진"
+  },
+  {
+   "id": "t_ko_044",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "회의록\n\n날짜: {DATE}\n시간: 14:00\n참석자: 인사부장, {P1}, HR 담당자\n의제: 직원 {P1}의 성적 부진 관련 최종 경고\n\n논의:\n- 과거 3개월간 판매 실적 50% 미만\n결과: 30일 이내 개선 실패 시 해고"
+  },
+  {
+   "id": "t_ko_045",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "이메일\n\n제목: 치과 노동조합 가입 신청서\n\n안녕하세요,\n\n저 {P1}은 치과 노동조합에 정식 가입을 신청합니다.\n근무 기간: 2년 6개월\n부서: 임상 부서\n\n동의합니다."
+  },
+  {
+   "id": "t_ko_046",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "동의서\n이름: {P1}\n생년월일: {P1.dob}\n지문 채취: 동의함\nDNA 샘플: {P1}에서 채취됨\n목적: 의학 연구"
+  },
+  {
+   "id": "t_ko_047",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "언어학교 등록 양식\n\n학생명: {P1}\n생년월일: {P1.dob}\n전화: {P1.phone}\n집주소: {P1.addr}\n직업: {P1.job}\n이메일: {P1.email}\n\n건강 정보:\n- 음식 알레르기: 계란, 우유, 견과류에 심각함\n- 현재 복용 약물: 천식약, 항히스타민제, 혈압약\n- 수술 경력: 2020년 맹장염 수술, 2018년 무릎 관절경 수술\n- 가족 건강 기록: 아버지는 제2형 당뇨병, 어머니는 갑상선질환\n- 기타: 불규칙한 수면 패턴, 주의 필요함\n- 응급연락처: {P2}\n- 보험 회사: {ORG}\n- 혈액형: O형"
+  },
+  {
+   "id": "t_ko_048",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "SNS 게시물\n{DATE} 공지\n직원 {P1}은 본일자로 징계 해제\n사유: 지각 및 태만\n복귀일: {DATE}"
+  },
+  {
+   "id": "t_ko_049",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "식당 식이 제한 목록\n\n날짜: {DATE}\n담당자: {P1}\n\n식단 제한이 필요한 고객:\n이름 | 의료적 사유\n{P1} | 당뇨병\n{P2} | 셀리악병 (글루텐 불내증)\n{P3} | 고혈압 저염식 필요\n{P4} | 심각한 견과류 알레르기"
+  },
+  {
+   "id": "t_ko_050",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "private_messages_of_others",
+   "text": "SNS 게시물\n{DATE} 게시\n전달된 메시지:\n{P1}: \"내가 뭘 하는지 모르니까 괜찮아.\"\n{P2}: \"위험해!\"\n#개인정보유출 #위반사건"
+  },
+  {
+   "id": "t_ko_051",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "기술 채팅\nA: DB 오류?\nB: ERROR_DB 로그 확인해요\nA: 됐습니다\nB: CONFIG_HOST=server1로 설정했나요?\nA: 네\nB: 서버 로그 확인하세요"
+  },
+  {
+   "id": "t_ko_052",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "시청 공지\n\n시민 문의 및 불만 접수\n\n이메일 주소: {ORG.email}\n대표 전화: {ORG.phone}\n팩스 번호: {ORG.phone}\n\n업무 시간: 월요일~금요일\n09:00~18:00 (점심시간: 12:00~13:00)\n공휴일 제외"
+  },
+  {
+   "id": "t_ko_053",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "인터뷰 기록\n\n일자: {DATE}\n인터뷰이: {P1}, 자동차 전시장 관리자\n\nQ: 귀사의 정치적 입장은 무엇인가요?\nA: 저는 보수 정당을 강력히 지지합니다. 시장 경제가 경제 성장의 핵심이라고 생각합니다.\nQ: 그 이유는?\nA: 국가의 과도한 규제와 개입은 기업의 경쟁력을 약화시킵니다. 개인의 자유가 보장되어야 합니다."
+  },
+  {
+   "id": "t_ko_054",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "영수증\n\n보험 회사 계약자 현황\n발급일: {DATE}\n발급자: 보험팀\n\n계약자 명단:\n{P1}\n{P2}\n{P3}\n\n총 3명"
+  },
+  {
+   "id": "t_ko_055",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "메모\n공지: {DEAD}는 {DEAD.born}-{DEAD.died}년\n유명한 독립운동가입니다."
+  },
+  {
+   "id": "t_ko_056",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "편지\n\n받는 사람: {P1}\n날짜: {DATE}\n\n귀하에게 다음 사실을 통보합니다:\n귀사는 절도죄로 기소되었습니다.\n피해자: {P2}\n피해액: {AMOUNT}\n\n공판 날짜: {DATE}\n공판 장소: 지방법원\n담당 판사: {P3}\n\n경의를 표합니다.\n검사실"
+  },
+  {
+   "id": "t_ko_057",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "메모\n상품 수출 승인\n수출자: {P1}\n품목: 한약재\n수량: 100\n금액: {AMOUNT}\n배송처: 북경"
+  },
+  {
+   "id": "t_ko_058",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "SNS 공지\n\n{DATE}\n\n직원 {P1}의 해고 발표 통보\n사유: 재정적 부정 혐의로 인한 해고\n급여: {DATE}에 최종 지급\n후속 조치: 법적 검토 진행 중\n#인사발표 #노조 #해고"
+  },
+  {
+   "id": "t_ko_059",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "블로그 글\n\n오늘 자동차 판매점 팀원들\n{P1}: 영업팀 팀장\n{P2}: 정비사\n{P3}: 사무원\n모두 훌륭합니다."
+  },
+  {
+   "id": "t_ko_060",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "영상 편집 스튜디오 연락처\n\n문의 및 의뢰:\n이메일: {ORG.email}\n전화: {ORG.phone}"
+  },
+  {
+   "id": "t_ko_061",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "{DATE}T10:15:32 신원 확인: {P1}은 기독교인 (개신교 침례교 신자)\n{DATE}T10:45:01 방문자 등록: {P2}는 무슬림 이맘 자격\n{DATE}T11:20:44 상담 기록: {P3}는 불교도이며 채식주의자\n{DATE}T12:05:22 회원 등록: {P4}는 유대교인 랍비 자격\n{DATE}T13:15:10 추가: {P3}는 종교 행사 필수 참석\n{DATE}T14:00:00 메모: {P1}은 주일 예배 정성\n{DATE}T15:30:15 기록: {P2}는 식사 시간 중 기도 시간 필요\n{DATE}T16:00:00 통지: 종교적 배려 실시"
+  },
+  {
+   "id": "t_ko_062",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "편지\n\n마라톤 조직위원회에서는 {P1}님과 {P2}님께 진심 어린 감사를 드립니다.\n올해 행사 운영 및 참가자 안전 관리를 맡아주신 점에 큰 감사를 드립니다.\n다시 한 번 경의를 표합니다.\n\n마라톤 조직위원회 일동"
+  },
+  {
+   "id": "t_ko_063",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "생물은행 수탁 영수증\n\n수탁자: {P1}\n주소: {P1.addr}\n사건 번호: 2023-CR-4521\n범죄 사건: 폭행죄 피해자\n피해 상황 샘플: DNA\n수탁 발급 날짜: {DATE}\n보관 위치: 냉동고 A-12"
+  },
+  {
+   "id": "t_ko_064",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "케이스 노트\n\n환자명: {P1}\n접진 날짜: {DATE}\n시간: 14:30\n진료 내용: {P1}는 녹색당을 매우 강력히 지지하고 있으며 환경 정책에 열정적"
+  },
+  {
+   "id": "t_ko_065",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "회의 기록\n\n농협 전자 소통 채널\n\n주요 연락처:\n이메일 주소: {ORG.email}\n대표 전화: {ORG.phone}\n팩스: {ORG.phone}\n사무실 운영 시간: 월요일~금요일\n08:00~17:00 (공휴일 제외)"
+  },
+  {
+   "id": "t_ko_066",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "이메일\n\n제목: Q3 분기 프로젝트 진행 상황 최종 보고서\n\n안녕하세요,\n\n이번 분기 개발팀의 주요 성과를 보고드립니다.\n{P1}과 {P2}가 백엔드 API 개발을 완료했습니다.\n{P3}는 프론트엔드 사용자 인터페이스를 담당했고 매우 뛰어난 결과를 냈습니다.\n{P4}는 데이터베이스 구조 설계 및 최적화를 완벽하게 맡았습니다.\n모든 팀원이 훌륭한 기여를 해주셨습니다.\n정말 감사합니다.\n앞으로도 계속 협력하여 최고의 결과를 기대합니다.\n좋은 하루 되세요.\n보낸사람: {P1}\n발송 날짜: {DATE}\n발송 부서: 개발팀\n중요도: 높음\n상태: 완료됨"
+  },
+  {
+   "id": "t_ko_067",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "영화 제작 인터뷰\nQ: 촬영 팀 구성?\nA: {P1}가 촬영감독, {P2}가 보조."
+  },
+  {
+   "id": "t_ko_068",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "공식 공지\n얼굴 인식 시스템 도입\n필수 정보: 성명, 생년월일\n얼굴 스캔 (3D), 홍채 스캔\n등록자: {P1}, {P2}, {P3}"
+  },
+  {
+   "id": "t_ko_069",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "SNS 게시물\n\n{DATE}\n\n{P1}이 오늘 시청 이민국에서 장기 체류 비자 갱신을 완료했습니다.\n앞으로 더 안정적으로 살 수 있겠습니다.\n\n#비자갱신 #이민 #장기체류"
+  },
+  {
+   "id": "t_ko_070",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "메모\n\n치과 진료 영수증\n\n환자명: {P1}\n처리 날짜: {DATE}\n진료 내용: 치석 제거 스케일링\n진료 비용: {AMOUNT}\n결제 방법: 현금\n다음 방문 예약: {DATE}"
+  },
+  {
+   "id": "t_ko_071",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "채팅\n슈퍼마켓 사원\nA: 금요일 노조 회의\nB: 참석: {P1}, {P2}, {P3}"
+  },
+  {
+   "id": "t_ko_072",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "회의 기록\n\n날짜: {DATE}\n시간: 10:00\n장소: 대사관 인사관리실\n참석자: 대사관 인사팀, {P1}, 변호사 {P2}\n\n주제: {P1}의 직무 휴직 승인 및 조사\n사유: 부당한 대우 및 괴롭힘 민원 제기\n결정: 즉시 휴직 승인, 공식 조사 진행"
+  },
+  {
+   "id": "t_ko_073",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "게임 커뮤니티 인터뷰 기록\n\nQ: 온라인 게임 커뮤니티 운영진은 누구들인가요?\nA: {P1}이 커뮤니티 대표이고, {P2}와 {P3}가 부운영자로 일합니다.\nQ: 모두 잘 운영하고 있나요?\nA: 네, 매일 열심히 일합니다."
+  },
+  {
+   "id": "t_ko_074",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "대학 역사 기록\n\n저명한 과학자 기념\n{DEAD} ({DEAD.born}-{DEAD.died})\n연구: 화학 및 분자 생물학\n업적: 특허 3개 획득\n유산: {ORG} 연구 기금 설립 및 장학금 지원"
+  },
+  {
+   "id": "t_ko_075",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "종교단체 노동조합 회비 영수증\n\n회원명: {P1}\n회비 납부: {AMOUNT}\n납부 날짜: {DATE}\n회비 용도: 노동조합 운영비 및 법적 지원\n회비 납부 인증: 완료"
+  },
+  {
+   "id": "t_ko_076",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "박물관 절도 보고\n사건: 도난\n보고 날짜: {DATE}\n용의자: {P1}\n증거: 지문 데이터 일치\n분석: DNA 일치"
+  },
+  {
+   "id": "t_ko_077",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "회의 기록\n\n보험 회사 특수 고객\n날짜: {DATE}\n\n피보험자: {P1}\n신앙: 이슬람"
+  },
+  {
+   "id": "t_ko_078",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "이메일\n\n제목: 여권 갱신 처리 확인 안내\n\n{P1}님께,\n\n귀하의 여권 갱신 신청이 접수되었습니다.\n여권 번호: {P1.passport}\n신청 날짜: {DATE}\n처리 기간: 약 5개 영업일\n예상 완료일: {DATE}\n수령 방법: 직접 방문\n\n감사합니다.\n대사관"
+  },
+  {
+   "id": "t_ko_079",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "채용 지원자 건강 신청서\n\n성명: {P1}\n생년월일: {P1.dob}\n연락처: {P1.phone}\n주소: {P1.addr}\n직업: {P1.job}\n\n건강 상태:\n현재 질환: 감염성 간염 보유자, 현재 치료 중임\n과거 입원 경력: 3회 (모두 정신건강 및 심리 치료)\n현재 복용약물: 항우울제 (매일 복용), 수면제 (필요시)\n주요 수술 기록: 2018년 담낭 제거술 시행\n가족 질병력: 어머니는 유방암 진단 (3년 전)\n기타 사항: 수면 패턴 불규칙, 스트레스 관리 필요\n응급연락처: {P2}\n보험: {ORG}\n혈액형: AB형\n키: 170"
+  },
+  {
+   "id": "t_ko_080",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "박물관 소장품 대여 기록\n\n대여 기록 현황\n\n대여번호 | 대여인명 | 대여일 | 반납예정일\n001 | {P1} | {DATE} | {DATE}\n002 | {P2} | {DATE} | {DATE}\n003 | {P3} | {DATE} | {DATE}\n004 | {P4} | {DATE} | {DATE}\n005 | {P1} | {DATE} | {DATE}\n006 | {P2} | {DATE} | {DATE}\n\n총 6건 대여 현황\n처리자: {P1}\n승인자: {P2}\n최종 점검: {DATE}\n문의: {ORG.phone}\n비고: 정기관리 및 점검"
+  }
+ ]
+}

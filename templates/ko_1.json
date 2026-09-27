@@ -1,0 +1,284 @@
+{
+  "templates": [
+    {
+      "id": "t_ko_001",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "인터뷰 일시: 2024년 11월 15일\n질문: 본 호텔에서의 근무 경험에 대해 말씀해주시겠습니까?\n답변: 안녕하세요. {P1.s}님입니다. 저는 3년 동안 프런트 데스크에서 근무했습니다. 주로 고객 체크인, 예약 관리, 그리고 특별한 요청 처리를 담당했습니다. 고객 서비스에 대해 많이 배웠고, 팀 협업도 좋은 경험이었습니다.\n인터뷰어: 감사합니다. {P1.s}님의 업무 성과는 어땠나요?"
+    },
+    {
+      "id": "t_ko_002",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "trade_union",
+      "text": "마라톤 조직위원회 회비 영수증\n회원: {P1}\n회원 아이디: {CODE}\n회원 유형: 노동조합\n납부액: {AMOUNT}원\n납부일: {DATE}\n담당자: {P2.s}"
+    },
+    {
+      "id": "t_ko_003",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "contact_details",
+      "text": "{P1.s}: 안녕하세요, 현장 진행 상황 어떻게 되나요?\n{P2.s}: 진행 중입니다. 연락처: {P1.phone}\n{P1.s}: 알겠습니다. 감사합니다."
+    },
+    {
+      "id": "t_ko_004",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "휴직 안내\n휴직자 성명: {P1}\n휴직 사유: 건강진단 및 질환 치료\n휴직 기간: {DATE} ~ {DATE}\n담당자: {ORG}"
+    },
+    {
+      "id": "t_ko_005",
+      "lang": "ko",
+      "sensitivity": "none",
+      "cell": "deceased_person",
+      "text": "업무 메모\n제목: 기록 정리\n내용: {DEAD}({DEAD.born}~{DEAD.died})의 사건 기록 보관 완료\n처리자: {ORG}\n처리일: {DATE}"
+    },
+    {
+      "id": "t_ko_006",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "업무 메모\n일시: {DATE}\n발신인: {P1}\n내용: 도시 개발 정책에 대한 의견 서술\n정치적 입장: 보수적 방향 선호\n메모: 향후 정책 회의에서 재검토 필요"
+    },
+    {
+      "id": "t_ko_007",
+      "lang": "ko",
+      "sensitivity": "none",
+      "cell": "sensitive_topic_in_general",
+      "text": "제목: 아프리카 난민 현황 브리핑\n발신: {ORG.email}\n본문: 올해 아프리카 난민 문제에 대한 국제 협력 현황을 요약한 보고서를 첨부합니다.\n발신일: {DATE}"
+    },
+    {
+      "id": "t_ko_008",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "precise_location",
+      "text": "사건 보고서\n승객: {P1}\n위치: {P1.addr}\n사건 유형: 수하물 분실\n발생 시간: {DATE}\n조사 결과: 위치 추적 중"
+    },
+    {
+      "id": "t_ko_009",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "성명,종교,등록번호\n{P1},{P1.rev},001\n{P2},{P2.rev},002"
+    },
+    {
+      "id": "t_ko_010",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "precise_location",
+      "text": "계약자: {P1}\n\n안내: 개발 예정 부지 현황\n\n다음은 당사의 관심 부동산 목록입니다. 각 부지의 위치는 다음과 같습니다:\n\n부지 1 위도경도: {GPS}\n부지 2 위도경도: {GPS}\n부지 3 위도경도: {GPS}\n부지 4 위도경도: {GPS}\n\n보안상 이 자료는 비공개입니다."
+    },
+    {
+      "id": "t_ko_011",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "address_or_birthday",
+      "text": "교회 회원 연락처\n{P1} - {P1.addr}, {P1.phone}\n{P2} - {P2.addr}"
+    },
+    {
+      "id": "t_ko_012",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "현장 진행 상황 업데이트입니다. 오늘 {P1.s} 기술자가 기초 작업을 완료했습니다. SNS ID: {P1.handle} #현장일지"
+    },
+    {
+      "id": "t_ko_013",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "탑승객: {PUB}\n항공편: KE 123\n탑승일: {DATE}\n특별 요청: VIP 라운지\n담당자: {P1.s}"
+    },
+    {
+      "id": "t_ko_014",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "오늘 저희 식당의 새로운 요리사 {P1}를 소개합니다! 비자 상태: {P1.passport} 보유. 그는 프랑스에서 왔으며 현재 요리 비자(D-10)로 근무 중입니다. 모두를 위한 특별한 유럽 요리를 준비하고 있습니다. #요리사 #국제팀"
+    },
+    {
+      "id": "t_ko_015",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "criminal_record_or_victim",
+      "text": "마라톤 참가자 검토 명단\n\n성명,등록번호,검토사항,상태\n{P1},M001,배경 조사 대기,제외\n{P2},M002,과거 사건 관련,제외\n{P3},M003,현재 진행 사항,검토\n{P4},M004,안전 심사,진행\n\n모든 검토는 비공개로 진행됩니다."
+    },
+    {
+      "id": "t_ko_016",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "{DATE}\n\n안녕하세요 {P1}님,\n\n저희 회사에서는 당신의 전문성을 높이 평가합니다. 다만 채용을 위해서는 재직권과 관련된 서류가 필요합니다. 현재 재직 상태와 비자 상태에 대해 보고해주시기 바랍니다.\n\n감사합니다.\n인사팀 일동"
+    },
+    {
+      "id": "t_ko_017",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "인터뷰 기록 - 심층 대화\n\n질문: 당신의 신앙 배경에 대해 말씀해주시겠습니까?\n답변 ({P1}): 저는 어린 시절부터 기독교 신앙을 가지고 있습니다. 교회 활동에 정기적으로 참여하며 신앙 공동체의 일원입니다. 이는 제 인생의 중요한 부분입니다. 매주 일요일마다 예배에 참석합니다.\n질문: 축구 활동에 어떤 영향을 미쳤나요?\n답변: 신앙은 제 운동 선수로서의 윤리와 가치관을 형성했습니다. 팀 정신과 정직성을 중시합니다. 또한 경기 전에 기도를 드립니다. 많은 팀원들이 저의 신앙을 존중해줍니다.\n인터뷰어 메모: 신앙이 선수의 정체성에 중요한 역할을 함."
+    },
+    {
+      "id": "t_ko_018",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "마라톤 등록 양식\n이름: {P1}\n나이: {AMOUNT}\n성별: 기타 (자세히 기술해주세요)\n기술: {P1.s}님의 경우 자신의 젠더 정체성이 등록된 성별과 다름\n가족 동반자: {P2}"
+    },
+    {
+      "id": "t_ko_019",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "환자 기록\n환자명: {P1}\n진단: 당뇨병\n치료 약물: 처방약 {PRODUCT}\n입원 기간: {DATE} ~ {DATE}\n담당 의사: {P2.s}"
+    },
+    {
+      "id": "t_ko_020",
+      "lang": "ko",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "올해 저희 {ORG}의 모금 캠페인이 시작되었습니다! 지난해에 이어 올해도 취약 계층을 지원하기 위해 여러분의 소중한 기부가 큰 도움이 될 것입니다. 우리의 목표는 더 많은 사람들에게 도움을 전하는 것입니다.\n\n모든 기부 내역은 투명하게 공개될 예정입니다. 기부금은 교육, 의료, 주거 지원에 사용됩니다. 저희는 신뢰를 바탕으로 사업을 진행하고 있습니다.\n\n문의 사항이나 기부를 원하신다면 아래 연락처로 부탁드립니다:\n이메일: {ORG.email}\n전화: {ORG.phone}\n홈페이지에서 기부 현황도 실시간으로 확인 가능합니다.\n\n감사합니다! #자선사업 #나눔 #지역사회 #투명성 #함께"
+    },
+    {
+      "id": "t_ko_021",
+      "lang": "ko",
+      "sensitivity": "none",
+      "cell": "statistics_or_news_without_people",
+      "text": "항공사 통계 보고서\n날짜: {DATE}\n평균 탑승 인원: 85%\n연료 효율 개선: 12% 상향\n안전 사건: 0건"
+    },
+    {
+      "id": "t_ko_022",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "government_id_number",
+      "text": "{DATE}\n\n학부모 {P1}님께\n\n학생 등록 및 학교 활동 참여를 위해 다음 정보가 필요합니다:\n학생 정부ID: {P1.govid}\n학생 성명: {P1}\n출생일: {P1.dob}\n\n본 정보는 학교 기록으로만 사용됩니다.\n\n교무주임 {P2.s}"
+    },
+    {
+      "id": "t_ko_023",
+      "lang": "ko",
+      "sensitivity": "none",
+      "cell": "name_like_product_or_place",
+      "text": "Chat A: 우리 실험실의 새로운 소프트웨어 이름이 뭘까요?\nChat B: Apple이나 Tesla처럼 유명한 제품명으로? 아니면 기술 중심?\nChat A: {PRODUCT}라는 이름은 어떨까요?\nChat B: 좋은데요! {PLACE}나 런던 테마도 고려해볼까요?"
+    },
+    {
+      "id": "t_ko_024",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "제목: {PUB} 출연 관련 계약 검토 요청\n\n안녕하세요,\n\n저희 영화 스튜디오에서는 {PUB}님과의 출연 계약을 진행 중입니다. 배우님의 활동 일정과 기존 계약 현황을 검토한 결과, 다음 프로젝트 참여가 충분히 가능할 것으로 판단됩니다.\n\n세부사항:\n- 촬영 일정: {DATE}부터 3개월 예정\n- 역할: 주연\n- 촬영 장소: 서울 강남역 인근 스튜디오\n- 출연료: 별도 협의\n- 홍보 활동: 주말 포함 예정\n\n배우님의 협력 의향이 있으신지 회신 부탁드립니다. 조만간 유선으로도 연락드리겠습니다.\n\n감사합니다.\n{ORG} 제작팀\n{ORG.email}"
+    },
+    {
+      "id": "t_ko_025",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "{P1.s}: 회의 시작했나요?\n{P2.s}: 네. ID: {P1.handle}, {P2.handle}\n{P1.s}: 감사합니다."
+    },
+    {
+      "id": "t_ko_026",
+      "lang": "ko",
+      "sensitivity": "none",
+      "cell": "name_like_product_or_place",
+      "text": "농협 공지사항\n\n곡물 브랜드 소개\n저희 농협에서는 새로운 곡물 브랜드 {PRODUCT}를 출시합니다. 이는 {PLACE} 지역의 유명한 밀 재배 기법에서 영감을 받았습니다.\n\n출시일: {DATE}\n판매 예정 지역: 전국\n\n많은 관심 부탁드립니다."
+    },
+    {
+      "id": "t_ko_027",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "financial_account_or_credentials",
+      "text": "⚠️ 보안 공지\n\n저희 치과에서는 신용카드 결제를 안전하게 처리하고 있습니다. 하지만 최근 {P1}님 계정에서 의심 활동이 감지되었습니다.\n\n카드번호 일부: {P1.card}\n\n자세한 내용은 직접 문의해주세요.\n{ORG.phone}"
+    },
+    {
+      "id": "t_ko_028",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "names_in_everyday_work",
+      "text": "{DATE}\n\n마라톤 조직 위원회 운영진 일동께\n\n올해 마라톤 행사를 성공적으로 진행하기 위해 다음과 같이 역할을 배치합니다:\n\n- 총괄: {P1}\n- 경로 관리: {P2}\n- 등록 담당: {P3}\n- 안전 관리: {P4}\n\n각자의 책임을 성실히 수행해주시기 바랍니다.\n\n감사합니다.\n{P1.s}"
+    },
+    {
+      "id": "t_ko_029",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "names_in_everyday_work",
+      "text": "자선단체 직원 명부\n\n직급,이름,연락처,부서,입사일\n단장,{P1},{P1.phone},행정,2020년\n기획자,{P2},{P2.phone},사업,2021년\n자원봉사 담당,{P3},{P3.phone},봉사,2022년\n홍보담당,{P4},{P4.phone},마케팅,2023년"
+    },
+    {
+      "id": "t_ko_030",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "criminal_record_or_victim",
+      "text": "인터뷰 기록\n면접자: {P1}\n직책: 레스토랑 관리자 채용 후보\n질문: 이전 경력에서 특이사항이 있으신가요?\n답변: 5년 전에 작은 분쟁이 있었지만 이미 해결되었습니다.\n면접관 메모: 법원 기록 확인 필요 - 2019년 사건 관련\n결정: 추가 조사 후 결정"
+    },
+    {
+      "id": "t_ko_031",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "contact_details",
+      "text": "레스토랑 예약 기록\n\n예약자: {P1}\n연락처: {P1.phone}\n이메일: {P1.email}\n예약일: {DATE}\n테이블: 4명\n특별 요청: 채식 메뉴, 알레르기 없음\n담당자: {P2.s}\n비고: 생일 파티 예정"
+    },
+    {
+      "id": "t_ko_032",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "일일 업무 일지 - {DATE}\n새로 온 근로자들이 있었다. {P1}도 도착했다. 서류 검증이 진행 중이다. 일을 먼저 배치했다."
+    },
+    {
+      "id": "t_ko_033",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "names_in_everyday_work",
+      "text": "공무원 채용 면접 기록\n날짜: {DATE}\n응시자: {P1}\n질문: 도시 개발 부서에서 당신의 역할은?\n답변: 저는 {P2.s} 팀장 아래에서 정책 수립을 보조하겠습니다.\n질문: 동료들과는 어떻게 협력할 건가요?\n답변: {P3.s}님, {P4.s}님과 함께 프로젝트를 진행하고 싶습니다."
+    },
+    {
+      "id": "t_ko_034",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "공지: {PUB}님이 {DATE}에 방문하셨습니다. VIP 시승 프로그램 진행. #유명인 #자동차"
+    },
+    {
+      "id": "t_ko_035",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "학생 개인 일지 - {DATE}\n오늘 학교에서 또 따돌림을 당했다. 선생님들은 내가 다른 학생들과 다르다는 것을 안다. 내 성적 정체성에 대해 아무도 말하지 않지만, 모두가 안다. {P1}는 나에게 좋지 않았고, {P2}는 무심했다. 혼자라는 생각이 든다."
+    },
+    {
+      "id": "t_ko_036",
+      "lang": "ko",
+      "sensitivity": "none",
+      "cell": "code_log_or_config",
+      "text": "제목: 시스템 설정\n발신: {ORG.email}\nLOG_LEVEL=\"info\"\nDATABASE=\"{CODE}\""
+    },
+    {
+      "id": "t_ko_037",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "names_in_everyday_work",
+      "text": "사건 보고서\n날짜: {DATE}\n장소: 자동차 딜러십\n사건: 시뮬레이션 운전 중 고객 불만\n고객: {P1}\n판매원: {P2}\n상황: 차량 설정 오류로 인한 혼동\n해결 담당자: {P3}\n결과: 고객 만족 확인"
+    },
+    {
+      "id": "t_ko_038",
+      "lang": "ko",
+      "sensitivity": "none",
+      "cell": "sensitive_topic_in_general",
+      "text": "공지: 환경 정책 브리핑\n우리 시에서는 기후 변화 대응을 위해 새로운 환경 정책을 수립했습니다. 자세한 내용은 시청 홈페이지에서 확인하세요. {DATE}"
+    },
+    {
+      "id": "t_ko_039",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "게임 커뮤니티 계정 조사 기록\n닉네임: {P1.handle}\n실명: {P1}\n국적: 기타 (출입국 기록 필요)\n비자 상태: 임시 체류\n보고 사유: 계정 정지 검토\n조사 담당자: {P2}\n날짜: {DATE}"
+    },
+    {
+      "id": "t_ko_040",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "{DATE}\n\n{P1}님께\n\n설문 참여 감사합니다.\n의견 유형: 진보적\n주제: 의료 접근성\n\n비공개 유지됩니다.\n\n연구팀"
+    }
+  ]
+}

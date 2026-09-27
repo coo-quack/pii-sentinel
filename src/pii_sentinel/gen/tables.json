@@ -1,0 +1,887 @@
+{
+ "PUBLIC": {
+  "ja": [
+   "野口英世",
+   "紫式部",
+   "坂本龍馬",
+   "織田信長",
+   "樋口一葉",
+   "福沢諭吉",
+   "宮沢賢治",
+   "葛飾北斎",
+   "芥川龍之介",
+   "清少納言"
+  ],
+  "zh": [
+   "李白",
+   "孔子",
+   "鲁迅",
+   "孙中山",
+   "杜甫",
+   "苏轼",
+   "屈原",
+   "司马迁",
+   "曹雪芹",
+   "王羲之"
+  ],
+  "ko": [
+   "세종대왕",
+   "이순신",
+   "유관순",
+   "안중근",
+   "김구",
+   "장영실",
+   "신사임당",
+   "정약용",
+   "허준",
+   "윤동주"
+  ],
+  "en": [
+   "Isaac Newton",
+   "Charles Darwin",
+   "Abraham Lincoln",
+   "William Shakespeare",
+   "Jane Austen",
+   "Florence Nightingale",
+   "Benjamin Franklin",
+   "Charles Dickens",
+   "Ada Lovelace",
+   "Winston Churchill"
+  ],
+  "fr": [
+   "Victor Hugo",
+   "Napoléon Bonaparte",
+   "Claude Monet",
+   "Louis Pasteur",
+   "Jeanne d'Arc",
+   "Molière",
+   "Voltaire",
+   "Édith Piaf",
+   "Paul Cézanne",
+   "Blaise Pascal"
+  ],
+  "it": [
+   "Leonardo da Vinci",
+   "Galileo Galilei",
+   "Dante Alighieri",
+   "Michelangelo Buonarroti",
+   "Cristoforo Colombo",
+   "Alessandro Volta",
+   "Giacomo Puccini",
+   "Raffaello Sanzio",
+   "Marco Polo",
+   "Antonio Vivaldi"
+  ],
+  "de": [
+   "Johann Sebastian Bach",
+   "Albert Einstein",
+   "Ludwig van Beethoven",
+   "Johann Wolfgang von Goethe",
+   "Friedrich Schiller",
+   "Immanuel Kant",
+   "Albrecht Dürer",
+   "Wilhelm Röntgen",
+   "Carl Friedrich Gauß",
+   "Hildegard von Bingen"
+  ],
+  "es": [
+   "Miguel de Cervantes",
+   "Pablo Picasso",
+   "Francisco de Goya",
+   "Diego Velázquez",
+   "Salvador Dalí",
+   "Federico García Lorca",
+   "Antoni Gaudí",
+   "Joan Miró",
+   "Isabel la Católica",
+   "Santiago Ramón y Cajal"
+  ]
+ },
+ "PUBLIC_T": {
+  "ja": [
+   "{PUB}は日本の歴史上の人物として広く知られている。",
+   "{PUB}の生涯を紹介する展示が{PLACE}の博物館で始まった。",
+   "授業で{PUB}の業績について学んだ。",
+   "{PUB}は今も多くの人に尊敬されている偉人です。"
+  ],
+  "zh": [
+   "{PUB}是中国历史上著名的人物。",
+   "介绍{PUB}生平的展览在{PLACE}博物馆开幕。",
+   "我们在课堂上学习了{PUB}的成就。",
+   "{PUB}至今仍受到许多人的尊敬。"
+  ],
+  "ko": [
+   "{PUB}은(는) 한국 역사상 널리 알려진 인물이다.",
+   "{PUB}의 생애를 소개하는 전시가 {PLACE} 박물관에서 시작되었다.",
+   "수업 시간에 {PUB}의 업적에 대해 배웠다.",
+   "{PUB}은(는) 지금도 많은 사람들에게 존경받는 위인이다."
+  ],
+  "en": [
+   "{PUB} is one of the best-known figures in history.",
+   "A new exhibition on the life of {PUB} opened at the museum in {PLACE}.",
+   "In class we learned about the achievements of {PUB}.",
+   "{PUB} (a historical figure) is still admired by many people today."
+  ],
+  "fr": [
+   "{PUB} est l'une des figures les plus célèbres de l'histoire.",
+   "Une exposition consacrée à la vie de {PUB} a ouvert au musée de {PLACE}.",
+   "En classe, nous avons étudié l'œuvre de {PUB}.",
+   "{PUB} reste aujourd'hui une figure admirée."
+  ],
+  "it": [
+   "{PUB} è una delle figure più celebri della storia.",
+   "Al museo di {PLACE} è stata inaugurata una mostra sulla vita di {PUB}.",
+   "A scuola abbiamo studiato le opere di {PUB}.",
+   "{PUB} è ancora oggi un personaggio molto ammirato."
+  ],
+  "de": [
+   "{PUB} gehört zu den bekanntesten Persönlichkeiten der Geschichte.",
+   "Im Museum in {PLACE} wurde eine Ausstellung über das Leben von {PUB} eröffnet.",
+   "Im Unterricht haben wir über das Werk von {PUB} gesprochen.",
+   "{PUB} wird bis heute von vielen bewundert."
+  ],
+  "es": [
+   "{PUB} es una de las figuras más conocidas de la historia.",
+   "En el museo de {PLACE} se inauguró una exposición sobre la vida de {PUB}.",
+   "En clase estudiamos la obra de {PUB}.",
+   "{PUB} sigue siendo una figura muy admirada hoy en día."
+  ]
+ },
+ "PUBLIC_BIO": {
+  "ja": [
+   "【人物】{PUB}は、今日でも教科書で取り上げられる歴史上の人物である。その業績は多くの研究者によって論じられてきた。"
+  ],
+  "zh": [
+   "【人物简介】{PUB}是至今仍出现在教科书中的历史人物，其成就被许多研究者讨论。"
+  ],
+  "ko": [
+   "[인물] {PUB}은(는) 오늘날에도 교과서에 등장하는 역사적 인물로, 그 업적은 많은 연구자들에 의해 논의되어 왔다."
+  ],
+  "en": [
+   "{PUB} is a historical figure still covered in school textbooks today. Historians have written extensively about the work and legacy of {PUB}."
+  ],
+  "fr": [
+   "{PUB} est une figure historique encore étudiée à l'école aujourd'hui. Les historiens ont beaucoup écrit sur son œuvre et son héritage."
+  ],
+  "it": [
+   "{PUB} è una figura storica ancora studiata a scuola. Gli storici hanno scritto molto sulla sua opera e sulla sua eredità."
+  ],
+  "de": [
+   "{PUB} ist eine historische Persönlichkeit, die bis heute im Schulunterricht behandelt wird. Historiker haben viel über Werk und Wirkung geschrieben."
+  ],
+  "es": [
+   "{PUB} es una figura histórica que todavía se estudia en la escuela. Los historiadores han escrito mucho sobre su obra y su legado."
+  ]
+ },
+ "BRANDS": [
+  "Claude",
+  "Alexa",
+  "Siri",
+  "Cortana",
+  "Gemini",
+  "Copilot",
+  "Watson",
+  "Tesla",
+  "Ford",
+  "Dell",
+  "Hamilton",
+  "Porsche",
+  "Ferrari",
+  "Chanel",
+  "Dior",
+  "Gucci",
+  "Armani",
+  "Honda",
+  "Suzuki",
+  "Yamaha",
+  "Toyota",
+  "Casio",
+  "Mercedes",
+  "Lincoln",
+  "Wendy's",
+  "Oscar-Mayer",
+  "Ben & Jerry's",
+  "Jordan"
+ ],
+ "BRAND_T": {
+  "ja": [
+   "毎日{BRAND}と{PRODUCT}を使っています。",
+   "{BRAND}の新モデルが{DAY}に発売されます。",
+   "{BRAND}に聞いたら天気を教えてくれた。",
+   "店頭で{BRAND}の製品を比較しました。"
+  ],
+  "zh": [
+   "我每天都用{BRAND}和{PRODUCT}。",
+   "{BRAND}的新款将于{DAY}上市。",
+   "我问了{BRAND}今天的天气。",
+   "我们在店里比较了{BRAND}的产品。"
+  ],
+  "ko": [
+   "매일 {BRAND} 제품과 {PRODUCT}를 사용합니다.",
+   "{BRAND} 신모델이 {DAY} 출시됩니다.",
+   "{BRAND} 앱에게 날씨를 물어봤다.",
+   "매장에서 {BRAND} 제품을 비교했습니다."
+  ],
+  "en": [
+   "I use {BRAND} and {PRODUCT} daily.",
+   "The new {BRAND} model goes on sale {DAY}.",
+   "I asked {BRAND} to set a timer for ten minutes.",
+   "We compared {BRAND} products at the store."
+  ],
+  "fr": [
+   "J'utilise {BRAND} et {PRODUCT} tous les jours.",
+   "Le nouveau modèle {BRAND} sort {DAY}.",
+   "J'ai demandé à {BRAND} de lancer un minuteur.",
+   "Nous avons comparé les produits {BRAND} en magasin."
+  ],
+  "it": [
+   "Uso {BRAND} e {PRODUCT} ogni giorno.",
+   "Il nuovo modello {BRAND} esce {DAY}.",
+   "Ho chiesto a {BRAND} di impostare un timer.",
+   "Abbiamo confrontato i prodotti {BRAND} in negozio."
+  ],
+  "de": [
+   "Ich nutze {BRAND} und {PRODUCT} jeden Tag.",
+   "Das neue {BRAND}-Modell erscheint {DAY}.",
+   "Ich habe {BRAND} gebeten, einen Timer zu stellen.",
+   "Wir haben im Laden Produkte von {BRAND} verglichen."
+  ],
+  "es": [
+   "Uso {BRAND} y {PRODUCT} todos los días.",
+   "El nuevo modelo de {BRAND} sale a la venta {DAY}.",
+   "Le pedí a {BRAND} que pusiera un temporizador.",
+   "Comparamos productos de {BRAND} en la tienda."
+  ]
+ },
+ "BARE_T": {
+  "ja": [
+   "折り返しは{PHONE}までお願いします。",
+   "私の携帯は{PHONE}です。",
+   "連絡先：{EMAIL}",
+   "個人アドレスは{EMAIL}です。"
+  ],
+  "zh": [
+   "请回电{PHONE}。",
+   "我的手机号是{PHONE}。",
+   "联系方式：{EMAIL}",
+   "我的个人邮箱是{EMAIL}。"
+  ],
+  "ko": [
+   "{PHONE}로 다시 연락 주세요.",
+   "제 휴대폰 번호는 {PHONE}입니다.",
+   "연락처: {EMAIL}",
+   "개인 메일은 {EMAIL}입니다."
+  ],
+  "en": [
+   "Call me at {PHONE}.",
+   "My cell is {PHONE}.",
+   "Contact: {EMAIL}",
+   "You can reach me at {EMAIL}."
+  ],
+  "fr": [
+   "Appelez-moi au {PHONE}.",
+   "Mon portable : {PHONE}",
+   "Contact : {EMAIL}",
+   "Écrivez-moi à {EMAIL}."
+  ],
+  "it": [
+   "Chiamami al {PHONE}.",
+   "Il mio cellulare è {PHONE}.",
+   "Contatto: {EMAIL}",
+   "Scrivimi a {EMAIL}."
+  ],
+  "de": [
+   "Ruf mich unter {PHONE} an.",
+   "Meine Handynummer: {PHONE}",
+   "Kontakt: {EMAIL}",
+   "Schreib mir an {EMAIL}."
+  ],
+  "es": [
+   "Llámame al {PHONE}.",
+   "Mi móvil es {PHONE}.",
+   "Contacto: {EMAIL}",
+   "Escríbeme a {EMAIL}."
+  ]
+ },
+ "REVIEW_T": {
+  "ja": [
+   "★★★★★ とても良い商品でした。{DAY}に届きました。（投稿者：{NICK}）",
+   "★★★☆☆ 普通です。レビュー by {NICK}"
+  ],
+  "zh": [
+   "★★★★★ 很好的产品，{DAY}就到了。（评价者：{NICK}）",
+   "★★★☆☆ 一般。用户 {NICK} 的评价"
+  ],
+  "ko": [
+   "★★★★★ 아주 좋은 제품이에요. {DAY} 도착했어요. (작성자: {NICK})",
+   "★★★☆☆ 보통이에요. 리뷰: {NICK}"
+  ],
+  "en": [
+   "★★★★★ Great product! Arrived {DAY}. Reviewed by '{NICK}'.",
+   "★★★☆☆ It's okay. — posted by {NICK}"
+  ],
+  "fr": [
+   "★★★★★ Excellent produit, livré {DAY}. Avis de « {NICK} »",
+   "★★★☆☆ Correct. Publié par {NICK}"
+  ],
+  "it": [
+   "★★★★★ Ottimo prodotto, arrivato {DAY}. Recensione di '{NICK}'",
+   "★★★☆☆ Discreto. Pubblicato da {NICK}"
+  ],
+  "de": [
+   "★★★★★ Tolles Produkt, kam {DAY} an. Bewertung von „{NICK}“",
+   "★★★☆☆ Ganz okay. Gepostet von {NICK}"
+  ],
+  "es": [
+   "★★★★★ Muy buen producto, llegó {DAY}. Reseña de «{NICK}»",
+   "★★★☆☆ Normal. Publicado por {NICK}"
+  ]
+ },
+ "NICK_A": [
+  "Tech",
+  "Happy",
+  "Blue",
+  "Coffee",
+  "Night",
+  "Lucky",
+  "Star",
+  "Ninja",
+  "Samurai",
+  "Pixel",
+  "Moon",
+  "Sunny",
+  "Retro",
+  "Urban"
+ ],
+ "NICK_B": [
+  "Cat",
+  "Fox",
+  "Rider",
+  "Gamer",
+  "Chef",
+  "Owl",
+  "Wolf",
+  "Panda",
+  "Hunter",
+  "Dreamer",
+  "Master",
+  "Fan"
+ ],
+ "INVOICE": {
+  "ja": [
+   "請求書",
+   "請求先",
+   "合計金額：¥"
+  ],
+  "zh": [
+   "发票",
+   "客户",
+   "合计金额：¥"
+  ],
+  "ko": [
+   "청구서",
+   "청구 대상",
+   "합계 금액: ₩"
+  ],
+  "en": [
+   "INVOICE",
+   "Billed to",
+   "Total due: $"
+  ],
+  "fr": [
+   "FACTURE",
+   "Facturé à",
+   "Montant total : €"
+  ],
+  "it": [
+   "FATTURA",
+   "Intestata a",
+   "Totale: €"
+  ],
+  "de": [
+   "RECHNUNG",
+   "Rechnungsempfänger",
+   "Gesamtbetrag: €"
+  ],
+  "es": [
+   "FACTURA",
+   "Facturado a",
+   "Importe total: €"
+  ]
+ },
+ "SENS_LISTS": {
+  "ja": {
+   "complaint": [
+    [
+     "ハラスメント苦情一覧",
+     "社内通報案件一覧"
+    ],
+    [
+     "セクシュアルハラスメント",
+     "パワーハラスメント",
+     "賃金未払いの申し立て",
+     "差別的言動の苦情",
+     "いじめの申告"
+    ]
+   ],
+   "disciplinary": [
+    [
+     "懲戒処分記録",
+     "人事処分一覧"
+    ],
+    [
+     "減給処分",
+     "出勤停止7日",
+     "譴責",
+     "諭旨解雇",
+     "降格処分"
+    ]
+   ],
+   "religion": [
+    [
+     "教会 会員名簿",
+     "寺院 檀家名簿",
+     "礼拝参加者一覧"
+    ],
+    [
+     "仏教",
+     "キリスト教",
+     "イスラム教",
+     "ユダヤ教",
+     "神道"
+    ]
+   ],
+   "arrest": [
+    [
+     "逮捕歴照会結果",
+     "前科記録"
+    ],
+    [
+     "窃盗で逮捕（2019年）",
+     "詐欺で有罪判決",
+     "傷害で書類送検",
+     "道路交通法違反で罰金刑"
+    ]
+   ]
+  },
+  "zh": {
+   "complaint": [
+    [
+     "骚扰投诉名单",
+     "员工投诉记录"
+    ],
+    [
+     "性骚扰",
+     "职场霸凌",
+     "拖欠工资投诉",
+     "歧视投诉",
+     "言语侮辱"
+    ]
+   ],
+   "disciplinary": [
+    [
+     "纪律处分记录",
+     "员工处分名单"
+    ],
+    [
+     "记过处分",
+     "停职七天",
+     "警告处分",
+     "降职",
+     "解除劳动合同"
+    ]
+   ],
+   "religion": [
+    [
+     "教会成员名单",
+     "寺庙信众名册"
+    ],
+    [
+     "佛教",
+     "基督教",
+     "伊斯兰教",
+     "天主教",
+     "道教"
+    ]
+   ],
+   "arrest": [
+    [
+     "犯罪记录查询结果",
+     "拘留记录"
+    ],
+    [
+     "因盗窃被拘留（2019年）",
+     "诈骗罪被判刑",
+     "故意伤害被起诉",
+     "醉驾被处罚"
+    ]
+   ]
+  },
+  "ko": {
+   "complaint": [
+    [
+     "괴롭힘 신고 명단",
+     "직원 고충 신고 목록"
+    ],
+    [
+     "성희롱",
+     "직장 내 괴롭힘",
+     "임금 체불 신고",
+     "차별 신고",
+     "폭언"
+    ]
+   ],
+   "disciplinary": [
+    [
+     "징계 처분 기록",
+     "인사 징계 명단"
+    ],
+    [
+     "감봉 3개월",
+     "정직 7일",
+     "견책",
+     "해고",
+     "강등"
+    ]
+   ],
+   "religion": [
+    [
+     "교회 교인 명부",
+     "사찰 신도 명단"
+    ],
+    [
+     "불교",
+     "개신교",
+     "천주교",
+     "이슬람교",
+     "원불교"
+    ]
+   ],
+   "arrest": [
+    [
+     "범죄 경력 조회 결과",
+     "체포 기록"
+    ],
+    [
+     "절도 혐의로 체포(2019년)",
+     "사기죄로 유죄 판결",
+     "폭행 혐의로 입건",
+     "음주운전으로 벌금형"
+    ]
+   ]
+  },
+  "en": {
+   "complaint": [
+    [
+     "Employees with complaints",
+     "Harassment complaints – Q3"
+    ],
+    [
+     "sexual harassment",
+     "bullying",
+     "wage theft",
+     "discrimination",
+     "verbal abuse"
+    ]
+   ],
+   "disciplinary": [
+    [
+     "Disciplinary actions log",
+     "HR sanctions register"
+    ],
+    [
+     "written warning",
+     "suspension (7 days)",
+     "final warning",
+     "demotion",
+     "dismissal"
+    ]
+   ],
+   "religion": [
+    [
+     "Members of the congregation",
+     "Parish membership list"
+    ],
+    [
+     "Catholic",
+     "Muslim",
+     "Jewish",
+     "Buddhist",
+     "Hindu"
+    ]
+   ],
+   "arrest": [
+    [
+     "Criminal record check results",
+     "Arrest records"
+    ],
+    [
+     "arrested for theft (2019)",
+     "convicted of fraud",
+     "charged with assault",
+     "DUI conviction"
+    ]
+   ]
+  },
+  "fr": {
+   "complaint": [
+    [
+     "Salariés ayant déposé une plainte",
+     "Plaintes pour harcèlement – T3"
+    ],
+    [
+     "harcèlement sexuel",
+     "harcèlement moral",
+     "salaires impayés",
+     "discrimination",
+     "insultes"
+    ]
+   ],
+   "disciplinary": [
+    [
+     "Registre des sanctions disciplinaires",
+     "Sanctions RH"
+    ],
+    [
+     "avertissement écrit",
+     "mise à pied (7 jours)",
+     "blâme",
+     "rétrogradation",
+     "licenciement"
+    ]
+   ],
+   "religion": [
+    [
+     "Membres de la paroisse",
+     "Liste des fidèles"
+    ],
+    [
+     "catholique",
+     "musulman",
+     "juif",
+     "protestant",
+     "bouddhiste"
+    ]
+   ],
+   "arrest": [
+    [
+     "Extrait de casier judiciaire",
+     "Antécédents judiciaires"
+    ],
+    [
+     "arrêté pour vol (2019)",
+     "condamné pour escroquerie",
+     "mis en examen pour violences",
+     "condamné pour conduite en état d'ivresse"
+    ]
+   ]
+  },
+  "it": {
+   "complaint": [
+    [
+     "Dipendenti con segnalazioni",
+     "Denunce di molestie – T3"
+    ],
+    [
+     "molestie sessuali",
+     "mobbing",
+     "stipendi non pagati",
+     "discriminazione",
+     "insulti"
+    ]
+   ],
+   "disciplinary": [
+    [
+     "Registro dei provvedimenti disciplinari",
+     "Sanzioni HR"
+    ],
+    [
+     "richiamo scritto",
+     "sospensione (7 giorni)",
+     "multa",
+     "retrocessione",
+     "licenziamento"
+    ]
+   ],
+   "religion": [
+    [
+     "Membri della parrocchia",
+     "Elenco dei fedeli"
+    ],
+    [
+     "cattolico",
+     "musulmano",
+     "ebreo",
+     "valdese",
+     "buddista"
+    ]
+   ],
+   "arrest": [
+    [
+     "Certificato del casellario giudiziale",
+     "Precedenti penali"
+    ],
+    [
+     "arrestato per furto (2019)",
+     "condannato per truffa",
+     "denunciato per lesioni",
+     "condannato per guida in stato di ebbrezza"
+    ]
+   ]
+  },
+  "de": {
+   "complaint": [
+    [
+     "Mitarbeitende mit Beschwerden",
+     "Belästigungsbeschwerden – Q3"
+    ],
+    [
+     "sexuelle Belästigung",
+     "Mobbing",
+     "ausstehender Lohn",
+     "Diskriminierung",
+     "Beleidigung"
+    ]
+   ],
+   "disciplinary": [
+    [
+     "Register der Disziplinarmaßnahmen",
+     "Abmahnungen"
+    ],
+    [
+     "Abmahnung",
+     "Suspendierung (7 Tage)",
+     "Verweis",
+     "Herabstufung",
+     "Kündigung"
+    ]
+   ],
+   "religion": [
+    [
+     "Mitglieder der Gemeinde",
+     "Liste der Gemeindemitglieder"
+    ],
+    [
+     "katholisch",
+     "evangelisch",
+     "muslimisch",
+     "jüdisch",
+     "buddhistisch"
+    ]
+   ],
+   "arrest": [
+    [
+     "Auszug aus dem Führungszeugnis",
+     "Vorstrafenregister"
+    ],
+    [
+     "festgenommen wegen Diebstahls (2019)",
+     "verurteilt wegen Betrugs",
+     "angezeigt wegen Körperverletzung",
+     "verurteilt wegen Trunkenheit am Steuer"
+    ]
+   ]
+  },
+  "es": {
+   "complaint": [
+    [
+     "Empleados con denuncias",
+     "Denuncias por acoso – T3"
+    ],
+    [
+     "acoso sexual",
+     "acoso laboral",
+     "salarios impagados",
+     "discriminación",
+     "insultos"
+    ]
+   ],
+   "disciplinary": [
+    [
+     "Registro de sanciones disciplinarias",
+     "Sanciones de RR. HH."
+    ],
+    [
+     "amonestación por escrito",
+     "suspensión de empleo (7 días)",
+     "sanción grave",
+     "degradación",
+     "despido"
+    ]
+   ],
+   "religion": [
+    [
+     "Miembros de la parroquia",
+     "Lista de fieles"
+    ],
+    [
+     "católico",
+     "musulmán",
+     "judío",
+     "evangélico",
+     "budista"
+    ]
+   ],
+   "arrest": [
+    [
+     "Certificado de antecedentes penales",
+     "Antecedentes policiales"
+    ],
+    [
+     "detenido por robo (2019)",
+     "condenado por estafa",
+     "denunciado por lesiones",
+     "condenado por conducir ebrio"
+    ]
+   ]
+  }
+ },
+ "SENS_GATE": {
+  "complaint": "hr_or_criminal_record",
+  "disciplinary": "hr_or_criminal_record",
+  "arrest": "hr_or_criminal_record",
+  "religion": "race_or_religion"
+ },
+ "SURNAME_ORG": {
+  "ja": [
+   "{s}商事株式会社",
+   "株式会社{s}工務店",
+   "{s}法律事務所"
+  ],
+  "zh": [
+   "{s}氏集团",
+   "{s}记餐饮有限公司",
+   "{s}家电器商行"
+  ],
+  "ko": [
+   "{s}앤컴퍼니",
+   "(주){s}건설",
+   "{s}씨네 식당"
+  ],
+  "en": [
+   "{s} & Partners",
+   "{s} Consulting Ltd",
+   "{s} Brothers Inc."
+  ],
+  "fr": [
+   "{s} et Fils",
+   "Cabinet {s}",
+   "{s} SARL"
+  ],
+  "it": [
+   "{s} S.r.l.",
+   "Studio {s}",
+   "Fratelli {s}"
+  ],
+  "de": [
+   "{s} GmbH",
+   "{s} & Söhne",
+   "Kanzlei {s}"
+  ],
+  "es": [
+   "{s} y Asociados",
+   "Hermanos {s} S.L.",
+   "Grupo {s}"
+  ]
+ }
+}

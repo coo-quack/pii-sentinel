@@ -1,0 +1,284 @@
+{
+  "templates": [
+    {
+      "id": "t_it_001",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "trade_union",
+      "text": "Intervista con {P1}\nRichiedente: Appartiene a un sindacato?\n{P1}: Sì, sono membro attivo della CGIL dal 2018."
+    },
+    {
+      "id": "t_it_002",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "code_log_or_config",
+      "text": "CONFIGURAZIONE SERVER - SISTEMA CENTRALE\n\nhost: api.embassy-console.it\nport: 8443\nprotocol: https\ntls_version: 1.3\ncipher_suite: TLS_AES_256_GCM_SHA384\nlog_level: INFO\nretry_attempts: 3\nretry_delay_ms: 1000\nmax_connections: 500\nconnection_timeout: 30s\nrequest_timeout: 60s\ndatabase: maindb\ndb_pool_size: 20\ndb_idle_timeout: 300s\nhealth_check_interval: 15s\nmetrics_enabled: true\nmetrics_port: 9090\nerror_logging: FULL\nauditing: ENABLED\ncache_ttl_seconds: 3600\ndefault_encoding: UTF-8\nmax_retry_backoff: 32s\nmin_retry_backoff: 100ms\nload_balancing_strategy: ROUND_ROBIN\nfailover_timeout: 5000ms\nstateful_routing: ENABLED\nsession_persistence: COOKIE_BASED"
+    },
+    {
+      "id": "t_it_003",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "financial_account_or_credentials",
+      "text": "MODULO PAGAMENTO COMUNALE\nNome: {P1}\nNumero carta di credito: {P1.card}\nData scadenza: 12/2026\nCVV: [HIDDEN]"
+    },
+    {
+      "id": "t_it_004",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Intervista sindacale - Verbale\nData: {DATE}\nIntervistato: {P1}\nIndirizzo email: {P1.email}\nHandle social media: {P1.handle}\nDescrizione: Si è discusso dei diritti dei lavoratori e delle strategie organizzative per il biennio futuro."
+    },
+    {
+      "id": "t_it_005",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "name_like_product_or_place",
+      "text": "Blog - Lezioni di lingua\n{DATE}\nOggi ho insegnato il vocabolario del cibo. I miei studenti adorano la sezione sugli ortaggi. Domani userò il libro 'Miller in Italia' come risorsa supplementare. La classe è molto entusiasta dei progressi e continua a partecipare attivamente."
+    },
+    {
+      "id": "t_it_006",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "government_id_number",
+      "text": "RICEVUTA - Ristorante Milano\n{DATE}\nCliente: {P1}\nNazione: Italia\nCodice documento nazionale: {P1.govid}\nImporto totale: {AMOUNT}\nMetodo di pagamento: Contante\nPiano: Terra\nTavolo numero: 7\nCoperti: 2\nOra arrivo: 20:00"
+    },
+    {
+      "id": "t_it_007",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "contact_details",
+      "text": "CONTATTI STAFF - Ristorante Centrale\n\n{P1} - Maître\n{P1.phone}\n{P1.email}\n\n{P2} - Chef\n{P2.phone}\n{P2.email}"
+    },
+    {
+      "id": "t_it_008",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "RAPPORTO INCIDENTE - Supermercato Nazionale\n\nData: {DATE}\nLuogo: Sezione alimenti surgelati\nDescuzione: Rottura di vetrina.\nContattare: {ORG.phone} o {ORG.email}"
+    },
+    {
+      "id": "t_it_009",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "genetic_or_biometric",
+      "text": "RICEVUTA SERVIZIO VISTI\nData: {DATE}\nRichiedente: {P1}\nServizio: Acquisizione dati biometrici\nImporto pagato: {AMOUNT}\nStato: Completato"
+    },
+    {
+      "id": "t_it_010",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "sensitive_topic_in_general",
+      "text": "Intervista presso la questura\nData: {DATE}\nOggetto: Indagine su furto in centro città\nIntervistatore: Maresciallo Rossi\nRisultato: L'indagato ha fornito informazioni utili sulla dinamica generale dei reati nella zona durante il periodo di cui sopra."
+    },
+    {
+      "id": "t_it_011",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "address_or_birthday",
+      "text": "RAPPORTO INCIDENTE - Compagnia Assicurativa Premium\n\nAssicurato: {P1}\nData di nascita registrata: {P1.dob}\nIndirizzo residenza: {P1.addr}\nData evento sinistro: {DATE}\nTipo di danno: Danno alla proprietà\nLuogo: Abitazione principale"
+    },
+    {
+      "id": "t_it_012",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "sensitive_topic_in_general",
+      "text": "AVVISO IMPORTANTE - Partito Democratico Regionale\n\nCari sostenitori,\nVi invitiamo al convegno di {DATE} presso la sede di Roma in via Nazionale 35. Discuteremo questioni rilevanti per il futuro della comunità e della regione. L'evento affronterà tematiche di interesse generale secondo il programma stabilito dalla dirigenza nazionale. Registrazione online tramite il sito ufficiale della piattaforma digitale.\n\nProgramma dettagliato disponibile su richiesta presso la segreteria della sezione provinciale durante gli orari di apertura, dalle ore 9 alle ore 18 dal lunedì al venerdì. Accoglienza con caffè alle 14:30."
+    },
+    {
+      "id": "t_it_013",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "government_id_number",
+      "text": "AVVISO DI CANDIDATURA - StartUp Tech Italia\n\nConsigliamo ai candidati di fornire:\n- Nome completo: {P1}\n- Documento identificativo: {P1.govid}\n- Email: {P1.email}"
+    },
+    {
+      "id": "t_it_014",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "neutral_roster",
+      "text": "CANTIERE CENTRALE - Personale Presente {DATE}\n\n{P1} - Caposquadra incaricato\n{P2} - Operaio specializzato in muratura\n{P3} - Apprendista primo anno\n{P4} - Supervisore della sicurezza\n\nTurno: Mattutino (7:00-15:00)\nProgetto: Ristrutturazione edificio commerciale"
+    },
+    {
+      "id": "t_it_015",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "BIGLIETTO AEREO - Rotte Europee\n\nPasseggero: {P1}\nIndirizzo IP al momento della prenotazione: {P1.ip}\nDate viaggio: {DATE}\nDestinazione: Milano"
+    },
+    {
+      "id": "t_it_016",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "NOTE DI GARA - Calcio Serie A\n\nData: {DATE}\nSquadra ospite: AS Roma\nCapitano: {PUB}\nNote: Giocatore di spicco della squadra, prestazione importante nel primo tempo."
+    },
+    {
+      "id": "t_it_017",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "sensitive_topic_in_general",
+      "text": "RIUNIONE COOPERATIVA AGRICOLA\n\n{DATE}\n\nTopic: Strategie di coltivazione sostenibile. Discussione sui metodi tradizionali e innovativi per aumentare la resa produttiva nella prossima stagione."
+    },
+    {
+      "id": "t_it_018",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "AVVISO - Scuola Lingue\n\nCaro {P1},\nLa scuola osserverà festività religiose."
+    },
+    {
+      "id": "t_it_019",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "contact_details",
+      "text": "MODULO CANDIDATURA - Agenzia di Reclutamento\n\nNome: {P1}\nTelefono: {P1.phone}\nEmail: {P1.email}\nData di nascita: {P1.dob}\nIndirizzo: {P1.addr}\nPosizione ricercata: Impiegato amministrativo specializzato"
+    },
+    {
+      "id": "t_it_020",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "deceased_person",
+      "text": "Intervista presso l'ambasciata\nData: {DATE}\nOggetto: Ricerca storica e archivistica\nPersona discussa: {DEAD} (nato {DEAD.born}, morto {DEAD.died})\nContesto: Indagine su documenti storici conservati in archivio nazionale"
+    },
+    {
+      "id": "t_it_021",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "RICEVUTA - Biobanca di Ricerca\n\nData: {DATE}\nContatto pubblico: {PUB}\nScopo: Referente per campagna di sensibilizzazione medica e sanitaria\nImporto ricevuto: {AMOUNT}\nTipo di donativo: Supporto fundraising"
+    },
+    {
+      "id": "t_it_022",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "RAPPORTO INCIDENTE - Hotel Central\n\nData: {DATE}\nGiorno: Domenica\nCliente: {P1}\nDescrizione: Cliente ha richiesto cambiamento stanza per esigenze religiose specifiche. Richiesta accolta."
+    },
+    {
+      "id": "t_it_023",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "genetic_or_biometric",
+      "text": "ELENCO CONTROLLI - Ufficio Sindacale\n\n{P1} - Controllo medico eseguito {DATE}\n{P2} - Visita specialistica programmata\n{P3} - Analisi in corso\n{P4} - Follow-up prenotato"
+    },
+    {
+      "id": "t_it_024",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "COMUNICATO UFFICIALE - Calcio Club Nazionale {DATE}\n\nCaro {P1},\n\n{P1} annuncia pubblicamente di identificarsi come membro della comunità LGBTQ+. La società sostiene pienamente e attivamente l'inclusione di tutti i suoi giocatori e dipendenti."
+    },
+    {
+      "id": "t_it_025",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "trade_union",
+      "text": "REGISTRO PRESENZE - Casa di Riposo San Marco {DATE}\n\n08:00 - {P1} - Riunione sindacale\n09:30 - {P2} - Turno regolare\n14:00 - {P3} - Assemblea\n16:00 - {P4} - Turno regolare\nNota: Tutti i dettagli registrati"
+    },
+    {
+      "id": "t_it_026",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "precise_location",
+      "text": "RAPPORTO INCIDENTE - Studio Cinematografico {DATE}\n\nLuogo girato: Palazzo Strozzi\nCoordinate GPS riprese: {GPS}\nPersonale coinvolto: {P1}\nNota: Accesso limitato all'area riprese.\nAutorizzazioni: Verificate"
+    },
+    {
+      "id": "t_it_027",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "contact_details",
+      "text": "STAFF AEROPORTO - Contatti Emergenza\n\n{P1} - Gate Control - {P1.phone}\n{P2} - Customer Service - {P2.phone}\n{P3} - Security - {P3.phone}"
+    },
+    {
+      "id": "t_it_028",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "financial_account_or_credentials",
+      "text": "MEMORANDUM - Comune di Firenze\n\nData: {DATE}\nOggetto: Autorizzazione accesso risorse finanziarie\nPersonale autorizzato: {P1}\nPassword temporanea: {PW}\nCredenziali bancarie archiviate: {P1.bank}\nValidità: 30 giorni\nRinnovo: Su richiesta scritta"
+    },
+    {
+      "id": "t_it_029",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "code_log_or_config",
+      "text": "MODULO CONFIGURAZIONE - Questura Centrale\n\nsystem_id: PQ_2024\nversion: 3.2.1\nlog_retention_days: 90\nbackup_interval_hours: 24\nencryption_key_rotation_days: 180\napi_rate_limit: 1000/min\ndebug_mode: disabled"
+    },
+    {
+      "id": "t_it_030",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "names_in_everyday_work",
+      "text": "LOG TRANSAZIONI - Banca Centrale {DATE}\n\n09:15 - {P1} - Apertura cassa\n10:30 - {P2} - Assistenza clienti\n13:45 - {P3} - Chiusura turno pomeridiano\n15:20 - {P4} - Operazioni speciali\nNote: Tutte le transazioni regolari"
+    },
+    {
+      "id": "t_it_031",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "NOTA ACCESSO - Palestra Repubblica {DATE}\n\nMembro: {P1}\nRichiesta speciale: Accesso sala preghiera privata durante gli orari di apertura\nAutorizzazione: Approvata\nValidità: Permanente per la durata dell'iscrizione"
+    },
+    {
+      "id": "t_it_032",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "race_or_ethnic_origin",
+      "text": "EMAIL - Ente Carità San Giuseppe\n\nA: {P1.email}\nOggetto: Programma supporto comunità\n\nLe comunità di origine particolare hanno accesso prioritario."
+    },
+    {
+      "id": "t_it_033",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "address_or_birthday",
+      "text": "EMAIL - Comunità di Gioco Online\n\nA: {P1.email}\nOggetto: Conferma registrazione\n\nGrazie! Il tuo account è stato creato.\nData di nascita confermata: {P1.dob}\nIndirizzo: {P1.addr}"
+    },
+    {
+      "id": "t_it_034",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "DIARIO PERSONALE - {DATE}\n\nOggi ho incontrato {PUB} presso la banca centrale. È interessante seguire le sue iniziative pubbliche e il suo impatto nella comunità finanziaria."
+    },
+    {
+      "id": "t_it_035",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "DIARIO PERSONALE - {DATE}\n\nHeading: Note sulla vita politica\nHo riflettuto sui temi affrontati dalle organizzazioni. Per informazioni, uno può contattare {ORG.email}."
+    },
+    {
+      "id": "t_it_036",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "statistics_or_news_without_people",
+      "text": "RIUNIONE CONSIGLIO - Casa di Riposo San Marco\n\nData: {DATE}\nArgomento: Statistiche di occupazione\n\nTasso di occupazione: 85%\nPosti disponibili: 15\nMedia ricoveri giornalieri: 68\nStrutture mediche: 3"
+    },
+    {
+      "id": "t_it_037",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "sensitive_topic_in_general",
+      "text": "Intervista a City Hall - {DATE}\n\nIntervistatore: Segretario comunale\nArgomento: Questioni di diritto civile e policy pubblica\n\nLa discussione ha riguardato argomenti di interesse generale senza identificare persone specifiche."
+    },
+    {
+      "id": "t_it_038",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "names_in_everyday_work",
+      "text": "EMAIL - Parrocchia di San Pietro\n\nA: Volontari\nOggetto: Progetto comunità prossima settimana\n\nCari {P1}, {P2}, {P3}, {P4},\n\nGrazie per il vostro impegno volontario continuo nella nostra comunità. Abbiamo bisogno di aiuto nelle seguenti aree per la prossima settimana:\n- Supporto distribuzione viveri ({P1})\n- Preparazione spazi ({P2})\n- Coordinamento visite ({P3})\n- Accoglienza ospiti ({P4})\n\nPer domande e informazioni dettagliate, contattate il coordinatore presso gli uffici di segreteria durante l'orario lavorativo ufficiale. Ringraziamo sinceramente del vostro supporto continuato e della dedizione verso la nostra missione."
+    },
+    {
+      "id": "t_it_039",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "ELENCO ACCESSO - Museo Nazionale {DATE}\n\nProgramma Speciale\n\n{P1} - Categoria A accesso prioritario\n{P2} - Categoria B accesso regolare\n{P3} - Categoria C accesso speciale\n{P4} - Categoria D accesso assistito\n\nNota: Partecipazione registrata ufficialmente"
+    },
+    {
+      "id": "t_it_040",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "financial_account_or_credentials",
+      "text": "LETTERA - Agenzia di Reclutamento Milano\n\nCaro {P1},\n\nLa informiamo che abbiamo processato la vostra domanda. Numero conto per versamento {P1.bank} e carta di credito {P1.card} registrati nel sistema.\n\nCordiali saluti"
+    }
+  ]
+}

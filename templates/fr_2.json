@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_fr_041",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "{P1}|1968|Fraude|FR-PA-078\n{P2}|1992|Vol|FR-PN-085\n{P3}|1977|Menace|FR-PT-054"
+  },
+  {
+   "id": "t_fr_042",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "Journal 12/11\n\nJournée difficile. Les bruits courent sur les réductions budgétaires."
+  },
+  {
+   "id": "t_fr_043",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "Réunion 14 novembre\nMembres: {P1}, {P2}, {P3}\nThème: Recrutement international\nNotes:\n• Candidatures: {CODE} nationalités différentes\n• Discussion intégration culturelle\n• Critères sportifs comme priorité unique"
+  },
+  {
+   "id": "t_fr_044",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "Signalement d'incident - Chantier Montfermeil\n\nDate: 17 septembre\nNom du salarié: {P1}\nType d'accident: Chute d'échelle\nTests médicaux: Analyse ADN effectuée\nRésultats: Prédisposition aux thromboses confirmée lors du dépistage génétique\nScanner: Résultats normaux\nRecommandation: Sortie long terme\nDate de retour: À déterminer après réévaluation génétique\nDocumentaire: Fiche empreintes digitales pour traçabilité de site incluse\nSignature superviseur: _______\n\nLe test génétique a révélé des risques héréditaires nécessitant un suivi médical renforcé. Cette information sensible doit rester confidentielle et ne pas être divulguée aux autres employés sans consentement explicite de l'intéressé."
+  },
+  {
+   "id": "t_fr_045",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "Coordonnées du personnel - Labo L3\n\nResponsable: {P1.s}, né(e) {P1.dob}\nAdresse: {P1.addr}\n\nTechnicien: {P2.s}, né(e) {P2.dob}\nAdresse: {P2.addr}\n\nTechnicien: {P3.s}, né(e) {P3.dob}\nAdresse: {P3.addr}\n\nTechnicien: {P4.s}, né(e) {P4.dob}\nAdresse: {P4.addr}\n\nAccès aux locaux réservé au personnel autorisé. En cas d'urgence, veuillez contacter la direction du laboratoire. Mise à jour annuelle en septembre. Les changements d'adresse doivent être signalés à RH sous {CODE} heures. Numéro d'urgence {CODE}h: {P1.phone}. Procédure d'évacuation: voir affichage aux portes des locaux. Plan d'accès détaillé en salle de repos."
+  },
+  {
+   "id": "t_fr_046",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "Samedi 3 octobre\n\nJ'ai appelé la maîtresse ce matin pour parler de la sortie scolaire. {P1} a dit que tout est arrangé. Elle m'a donné deux contacts en cas d'urgence: {P2.phone} (mère) et {P3.phone} (père). Les enfants partent à 8h demain."
+  },
+  {
+   "id": "t_fr_047",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "Lettre\n\nMerci de votre intérêt. Contactez-nous: support@{ORG}.com ou {ORG.phone}."
+  },
+  {
+   "id": "t_fr_048",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "Lettre de recommandation\n\nCher ami,\n\nJe vous écris au sujet de {P1}. Son implication dans l'incident de 2019 - vol à main armée - n'a jamais été formellement prouvée, bien que le procès ait eu lieu. Il a purgé sa peine et s'est réinséré progressivement depuis.\n\nConcernant {P2}, victime de cambriolage en 2021, elle se rétablit après cette épreuve traumatisante. Son cautionnement pénal a expiré normalement.\n\nRegardant {P3}, antécédents judiciaires impliquant abus de confiance dans contexte professionnel. Rédemption parcours montré.\n\nCes trois parcours méritent une seconde chance face aux critères de sélection rigoureux que vous avez établis. Leur volonté de changement est manifeste et sincère.\n\nBonne réflexion,\n{P4.s}"
+  },
+  {
+   "id": "t_fr_049",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "Vendredi 15h\n\nVu à la conférence d'aujourd'hui: {PUB} était en train de parler du lancement de leur nouveau produit. Très intéressant comme d'habitude. Hâte de voir les résultats en bourse mois prochain."
+  },
+  {
+   "id": "t_fr_050",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "Identifiants d'accès - Maternelle Soleil\n\nCompte classe A:\nLogin: {P1.s}_{AMOUNT}\nMot de passe: {PW}\n\nCompte classe B:\nLogin: {P2.s}_{CODE}\nMot de passe classe B: stockée de façon sécurisée"
+  },
+  {
+   "id": "t_fr_051",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "Formulaire de renseignements\n\nNom: {P1}\nDate de naissance: {P1.dob}\nAdresse actuelle: {P1.addr}\nTéléphone: {P1.phone}"
+  },
+  {
+   "id": "t_fr_052",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "sex_life_or_orientation",
+   "text": "Note interne - Gestion de séjour\n\nClient: {P1}\nNuméro de réservation: {CODE}\nDate d'arrivée: {DATE}\nDate de départ: {DATE}\nChambre: {CODE}\n\nNotes spéciales: Couple de même sexe demande discrétion absolue. Arrangement spécial effectué. Lit king-size confirmé. Service étage renforcé. Accès privatisé proposé et accepté. WiFi privé: {PW}. Notification à la chambre au moment du check-in prévu. Recourir à concierge personnalisé pendant séjour. Facturation discrétionnaire prévue.\n\nLiaison: Jacqueline Morel\nDate: 8 octobre\nCe client a des besoins particuliers en matière de confidentialité et d'accès aux services de l'hôtel."
+  },
+  {
+   "id": "t_fr_053",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "Journal {CODE}:{CODE}|{P1}|Dialyse\n{CODE}:{CODE}|{P2}|Repos\n{CODE}:{CODE}|{P3}|Visite fam\n{CODE}:{CODE}|{P4}|Dialyse\n{CODE}:{CODE}|{P1}|Post-trait\n{CODE}:{CODE}|{P3}|Repas"
+  },
+  {
+   "id": "t_fr_054",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "Rapport d'incident\n\nDate: 12 septembre\nType: Compromission de données\nAffecté: {P1.s}\nNuméro de compte bancaire exposé: {P1.bank}\nAction: Compte gelé temporairement"
+  },
+  {
+   "id": "t_fr_055",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "Avis de réunion\n\nLes délégués syndicaux CGT de la coopérative agricale se réuniront mardi {DATE} à {CODE}h à la salle communale. Représentants: {P1}, {P2}. Ordre du jour:\n- Négociation salariale des saisonniers\n- Conditions de travail\n- Adhésions syndicales en hausse\n\nTous les syndiqués de la région invités."
+  },
+  {
+   "id": "t_fr_056",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "Identifiants des propriétaires\n\n{P1.s}: Numéro SIRET {P1.govid}\n{P2.s}: Numéro SIRET {P2.govid}\n{P3.s}: Numéro SIRET {P3.govid}"
+  },
+  {
+   "id": "t_fr_057",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "name_like_product_or_place",
+   "text": "Note de labo\n\nProduits testés aujourd'hui:\n- Alpha-2000 (nouveau composé)\n- Béta-series (reformulation)\n- Mitchell Essentials (marque partenaire)\nRésultats en attente."
+  },
+  {
+   "id": "t_fr_058",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "Rapport d'incident\n\nDate: 5 novembre\nAgent: {P1.s}\nIncident: Absence prolongée sans notification\nDernière localisation: {GPS}\nHeure du rapport: {CODE}h{CODE}\nStatut: Recherche activée\nContact d'urgence: {P1.phone}\nÉvaluation de risque: modérée\nProtocole: Alerter la direction immédiatement"
+  },
+  {
+   "id": "t_fr_059",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "sex_life_or_orientation",
+   "text": "Ticket - Restaurant Le Prieuré\n\nRéservation: {P1}\nDate: {DATE} à {CODE}h\nCouverts: {CODE}\nNote serveur: \"Couple du même sexe. Très discrets. Excellente ambiance. Service personnalisé apprécié.\"\nMenu: Formule dégustation {AMOUNT}"
+  },
+  {
+   "id": "t_fr_060",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "Facture fournitures\n\nVendeur: {P1.s}\nClients: École primaire\nDate: {DATE}\nArticles: Cahiers 96p ({CODE}), Stylos bleu ({CODE} boîtes), Crayons couleur ({CODE} boîtes)\nMontant total: {AMOUNT}"
+  },
+  {
+   "id": "t_fr_061",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "Hôtel - Mise à jour profil client\n\n{P1} a indiqué lors du check-in que son visa de séjour a expiré la semaine dernière. Statut actuel: dépassement de délai. Signalement effectué à la direction. Client conscient et à la recherche d'une solution. Réservation suspendue en attente de régularisation. Autorités notifiées le {DATE}."
+  },
+  {
+   "id": "t_fr_062",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "Chat interne\n\nAgent A: Tu as vu les nouvelles règles de sélection?\nAgent B: Bien sûr, c'est pour favoriser recrutements diversifiés\nAgent A: Clients chinois disent que c'est bien qu'on considère l'origine ethnique maintenant\nAgent B: Faut pas faire de discrimination l'autre sens\nAgent A: {P1} a candidaté, il est maghrébin, bon profil"
+  },
+  {
+   "id": "t_fr_063",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "Rapport\n\nDate: 23 octobre\nSujet: Incident vestiaire {P1}\nObservation: Affiche pro-gouvernementale dans casier. Photos circulant montrant positions politiques de droite. Aucune violation de règlement."
+  },
+  {
+   "id": "t_fr_064",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "Log système\n{CODE}:{CODE}|Accès refusé|{P1.s}|Visa non valide\n{CODE}:{CODE}|Notification|Service immigration|Employé sans autorisation\n{CODE}:{CODE}|Signalement|Préfecture|Dossier archivé\n{CODE}:{CODE}|Vérification|Passeport expiré confirmé\n{CODE}:{CODE}|Rapport|Administration|Notification légale envoyée"
+  },
+  {
+   "id": "t_fr_065",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "Facture hôtel\n\nClient: {P1.s}\nAdresse: {P1.addr}\nTéléphone: {P1.phone}\nEmail: {P1.email}\nNuit 1 (chambre {CODE}): {AMOUNT}\nNuit 2 (chambre {CODE}): {AMOUNT}\nPetit-déjeuner (x{CODE}): {AMOUNT}\nService voiturier: {AMOUNT}\nTaxe de séjour: {AMOUNT}\nFrais de nettoyage: {AMOUNT}\nAssurance: {AMOUNT}\nDépôt de garantie restitué\nMontant total: {AMOUNT}\n\nMerci de votre séjour à l'Hôtel du {PLACE}. Nous espérons vous accueillir à nouveau très bientôt et restons à votre disposition pour toute question supplémentaire concernant votre facturation ou votre expérience dans notre établissement. Nos meilleurs vœux pour votre prochaine visite dans la région."
+  },
+  {
+   "id": "t_fr_066",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "Rapport incident système\n\nDate: {DATE}\nSevérité: Basse\nErreur: timeout_max_connection = {CODE}\nValeur recommandée: {AMOUNT}\nSolution: Paramètre augmenté\nVérification: Complète"
+  },
+  {
+   "id": "t_fr_067",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "private_messages_of_others",
+   "text": "Facture des services professionnels\n\nClient: {ORG}\nDate: {DATE}\n\nCorrespondances collectées depuis email {P1.email}:\n\n- Message de {P2} ({DATE}): \"Problèmes familiaux graves, demande congé maladie\"\n- Réponse de {P1} ({DATE}): \"OK tu as mon soutien total, garde courage\"\n- Email de {P3} ({DATE}): \"Situation difficile à gérer avec les enfants, compliqué\"\n- Message de {P4} ({DATE}): \"Comment tu vas? Besoin d'aide?\"\n- Réponse de {P3} ({DATE}): \"Pas envie d'en parler mais merci du soutien\"\n- Message de {P2} ({DATE}): \"Appelle-moi quand tu peux, je suis là\"\n\nService: Audit de conformité \nCopies d'écran jointes ({CODE} pages)\nTotal: {AMOUNT}"
+  },
+  {
+   "id": "t_fr_068",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "Blog - Voyage en Provence\n\nJour 1 (Samedi):\nArrêt à {PLACE}. Chez mon ami {P1.s}. On peut le joindre au {P1.phone} ou par mail {P1.email}. La vue sur la vallée est magnifique.\n\nJour 2:\nRandonnée avec {P2}. Numéro d'urgence: {P2.phone}. Il m'a servi un excellent repas maison. {P3.s} était aussi là, joignable au {P3.phone}. Encore une belle journée!\n\nJour 3:\nVisite au marché de {PLACE}. {P4.s} nous a guidés, contactable au {P4.phone}. Retrouvé des vieilles connaissances.\n\nJour 4 (Mercredi):\nRetour prévu {DATE}. Route longue mais mémorable.\n\nMerci à tous ceux qui ont rendu ce voyage inoubliable! Vraiment une belle expérience à recommander."
+  },
+  {
+   "id": "t_fr_069",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "Conversation\n\n- Au fait, tu as lu l'article sur {DEAD}?\n- Non, de qui tu parles?\n- {DEAD}, le compositeur. Il y a un documentaire maintenant.\n- Ah oui? Il est mort quand?\n- En {DEAD.died}, ça fait longtemps. Je recommande le film."
+  },
+  {
+   "id": "t_fr_070",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "Formulaire d'antécédents\n\nCandidature: Figurant\nNom: {P1}\nAntécédents: Condamné pour violence\nDurée: {CODE} ans\nAmnistie: Non"
+  },
+  {
+   "id": "t_fr_071",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "Note - Contrôle d'accès\n\nClient: {P1}\nScannage empreinte: Refusé\nMotif: Correspondance génétique détectée avec base Europol\nAction: Notification sécurité"
+  },
+  {
+   "id": "t_fr_072",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "Avis de sécurité\n\nSite:\nIP: {P1.ip}\nIdentifiant: {P1.handle}\nMotif: Tentative brute-force détectée\nRésolution: Compte suspendu {CODE}h"
+  },
+  {
+   "id": "t_fr_073",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "Réunion de direction\n\n{DATE}, {CODE}h\n\nOrdre du jour:\n- Impact demandes syndicales\n- Représentants: {P1}, {P2}\n- Demandes: Augmentation {AMOUNT}, réduction horaire saisonniers\n- Position patronale: À étudier\n- Prochaine réunion: {DATE}"
+  },
+  {
+   "id": "t_fr_074",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "Mémo - Cabinet dentaire\n\nPatient: {P1.s}\nTéléphone: {P1.phone}\nEmail: {P1.email}\nAvis: Retard {AMOUNT} semaines confirmé"
+  },
+  {
+   "id": "t_fr_075",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "Entretien manager\n\nQ: Décrivez votre poste chez {ORG}?\nR: J'étais {P1.job} pendant {CODE} ans. {AMOUNT} clients gérés/mois. Satisfaction: {CODE}%."
+  },
+  {
+   "id": "t_fr_076",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "Dossier disciplinaire\n\nSalarié: {P1.s}\nDate: {DATE}\nMotif: Harcèlement sexuel\nTémoins: {CODE} employés\nRésolution: Suspension {CODE} jours, formation obligatoire\nSignature RH: __________"
+  },
+  {
+   "id": "t_fr_077",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "private_messages_of_others",
+   "text": "Messages sauvegardés\nDe: {P1.s}\nVers: {P2.s}\nContenu: Projet de revendre véhicule\n\nRéponse de {P2.s}: Attendre quelques mois pour meilleur tarif\n\nConfirmation {P1.s}: Bonne stratégie à suivre\n\nProposition {P2.s}: Discussion jeudi matin convient?"
+  },
+  {
+   "id": "t_fr_078",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "Lettre\n\nCher {P1.s},\n\nVoici la liste des participants à la finale du tournoi:\n{P2.s}, {P3.s}, {P4.s}, {P1.s}\n\nCongratulations à tous les athlètes d'avoir atteint cette étape! Vous représentez les meilleures performances de la saison.\n\nCordialement,\nLa direction du tournoi"
+  },
+  {
+   "id": "t_fr_079",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "Entretien client\n\nAgent: Parlez-nous de votre dernière transaction immobilière?\nClient {P1.s}: Oui, achat en {DATE} pour {AMOUNT}. Bien situé à {PLACE}. Financement sur {CODE} ans. Propriétaire depuis. Très satisfait de l'agence et du processus complet."
+  },
+  {
+   "id": "t_fr_080",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "Dossier d'enregistrement - Marathon annuel\n\nDossier:\n{P1.s}\nDate de naissance: {P1.dob}\nNuméro de participant: {CODE}\nNuméro national d'identité: {P1.govid}\nAdresse: {P1.addr}\nEmail: {P1.email}\nCatégorie: Senior\nDossier médical: OK\nAssurance: OK\nNotes: Allergie arachides - notifier logistique\nTemps estimé: {AMOUNT} minutes\nStade de départ: {PLACE}\nContact d'urgence: {P2.phone}\nTaille maillot: L\nChaussures: Taille {CODE}\nSignature: _____ Date: {DATE}\nConfirmation: Salarié engagé comme assistant médical. Route: {PLACE} → {PLACE}. Ravitaillement tous les {CODE} km. Transport fourni après l'arrivée."
+  }
+ ]
+}

@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_ja_081",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "件名：プロジェクトスケジュールについて\n\n{P1}さんへ\n\n今週のスプリント計画会議の時間を変更させていただきたいのですが、金曜日の午後は都合が付きますでしょうか？現在の時間帯では宗教的な理由で参加が難しくなってしまいました。別の時間帯でのご調整をいただけると幸いです。\n\n何かご不明な点がございましたら、お気軽にお問い合わせください。"
+  },
+  {
+   "id": "t_ja_082",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "診療明細書\n\n患者名：{P1}\n診療日：{DATE}\n\n診療内容：\n- 初診カウンセリング\n- 宗教上の理由による特別な配慮に関する相談（豚由来成分、アルコール含有製品の確認）\n- 歯周ポケット測定\n\n合計金額：5,500円"
+  },
+  {
+   "id": "t_ja_083",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "2026年9月28日\n\n今日は{P1}と{P2}とチーム会議。新しいフィーチャーの実装について話し合った。{P1}の提案は本当に参考になった。"
+  },
+  {
+   "id": "t_ja_084",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "支援プログラム申込書\n\n申込者名：{P1}\nご連絡先：{P1.phone}\nご住所：{P1.addr}\n\n■ 人種・民族的背景について\n申込者の人種・民族的背景：アジア系\n生まれた国・地域：{PLACE}\n第一言語：日本語\n両親の民族的背景：{PLACE}系\n現在のご住所：{P1.addr}\n家族構成：配偶者あり、子ども2名\n\n■ 本プログラムでの支援希望分野\nチェック項目：言語教室、文化交流の場の提供、生活相談、子どもの教育支援\n\n特別なご要望：\n{PLACE}語での資料提供を希望します。今後の活動に向けて、きめ細やかなサポートをいただきたく存じます。また、子どもたちの学校生活での困りごとについても、相談したいと考えています。"
+  },
+  {
+   "id": "t_ja_085",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "事件番号：{CODE}\n被害者IP：{P1.ip}\nアクセス時刻：{DATE}\n\n報告内容：SNS投稿による誹謗中傷事件の受理"
+  },
+  {
+   "id": "t_ja_086",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "会議録（{DATE}）\n\n出席者：{P1}、{P2}\n\n{P1}から報告：現在、心臓病の治療中のため、体調の制限がある旨を事務所に伝えた。今後の活動予定の調整が必要となる可能性。"
+  },
+  {
+   "id": "t_ja_087",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "領事館ビザ審査部門スタッフ一覧\n\n窓口1：{P1}\n窓口2：{P2}\n窓口3：{P3}\n受付：{P4}"
+  },
+  {
+   "id": "t_ja_088",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "件名：お問い合わせ窓口のご案内\n\n施設利用者および関係者の皆様へ\n\n当老健施設へのご質問やご相談は、以下の連絡先までお気軽にお問い合わせください。\n\n電話：{ORG.phone}\nメール：{ORG.email}\n受付時間：平日9:00～18:00\n定休日：土日祝日\n\nお忙しいところご連絡いただくこともあるかと思いますが、何かご不明な点やご要望がございましたら、いつでもお気軽にお声がけください。施設職員一同、皆様のご利用をお待ち申し上げております。ご不便の点は遠慮なくお伝えください。\n\nご家族様からのご相談や、リハビリテーション、栄養管理に関するご質問もお受けしております。詳細なご説明や見学のご希望も、随時対応させていただきます。"
+  },
+  {
+   "id": "t_ja_089",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "件名：新商品発表\n\n営業部へ\n\n{PUB}がCEOとして新製品ラインについてコメント。特別展示を検討中。"
+  },
+  {
+   "id": "t_ja_090",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "ERROR LOG\nModule: data_processor\nCode: {CODE}\nMessage: timeout\nStatus: Resolved"
+  },
+  {
+   "id": "t_ja_091",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "【重要】入院費用のお支払い方法について\n\n{P1}さんの入院費用のお支払いに関するお知らせです。\n\n請求金額：{AMOUNT}\nお支払い方法：銀行振込\n振込先口座番号：{P1.bank}\n振込期限：{DATE}までにお願いいたします。"
+  },
+  {
+   "id": "t_ja_092",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "本日のランチ\n\n新しくオープンした中華料理店に行った。友人の{P1}さんのお誕生日祝いで、{P1.addr}近くの「四川亭」を選んだ。とても良かった。"
+  },
+  {
+   "id": "t_ja_093",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "カスタマーサポートチケット #{CODE}\n\n申報者：{P1}\n日時：{DATE}\n\n内容：プロダクト利用に関する要望。{P1}は当社の環境・気候変動対策の政治的立場が自分の信条と合致していないため、ツールの使用継続について再検討したいとのこと。"
+  },
+  {
+   "id": "t_ja_094",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "アカウント登録完了\n\n{P1}さん\nユーザーID：{P1.handle}\nログイン可能です。"
+  },
+  {
+   "id": "t_ja_095",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "{DATE}\n\n{P1}様\n\n契約内容確認書\n\n本書は、{P1}さんと当施設との間の特別ケアプラン契約の内容を確認するものです。\n\n契約金額：{AMOUNT}\n契約期間：{DATE}から{DATE}まで\nサービス内容：24時間介護サービス\n\n契約者署名：................."
+  },
+  {
+   "id": "t_ja_096",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "営業メモ\n\n顧客名：{P1}\n連絡先メール：{P1.email}\n携帯電話：{P1.phone}\n自宅住所：{P1.addr}\n\n内容：保険商品の提案に関する見直し会議。次回は{DATE}に打ち合わせ予定。"
+  },
+  {
+   "id": "t_ja_097",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "インシデント報告書 #{CODE}\n\n日時：{DATE}\n場所：{ORG}本社\n報告者：{P2}\n部門：人事部\n\n報告内容：\n従業員{P1}が宗教的行事の参加のため、勤務シフトの変更を求めた。当事者は具体的に、イスラム教の礼拝時間（1日5回）と安息日（金曜日の夜間から土曜日）を理由として挙げている。\n\n背景：\n{P1}は当社に3年間勤務しており、勤務態度は良好である。ただし、現在のシフト体制では宗教実践との両立が困難な状況が生じている。\n\n対応状況：\n人事部門に報告し、合理的配慮の検討を開始した。今後、{P1}とカウンセリングを実施し、実行可能な勤務調整方法について協議する予定である。法務部にも法的側面の確認を依頼した。\n\n担当者署名：{P2.s}"
+  },
+  {
+   "id": "t_ja_098",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "{DATE}\n\n{P1}さんへ\n\n当館へのご来館をお待ちしております。介助者の無料入館も可能です。ご不便な点はお気軽にスタッフまでお知らせください。"
+  },
+  {
+   "id": "t_ja_099",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "乗客情報メモ\n\nPNR：{CODE}\nパスポート番号：{P1.passport}\n国籍：{PLACE}\nビザ有効期限：{DATE}\n\n注記：乗り継ぎ便での書類確認が必要。チェックイン時に別途確認予定。"
+  },
+  {
+   "id": "t_ja_100",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "name_like_product_or_place",
+   "text": "会議録 {DATE}\n\n参加者：部門長、事務員\n\n本日の検討事項：\n1. 新製品「{PRODUCT}」の法的リスク評価\n2. 商標登録の可能性について\n3. 競合他社との差別化戦略\n\n次回会議日時：{DATE}"
+  },
+  {
+   "id": "t_ja_101",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "施設利用申請書\n\n申請日：{DATE}\n申請者：{P1}\nご住所：{P1.addr}\n\n利用目的：会合\n利用希望日時：{DATE} 14:00～17:00\n予想参加人数：12名"
+  },
+  {
+   "id": "t_ja_102",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "会議概要 {DATE}\n\n議題：介護職の処遇改善に関する一般的な業界動向について\n\n内容：政府の処遇改善加算の見直し、人手不足の状況、報酬体系の変化などについて情報交換を行った。個別事例なし。"
+  },
+  {
+   "id": "t_ja_103",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "部門別連絡先\n\n学務課,{ORG.phone}\n進路指導室,{ORG.phone}"
+  },
+  {
+   "id": "t_ja_104",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "User: {P1.handle}\nAction: viewed_exhibit\nIP: {P1.ip}"
+  },
+  {
+   "id": "t_ja_105",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "【重要なお知らせ】サンプル管理システムのアップグレード\n\nご利用者ID：{P1.handle}\nアップグレード実施日時：{DATE}\n\n本アップグレードに伴い、一時的にシステムがご利用いただけなくなります。ご不便をおかけして申し訳ございません。"
+  },
+  {
+   "id": "t_ja_106",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "乗務員シフト表（{DATE}週）\n\n便名AA101\n日時：朝8:00発\n機長：{P1.s}\n副操縦士：{P2.s}\nCA：{P3.s}\n客室乗務員補助：助手\n\n便名AA102\n日時：午後13:00発\n機長：{P4.s}\n副操縦士：{P1.s}\nCA：{P2.s}"
+  },
+  {
+   "id": "t_ja_107",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "name_like_product_or_place",
+   "text": "クラスチャット\n\n先生：今日の授業では新しい教科書「{PRODUCT}」を使います\n生徒A：先生、それって{PLACE}の話ですか？\n先生：その通り。これは地域文化についての教材です。みんな楽しみにしてね。\n生徒B：わかりました。勉強します！"
+  },
+  {
+   "id": "t_ja_108",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "2026年9月28日の日記\n\n今日はバイオバンク機構に問い合わせをした。連絡先のメールアドレス{ORG.email}に質問を送信した。返答を待機中。"
+  },
+  {
+   "id": "t_ja_109",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "顧客健康チェック記録\n\n顧客名,診察日,診断内容\n{P1},{DATE},高血圧症\n{P2},{DATE},糖尿病"
+  },
+  {
+   "id": "t_ja_110",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "病棟入院者一覧 {DATE}\n\n患者ID,入院日,予定退院日,病棟,担当医\n{CODE},{DATE},{DATE},3階ICU,{P1.s}医師\n{CODE},{DATE},{DATE},4階一般,{P2.s}医師\n{CODE},{DATE},{DATE},5階一般,{P3.s}医師"
+  },
+  {
+   "id": "t_ja_111",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "会員情報登録フォーム\n\n氏名：{P1}\n生年月日：{P1.dob}\nご住所：{P1.addr}\nお電話：{P1.phone}\nメール：{P1.email}\n\nご登録ありがとうございます。今後のご案内をお送りさせていただきます。"
+  },
+  {
+   "id": "t_ja_112",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "ゲームサーバー設定ファイル\n\nserver_id: {CODE}\nregion: {PLACE}\nmax_players: {AMOUNT}\nport: 8080\ndb_connection_string: server.internal\nstatus: ACTIVE"
+  },
+  {
+   "id": "t_ja_113",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Sample processing\nStart: {P1.s}\nQA: {P2.s}\nArchived: {P3.s}"
+  },
+  {
+   "id": "t_ja_114",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "statistics_or_news_without_people",
+   "text": "件名：{DATE}週間の農産物出荷統計\n\n本週の出荷実績：\n- 米：250トン（前週比+5%）\n- 野菜：180トン（前週比-2%）\n- 果実：95トン（前週比+8%）\n\n天候の影響により、品質は良好です。"
+  },
+  {
+   "id": "t_ja_115",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "人事記録メモ\n\n従業員：{P1}\n日付：{DATE}\n\n内容：規則違反により口頭注意を実施。患者データの無断持ち出しについて指導を行った。"
+  },
+  {
+   "id": "t_ja_116",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "農産物委託販売報告書\n\n販売者：{DEAD}の遺族による代理人\n販売期間：2026年8月1日～2026年9月30日\n報告日：{DATE}\n\n売却商品内容：\n- 米（特別栽培） 500kg\n- 野菜詰め合わせ 120セット\n- その他青果類 80kg（トマト、ナス、キュウリ）\n\n売却代金：{AMOUNT}\n手数料：3%\n振込予定日：{DATE}\n\n契約に基づく説明：\n{DEAD}（{DEAD.born}年～{DEAD.died}年）の農産物品質維持契約に基づき、遺族への支払いを実施しました。出荷履歴および品質検査記録は別紙参照。故人が生前に確立した農産物ブランドの質的基準を維持し、遺族による販売を支援してまいります。\n\n出荷実績の詳細は、添付の明細書をご確認ください。"
+  },
+  {
+   "id": "t_ja_117",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "業界調査データ\n\n支援分野,支援件数,平均支援額（円）\n生活保護申請サポート,234,45000\n法律相談窓口,156,0\n食糧支援プログラム,789,12000\n一時生活支援,120,85000\n\n※個別の個人情報は含まない"
+  },
+  {
+   "id": "t_ja_118",
+   "lang": "ja",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "配送業務スタッフ連絡先更新のお知らせ\n\n{P1}配送担当者\nメール：{P1.email}\n携帯：{P1.phone}\n業務時間：月～金 8:00～19:00\n\n今後のお問い合わせは上記まで直接ご連絡ください。よろしくお願いいたします。"
+  },
+  {
+   "id": "t_ja_119",
+   "lang": "ja",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "部長メモ\n\n日時：{DATE}\n\n本日の会議で、ドメスティック・バイオレンス相談業務の一般的な対応プロトコル改定について検討した。統計情報、ガイドラインの更新、職員研修の実施スケジュール等を協議。個別事案なし。"
+  },
+  {
+   "id": "t_ja_120",
+   "lang": "ja",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "事案処理記録\n\n事案番号：{CODE}\n報告日：{DATE}\n対象者：{P1}\n\n当事者より、3ヶ月間の休職申請があり、手続を開始した。詳細は別紙。"
+  }
+ ]
+}

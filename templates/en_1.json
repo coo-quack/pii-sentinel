@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_en_001",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "EMBASSY MEETING NOTES - {DATE}\n\nAttendees: {ORG} staff, family members\nSubject: Historical records documentation and archival review\n\nWe reviewed the complete archives regarding {DEAD}, who was a notable diplomat serving during the mid-twentieth century. His correspondence and official records have been carefully catalogued for the digital archive project. The documents span from {DEAD.born} to {DEAD.died} and include diplomatic cables, personnel files, official correspondence, and extensive personal papers. No sensitive materials requiring redaction were identified at this preliminary stage. The collection will be available to researchers upon completion of preservation work."
+  },
+  {
+   "id": "t_en_002",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "VISA STATUS VERIFICATION LIST\nAirline: {ORG}\nDate: {DATE}\nFlight: {CODE}\n\nPassengers Cleared for Departure:\n{P1}, Passport {P1.passport}, Status: Valid visa\n{P2}, Passport {P2.passport}, Residency: Valid\n{P3}, Passport {P3.passport}, Transit clearance: Approved\n{P4}, Passport {P4.passport}, Work permit: Valid"
+  },
+  {
+   "id": "t_en_003",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "Officer dispatch: Duty roster for {DATE}\nAvailable for assignment:\n{P1}\n{P2}\n{P3}\n{P4}\nThank you. Shift coordinator approval received."
+  },
+  {
+   "id": "t_en_004",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "GYM ACCESS TICKET\n\nFacility: Downtown Athletic Center\nIssued: {DATE}\nValid through: {DATE}\nVia: {ORG.email}\n\nFor technical assistance or access issues: {ORG.phone}"
+  },
+  {
+   "id": "t_en_005",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "INCIDENT REPORT - DISCIPLINARY ACTION\n\nHospital: {ORG}\nDate of incident: {DATE}\nEmployee Name: {P1}\nDepartment: Nursing Staff\nReporting Supervisor: {P2}\n\nIncident Summary: Employee was found to have violated established patient privacy protocols on multiple documented occasions. The violation involved unauthorized access to medical records outside the scope of assigned duties. This constitutes a serious breach of institutional policy, federal healthcare privacy regulations (HIPAA), and professional ethics standards. \n\nActions Taken: Written warning placed in permanent personnel file effective {DATE}. Employee required to complete mandatory privacy compliance training before return to patient care duties."
+  },
+  {
+   "id": "t_en_006",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "City Registry - Biometric Collection Notice\n\nRecipient: {P1}\nDate: {DATE}\nNotice ID: {CODE}\n\nDear {P1.s}:\n\nPursuant to regulation 2024-G section 3.1, we request your attendance for iris pattern scan and fingerprint capture. This biometric data will be stored securely in the national identification database. The collection process requires approximately twenty minutes at the designated facility. Appointment scheduling details will be sent to {P1.addr}. Please bring your government-issued ID card {P1.govid} and proof of residence."
+  },
+  {
+   "id": "t_en_007",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "SURVEY - {P1}\n\n[ ] Strongly support\n[ ] Oppose"
+  },
+  {
+   "id": "t_en_008",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "RECRUITING AGENCY - PLACEMENT FORM\n\nCandidate Name: {P1}\nPosition Applied For: Account Manager\nTarget Company: {ORG}\nCompany Contact: {P2}, Senior Recruiting Supervisor\nScheduled Interview Date: {DATE}\nInterview Location: {PLACE}\nCandidate Phone: {P1.phone}"
+  },
+  {
+   "id": "t_en_009",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "MEMO - Q3 LOGISTICS\nRoute optimization completed. Average delivery times reduced by eight percent."
+  },
+  {
+   "id": "t_en_010",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "Subject: Member Health Guidance\nFrom: {ORG.email}\n\nDear {P1.s}:\n\nYour recent farm work activities have resulted in physical strain. We recommend rest and medical follow-up with your primary care provider. Contact our clinic coordinator at {ORG.phone} for consultation scheduling and health management resources."
+  },
+  {
+   "id": "t_en_011",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "Today we celebrated {P1}'s birthday! They've been with us since last year. Lives just downtown near {PLACE}, very reliable staff member."
+  },
+  {
+   "id": "t_en_012",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "Tuesday was a difficult day. {P1} received the formal dismissal notice today after the firm's comprehensive review of documented conduct violations. Severance papers were prepared by {P2}."
+  },
+  {
+   "id": "t_en_013",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "Subject: Policy Concerns\n{P1}: Given the direction of local government, I have concerns about the sustainability of our approach."
+  },
+  {
+   "id": "t_en_014",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "name_like_product_or_place",
+   "text": "ONLINE GAME SHOP RECEIPT\n\nDate: {DATE}\nTransaction ID: {CODE}\nAmount Charged: {AMOUNT}\n\nItems Purchased:\nArtisan Steel Sword - Deluxe edition\nCosmic Ring of Eternal Power\nShield of {PLACE} Guardian\nTotal game items: three\nReward currency: approved"
+  },
+  {
+   "id": "t_en_015",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "RESEARCH BIOBANK - ENROLLMENT FORM\n\nParticipant: {P1}\nEnrollment Date: {DATE}\nResearch Study ID: {CODE}\n\nEthnic Background: {P1} identified as East Asian heritage during intake assessment. Cultural and family health history factors documented for comprehensive health history context and genetic research analysis."
+  },
+  {
+   "id": "t_en_016",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "[{DATE} 14:32] {P1} check-in at facility\n[{DATE} 14:35] Assisted to wellness room\n[{DATE} 15:10] Departed"
+  },
+  {
+   "id": "t_en_017",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "PLAYER ACCOUNT STANDINGS - SEASON SUMMARY\nPlayer,Level,Status\n{P1},Level forty-five,Active\n{P2},Level thirty-eight,Active\n{P3},Level fifty-two,Premium"
+  },
+  {
+   "id": "t_en_018",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "Dear {P1}:\n\nWe received your inquiry about policy options. Please reach us during business hours at {ORG.phone}. You can also email your questions to {P1.email}."
+  },
+  {
+   "id": "t_en_019",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "Just grabbed my favorite coffee at the usual spot! Got my regular order from {P1}. The exact coordinates for the location are {GPS}. Really nice quiet atmosphere today for working on projects and reading. Coffee quality is consistent and reasonably priced."
+  },
+  {
+   "id": "t_en_020",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "MEETING NOTES - {DATE}\n\nAttendee Information:\nName: {P1}\nEmail Address: {P1.email}\nPhone Number: {P1.phone}\nDepartment: Operations"
+  },
+  {
+   "id": "t_en_021",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "Dear Valued Visitor:\n\nOur current exhibition features works inspired by and discussing the public career of {PUB}. Several pieces explore themes from their published research."
+  },
+  {
+   "id": "t_en_022",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "SHIPPING INVOICE - {DATE}\n\nCarrier: {ORG}\nShipped to: {PLACE}\nShipping Method: Express delivery\n\nItem: Commemorative poster featuring {PUB}\nQuantity: fifty units\nTotal Amount: {AMOUNT}\nDelivery Status: Processing"
+  },
+  {
+   "id": "t_en_023",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "SURVEY REPORT - COMMUNITY BELIEFS\n\nRespondent,Belief,Date\n{P1},Islam,{DATE}\n{P2},Christianity,{DATE}\n{P3},Buddhism,{DATE}"
+  },
+  {
+   "id": "t_en_024",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "Subject: Major Event Coverage and Logistics\nFrom: {ORG.email}\n\n{PUB} will be keynoting the insurance industry annual forum on {DATE}. Please arrange press credentials, speaking platform time of forty-five minutes, and media support."
+  },
+  {
+   "id": "t_en_025",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "GAME VIOLATION REPORT - INVESTIGATION SUMMARY\n\nPlayer Account: {P1}\nReported Date: {DATE}\nViolation Type: Account tampering and fraudulent transaction activity\nSeverity Classification: Critical\nInvestigation Status: Complete\nAdministrative Note: Further violations will result in permanent account ban from all platform services"
+  },
+  {
+   "id": "t_en_026",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "GAME SERVER EMERGENCY CONTACTS\n\nTechnical Support Desk: {ORG.email}\nPlayer Safety and Conduct Team: {ORG.phone}\nBilling and Account Inquiries: billing department contact\nGeneral Support Hours: Available twenty-four hours daily"
+  },
+  {
+   "id": "t_en_027",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "Work log: On-site inspection with {P1} for foundation assessment. Reviewed concrete pour from previous week. Minor adjustments needed before next phase."
+  },
+  {
+   "id": "t_en_028",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "DEALERSHIP - {DATE}\nCustomer {P1} asked about prayer room availability"
+  },
+  {
+   "id": "t_en_029",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "Dear {P1}:\n\nThank you for your continuous subscription to our game platform services. This serves as your official invoice for the amount of {AMOUNT} charged on {DATE}. Account holder name: {P2}, Payment method is stored on file and secured."
+  },
+  {
+   "id": "t_en_030",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "Subject: Marathon Registration and Information\nFrom: {ORG.email}\n\nQuestions about race logistics? Contact us at {ORG.phone} during business hours or reply to this email address."
+  },
+  {
+   "id": "t_en_031",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "Hey! When's your birthday again? {P1} just told us it's coming up next month in {PLACE}. Are you doing anything special to celebrate?"
+  },
+  {
+   "id": "t_en_032",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "MUSEUM ORAL HISTORY PROJECT - INTERVIEW TRANSCRIPT\n\nInterviewee: {P1}\nInterview Date: {DATE}\nProject: Health advocacy during the crisis period\n\nTranscript excerpt:\nQ: What was your personal health situation at that time?\nA: I was diagnosed in the nineteen nineties and managed it through various treatments over the following years. It significantly impacted my advocacy work and personal relationships during that decade."
+  },
+  {
+   "id": "t_en_033",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "BIOBANK SAMPLE TRACKING DATABASE\n\nSample ID,Subject ID,Collection Location Coordinates\n{CODE},{P1},{GPS}\n{CODE},{P2},{GPS}\n{CODE},{P3},{GPS}"
+  },
+  {
+   "id": "t_en_034",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "TRADE UNION OFFICE - STAFF DIRECTORY AND ROLES\n\nExecutive Director: {P1}\nDeputy Director: {P2}\nField Organizer: {P3}\nAdministration and Communications: {P4}\nLegal Advisor: {P1.rev}\nMember Services Coordinator on call"
+  },
+  {
+   "id": "t_en_035",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "NURSING HOME RESIDENT CARE PACKAGE\n\nResident Name: {P1}\nVisa/Immigration Status: Documented in {P1.passport}\nResidency Commencement: {DATE}\nCountry of Origin: {PLACE}\nEmergency Contact Location: {P1.addr}"
+  },
+  {
+   "id": "t_en_036",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "{P1}: I need to update my payment method for the dental insurance plan.\n{P2}: Of course! What is your credit card number?\n{P1}: {P1.card}\n{P2}: Understood. That has been stored securely in our system.\n{P3}: Confirmed and processed."
+  },
+  {
+   "id": "t_en_037",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "Q: Deployment configuration?\nA: Docker with nginx. Environment variables for config. Monitoring on 8080 with health checks every thirty seconds."
+  },
+  {
+   "id": "t_en_038",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "{P1}: I need to file for dental coverage through the clinic.\n{P2}: Certainly. I'll need your government identification number to process this application.\n{P1}: My national ID is {P1.govid}.\n{P2}: Got it. And your date of birth for verification?\n{P1}: {P1.dob}\n{P2}: Verified successfully. Coverage starts on {DATE}. {P3}, please file this application under ID {P1.govid}. Also verify and cross-reference passport number {P1.passport} in the national database system to confirm eligibility and prevent duplicate enrollment in other programs. Check the applicant's full name {P1} and billing address {P1.addr}. Ensure all documentation is complete before filing."
+  },
+  {
+   "id": "t_en_039",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "Q: Test environment setup?\nA: IP {P1.ip} with logs to central server in {PLACE}."
+  },
+  {
+   "id": "t_en_040",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "CLASS SCHEDULE - EFFECTIVE {DATE}\n\nClass Instructor: {P1}\nMembership Tier: Gold Level\nSpot Reserved For: {P2}\nMonthly Payment: {AMOUNT}"
+  }
+ ]
+}

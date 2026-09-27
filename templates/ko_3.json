@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_ko_081",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "사건 보고서\n날짜: {DATE}\n장소: {ORG}\n설명: {PLACE} 지역의 농산물 수급 불균형으로 인한 가격 등락이 심화되고 있습니다. 이번 분기 동안 {PRODUCT} 가격이 전월 대비 {AMOUNT}% 상승했으며, 이는 국제 곡물 시장의 변동성에 따른 것입니다."
+  },
+  {
+   "id": "t_ko_082",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "회원 가입 양식\n체육관: {ORG}\n연락처: {ORG.phone}\n이메일: {ORG.email}\n영업시간: 월-금 06:00-22:00\n토요일: 07:00-20:00\n일요일: 07:00-18:00\n추가 서비스 문의는 위의 번호로 전화 부탁드립니다."
+  },
+  {
+   "id": "t_ko_083",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "건강검진 영수증\n환자: {P1}\n검진 항목: 혈액 검사, 흉부 X선\n진단: {P1.s} 님은 경계성 고혈압 소견을 보였습니다.\n추천 약물: 혈압약 1일 1회\n검진일: {DATE}\n시작업체: {ORG}\n금액: {AMOUNT}"
+  },
+  {
+   "id": "t_ko_084",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "🏦 {DATE} {ORG} 신입 직원 환영합니다!\n신입 팀원 소개:\n- {P1.s} 님 (고객서비스팀)\n- {P2.s} 님 (영업팀)\n- {P3.s} 님 (기획팀)\n함께 좋은 팀을 만들어가겠습니다. #새로운시작 #환영합니다"
+  },
+  {
+   "id": "t_ko_085",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "private_messages_of_others",
+   "text": "사건 기록\n{DATE} 접수된 메시지 내용:\n\"{P1.s}님께서 {P2}에게 보낸 개인 메시지: 저 이 계약을 정말 후회하고 있어요. 정말이야.\" \n-첨부: 스크린샷"
+  },
+  {
+   "id": "t_ko_086",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "친애하는 {P1.s} 님께\n비자 신청 상태 안내\n전화: {ORG.phone}\n이메일: {ORG.email}"
+  },
+  {
+   "id": "t_ko_087",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "특별식 요청 양식\n고객명: {P1}\n예약일: {DATE}\n인원수: 4명\n민족 배경: 동아시아\n종교적 식습관 제약: 해당 없음\n알레르기: {P1.s} 님은 매운 음식에 민감합니다.\n특별 요청사항: 문화적 배경을 존중하는 메뉴 추천 부탁"
+  },
+  {
+   "id": "t_ko_088",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "실험실 기금 관리 일지 - {DATE}\n\n오늘 대학 연구비 지급을 위해 기금 계좌를 확인했다.\n계좌 정보: {P1.s} 명의 ({P1.bank})\n비밀번호: {PW}\n현재 잔액: {AMOUNT}\n\n다음 분기 예산안을 검토했고, 모든 서류는 안전한 위치에 보관했다."
+  },
+  {
+   "id": "t_ko_089",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "제목: {DATE} 채용 공고 발송\n\n안녕하세요.\n\n아래 공고를 {PLACE} 지역 지원자들에게 배포하고 있습니다.\n\n직급: 마케팅 담당자\n경력: 3년 이상\n급여: {AMOUNT}/년\n\n지원자 현황:\n- {P1.s} 님 (면접 완료, {P1.addr}에서 근무)\n- {P2.s} 님 (서류 검토 중, {P2.addr}에서 근무)\n- {P3.s} 님 (일반 지원, {P3.addr}에서 근무)\n- {P4.s} 님 (예비 지원자)\n\n각 지원자의 경력 사항을 검토했으며, 상위 3명을 최종 면접 대상으로 선정했습니다. 다음 라운드는 {DATE}에 진행될 예정입니다.\n\n추가 질문은 본사로 연락 바랍니다.\n{ORG}\n{ORG.email}"
+  },
+  {
+   "id": "t_ko_090",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "시스템 로그 - {DATE}\n[{DATE}T08:00:00Z] 서버 시작\n[{DATE}T08:15:00Z] 데이터베이스 연결 성공\n[{DATE}T09:30:00Z] API 엔드포인트 /health 응답 정상 (200 OK)\n[{DATE}T10:45:00Z] {AMOUNT}MB 메모리 사용 중\n[{DATE}T11:20:00Z] 캐시 메모리 초기화 완료\n[{DATE}T12:00:00Z] 일일 보고서 생성됨\n[{DATE}T13:00:00Z] 데이터 동기화 완료\n[{DATE}T14:30:00Z] 모니터링 상태: 정상\n[{DATE}T15:45:00Z] 에러 로그 없음\n[{DATE}T16:00:00Z] 시스템 상태 점검 완료\n\n로그 파일 경로: /var/log/app.log\n총 이벤트 수: 10개"
+  },
+  {
+   "id": "t_ko_091",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "사건 카드\n대상자: {P1}\n신고일: {DATE}\n내용: 정신질환 치료 중\n보호자 연락 필요"
+  },
+  {
+   "id": "t_ko_092",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "name_like_product_or_place",
+   "text": "채용 에이전시 일지 - {DATE}\n\n오늘은 {PRODUCT} 회사와의 협력 방안에 대해 회의를 진행했다.\n{PLACE} 지역에 새 사무실을 오픈할 예정이며, {AMOUNT}명의 인재를 채용하려고 한다.\n신입 직원의 입사 교육 프로그램을 검토했고, 모두 만족스러웠다.\n다음 주에 최종 결정을 내릴 예정이다."
+  },
+  {
+   "id": "t_ko_093",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "회원 정보 카드\n이름: {P1}\n주소: {P1.addr}\n생년월일: {P1.dob}\n회원 등급: 골드\n가입일: {DATE}"
+  },
+  {
+   "id": "t_ko_094",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "공지사항\n{DATE} 박물관 휴무 안내\n\n건강상의 이유로 {P1.s} 큐레이터는 {DATE}부터 병가를 가집니다.\n진단명: 만성 통증 증후군\n예상 복귀일: {DATE}\n\n불편을 드려 죄송합니다."
+  },
+  {
+   "id": "t_ko_095",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "친애하는 팀원 여러분께,\n\n{DATE}의 일정 변경을 알립니다.\n헬스 트레이너 {P1.s} 님과 {P2.s} 님이 모두 조정 휴가를 갖게 됩니다.\n그 기간 동안 {P3.s} 님이 모든 클래스를 담당할 예정입니다.\n\n감사합니다,\n관리자"
+  },
+  {
+   "id": "t_ko_096",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "영화 추도식 공지\n\n{DATE}에 영화 {PRODUCT}의 감독이었던 {DEAD}({DEAD.born}년생-{DEAD.died}년 서거)를 기념하는 회고전을 개최합니다.\n\n장소: {ORG}\n시간: 오후 2시 ~ 5시\n입장료: {AMOUNT}\n\n상영작:\n1. {PRODUCT} (1부)\n2. {PRODUCT} (2부)\n3. {PRODUCT} (3부)\n\n이 행사는 그의 영화적 유산과 업적을 추도하기 위해 마련되었습니다. 영화 팬들과 연구자들을 위해 특별한 강연도 준비되어 있습니다.\n\n사전 예약: {ORG.email}\n문의: {ORG.phone}\n\n많은 관객 여러분의 참석을 기다립니다."
+  },
+  {
+   "id": "t_ko_097",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "제목: 종자 검사 결과 안내\n\n{P1.s} 님께,\n\n제출해주신 종자의 유전체 검사가 완료되었습니다.\n샘플 ID: {CODE}\n검사 항목: GMO 검사, 유전자 서열 분석\n결과: 유전자 변형 없음\n\n상세 결과는 안전한 채널로 별도 전송하겠습니다.\n\n{ORG}"
+  },
+  {
+   "id": "t_ko_098",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "채팅 내역 - {DATE}\n\n프런트: {P1.s} 님, 특별 요청사항이 있으신가요?\nP1: 네, 저는 이슬람교를 믿고 있어서 기도 공간이 필요한데요.\nP1: 그리고 할랄 음식 메뉴도 있을까요?\n프런트: 물론입니다. 우리 호텔에는 기도실이 있고 할랄 식사도 준비할 수 있습니다."
+  },
+  {
+   "id": "t_ko_099",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "요양원 요금 납부 양식\n환자명: {P1}\n신용카드 번호: {P1.card}\n은행 계좌: {P1.bank}\n월 요금: {AMOUNT}\n결제 비밀번호: {PW}\n자동 이체 동의: 예"
+  },
+  {
+   "id": "t_ko_100",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "인터뷰\nQ: 사무실 전화?\nA: {ORG.phone}\nQ: {P1.s} 님 휴대폰?\nA: {P1.phone}"
+  },
+  {
+   "id": "t_ko_101",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "메시지\n제작자: 내일 촬영 장소 변경됐어. {PLACE}로 가.\nP1: 알겠어. 그런데 {P2}에게 어떻게 알려?\nP2: 내가 연락할게. 번호 {P2.phone}은 아직 맞나?\nP2: 이메일도 {P2.email}로 보낼까?"
+  },
+  {
+   "id": "t_ko_102",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "검체 기록 카드\n연구 ID: {CODE}\n참여자: {P1}\n주소: {P1.addr}\n생년월일: {P1.dob}\n채취일: {DATE}"
+  },
+  {
+   "id": "t_ko_103",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "농업 협동조합 일지 - {DATE}\n\n오늘은 {AMOUNT}헥타르의 밭에 대한 수확량 보고서를 작성했다. {PRODUCT} 재배 지역의 토양 pH 검사도 완료했고, 수치는 정상 범위 내에 있었다. \n\n기후 변화의 영향으로 {PLACE} 지역의 수확 시기가 예년보다 늦어질 것으로 예상된다. 강우량이 평년의 120%에 달했으며, 이는 토양 수분 함량에 긍정적인 영향을 미쳤다.\n\n내일은 비료 공급업체와 계약 갱신에 대해 논의할 예정이고, 그 다음 날은 농약 사용 계획을 최종 검토해야 한다. 모든 관련 서류는 정리되었다. 또한 지난달 재배 현황을 분석한 결과를 공유할 예정이다."
+  },
+  {
+   "id": "t_ko_104",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "메모\n{P1}의 연구실 정보:\n주소: {P1.addr}\n생년월일: {P1.dob}\n연구비 계좌 등록자"
+  },
+  {
+   "id": "t_ko_105",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "사고 보고서\n날짜: {DATE}\n장소: {ORG}\n사건: 유명 배우 {PUB} 님이 헬스장 이용 중 기구 고장으로 인한 경미한 부상\n조치: 119 신고, 응급처치 완료"
+  },
+  {
+   "id": "t_ko_106",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "배송 영수증\n수취인: {P1}\n배송 위치: {GPS}\n배송 시간: {DATE}\n운송사: {ORG}\n운송비: {AMOUNT}"
+  },
+  {
+   "id": "t_ko_107",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "공지\n선수 {P1.s} 님의 계약 갱신 관련 정보:\n입금 계좌: {P1.bank}\n신용카드: {P1.card}\n보안 코드: {PW}\n월급: {AMOUNT}"
+  },
+  {
+   "id": "t_ko_108",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "제목: 부동산 거래 자문\n금액: {AMOUNT}\n지역: {PLACE}\n문서 검토 부탁"
+  },
+  {
+   "id": "t_ko_109",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "보험 청구 영수증\n청구인: {P1}\n청구일: {DATE}\n사건 번호: {CODE}\n사건 유형: 자동차 사기 피해\n피해 내용: {P1.s} 님은 온라인 거래 사기로 인해 피해를 입으셨습니다.\n청구 금액: {AMOUNT}\n처리 상태: 검토 중"
+  },
+  {
+   "id": "t_ko_110",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "sex_life_or_orientation",
+   "text": "{P1.s} 님께\nLGBTQ+ 프로그램 등록 완료\n상담: {DATE}\n완전 비밀 보장"
+  },
+  {
+   "id": "t_ko_111",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "[{DATE}T08:00] 시작\n[{DATE}T08:05] {DEAD}({DEAD.born}~{DEAD.died})\n[{DATE}T08:10] 보관 완료"
+  },
+  {
+   "id": "t_ko_112",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "농장 일지\n{P1}: {P1.handle}\nIP: {P1.ip}\n일자: {DATE}"
+  },
+  {
+   "id": "t_ko_113",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "[{DATE} 16:30] {P1}\n신분증: {P1.govid}\n확인 완료"
+  },
+  {
+   "id": "t_ko_114",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "회의 기록 - {DATE}\n\n주제: 판매 관리 시스템 업그레이드\n참석자: IT팀, 영업팀\n\n시스템 설정 논의:\nCONFIG_DEBUG=false\nCONFIG_PORT=8080\nCONFIG_DB_TIMEOUT=30000ms\nCONFIG_API_VERSION=v3.2.1\n\n다음 배포 일정: {DATE}"
+  },
+  {
+   "id": "t_ko_115",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "회원 추적 목록\n{P1},{P1.handle},{P1.ip},{DATE}\n{P2},{P2.handle},{P2.ip},{DATE}\n{P3},{P3.handle},{P3.ip},{DATE}\n{P4},{P4.handle},{P4.ip},{DATE}"
+  },
+  {
+   "id": "t_ko_116",
+   "lang": "ko",
+   "sensitivity": "none",
+   "cell": "statistics_or_news_without_people",
+   "text": "채용 통계 - {DATE}\n직종,지원자 수,채용 수,경쟁률\n개발자,250,15,16.7:1\n디자이너,180,8,22.5:1\n마케팅,120,5,24:1\n총합,550,28,19.6:1"
+  },
+  {
+   "id": "t_ko_117",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "연구 참여자 일지\n\n{P1} 님에게 연락했습니다.\n휴대폰: {P1.phone}\n이메일: {P1.email}\n다음 검체 채취일: {DATE}"
+  },
+  {
+   "id": "t_ko_118",
+   "lang": "ko",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "요양원 관리 일지 - {DATE}\n\n{P1}의 월간 요금 청구서를 발송했다.\n청구액: {AMOUNT}\n결제 기한: {DATE}\n청구서 번호: {CODE}"
+  },
+  {
+   "id": "t_ko_119",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "회원 등록 영수증\n이름: {P1}\n등록일: {DATE}\n종족 배경: 아시아계 (동남아시아)\n건강 상태: 정상\n회원 등급: 프리미엄\n월 요금: {AMOUNT}\n신청 사유: 건강 관리"
+  },
+  {
+   "id": "t_ko_120",
+   "lang": "ko",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "경찰서 수사 기록\n사건 일시: {DATE}\n신고인: {P1}\n장소: {PLACE}\n상황 기록: 신고인은 응급실에서 진료 대기 중이었으며, 의료 검사를 위해 {CODE} 수사관 배정\n후속 조치: 병원에서의 의료 검사 결과 확인 필요"
+  }
+ ]
+}

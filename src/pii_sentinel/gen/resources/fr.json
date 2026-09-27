@@ -1,0 +1,761 @@
+{
+ "lang": "fr",
+ "name_order": "given_first",
+ "name_joiner": " ",
+ "surnames": [
+  "Dupont",
+  "Durand",
+  "Martin",
+  "Bernard",
+  "Thomas",
+  "Robert",
+  "Richard",
+  "Petit",
+  "Duval",
+  "Lefevre",
+  "Moreau",
+  "Simon",
+  "Laurent",
+  "Lefebvre",
+  "Michel",
+  "Garcia",
+  "David",
+  "Bertrand",
+  "Roux",
+  "Vincent",
+  "Fournier",
+  "Morel",
+  "Giordano",
+  "André",
+  "Leroy",
+  "Hubert",
+  "Caron",
+  "Blanc",
+  "Renard",
+  "Gallet",
+  "Chabot",
+  "Maillard",
+  "Rousseau",
+  "Chevallier",
+  "Arnaud",
+  "Cordier",
+  "Marchand",
+  "Vidal",
+  "Marin",
+  "Gaston",
+  "Leclerc",
+  "Collet",
+  "Perrot",
+  "Fabre",
+  "Garnier",
+  "Jacquin",
+  "Benoit",
+  "Vasseur",
+  "Royer",
+  "Thiery"
+ ],
+ "given_male": [
+  "Jean",
+  "Pierre",
+  "Paul",
+  "Marc",
+  "André",
+  "Michel",
+  "Philippe",
+  "François",
+  "Jacques",
+  "Daniel",
+  "Christian",
+  "Alain",
+  "Laurent",
+  "Bernard",
+  "Thierry",
+  "Gérard",
+  "Olivier",
+  "Luc",
+  "Pascal",
+  "Vincent",
+  "Serge",
+  "Patrice",
+  "Sébastien",
+  "Nicolas",
+  "Christophe",
+  "Bruno",
+  "Frédéric",
+  "Cédric",
+  "Stéphane",
+  "Maxime",
+  "Jérôme",
+  "Guillaume",
+  "Mathieu"
+ ],
+ "given_female": [
+  "Marie",
+  "Anne",
+  "Isabelle",
+  "Christine",
+  "Danielle",
+  "Nicole",
+  "Monique",
+  "Françoise",
+  "Martine",
+  "Sylvie",
+  "Catherine",
+  "Patricia",
+  "Nathalie",
+  "Valérie",
+  "Sandrine",
+  "Stéphanie",
+  "Caroline",
+  "Laurence",
+  "Chantal",
+  "Dominique",
+  "Corinne",
+  "Florence",
+  "Virginie",
+  "Véronique",
+  "Aurélie",
+  "Cécile",
+  "Michèle",
+  "Pascale",
+  "Judith",
+  "Denise",
+  "Bernadette",
+  "Colette",
+  "Yvette"
+ ],
+ "foreign_full_names": [
+  "Sofia Rossi",
+  "Marco Colombo",
+  "Juan García",
+  "Hans Mueller",
+  "Elena Petrova",
+  "Ming Wang",
+  "Yuki Tanaka",
+  "Emma Thompson",
+  "José López",
+  "Anna Müller",
+  "Li Wei",
+  "Kenji Yamada",
+  "Amelia Jones",
+  "Diego Fernández"
+ ],
+ "honorific_prefix_male": [
+  "M.",
+  "Monsieur",
+  "Dr.",
+  "Professeur"
+ ],
+ "honorific_prefix_female": [
+  "Mme",
+  "Madame",
+  "Mlle",
+  "Docteure"
+ ],
+ "ambiguous_surname_places": [
+  "Dijon",
+  "Nice",
+  "Lyon",
+  "Nantes"
+ ],
+ "places": [
+  "Paris",
+  "Lyon",
+  "Marseille",
+  "Toulouse",
+  "Nice",
+  "Nantes",
+  "Strasbourg",
+  "Montpellier",
+  "Bordeaux",
+  "Lille",
+  "Rennes",
+  "Reims",
+  "Le Havre",
+  "Saint-Étienne",
+  "Toulon",
+  "Grenoble",
+  "Angers",
+  "Villeurbanne",
+  "Metz",
+  "Clermont-Ferrand",
+  "Amiens",
+  "Le Mans",
+  "Aix-en-Provence",
+  "Nîmes",
+  "Brest"
+ ],
+ "orgs": [
+  "Technova SARL",
+  "Nordstrom SAS",
+  "Logistique Europe S.A.",
+  "Innovatech EURL",
+  "Cosmétiques Lambert SA",
+  "Consultants Avancés SARL",
+  "Électronique Moderne S.A.",
+  "Services Numériques Européens SARL",
+  "Groupe Fournier SAS",
+  "Acme Industries France SA",
+  "Pharmaplus SARL",
+  "Transport Unilever SARL",
+  "Banque Crédit SARL",
+  "Immobilier Prestige SA",
+  "Vision Optique SA"
+ ],
+ "depts": [
+  "Ressources Humaines",
+  "Finance",
+  "Ventes",
+  "Marketing",
+  "Production",
+  "Logistique",
+  "Informatique",
+  "Qualité",
+  "Recherche et Développement",
+  "Service Client"
+ ],
+ "products": [
+  "ProSoft",
+  "FlexCloud",
+  "NetGuard",
+  "DataFlow",
+  "SmartSync",
+  "CloudVault",
+  "AnalytiX",
+  "SecureWeb",
+  "QuantumLink",
+  "IntelliDrive"
+ ],
+ "common_words": [
+  "rapport",
+  "réunion",
+  "projet",
+  "équipe",
+  "client",
+  "contrat",
+  "livraison",
+  "facturation",
+  "audit",
+  "contrôle",
+  "formation",
+  "sécurité",
+  "gestion",
+  "stratégie",
+  "analyse",
+  "document",
+  "système",
+  "service",
+  "qualité",
+  "conformité",
+  "budget",
+  "planning",
+  "procédure",
+  "protocole",
+  "délai",
+  "commande",
+  "facture",
+  "quittance",
+  "achat",
+  "vente",
+  "stock",
+  "inventaire",
+  "maintenance",
+  "support"
+ ],
+ "days": [
+  "lundi",
+  "mardi",
+  "mercredi",
+  "jeudi",
+  "vendredi",
+  "samedi",
+  "dimanche",
+  "la semaine prochaine",
+  "demain",
+  "le mois prochain",
+  "en janvier",
+  "en février",
+  "le 15 du mois",
+  "avant la fin du trimestre"
+ ],
+ "job_titles": [
+  "Directeur",
+  "Manager",
+  "Coordonnateur",
+  "Analyste",
+  "Technicien",
+  "Spécialiste",
+  "Responsable",
+  "Chef de projet",
+  "Ingénieur",
+  "Consultant",
+  "Agent",
+  "Superviseur"
+ ],
+ "diagnoses": [
+  "diabète",
+  "hypertension",
+  "arthrite",
+  "asthme",
+  "dépression",
+  "cancer",
+  "fracture",
+  "pneumonie",
+  "hépatite",
+  "migraines",
+  "anxiété",
+  "obésité"
+ ],
+ "religions": [
+  "catholique",
+  "protestant",
+  "juif",
+  "musulman",
+  "orthodoxe",
+  "hindou",
+  "bouddhiste"
+ ],
+ "email_locals": [
+  "j.dupont",
+  "marie.martin",
+  "p.bernard",
+  "anne.thomas",
+  "luc.lefevre",
+  "sophie.moreau",
+  "olivier.simon",
+  "nathalie.laurent",
+  "christian.michel",
+  "christine.rousseau",
+  "francois.renard",
+  "isabelle.roux",
+  "pierre.arnaud",
+  "catherine.benoit",
+  "alain.chevallier",
+  "danielle.leroy",
+  "jean.leclerc",
+  "martine.perrot",
+  "jacques.garnier",
+  "nicole.fabre",
+  "andre.marchand",
+  "corinne.cordier",
+  "philippe.hubert",
+  "sylvie.marin",
+  "thierry.caron",
+  "virginie.blanc",
+  "bruno.collet",
+  "pascale.vasseur",
+  "eric.royer",
+  "helene.jacquin",
+  "david.gaston",
+  "francoise.maillard",
+  "stephane.giordano",
+  "sandrine.vidal",
+  "frederic.chabot",
+  "veronique.thiery",
+  "luc.saucier",
+  "karine.moulin",
+  "gregory.arnaud",
+  "dominique.blanc",
+  "alban.cerise"
+ ],
+ "generic_locals": [
+  "info",
+  "support",
+  "contact",
+  "service",
+  "accueil",
+  "admin",
+  "noreply",
+  "facturation"
+ ],
+ "email_domains_personal": [
+  "example.fr",
+  "mail.example",
+  "personal.test",
+  "post.example",
+  "messagerie.test",
+  "webmail.example"
+ ],
+ "email_domains_company": [
+  "technova.example",
+  "nordstrom-europe.example",
+  "logistique-france.fr",
+  "innovatech.example",
+  "cosmétiques-lambert.example",
+  "services-numeriques.example"
+ ],
+ "addresses": [
+  "23 rue de la Paix, 75002 Paris",
+  "145 avenue Montaigne, 75008 Paris",
+  "12 boulevard Saint-Germain, 75005 Paris",
+  "67 rue de Rivoli, 75004 Paris",
+  "89 rue de Turenne, 75003 Paris",
+  "34 quai des Tuileries, 75001 Paris",
+  "56 boulevard de la République, 69000 Lyon",
+  "78 rue Saint-Antoine, 13000 Marseille",
+  "23 rue du Faubourg Saint-Honoré, 75008 Paris",
+  "112 avenue des Champs-Élysées, 75008 Paris",
+  "45 rue Lafayette, 75009 Paris",
+  "90 rue de la Pompe, 75116 Paris",
+  "28 rue Marechal Joffre, 75007 Paris",
+  "66 boulevard Haussmann, 75008 Paris",
+  "15 rue de Castiglione, 75001 Paris",
+  "100 rue Réaumur, 75002 Paris",
+  "38 rue du Sentier, 75002 Paris",
+  "72 rue Montmartre, 75002 Paris",
+  "19 rue Scribe, 75009 Paris",
+  "55 place Vendôme, 75001 Paris"
+ ],
+ "month_names": [
+  "janvier",
+  "février",
+  "mars",
+  "avril",
+  "mai",
+  "juin",
+  "juillet",
+  "août",
+  "septembre",
+  "octobre",
+  "novembre",
+  "décembre"
+ ],
+ "date_formats": [
+  "{d} {month} {y}",
+  "{d}/{m}/{y}",
+  "le {d} {month} {y}"
+ ],
+ "labels": {
+  "name": [
+   "Nom",
+   "Nom complet",
+   "Identité"
+  ],
+  "phone": [
+   "Téléphone",
+   "Numéro de téléphone",
+   "Tél."
+  ],
+  "mobile": [
+   "Mobile",
+   "Téléphone portable",
+   "Portable"
+  ],
+  "email": [
+   "Email",
+   "Adresse e-mail",
+   "Courrier électronique"
+  ],
+  "address": [
+   "Adresse",
+   "Adresse postale",
+   "Lieu de résidence"
+  ],
+  "dob": [
+   "Date de naissance",
+   "Né le",
+   "Date d'anniversaire"
+  ],
+  "dept": [
+   "Département",
+   "Unité",
+   "Service"
+  ],
+  "job": [
+   "Fonction",
+   "Poste",
+   "Titre"
+  ],
+  "gov_id": [
+   "Numéro de sécurité sociale",
+   "NIR",
+   "Numéro d'immatriculation"
+  ],
+  "card": [
+   "Numéro de carte bancaire",
+   "Carte de crédit",
+   "Référence carte"
+  ],
+  "bank": [
+   "IBAN",
+   "Compte bancaire",
+   "RIB"
+  ],
+  "iban": [
+   "IBAN",
+   "Numéro de compte",
+   "Code IBAN"
+  ],
+  "order": [
+   "Numéro de commande",
+   "Référence commande",
+   "Numéro de référence"
+  ],
+  "tracking": [
+   "Numéro de suivi",
+   "Tracking",
+   "Numéro de colis"
+  ],
+  "serial": [
+   "Numéro de série",
+   "Identifiant produit",
+   "Code produit"
+  ],
+  "ip": [
+   "Adresse IP",
+   "IP",
+   "Adresse réseau"
+  ],
+  "sns": [
+   "Compte réseaux sociaux",
+   "Profil",
+   "Identifiant utilisateur"
+  ],
+  "diagnosis": [
+   "Diagnostic",
+   "Condition médicale",
+   "État de santé"
+  ],
+  "patient_list_titles": [
+   "Liste des patients du centre médical",
+   "Registre des consultants"
+  ],
+  "attendee_list_titles": [
+   "Liste des participants au séminaire",
+   "Registre des inscrits"
+  ]
+ },
+ "templates": {
+  "person_mention": [
+   "{HON} {P} a participé à la réunion de lundi.",
+   "{P} a voyagé à {PLACE} la semaine dernière.",
+   "{P} a envoyé un document à {P2} {DAY}.",
+   "{HON} {P} était en déplacement professionnel {DAY}.",
+   "{P} a rencontré {P2} au {PLACE} pour discuter du {WORD}."
+  ],
+  "email_personal": [
+   "L'adresse email de {HON} {P} est {EMAIL}.",
+   "Vous pouvez joindre {P} à {EMAIL}.",
+   "Veuillez envoyer votre message à {HON} {P} : {EMAIL}.",
+   "{P} peut être contacté via {EMAIL} pour toute question.",
+   "Le courrier électronique de {HON} {P} : {EMAIL}"
+  ],
+  "phone_personal": [
+   "Le numéro de téléphone de {HON} {P} est {PHONE}.",
+   "Vous pouvez appeler {P} au {PHONE}.",
+   "Veuillez joindre {HON} {P} au {PHONE} pendant les heures de bureau.",
+   "{P} est disponible au {PHONE}.",
+   "Tél. {HON} {P} : {PHONE}"
+  ],
+  "email_generic": [
+   "Pour des informations de {ORG}, contactez {GEMAIL}.",
+   "Le service {DEPT} de {ORG} peut être joint à {GEMAIL}.",
+   "Adressez vos demandes au {GEMAIL} ({ORG}).",
+   "{ORG} - Service {DEPT} : {GEMAIL}",
+   "Veuillez écrire à {GEMAIL} pour toute assistance concernant {ORG}."
+  ],
+  "phone_corporate": [
+   "La {ORG} peut être contactée au {CPHONE}.",
+   "Service {DEPT} de {ORG} : {CPHONE}",
+   "Pour joindre {ORG}, appelez le {CPHONE}.",
+   "Hotline {ORG} ({DEPT}) : {CPHONE}",
+   "Le numéro d'accueil de {ORG} est {CPHONE}."
+  ],
+  "address_personal": [
+   "{HON} {P} habite à {ADDR}.",
+   "L'adresse de résidence de {P} est {ADDR}.",
+   "{P} demeure au {ADDR}.",
+   "Domicile de {HON} {P} : {ADDR}",
+   "{P} peut être contacté à {ADDR}."
+  ],
+  "address_company": [
+   "Les bureaux de {ORG} sont situés à {ADDR}.",
+   "L'adresse du siège social de {ORG} est {ADDR}.",
+   "{ORG} - Adresse : {ADDR}",
+   "Vous trouverez {ORG} au {ADDR}.",
+   "Bureau principal de {ORG} : {ADDR}"
+  ],
+  "dob": [
+   "{HON} {P} est né(e) le {DATE}.",
+   "La date de naissance de {P} : {DATE}",
+   "{P} a pour date de naissance {DATE}.",
+   "Né(e) {DATE}, {HON} {P}",
+   "{DATE} est la date de naissance de {P}."
+  ],
+  "date_nonbirth": [
+   "{ORG} a été fondée le {DATE} à {PLACE}.",
+   "La date limite pour le {WORD} est {DATE}.",
+   "L'événement aura lieu {DATE} à {PLACE}.",
+   "Délai d'expiration du {WORD} : {DATE}",
+   "{PLACE} a accueilli le {WORD} le {DATE}."
+  ],
+  "gov_id": [
+   "Le numéro de sécurité sociale de {HON} {P} est {GOVID}.",
+   "NIR de {P} : {GOVID}",
+   "{HON} {P} - Numéro d'immatriculation : {GOVID}",
+   "Numéro de sécurité sociale {GOVID} ({P})",
+   "{GOVID} identifie {HON} {P} auprès de l'administration."
+  ],
+  "credit_card": [
+   "Numéro de carte bancaire de {HON} {P} : {CARD}",
+   "La carte de crédit de {P} est {CARD}.",
+   "{HON} {P} possède la carte numéro {CARD}.",
+   "Carte de {P} : {CARD}",
+   "{CARD} est la référence de la carte bancaire de {HON} {P}."
+  ],
+  "bank_account": [
+   "L'IBAN de {HON} {P} est {BANK}.",
+   "{P} peut recevoir des virements au compte {BANK}.",
+   "Numéro de compte bancaire de {HON} {P} : {BANK}",
+   "Compte {BANK} au nom de {P}",
+   "{BANK} est le numéro de compte de {HON} {P}."
+  ],
+  "health": [
+   "{HON} {P} souffre de {DIAG}.",
+   "{P} a reçu un diagnostic de {DIAG}.",
+   "{HON} {P} est traité(e) pour {DIAG}.",
+   "Atteint de {DIAG}, {P} suit un suivi médical régulier.",
+   "Condition médicale : {DIAG} (patient : {HON} {P})"
+  ],
+  "health_general": [
+   "Une campagne de sensibilisation à {DIAG} a été lancée à {PLACE}.",
+   "{ORG} propose un article sur la prévention de {DIAG}.",
+   "Le {DIAG} affecte une large population en {PLACE}.",
+   "Ressources disponibles au {ORG} concernant {DIAG}",
+   "À {PLACE}, les services de santé traitent les cas de {DIAG}."
+  ],
+  "biometric": [
+   "L'empreinte digitale de {HON} {P} a été enregistrée.",
+   "Le modèle facial de {P} a été stocké dans le système.",
+   "{HON} {P} s'est inscrit(e) via lecteur d'iris.",
+   "Données biométriques de {P} : enregistrées",
+   "L'identification biométrique de {HON} {P} a été complétée."
+  ],
+  "biometric_general": [
+   "{ORG} utilise la reconnaissance faciale pour {PRODUCT}.",
+   "La connexion biométrique est disponible sur {PRODUCT} ({ORG}).",
+   "{PRODUCT} de {ORG} supporte l'identification par empreinte.",
+   "L'authentification biométrique est activée dans les bureaux de {ORG}.",
+   "{ORG} a déployé {PRODUCT} pour l'accès sécurisé biométrique."
+  ],
+  "ip_personal": [
+   "L'adresse IP du domicile de {HON} {P} est {IP}.",
+   "{P} se connecte généralement depuis {IP}.",
+   "Adresse IP de l'appareil personnel de {HON} {P} : {IP}",
+   "Réseau domestique de {P} : {IP}",
+   "{IP} est l'adresse assignée à {HON} {P}."
+  ],
+  "ip_server": [
+   "Le serveur de {PRODUCT} ({ORG}) est à l'adresse {IP}.",
+   "Infrastructure de {ORG} : routeur principal {IP}.",
+   "{IP} héberge {PRODUCT} pour {ORG}.",
+   "Serveur d'application de {ORG} : {IP}",
+   "{ORG} a configuré {PRODUCT} sur le serveur {IP}."
+  ],
+  "sns_personal": [
+   "Le compte {HANDLE} appartient à {HON} {P}.",
+   "{P} est actif sur les réseaux sociaux sous {HANDLE}.",
+   "{HON} {P} gère le profil {HANDLE}.",
+   "Identifiant utilisateur de {P} : {HANDLE}",
+   "{HANDLE} (@) est le pseudonyme de {HON} {P}."
+  ],
+  "sns_brand": [
+   "Le compte officiel {HANDLE} représente {ORG}.",
+   "{PRODUCT} de {ORG} a un profil social : {HANDLE}",
+   "{ORG} gère le compte {HANDLE} pour {PRODUCT}.",
+   "Compte officiel de {ORG} : {HANDLE}",
+   "{HANDLE} est le compte professionnel de {ORG} pour {PRODUCT}."
+  ],
+  "employment": [
+   "{HON} {P} travaille à {ORG} dans le département {DEPT}.",
+   "Employé au poste de {JOB}, {P} est rattaché(e) au {DEPT} de {ORG}.",
+   "{P} occupe le rôle de {JOB} au sein de {DEPT} ({ORG}).",
+   "Fiche d'emploi : {HON} {P} - {JOB} - {ORG} ({DEPT})",
+   "{ORG} emploie {HON} {P} comme {JOB} en {DEPT}."
+  ],
+  "job_posting": [
+   "{ORG} recrute un {JOB} pour le département {DEPT} à {PLACE}.",
+   "Offre d'emploi : {JOB} ({DEPT}) chez {ORG} - Lieu : {PLACE}",
+   "Position disponible : {JOB} - {ORG} ({PLACE})",
+   "{DEPT} de {ORG} cherche un {JOB} basé à {PLACE}.",
+   "Nous recrutons un(e) {JOB} au département {DEPT} ({ORG}) - {PLACE}"
+  ],
+  "religion": [
+   "{HON} {P} pratique la religion {REL}.",
+   "Confession : {REL} (personne : {P})",
+   "{P} est de confession {REL}.",
+   "Croyance religieuse de {HON} {P} : {REL}",
+   "{REL} est la religion de {P}."
+  ],
+  "religion_general": [
+   "À {PLACE}, la communauté {REL} est bien établie.",
+   "Les célébrations {REL} sont observées à {PLACE}.",
+   "{PLACE} accueille plusieurs lieux de culte {REL}.",
+   "Statistiques {REL} dans la région de {PLACE}",
+   "Les traditions {REL} sont respectées à {PLACE}."
+  ],
+  "hr_record": [
+   "Dossier disciplinaire : {HON} {P} - {ORG} - {DATE}",
+   "{P} a reçu un avertissement formel le {DATE} ({ORG}).",
+   "Licenciement de {HON} {P} effectué le {DATE} ({ORG}).",
+   "Plainte officielle déposée contre {P} le {DATE} ({ORG}).",
+   "{HON} {P} - Évaluation de performance insuffisante - {DATE} ({ORG})"
+  ],
+  "hr_policy": [
+   "Politique de {ORG} : tous les {WORD} du département {DEPT} doivent être approuvés.",
+   "Règlement {DEPT} ({ORG}) : chaque {WORD} doit respecter les normes de {WORD}.",
+   "Procédure {ORG} : le {WORD} est obligatoire pour le {DEPT}.",
+   "Code de conduite de {ORG} - {DEPT} : {WORD} est une responsabilité partagée.",
+   "Directive de {ORG} : tous les {WORD} du service {DEPT} suivent cette politique."
+  ],
+  "order_number": [
+   "Numéro de commande de {PRODUCT} chez {ORG} : {ORDER}",
+   "Commande {ORDER} - {ORG} - {PRODUCT}",
+   "{ORG} a traité la commande {ORDER} pour {PRODUCT}.",
+   "Référence de commande : {ORDER} ({PRODUCT} - {ORG})",
+   "Commande n° {ORDER} de {PRODUCT} par {ORG}"
+  ],
+  "tracking_number": [
+   "Numéro de suivi du colis : {TRACK} ({ORG})",
+   "Suivi {TRACK} pour la livraison {ORG}",
+   "{ORG} - Numéro de suivi : {TRACK}",
+   "Colis suivi n° {TRACK} expédié par {ORG}",
+   "Tracking {TRACK} - Expédition {ORG}"
+  ],
+  "serial_number": [
+   "Numéro de série de {PRODUCT} : {SERIAL}",
+   "{PRODUCT} porte le numéro de série {SERIAL}.",
+   "S/N : {SERIAL} ({PRODUCT})",
+   "Identifiant du produit {PRODUCT} : {SERIAL}",
+   "{PRODUCT} - Code de série : {SERIAL}"
+  ],
+  "place_distractor": [
+   "{AMB} est une ville importante où se {DAY}.",
+   "À {AMB}, le {WORD} est très développé.",
+   "La région de {AMB} est connue pour son {WORD}.",
+   "{AMB} accueille le principal {WORD} chaque {DAY}.",
+   "Visitez {AMB} pour découvrir le {WORD} local."
+  ],
+  "filler": [
+   "Le projet de {ORG} dans le département {DEPT} progresse bien.",
+   "À {PLACE}, {PRODUCT} de {ORG} sera présenté {DAY}.",
+   "Le {WORD} de {ORG} sera discuté lors de la réunion de {DEPT}.",
+   "{PLACE} est le siège d'une initiative stratégique de {ORG}.",
+   "L'équipe de {DEPT} travaille sur l'implémentation de {PRODUCT} à {PLACE} {DAY}."
+  ],
+  "greeting": [
+   "Chères Collègues et Chers Collègues,",
+   "À l'attention de toute l'équipe,",
+   "Mesdames et Messieurs,",
+   "Chers collaborateurs,",
+   "À tous les membres du groupe,"
+  ],
+  "closing": [
+   "Cordialement,",
+   "Bien à vous,",
+   "Sincères salutations,",
+   "À bientôt,",
+   "Nos meilleurs vœux,"
+  ]
+ }
+}

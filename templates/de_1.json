@@ -1,0 +1,284 @@
+{
+  "templates": [
+    {
+      "id": "t_de_001",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "Bewohner im Altenheim „Sonnenhof\" (Stand 1.4.2024):\n- {P1}, Deutsche Staatsangehörigkeit, Aufenthalt seit 2018\n- {P2}, Aufenthaltserlaubnis, gültig bis {DATE}\n- {P3}, Daueraufenthalt-EU, registriert {DATE}\n- {P4}, Visum Kategorie D, Verlängerung in Bearbeitung"
+    },
+    {
+      "id": "t_de_002",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Logauszug Fluggesellschaft Nordflug Buchung:\n14:23 Ticket {CODE} Berlin–Zürich Passagier {P1.i}\n14:45 Sitzplatz 12C Rollstuhl erforderlich notiert\n15:12 Begleiter {P2.i} registriert Assistenz\n16:30 Mobilitätshilfe Bordeinstieg angefordert Gehbehinderung dokumentiert\n17:15 Bestätigung {P1.email} versendet PDF-Beleg\n18:00 Medizinische Info Diabetiker Insulin täglich erforderlich beachten\n18:45 Zusatzservices Mobility-Hilfe Ein- und Ausstieg genehmigt\n19:30 Zahlungsstatus bestätigt akzeptiert\n20:00 Begleitung erweitert genehmigt für gesamte Reise\n20:30 Boardingzeit reserviert {DATE}\n21:00 Gepäck Spezialbehandlung angefordert\n21:45 Bestätigung Fluggesellschaft"
+    },
+    {
+      "id": "t_de_003",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "race_or_ethnic_origin",
+      "text": "{P1}: Halte dich fern, gegen Menschen meiner Herkunft vorgegangen\n{P2}: Welche?\n{P1}: Albanisch"
+    },
+    {
+      "id": "t_de_004",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "contact_details",
+      "text": "Fitnessstudio Kundenkarte Mitgliedsnummer {CODE} Name {P1} Anmeldetag {DATE} Telefon {P1.phone} E-Mail {P1.email} Adresse {P1.addr} Monatsbeitrag {AMOUNT} Premium Plus Mitgliedschaft Status: Aktiv seit Registrierung"
+    },
+    {
+      "id": "t_de_005",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "genetic_or_biometric",
+      "text": "Bauer-Genossenschaft Milch\n{P1} | M-2847-A | Holländer 98.7% | bestätigt\n{P2} | M-2847-B | Fleckvieh 96.2% | Überprüfung"
+    },
+    {
+      "id": "t_de_006",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "name_like_product_or_place",
+      "text": "Botschaft Zwischenfall\n{DATE} Wartebereich: Personen mit Namen ähnlich Mountain Valley Riverside unterhalten\nErgebnis: Keine Gefährdung geklärt"
+    },
+    {
+      "id": "t_de_007",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "financial_account_or_credentials",
+      "text": "Spendenformular für „Hoffnung für Alle\"\nName des Spenders: {P1}\nKreditkartennummer: {P1.card}\nGültig bis: {DATE}\nSpendenbetr ag: {AMOUNT}\n[  ] Monatliche Wiederholung"
+    },
+    {
+      "id": "t_de_008",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Treffen der Kuratorengruppe, {DATE}, 14:00\nTeilnehmer: Dr. {P1}, Moderator {P2.i}, Assistent mit Profil @{P1.handle}\nAgenda:\n- Neue Ausstellung vorbereiten\n- Bestandsverwaltung durchsprechen"
+    },
+    {
+      "id": "t_de_009",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Zahnbehandlung Marker:\n{P1.s} | Zahnfleischentzündung Grad 2 | Behandlung {DATE}\n{P2.s} | Karies Stadium 3 | Wurzelbehandlung erforderlich\n{P3.s} | Parodontitis aktiv | Therapieplan"
+    },
+    {
+      "id": "t_de_010",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "sensitive_topic_in_general",
+      "text": "Anbau auf dem Genossenschaftshof – Saisonbericht {DATE}\nErfolgreiche Feldfrüchte ohne Probleme, normale Ernte zu erwarten.\nWetter: Durchschnittliche Temperaturen, ausreichender Niederschlag.\nGesamteindruck: Gutes Jahr für die Region."
+    },
+    {
+      "id": "t_de_011",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "deceased_person",
+      "text": "Geschichte von {DEAD}, Person {DEAD.born}-{DEAD.died}. Er war Geschichtenerzähler im Gasthaus. Seine Erzählungen über früher sind legendär und gepflegt.\nDie alte Gasthauskultur wird erinnert. Seine Anekdoten sind wertvoll überliefert."
+    },
+    {
+      "id": "t_de_012",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "Benutzername: {P1.handle}\nLevel: 47\nBeitrittsdatum: {DATE}\nStatus: „Stolz auf meine Identität und Community\"\nBeschreibung: Queer-freundliches Spiel, offen für alle"
+    },
+    {
+      "id": "t_de_013",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "sensitive_topic_in_general",
+      "text": "Interviewer: Wie lange lernen Sie schon Deutsch?\nLernender: Ein Jahr, ungefähr.\nInterviewer: Und warum interessiert Sie Deutsch?\nLernender: Es ist eine Sprache mit langer Geschichte."
+    },
+    {
+      "id": "t_de_014",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "contact_details",
+      "text": "{DATE}: Beichtzettel Pfarrhaus Material\nKontakt: Pfarrer {P1}\nAdresse: {P1.addr}\nTelefon: {P1.phone}\nBesuchsplan Mittwoch 19:00 Freitag 14:00\nNotizen: Kontakt erwünscht, Religionsunterricht erwähnt\nBekenntnis: Katholisch römisch\nTaufe: {DATE}\nStatus aktiv Gemeinde"
+    },
+    {
+      "id": "t_de_015",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Sehr geehrter {P1.rev},\nin Bezug auf Ihre Anmeldung vom {DATE} teilen wir mit:\nIhr Profil @{P1.handle} ist korrekt registriert.\nBitte nutzen Sie diesen Benutzer zur zukünftigen Kommunikation.\nMit freundlichen Grüßen,\n{ORG}"
+    },
+    {
+      "id": "t_de_016",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "financial_account_or_credentials",
+      "text": "Treffen Finanzbehörde {DATE}, 10:00\nThema: Rechnungsprüfung Genehmigung\nBeteiligt: {P1} Prüfer\nBankverbindung: {P1.bank}\nStatus: Geprüft bestätigt\nZahlung: innerhalb 30 Tagen"
+    },
+    {
+      "id": "t_de_017",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "Landwirtschafts-Kontakte Verzeichnis aktuell gültig:\n{ORG} Meier GmbH | AG-2847-B | Geschäftsführer | {ORG.email}\n{ORG} Müller & Co | AG-2847-C | Leitung Süd | {ORG.phone}\n{ORG} Bauer Hagenau | AG-2847-D | Vertrieb Nord | Fax {ORG.phone}\n{ORG} Schmidt Agrar | AG-2847-E | Betriebsleiter | {ORG.email}\n{ORG} Fischer Feld | AG-2847-F | Lagerverantwortlich | Tel {ORG.phone}\n{ORG} Weber Vieh | AG-2847-G | Zuchtprogramm | {ORG.email}\n{ORG} Meyer Zucht | AG-2847-H | Genetik-Abteilung | {ORG.phone}\n{ORG} Schulz Futter | AG-2847-I | Qualitätsmanagement | {ORG.email}\nKontaktliste gültig ab {DATE} überprüft und bestätigt\nVerzeichnis amtlich aktualisiert Geschäftsjahr Koordinierung"
+    },
+    {
+      "id": "t_de_018",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Krankenhaus Aufnahme\nPatient: {P1}\nGeburtsdatum: {P1.dob}\nDiagnose: Chronische Herzinsuffizienz\nMedikation: Metoprolol 50mg täglich\nAllergien: Penicillin dokumentiert\nGeschichte: Herzkatheter 2022\nStatus: Stationär"
+    },
+    {
+      "id": "t_de_019",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "address_or_birthday",
+      "text": "Immobilienagentur Exposé Verkauf Objektinformation:\nObjekt: Einfamilienhaus Stadtteil Grün Lage ideal\nVerkäufer: {P1}\nRechnungsadresse Käufer: {P2.addr}\nGeburtstag Verkäufer: {P1.dob}\nKaufpreis: {AMOUNT} inklusive Nebenkosten\nMaklergebühr: 3% zahlbar bei Grundbucheintrag\nBesichtigungstermine: Samstag 10-12 Uhr Sonntag 14-16 Uhr nach Vereinbarung\nBeschreibung Immobilie: vollständig Renoviert modern Garten Garage Kellergeschoss\nSpeicherraum Terrasse überdacht\nLage: ruhig Stadtrand Schulen Kindergarten Einkaufen Bahnhof erreichbar\nZustand: hervorragend gepflegt Wartung aktuell\nBaujahr: 1975 Sanierung 2018\nHeizung: Gastherme Warmwasser Solar\nAusstattung: Parkett Natursteinfliesen Badezimmer modern komplett\nFenster: Kunststoff Dreifachverglasung Rollläden\nInteressenten: willkommen Besichtigung flexibel nach Absprache"
+    },
+    {
+      "id": "t_de_020",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "genetic_or_biometric",
+      "text": "Antragsteller: {P1.rev}\nReisepass: {P1.passport}\nFingerabdrücke: Digital erfasst, {DATE}\nGesichtsgeometrie: Vermessen für Visum Kategorie C\nStatus: Biometrische Daten angenommen, Ausweis wird gedruckt"
+    },
+    {
+      "id": "t_de_021",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "contact_details",
+      "text": "Name | E-Mail | Kontakt\n{P1} | {P1.email} | {P1.phone}\n{P2} | {P2.email} | {P2.phone}\n{P3} | {P3.email} | Whatsapp"
+    },
+    {
+      "id": "t_de_022",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "trade_union",
+      "text": "Gewerkschaftsformular Anmeldung Arbeitnehmerkammer:\nName: {P1}\nGeburtsdatum: {P1.dob}\nDienststelle: Präsidium Hamburg Polizeibehörde\nGewerkschaftsbeitritt: IG Metall Mitglied seit {DATE}\nFunktionsposition: Vertrauensperson Betriebsrat Arbeitsschutz\nBasisgruppe: Ordnungsamt Nord Außendienst\nStatus: Aktiv Zahlung aktuell Mandate\nJahresgebühr: zahlbar Januar monatlich Ratenzahlung möglich\nAuflösbar: jederzeit schriftlich Kündigung Frist ein Monat\nVorzüge: Schulungen kostenfrei Rechtsberatung Interessenvertretung Konflikte\nKontakt: Betriebsrat Versammlung {DATE} nächster Termin\nBemerkung: Differenzierte Beitragsstaffeln nach Einkommen\nUnterzeichner: Funktion und Position bestätigt\nDatum Antrag: {DATE}"
+    },
+    {
+      "id": "t_de_023",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "government_id_number",
+      "text": "Gemeindesitzung {DATE}\nAnwesende: Pfarrer {P1}, Diakon {P2.s}\nThema: Dokumentation Altenheim\nPersonenidentifikation: {P1.govid}\nErgebnis: Akten ergänzt {DATE} bestätigt\nNächste Schritte: Follow-up Termin"
+    },
+    {
+      "id": "t_de_024",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "name_like_product_or_place",
+      "text": "Vorfall: Taschendiebstahl im Büro\nDatum: {DATE}, 15:30 Uhr\nBetroffen: Besucherin mit Name wie Mountain Peak und River Valley\nGegenstände: Notizen verloren, kein Schaden\nMaßnahmen: Sicherheitskamera überprüft, kein Verdacht"
+    },
+    {
+      "id": "t_de_025",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "@GemeindeHoffen – Donnerstag 14:23\n„Willkommen neues Mitglied {P1} von {PLACE}! Aufenthaltsstatus bestätigt. Viel Erfolg in unserer Gemeinde!\""
+    },
+    {
+      "id": "t_de_026",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Berufsunfähigkeitsversicherung Frau {P1.s} anerkannt\nPrüfung {DATE}: bisherige Tätigkeit nicht\nLeistungen ab Monat\nGrüße Versicherungsbüro"
+    },
+    {
+      "id": "t_de_027",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "precise_location",
+      "text": "Experiment-Protokoll, {DATE}\nOrt: Labor 3.4.2\nZugriff nur für Dr. {P1}\nGPS-Koordinaten Messstelle: {GPS}\nErgebnis wird hier eingegeben"
+    },
+    {
+      "id": "t_de_028",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "sensitive_topic_in_general",
+      "text": "Mitarbeitertreffen {DATE}\nThema: Umgang mit reservierten Räumen\nNeue Richtlinie: Alle Anfragen werden fair bearbeitet\nKein besonderer Fall zu berichten\nNächstes Treffen: {DATE}"
+    },
+    {
+      "id": "t_de_029",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "genetic_or_biometric",
+      "text": "Lieber {P1},\nherzliche Gratulation zur bestandenen genetischen Tests und zur Dokumentation. Ihre genetische Information ist nun aufgenommen im offiziellen Pfarr-Archiv erfasst mit streng kontrollertem Zugang für autorisierte Personen nur.\nFreundliche Grüße und Segenswünsche\nGemeinde {PLACE}\nDatum Brief: {DATE}\nZukunftskontakt erwünscht"
+    },
+    {
+      "id": "t_de_030",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "names_in_everyday_work",
+      "text": "Neue Straßenreinigungsgebühr ab {DATE}\nAngestellte der Behörde für Stadtentwicklung:\n{P1}, Leiter Abteilung\n{P2}, Stellvertreterin\n{P3}, Sachbearbeiter Gebühren\nVollständige Liste der zuständigen Mitarbeiter im Serviceportal verfügbar."
+    },
+    {
+      "id": "t_de_031",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "financial_account_or_credentials",
+      "text": "Kursteilnehmer: {P1}\nKursnummer: {CODE}\nGebühr: {AMOUNT}\nZahlungsart: Kreditkarte\nKartennummer: {P1.card}\nGültig bis: {DATE}\n[  ] Rechnung anfordern"
+    },
+    {
+      "id": "t_de_032",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "neutral_roster",
+      "text": "Ankündigung für Patienten\nZahnarztpraxis Dr. {P1}, Dr. {P2} und Kollegen\nMontag–Freitag 8:00–17:00 Uhr, Samstag geschlossen\nNotfalldienst: siehe Aushang\nUnsere Mitarbeiter:\n{P3}, Zahnhygienikerin\n{P4}, Zahnmedizinische Fachangestellte"
+    },
+    {
+      "id": "t_de_033",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "{P1}: Guten Tag ich möchte über meine Glaubensüberzeugung sprechen bitte vertraulich\nAgent: Sicherlich sehr gerne zuhören und verstehen\n{P1}: Ich bin Mitglied einer kleinen christlichen Gemeinde und Geheimhaltung sehr wichtig für mich persönlich\nAgent: Privatsphäre gewährleistet und rechtsverbindlich\n{P1}: Danke für Versprechen Geheimhaltung. Mein Arbeitgeber darf nicht wissen\nAgent: Garantiert vertraulich archiviert und geschützt\n{P1}: Aprecio tu discreción con la iglesia\nAgent: Komfort Vertraulichkeit Priorität immer für Sie\n{P1}: Vielen herzlichen Dank\nAgent: Gerne helfen anytime kontaktieren Sie uns"
+    },
+    {
+      "id": "t_de_034",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "formal_hr_record",
+      "text": "@PolitischeFortschrittspartei – Samstag 11:45\nDisziplinarische Maßnahme gegen {P1}: suspendiert wegen Verstoß gegen Parteirichtlinien. Standards beachten."
+    },
+    {
+      "id": "t_de_035",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "financial_account_or_credentials",
+      "text": "Hotel Gastkontaktübersicht Verwaltung Daten:\nVerwaltungsnummer: {CODE}\nGast Name: {P1}\nAnkunftsdatum: {DATE}\nAbreisedatum: {DATE}\nZimmernummer: 412\nKreditkarte: {P1.card}\nGültig bis: {DATE}\nTelefon Kontakt: {P1.phone}\nRechnungsadresse: {P1.addr}\nBezahlung: bei Abreise oder auf Anfrage\nReservierungsstatus: Reserviert und bestätigt\nAllergien: keine angegeben\nRaucher/Nichtraucher: Nichtraucher\nZimmertyp: Suite mit Balkon Seeblick\nFrühstück: Buffet inklusive\nParken: Parkplatz reserviert Tiefgarage\nReisezweck: Business Tagung Konferenz\nBemerkungen: Transfers möglich spezielle Mahlzeiten auf Anfrage\nAnmerkung: Bestandskunde wiederkehrend"
+    },
+    {
+      "id": "t_de_036",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "Liebe Kollegin Kollege, wir bitten Unterstützung Abstimmung Mindestlöhne-Erhöhung. Ihre politische Meinung zählt: Dafür oder dagegen? {P1} antwortet bis {DATE}. Solidarische Grüße {ORG}"
+    },
+    {
+      "id": "t_de_037",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "Vorfall: Person ohne Dokumente\n{DATE}, 13:15 Uhr\nPerson: Behauptet {P1} zu sein, keine Aufenthaltserlaubnis\nMaßnahme: Termin verschoben, Unterlagen gefordert\nStatus: Identität ungeklärt"
+    },
+    {
+      "id": "t_de_038",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "Patient: {P1}\nArbeitgeber: {ORG}\nOrt: Baustelle Ostseite\n{DATE}, 10:30 Uhr\nBeschreibung: Sturz Leiter, leichte Verletzungen\nVersicherung: Ja, Bericht Berufsgenossenschaft"
+    },
+    {
+      "id": "t_de_039",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "trade_union",
+      "text": "Vereinsmitteilung vom {DATE}\nLiebe Vereinsmitglieder,\nfolgende Personen sind aktive Arbeitnehmerkammer-Mitglieder des Vereins:\n{P1}, Vorsitzender, Gewerkschaft seit 2015\n{P2}, Schatzmeister, Mitglied seit 2018\n{P3}, Kassenliste\nVielen Dank für euer Engagement!"
+    },
+    {
+      "id": "t_de_040",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "Vorfall Studio {DATE}, 18:30 Uhr\nMitglied: {P1} äußerte Glaubensüberzeugung\nBeschreibung: Normales Verhalten\nReaktion: Keine Beschwerde\nStatus: Kein Eingriff"
+    }
+  ]
+}

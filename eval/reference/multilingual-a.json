@@ -1,0 +1,3565 @@
+{
+ "description": "Multilingual reference set A (160 documents, 2026-09-27). Written without seeing training data; labels corrected by hand. It informed later training-data changes, so its scores are optimistic.",
+ "tests": [
+  {
+   "id": "sw001_hokkaido_scholar",
+   "lang": "ja",
+   "format": "encyclopedia",
+   "text": "北大の藍川定喬は明治時代の地質学者で、火山研究の先駆者だった。1839年から1901年にかけて活躍。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "藍川定喬",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw002_office_chat",
+   "lang": "ja",
+   "format": "chat",
+   "text": "木村さん、営業資料の修正案をお送りしました。添付の「Q3企画書_v2.pdf」をご確認ください。返信:了解です。吉田さんにも共有しておきます。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "木村",
+      "pii": true,
+      "honorific": "さん"
+     },
+     {
+      "type": "person_name",
+      "value": "吉田",
+      "pii": true,
+      "honorific": "さん"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw003_business_card",
+   "lang": "ja",
+   "format": "form",
+   "text": "営業部長 鈴木雅彦 電話: 03-2567-8901 メール: m.suzuki@acme-example.jp",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "鈴木雅彦",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "03-2567-8901",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "m.suzuki@acme-example.jp",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw004_company_hotline",
+   "lang": "ja",
+   "format": "memo",
+   "text": "お問い合わせはカスタマーセンター 0120-555-1234 または support@widget-japan.example.jp までお願いします。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "0120-555-1234",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "support@widget-japan.example.jp",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw005_delivery_slip",
+   "lang": "ja",
+   "format": "form",
+   "text": "配達先：鈴木美咲様 〒231-0005 神奈川県横浜市中区 電話:090-3456-7890",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "鈴木美咲",
+      "pii": true,
+      "honorific": "様"
+     },
+     {
+      "type": "phone",
+      "value": "090-3456-7890",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw006_meeting_roster",
+   "lang": "ja",
+   "format": "list",
+   "text": "【9月27日プロジェクト会議出席者】清水健一、白鳥紀夫、田辺ゆり、千葉光太郎、伊藤慶子",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "清水健一",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "白鳥紀夫",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "田辺ゆり",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "千葉光太郎",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "伊藤慶子",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw007_my_number_registration",
+   "lang": "ja",
+   "format": "form",
+   "text": "個人番号（マイナンバー）: 12345678901 氏名: 田中花子 生年月日: 1985年3月22日",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "number",
+      "value": "12345678901",
+      "pii": true,
+      "number_type": "my_number"
+     },
+     {
+      "type": "person_name",
+      "value": "田中花子",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw008_medical_diagnosis",
+   "lang": "ja",
+   "format": "memo",
+   "text": "患者:遠藤由美 診断日:2026年8月15日 病名:2型糖尿病 処方:メトホルミン500mg×2回/日",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "遠藤由美",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw009_hr_warning_log",
+   "lang": "ja",
+   "format": "list",
+   "text": "パワハラ報告書 (2026年8月) - 加害者:小林正人、被害者:岡田麻衣子 - 加害者:水野隆一、被害者:高橋由子",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "小林正人",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "岡田麻衣子",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "水野隆一",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "高橋由子",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw010_email_signature",
+   "lang": "ja",
+   "format": "email",
+   "text": "本件についてよろしくお願いいたします。\n\n佐々木洋治\nシステム部 課長\n電話: 090-1111-2222\nsasaki.youji@example-corp.jp",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "佐々木洋治",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "090-1111-2222",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "sasaki.youji@example-corp.jp",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw011_review_comment",
+   "lang": "ja",
+   "format": "chat",
+   "text": "話題の漫画『未来都市』の感想：キャラが生き生きしている。最後の展開は涙が出た。★★★★★ - nickbread様より",
+   "expected": {
+    "sensitivity": "low",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw012_access_log",
+   "lang": "ja",
+   "format": "log",
+   "text": "2026-09-27 14:23:45 root: /home/system login OK\n2026-09-27 14:24:12 sysadmin: database backup started\n2026-09-27 14:25:01 noreply@cronmonitor: notification sent",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw013_rotation_schedule",
+   "lang": "ja",
+   "format": "list",
+   "text": "9月カレンダー当番: 1-3日:松本知代 4-6日:酒井勝成 7-9日:川端美優 10-12日:吉本正德",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "松本知代",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "酒井勝成",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "川端美優",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "吉本正德",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw014_invoice",
+   "lang": "ja",
+   "format": "form",
+   "text": "請求書 No.INV-2026-0847\n請求先：永田勇気様\n合計金額：¥45,800\n振込期限：2026年10月15日",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "永田勇気",
+      "pii": true,
+      "honorific": "様"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw015_support_chat_long",
+   "lang": "ja",
+   "format": "chat",
+   "text": "【テクニカルサポートチャット・ログ 2026-09-27 14:30-15:45】 本日はお問い合わせいただきありがとうございます。弊社カスタマーサポートチームの渡辺健太がお手伝いさせていただきます。ご報告いただいた問題について、実は私たちのチーム内でも同じ問題に直面した経験があります。多くのユーザーから類似のご報告をいただいており、既知の問題として認識しております。まずはパソコンの再起動をお試しいただけますでしょうか。多くの場合、この手順で解決いたします。それでも解決しない場合は、弊社の技術者の山田太郎に詳細なログをお送りいただくことをお勧めします。新しいバージョン2.5ではこの問題は修正されています。本件について、私たちのカスタマーサポートチーム全体（渡辺健太、山田太郎、佐藤由美）で問題を分析してまいりました。各々のログファイルを確認し、原因を特定するために数時間かけました。最終的には新しいドライバーのインストールが必要であることが判明しました。ご不便をおかけして申し訳ございません。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "渡辺健太",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "山田太郎",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw016_system_daemon_log",
+   "lang": "ja",
+   "format": "log",
+   "text": "2026-09-27T14:30:22 systemd[1]: Started Session 234 of user daemon.\n2026-09-27T14:30:23 syslogd: connection from 10.0.0.1\n2026-09-27T14:30:24 kernel: [12345.678901] usb 1-1: new high-speed device",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw017_employee_contact_list_sensitive",
+   "lang": "ja",
+   "format": "list",
+   "text": "産休・育休予定者リスト (機密) 村田由子 090-7777-8888, 鈴木美雪 090-8888-9999, 高島礼子 090-9999-0000",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "村田由子",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "090-7777-8888",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "鈴木美雪",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "090-8888-9999",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "高島礼子",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "090-9999-0000",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw018_tezuka_biography",
+   "lang": "ja",
+   "format": "memo",
+   "text": "手塚治虫（1928-1989）は日本の漫画家・アニメーション製作者。『鉄腕アトム』『ブラック・ジャック』などの作品で知られる。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "手塚治虫",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw019_credit_card_statement",
+   "lang": "ja",
+   "format": "form",
+   "text": "カード名義人:中村拓也 クレジットカード番号:4532-9876-5432-1098 有効期限:03/28 利用可能額:¥523,400",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "中村拓也",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4532-9876-5432-1098",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw020_arrest_record",
+   "lang": "ja",
+   "format": "memo",
+   "text": "逮捕記録 2026年6月3日 容疑者:伊藤祐一朗 罪名:詐欺罪 身柄:地検送致 参考番号:2026-DJ-0447",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "伊藤祐一朗",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw021_wechat_moment",
+   "lang": "zh",
+   "format": "chat",
+   "text": "小红：嘿，周末去爬山吗？李明：可以，不过我要先问问王芳。李明：王芳说她有事，就咱俩去吧。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "小红",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "李明",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "王芳",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw022_express_waybill",
+   "lang": "zh",
+   "format": "form",
+   "text": "收货人：张三 电话：13812345678 地址：北京市朝阳区建国路88号 邮编：100022",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "张三",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "13812345678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw023_expense_report",
+   "lang": "zh",
+   "format": "form",
+   "text": "报销单 申请人：陈浩 部门：销售部 项目：客户拜访 金额：¥2800 审批：赵静",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "陈浩",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "赵静",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw024_service_hotline",
+   "lang": "zh",
+   "format": "memo",
+   "text": "客户服务热线：400-8888-888 或发送邮件至 service@example-tech.cn 我们的工作时间是周一至周五 9:00-18:00",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "400-8888-888",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "service@example-tech.cn",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw025_resume",
+   "lang": "zh",
+   "format": "form",
+   "text": "个人简历 姓名：刘晓明 电话：18666666666 邮箱：lxm.resume@example.org 工作经验：5年软件开发",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "刘晓明",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "18666666666",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "lxm.resume@example.org",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw026_meeting_minutes",
+   "lang": "zh",
+   "format": "memo",
+   "text": "会议记录 2026年9月27日 出席人员：何文、程晓芸、黄健、梁燕、汤建华。讨论了Q4季度目标并确定了责任人。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "何文",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "程晓芸",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "黄健",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "梁燕",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "汤建华",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw027_alipay_transfer",
+   "lang": "zh",
+   "format": "form",
+   "text": "支付宝转账记录 收款人：王一平 账户：wang1234@example.com 转账金额：¥3500 交易号：202609271432456789",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "王一平",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "wang1234@example.com",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "202609271432456789",
+      "pii": false,
+      "number_type": "other"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw028_id_card_scan",
+   "lang": "zh",
+   "format": "form",
+   "text": "身份证号：510101198501231234 姓名：杨军 性别：男 出生日期：1985年1月23日",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "杨军",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "510101198501231234",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw029_medical_prescription",
+   "lang": "zh",
+   "format": "form",
+   "text": "患者名称：刘红蕾 症状：咳嗽、发热 诊断：急性肺炎 处方：阿莫西林胶囊",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "刘红蕾",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw030_disciplinary_notice",
+   "lang": "zh",
+   "format": "memo",
+   "text": "处分通知 违规人员：徐建林、吕盼盼、史正伟 违规类别：迟到旷工 处分等级：警告",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "徐建林",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "吕盼盼",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "史正伟",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw031_business_card_ocr",
+   "lang": "zh",
+   "format": "form",
+   "text": "顾问 李建华 电话：010-5566-7788 手机：13900001234 邮箱：li.jh@strategy-example.cn",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "李建华",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-5566-7788",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "13900001234",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "li.jh@strategy-example.cn",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw032_employee_review",
+   "lang": "zh",
+   "format": "memo",
+   "text": "年度绩效评估 员工：谭清涛 评分：85分 评价：工作能力强，沟通能力需改进 签名：周莎",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "谭清涛",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "周莎",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw033_bank_statement_long",
+   "lang": "ja",
+   "format": "form",
+   "text": "銀行取引明細書 2026年9月 口座所有人: 孟祥杰 口座番号: 6225001234567890 期初残高: ¥125,600 9月1日: 給与入金 ¥28,000 9月5日: 電気代支払い ¥2,100 9月8日: 李富林への振込 ¥50,000 9月12日: オンラインショッピング ¥3,450 9月15日: 水道代支払い ¥1,100 9月20日: 給与入金 ¥28,000 9月22日: 保険料支払い ¥5,600 9月25日: 雑費支払い ¥1,000 期末残高: ¥100,400 口座状態: 正常。本口座は2026年9月期間中に合計12件の取引が発生しました。孟祥杰様のご口座の状態は良好であり、不正アクセスや異常な取引パターンは検出されていません。すべての請求書および契約費用は期日までにお支払いいただいております。来月の予想残高は¥105,200です（特別な支出がない場合）。このご口座は連続5年間、正常に運用されており、延滞記録は一切ございません。ご口座の信用評級は優秀です。",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "孟祥杰",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "6225001234567890",
+      "pii": true,
+      "number_type": "bank_account"
+     },
+     {
+      "type": "person_name",
+      "value": "李富林",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw034_confucian_scholar",
+   "lang": "zh",
+   "format": "memo",
+   "text": "孔子（公元前551年-前479年）是中国古代伟大的思想家和教育家，儒家学派的创始人。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "孔子",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw035_criminal_record",
+   "lang": "zh",
+   "format": "memo",
+   "text": "刑事案件卷宗 案号：(2026)京刑初字第2847号 被告人：黄健伟 罪名：诈骗罪 判决日期：2026年8月10日",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "黄健伟",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw036_qq_group_chat",
+   "lang": "zh",
+   "format": "chat",
+   "text": "高雯：有人看过新电影吗？许梦婷：看过，特别推荐！高雯：那周末一起去？许梦婷：好的，约邱舒怡一起。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "高雯",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "许梦婷",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "邱舒怡",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw037_property_management_notice",
+   "lang": "zh",
+   "format": "memo",
+   "text": "物业通知 9月停电日期：9月28日 负责人：李瑞 联系电话：010-9090-9090（办公）、15688888888（应急）",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "李瑞",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-9090-9090",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "15688888888",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw038_admission_form",
+   "lang": "zh",
+   "format": "form",
+   "text": "入学登记 学生姓名：林文娇 身份证号：350524200509876543 家长联系电话：13777777777 班级分配：高一3班",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "林文娇",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "350524200509876543",
+      "pii": true,
+      "number_type": "national_id"
+     },
+     {
+      "type": "phone",
+      "value": "13777777777",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw039_website_support_footer",
+   "lang": "zh",
+   "format": "memo",
+   "text": "联系我们 电子邮箱：support@widget.example.cn 或 sales@widget.example.cn 电话客服：400-166-1234（周一至周五9-18点）",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "support@widget.example.cn",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "sales@widget.example.cn",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "400-166-1234",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw040_credit_card_fraud_report",
+   "lang": "zh",
+   "format": "memo",
+   "text": "欺诈报告 持卡人：蔡学强 信用卡号：6217001234567890 报告日期：2026年9月26日 异常交易：武汉某商户¥6980",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "蔡学强",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "6217001234567890",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw041_kakao_chat",
+   "lang": "ko",
+   "format": "chat",
+   "text": "김철수: 이번주 회의 괜찮아? 이영희: 수요일은 안 돼. 박민정: 목요일은? 이영희: 좋아, 목요일로 할게.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "김철수",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이영희",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "박민정",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw042_delivery_address",
+   "lang": "ko",
+   "format": "form",
+   "text": "받는 사람: 정원희 연락처: 010-5555-6666 주소: 서울시 강남구 테헤란로 123 동 45호",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "정원희",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-5555-6666",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw043_company_directory",
+   "lang": "ko",
+   "format": "list",
+   "text": "영업팀 연락처 리스트 임하나: 02-555-1234, 010-1111-1111 이대현: 02-555-1235, 010-2222-2222 조은지: 02-555-1236, 010-3333-3333",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "임하나",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-555-1234",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-1111-1111",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이대현",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-555-1235",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-2222-2222",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "조은지",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-555-1236",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-3333-3333",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw044_email_signature",
+   "lang": "ko",
+   "format": "email",
+   "text": "안녕하세요.\n\n김준호\n마케팅팀 과장\n전화: 010-7777-8888\n이메일: junho.kim@example-kr.co.kr",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "김준호",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-7777-8888",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "junho.kim@example-kr.co.kr",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw045_server_logs",
+   "lang": "ko",
+   "format": "log",
+   "text": "2026-09-27 15:42:33 systemd[1]: Started cron daemon (crond)\n2026-09-27 15:42:34 kernel: audit: pid=1234 uid=0 auid=4294967295 ses=4294967295\n2026-09-27 15:42:35 sshd[5678]: Invalid user test from 10.0.0.1",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw046_tax_invoice",
+   "lang": "ko",
+   "format": "form",
+   "text": "세금계산서 공급자: 박승희 공급받는자: 정해진 공급가액: ₩2,500,000 부가세: ₩250,000 합계: ₩2,750,000",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "박승희",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "정해진",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw047_driver_license",
+   "lang": "ko",
+   "format": "form",
+   "text": "운전면허증 소유자명: 한수진 주민등록번호: 850315-1234567 발급일: 2020년 9월 15일 유효기간: 2030년 9월 14일까지",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "한수진",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "850315-1234567",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw048_medical_consultation",
+   "lang": "ko",
+   "format": "memo",
+   "text": "진료 기록 환자: 이재영 진료일: 2026년 9월 25일 진단: 고혈압 2단계 처방약: 아세틸살리실산 100mg",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "이재영",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw049_hr_absent_list",
+   "lang": "ko",
+   "format": "list",
+   "text": "결근 보고 (2026년 9월 3주) 신원정: 병가 3일 이민수: 휴가 2일 최준영: 결근 1일",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "신원정",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이민수",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "최준영",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw050_curriculum_vita",
+   "lang": "ko",
+   "format": "form",
+   "text": "이력서 성명: 유지현 휴대폰: 010-9999-0000 이메일: yoo.ji@example.org 경력: 소프트웨어 엔지니어 8년",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "유지현",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-9999-0000",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "yoo.ji@example.org",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw051_naver_review",
+   "lang": "ko",
+   "format": "chat",
+   "text": "사용자 '별꽃향기'님의 리뷰: 정말 좋습니다. 배송도 빨랐어요. 강력하게 추천합니다! ★★★★★",
+   "expected": {
+    "sensitivity": "low",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw052_criminal_court_record_long",
+   "lang": "ja",
+   "format": "memo",
+   "text": "【ソウル中央地方裁判所 刑事判決書 2026-09-01】 事件番号: 2026나45678 被告人: 장준호 年齢: 34歳 住所: ソウル市江南区 罪名: 詐欺罪（継続的組織詐欺） 判決日: 2026年9月1日 判決内容: 有罪、懲役2年執行猶保3年。【詳細な判決理由】 被告人장준호は2024年7月から2026年5月までの間、インターネットを通じて20名以上の被害者から総額520万円を計画的かつ組織的に詐欺により騙し取った。被告人の犯行は単なる一時的な詐欺行為ではなく、長期間にわたる継続的な組織詐欺である。被害者らは投資話をうまく信じ込まされ、金銭を送金させられた。被害者らが被った精神的および財産的損害は深刻であり、多くの被害者が経済的困窮に陥った。被告人は被害者らとの示談を拒否し、犯行についての反省の姿勢を示さなかった。本件において提出された多数の証拠によって、被告人の犯行は明白に証明されている。被害者の証言も一貫性が高く、信頼性がある。本裁判所は厳罰が必要であると判断し、懲役2年執行猶保3年を宣告する。",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "장준호",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw053_park_jong_soo_biography",
+   "lang": "ko",
+   "format": "memo",
+   "text": "박종수(1912-1987)는 한국의 독립운동가이자 철학자였다. 그는 해방 후 여러 대학에서 철학을 가르쳤다.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "박종수",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw054_bank_account_info",
+   "lang": "ko",
+   "format": "form",
+   "text": "예금주: 오미진 계좌번호: 1002456789012 은행: 신한은행 잔액: ₩3,245,600",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "오미진",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "1002456789012",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw055_slack_channel",
+   "lang": "ko",
+   "format": "chat",
+   "text": "#marketing 채널 메시지: 윤재훈: 내일 회의 자료 준비했어? 정인호: 네, 이메일로 보냈습니다. 윤재훈: 감사합니다.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "윤재훈",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "정인호",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw056_toll_free_number",
+   "lang": "ko",
+   "format": "memo",
+   "text": "고객센터 번호: 1577-0077 또는 이메일: support@widget.example.kr 영업시간: 월-금 09:00-18:00",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "1577-0077",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "support@widget.example.kr",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw057_rental_contract",
+   "lang": "ko",
+   "format": "form",
+   "text": "전세계약서 임차인: 허진수 임대인: 송경숙 주소: 서울시 강북구 월계동 아파트 201호 전세금: ₩400,000,000",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "허진수",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "송경숙",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw058_credit_card_number",
+   "lang": "ko",
+   "format": "form",
+   "text": "신용카드 등록 소유자: 최미영 카드번호: 5432123456789876 유효기간: 12/27 CVC: 123",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "최미영",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "5432123456789876",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw059_meeting_agenda",
+   "lang": "ko",
+   "format": "memo",
+   "text": "회의 기록 2026년 9월 27일 참석자: 이정철, 김나리, 호명훈, 박세은, 유미경 안건: Q4 목표 및 전략 담당자 배정 완료",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "이정철",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "김나리",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "호명훈",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "박세은",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "유미경",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw060_suspended_account_notice",
+   "lang": "ko",
+   "format": "memo",
+   "text": "계정 정지 알림 사용자명: 홍미영 정지 사유: 약관 위반 정지 기간: 2026년 9월 27일~2026년 10월 27일 연락처: 010-6666-7777",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "홍미영",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-6666-7777",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw061_support_ticket",
+   "lang": "en",
+   "format": "email",
+   "text": "Ticket #45892 Customer: Robert J. Michaels Email: robert.michaels@example.com Phone: +1-555-234-5678 Issue: Unable to reset password. Please call back at your earliest convenience.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Robert J. Michaels",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "robert.michaels@example.com",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+1-555-234-5678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw062_slack_message",
+   "lang": "en",
+   "format": "chat",
+   "text": "@alice: Did you get a chance to review the proposal? @bob: Yes, looks great! Sending feedback to @carol now. @alice: Thanks!",
+   "expected": {
+    "sensitivity": "low",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw063_hr_confidential",
+   "lang": "en",
+   "format": "memo",
+   "text": "[CONFIDENTIAL] Sexual harassment complaints filed by: Jessica Thompson, Marcus Rodriguez, and Emily Chen. Incidents reported to HR on 2026-09-15.",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Jessica Thompson",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Marcus Rodriguez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Emily Chen",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw064_company_directory",
+   "lang": "en",
+   "format": "list",
+   "text": "Sales Team Directory:\nDavid Clark | ext. 2341 | clark@sales.example.com\nSarah Johnson | ext. 2342 | johnson@sales.example.com\nTom Williams | ext. 2343 | williams@sales.example.com",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "David Clark",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "clark@sales.example.com",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Sarah Johnson",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "johnson@sales.example.com",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Tom Williams",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "williams@sales.example.com",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw065_invoice",
+   "lang": "en",
+   "format": "form",
+   "text": "Invoice #INV-20260927-001\nBill To: Amanda Foster\nAmount: $4,250.00\nDue Date: 2026-10-27",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Amanda Foster",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw066_customer_service_footer",
+   "lang": "en",
+   "format": "memo",
+   "text": "Have questions? Contact us at support@widget-corp.example.com or call 1-800-555-0123. We're here to help Monday-Friday, 8am-5pm EST.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "support@widget-corp.example.com",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "1-800-555-0123",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw067_drivers_license",
+   "lang": "en",
+   "format": "form",
+   "text": "Driver License: DL456789 Name: Christopher Michael Brown DOB: 03/15/1992 Address: 123 Oak Street, Portland, OR 97210",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Christopher Michael Brown",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "DL456789",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw068_medical_record",
+   "lang": "en",
+   "format": "form",
+   "text": "Patient Name: Dr. Lisa Anderson Age: 47 Diagnosis: Type 2 Diabetes Mellitus Medications: Metformin 500mg twice daily",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Lisa Anderson",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw069_arrest_report",
+   "lang": "en",
+   "format": "memo",
+   "text": "Arrest Report Case #2026-75432 Suspect: James Peter Mitchell Age: 34 Charge: Grand Larceny Date: 2026-09-24",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "James Peter Mitchell",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw070_credit_card",
+   "lang": "en",
+   "format": "form",
+   "text": "Cardholder: Victoria Lane Card Number: 4916-2847-5031-9876 Expiry: 06/28 CVV: 847",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Victoria Lane",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4916-2847-5031-9876",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw071_bank_transfer",
+   "lang": "en",
+   "format": "form",
+   "text": "From: Patricia Williams Account: 9876543210987654 To: Michael Johnson Amount: $2,500 Date: 2026-09-27",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Patricia Williams",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "9876543210987654",
+      "pii": true,
+      "number_type": "bank_account"
+     },
+     {
+      "type": "person_name",
+      "value": "Michael Johnson",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw072_alan_turing_article",
+   "lang": "en",
+   "format": "memo",
+   "text": "Alan Turing (1912–1954) was a pioneering British mathematician and logician who developed the concept of the Turing machine and laid the foundations of theoretical computer science.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Alan Turing",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw073_security_log",
+   "lang": "en",
+   "format": "log",
+   "text": "2026-09-27T16:45:23.456 INFO [security] root user login from 192.168.1.105\n2026-09-27T16:45:24.789 INFO [auth] Service account svc_backup authenticated\n2026-09-27T16:45:25.012 WARN [api] Unusual pattern from 10.0.0.1",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw074_conference_attendees_long",
+   "lang": "en",
+   "format": "list",
+   "text": "Tech Summit 2026 - Attendee List: Dr. Henry Foster (Panel Discussion, AI Safety), Professor Maria Castellano (Keynote, ML Ethics), Rachel Greene (Workshop Lead), Dr. Dmitri Volkov (Closing Remarks). All attendees: 485 registered from 42 countries. Additional keynote speaker: Prof. Emma Walsh from Cambridge University. VIP Dinner: Dr. Foster, Dr. Volkov, Prof. Castellano, Rachel Greene, Event Organizer Kevin Murphy (organizer@summit-example.org)",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Henry Foster",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Maria Castellano",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Rachel Greene",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Dmitri Volkov",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Kevin Murphy",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "organizer@summit-example.org",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw075_nda_signed",
+   "lang": "en",
+   "format": "form",
+   "text": "Non-Disclosure Agreement Signed by: Daniel Harper Date: 2026-09-15 Company: InnovateTech Inc. Witness: Stephanie Burns Notarized: Yes",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Daniel Harper",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Stephanie Burns",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw076_reddit_post",
+   "lang": "en",
+   "format": "chat",
+   "text": "Posted by u/techfanatic: I just got hired at XYZ Corp! Can't wait to start. Posted by u/random_user: Congrats! What's your role? u/techfanatic: Software engineer, starting next month.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw077_passport_scan",
+   "lang": "en",
+   "format": "form",
+   "text": "Passport Number: AA3456789B Holder: Margaret Elizabeth Walsh DOB: June 20, 1988 Expiry: 2032-06-19 Nationality: American",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Margaret Elizabeth Walsh",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "AA3456789B",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw078_email_complaint",
+   "lang": "en",
+   "format": "email",
+   "text": "Subject: Complaint about manager\nDear HR,\nI am writing to file a formal complaint about my manager, William Richardson. On 2026-09-20, he made inappropriate comments about my appearance. This has been affecting my work performance.\nRegards,\nEmily Price",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "William Richardson",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Emily Price",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw079_grocery_list_receipt",
+   "lang": "en",
+   "format": "form",
+   "text": "Receipt #00298456 Date: 2026-09-27 Purchased by: George Sullivan Milk $3.49 Bread $2.19 Cheese $5.99 Total: $11.67",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "George Sullivan",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw080_meeting_notes",
+   "lang": "en",
+   "format": "memo",
+   "text": "Attendees: Nicholas Gray, Dr. Patricia Lopez, Howard Kim, Angela Martinez, Susan White. Discussed budget allocation for Q4. Nicholas to prepare revised estimates. Patricia to coordinate vendor meetings. Next meeting: 2026-10-04.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Nicholas Gray",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Patricia Lopez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Howard Kim",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Angela Martinez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Susan White",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw081_inscription_form",
+   "lang": "fr",
+   "format": "form",
+   "text": "Formulaire d'inscription Nom: Matthieu Deschamps Prénom: Antoine Téléphone: +33 6 12 34 56 78 Email: deschamps.antoine@example.fr",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Matthieu Deschamps",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+33 6 12 34 56 78",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "deschamps.antoine@example.fr",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw082_postal_letter",
+   "lang": "fr",
+   "format": "memo",
+   "text": "Madame Isabelle Mercier,\n123 Rue de la Paix\n75001 Paris\n\nChère Mme Mercier, Nous avons le plaisir de vous confirmer votre réservation...",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Isabelle Mercier",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw083_employee_roster",
+   "lang": "fr",
+   "format": "list",
+   "text": "Équipe Ventes: Frédéric Lemoine (tél. 02-555-1234), Claude Fabre (tél. 02-555-1235), Véronique Delorme (tél. 02-555-1236), Henri Dupont (tél. 02-555-1237)",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Frédéric Lemoine",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-555-1234",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Claude Fabre",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-555-1235",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Véronique Delorme",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-555-1236",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Henri Dupont",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-555-1237",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw084_support_contact",
+   "lang": "fr",
+   "format": "memo",
+   "text": "Service client: 0800-456-789 ou contact@widget-fr.example.com Horaires: Lundi-Vendredi 9h-18h",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "0800-456-789",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "contact@widget-fr.example.com",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw085_french_identity_card",
+   "lang": "fr",
+   "format": "form",
+   "text": "Carte d'Identité Nom: Laurent Petit Prénom: Thierry Numéro: FR00123456789 Date de naissance: 15/07/1985 Validité: 2031-07-14",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Laurent Petit",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "FR00123456789",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw086_medical_prescription",
+   "lang": "fr",
+   "format": "form",
+   "text": "Ordonnance Médicale Patiente: Dr. Anne-Marie Leclerc Date: 2026-09-27 Diagnostic: Hypertension artérielle Prescription: Lisinopril 10mg",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Anne-Marie Leclerc",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw087_bank_iban",
+   "lang": "fr",
+   "format": "form",
+   "text": "Titulaire du compte: Élise Courtois IBAN: FR1420041010050500013M02606 Solde: €4,250.75",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Élise Courtois",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "FR1420041010050500013M02606",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw088_disciplinary_record",
+   "lang": "fr",
+   "format": "memo",
+   "text": "Rapport disciplinaire Employés: Dominique Renard, Gérard Moulin, Céline Bertrand Motif: Absences non justifiées Sanction: Avertissement écrit",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Dominique Renard",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Gérard Moulin",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Céline Bertrand",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw089_voltaire_quote",
+   "lang": "fr",
+   "format": "memo",
+   "text": "François-Marie Arouet, dit Voltaire (1694-1778), était un écrivain et philosophe français. Il est l'auteur de 'Candide' et des 'Lettres philosophiques'.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Voltaire",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw090_credit_card_statement",
+   "lang": "fr",
+   "format": "form",
+   "text": "Titulaire: Michèle Gauthier Numéro de carte: 4111-5555-8888-3456 Expiration: 05/27 Solde: €789.34",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Michèle Gauthier",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4111-5555-8888-3456",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw091_invoice_long",
+   "lang": "fr",
+   "format": "form",
+   "text": "Facture #FAC-20260927-0045 Émis par: Yannick Laurent, Directeur Commercial Facturé à: Christiane Dupuis, Responsable Achats, Adresse: 45 Boulevard Haussmann, 75008 Paris Montant HT: €3,200.00 TVA (20%): €640.00 Montant TTC: €3,840.00 Les services ont été fournis conformément au contrat signé le 15 septembre 2026 entre Yannick Laurent et Christiane Dupuis. Délai de paiement: 30 jours nets. Mode de paiement: Virement bancaire",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Yannick Laurent",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Christiane Dupuis",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw092_server_logs",
+   "lang": "fr",
+   "format": "log",
+   "text": "2026-09-27 14:30:12 root: System startup initiated\n2026-09-27 14:30:13 syslog: daemon process started\n2026-09-27 14:30:14 kernel: [boot] Memory check complete",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw093_criminal_court_record",
+   "lang": "fr",
+   "format": "memo",
+   "text": "Jugement Pénal Case: 2026/CV/12345 Accusé: Jean-Claude Besson Inculpation: Fraude à l'assurance Jugement: 18 mois de prison avec sursis",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Jean-Claude Besson",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw094_meeting_minutes",
+   "lang": "fr",
+   "format": "memo",
+   "text": "Procès-verbal Réunion 2026-09-27 Présents: Sabine Arnould, Régine Collet, Gérald Mercier, Nathalie Bonnet Ordre du jour: Budget Q4, planification",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Sabine Arnould",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Régine Collet",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Gérald Mercier",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Nathalie Bonnet",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw095_email_signature",
+   "lang": "fr",
+   "format": "email",
+   "text": "Cordialement,\nPierre Blanchard\nChef de Projet\nTéléphone: +33 2 47 89 01 23\nEmail: pierre.blanchard@societe-example.fr",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Pierre Blanchard",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+33 2 47 89 01 23",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "pierre.blanchard@societe-example.fr",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw096_passport_number",
+   "lang": "fr",
+   "format": "form",
+   "text": "Passeport Numéro: 01A123456 Titulaire: Monique Royer Né(e): 3 novembre 1980 Expiration: 2030-11-02",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Monique Royer",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "01A123456",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw097_chat_message",
+   "lang": "fr",
+   "format": "chat",
+   "text": "Rémi: Vous avez confirmé l'heure de la réunion? Arlette: Oui, 15h30. Rémi: Merci de prevenir aussi Lucienne.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Rémi",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Arlette",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Lucienne",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw098_customer_review",
+   "lang": "fr",
+   "format": "chat",
+   "text": "Évaluation 5 étoiles de Monsieur 'BobTheBuilder': Excellente qualité, livraison rapide, très recommandé!",
+   "expected": {
+    "sensitivity": "low",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw099_newsletter_unsubscribe",
+   "lang": "fr",
+   "format": "email",
+   "text": "Vous recevez cet email car vous êtes inscrit à notre newsletter. Cet email a été envoyé à: patrick.devaux@example.fr Pour vous désabonner, cliquez ici: unsubscribe@widget-fr.example.com",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "email",
+      "value": "patrick.devaux@example.fr",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "unsubscribe@widget-fr.example.com",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw100_invoice_delivery",
+   "lang": "fr",
+   "format": "form",
+   "text": "Bon de Livraison Destinataire: M. Eugène Marchand Adresse: 78 Rue Molière, Lyon 69006 Téléphone: 04-9999-8888 Articles: Commande #CMD-20260920 expédiée le 2026-09-27",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Eugène Marchand",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "04-9999-8888",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw101_verbale_riunione",
+   "lang": "it",
+   "format": "memo",
+   "text": "Verbale di riunione Data: 2026-09-27 Presenti: Daniele Rossi, Federica Moretti, Carlo Bianchi, Gianna Neri Oggetto: Progetto di sviluppo",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Daniele Rossi",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Federica Moretti",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Carlo Bianchi",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Gianna Neri",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw102_modulo_asl",
+   "lang": "it",
+   "format": "form",
+   "text": "Scheda paziente Nome: Antonio Lombardi Cognome: Lombardi Data di nascita: 12/05/1978 Medico curante: Dr. Marco Ferrari Telefono: +39 06 9876 5432",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Antonio Lombardi",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Marco Ferrari",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+39 06 9876 5432",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw103_email_business",
+   "lang": "it",
+   "format": "email",
+   "text": "Egregio Sig. Tommaso Venturi,\nLa contatto in merito alla sua richiesta.\nCordiali saluti,\nGiorgia Rosini\nGiorgia.Rosini@example-it.com\ntel. +39 328 123 4567",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Tommaso Venturi",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Giorgia Rosini",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "Giorgia.Rosini@example-it.com",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+39 328 123 4567",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw104_customer_service",
+   "lang": "it",
+   "format": "memo",
+   "text": "Contatti Clienti Tel.: 06-7777-8888 Email: info@servizio-example.it Orari: Lun-Ven 09:00-18:00",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "06-7777-8888",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "info@servizio-example.it",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw105_carta_identita",
+   "lang": "it",
+   "format": "form",
+   "text": "Carta d'Identità Nazionale Nome: Alessandra Marchesi Numero: IT0012345678 Data di nascita: 22/07/1990 Validità: 2030-07-21",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Alessandra Marchesi",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "IT0012345678",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw106_ricetta_medica",
+   "lang": "it",
+   "format": "form",
+   "text": "Ricetta medica Paziente: Rodolfo Berrini Data: 2026-09-26 Diagnosi: Diabete mellito tipo 2 Prescrizione: Metformina 500mg",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Rodolfo Berrini",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw107_conto_bancario",
+   "lang": "it",
+   "format": "form",
+   "text": "Titolare: Emanuela Greco IBAN: IT60X0542811101000000123456 Saldo: €8,945.32",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Emanuela Greco",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "IT60X0542811101000000123456",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw108_cartella_personale",
+   "lang": "it",
+   "format": "list",
+   "text": "Sospesi dal lavoro: Francesco Gallo, Mirella Conti, Paolo Ferretti Motivo: Assenze non giustificate Periodo: Settembre 2026",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Francesco Gallo",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Mirella Conti",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Paolo Ferretti",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw109_dante_alighieri",
+   "lang": "it",
+   "format": "memo",
+   "text": "Dante Alighieri (1265-1321) fu un poeta fiorentino, autore della 'Divina Commedia', considerato uno dei maggiori poeti della letteratura italiana.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Dante Alighieri",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw110_bolletta_elettrica",
+   "lang": "it",
+   "format": "form",
+   "text": "Cliente: Valentina Colombo Indirizzo: Via Roma 45, Milano Periodo: 1-30 settembre Importo: €245,60",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Valentina Colombo",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw111_carta_credito",
+   "lang": "it",
+   "format": "form",
+   "text": "Intestatario: Giuseppe Ferrara Numero carta: 6011-9999-8888-7777 Scadenza: 12/26 CVV: 456",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Giuseppe Ferrara",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "6011-9999-8888-7777",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw112_chat_aziendale",
+   "lang": "it",
+   "format": "chat",
+   "text": "Stefano: Avete la relazione per oggi? Marina: Sì, la inoltro subito. Stefano: Grazie Marina! Avvisate anche Leonardo.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Stefano",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Marina",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Leonardo",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw113_fascicolo_medico_long",
+   "lang": "it",
+   "format": "memo",
+   "text": "Fascicolo Clinico Paziente: Massimo Rossi Data visita: 2026-09-25 Medico curante: Dr. Andrea Martini Anamnesi: Pressione arteriosa elevata, diabete gestazionale in gravidanza precedente. Esame obiettivo: Normoteso, BMI 26. Diagnosi: Ipertensione essenziale stadio 1. Prescrizioni: Losartano 50mg/die. Massimo Rossi è stato sottoposto a visita cardiologica supplementare su raccomandazione del Dr. Andrea Martini. Non sono stati rilevati aritmie o altre anomalie. Paziente consigliato di aumentare attività fisica gradualmente e seguire dieta povera di sale. Prossimo appuntamento previsto per il 2026-10-25.",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Massimo Rossi",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Andrea Martini",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw114_passaporto",
+   "lang": "it",
+   "format": "form",
+   "text": "Passaporto Numero: PA0098765 Titolare: Simona Valenti Data di nascita: 15/03/1987 Scadenza: 2032-03-14",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Simona Valenti",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "PA0098765",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw115_sentenza_penale",
+   "lang": "it",
+   "format": "memo",
+   "text": "Sentenza Tribunale di Milano n. 2026/45678 Imputato: Luca Santoro Reato: Truffa Sentenza: Condanna a 24 mesi di reclusione",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Luca Santoro",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw116_lista_dipendenti",
+   "lang": "it",
+   "format": "list",
+   "text": "Personale Ufficio Amministrativo: Patrizia Erbetta (tel. 02-999-1234), Bruno Coscino (tel. 02-999-1235), Silvia Peronace (tel. 02-999-1236)",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Patrizia Erbetta",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-999-1234",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Bruno Coscino",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-999-1235",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Silvia Peronace",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-999-1236",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw117_cedolino_paga",
+   "lang": "it",
+   "format": "form",
+   "text": "Cedolino di Paga Dipendente: Oscar Villar Lorenzetti Mese: Settembre 2026 Stipendio: €2.200 Trattenute: €580 Netto: €1.620",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Oscar Villar Lorenzetti",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw118_fattura",
+   "lang": "it",
+   "format": "form",
+   "text": "Fattura #FT-20260927-089 Emesso da: Fiorenzo Lombardi Fatturato a: Sig.ra Melania Rossetti Importo: €5,600",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Fiorenzo Lombardi",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Melania Rossetti",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw119_log_sistema",
+   "lang": "it",
+   "format": "log",
+   "text": "2026-09-27 15:45:12 kernel: [boot] System initializing\n2026-09-27 15:45:13 systemd: Starting services\n2026-09-27 15:45:14 root: Backup daemon started",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw120_avviso_disciplinare",
+   "lang": "it",
+   "format": "memo",
+   "text": "Comunicazione disciplinare Dipendente: Valerio Moretti Comportamento: Sottrazione di beni aziendali Sanzione: Sospensione da lavoro per 5 giorni",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Valerio Moretti",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw121_personalakte",
+   "lang": "de",
+   "format": "form",
+   "text": "Personalakte Name: Klaus Hoffmann Personalnummer: 45678 Abteilung: Verkauf Einstellungsdatum: 2020-03-15",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Klaus Hoffmann",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw122_nebenkosten",
+   "lang": "de",
+   "format": "form",
+   "text": "Nebenkostenabrechnung Mieter: Renate Wagner Adresse: Berliner Str. 45, 10115 Berlin Gesamtbetrag: €450,75",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Renate Wagner",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw123_email_unterschrift",
+   "lang": "de",
+   "format": "email",
+   "text": "Mit freundlichen Grüßen,\n\nDr. Michael Kühn\nLeiter Vertrieb\nTel: +49 30 1234-5678\nE-Mail: michael.kuehn@example-de.de",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Michael Kühn",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+49 30 1234-5678",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "michael.kuehn@example-de.de",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw124_kundensupport",
+   "lang": "de",
+   "format": "memo",
+   "text": "Kundenservice Hotline: 0800-900-1234 E-Mail: support@widget-example.de Öffnungszeiten: Mo-Fr 8:00-17:00 Uhr",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "0800-900-1234",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "support@widget-example.de",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw125_personalausweis",
+   "lang": "de",
+   "format": "form",
+   "text": "Personalausweis Nummmer: 123456789 Name: Heike Zimmermann Geburtsdatum: 20.04.1981 Gültig bis: 19.04.2031",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Heike Zimmermann",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "123456789",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw126_arztbericht",
+   "lang": "de",
+   "format": "memo",
+   "text": "Ärztlicher Bericht Patient: Thomas Dreher Datum: 2026-09-25 Diagnose: Hypertonie Grad II Medikation: Enalapril 10mg",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Thomas Dreher",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw127_bankdaten",
+   "lang": "de",
+   "format": "form",
+   "text": "Kontoinhaber: Petra Baumann IBAN: DE89370400440532013000 BIC: COBADEFFXXX Saldo: €3.200,50",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Petra Baumann",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "DE89370400440532013000",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw128_abmahnungsschreiben",
+   "lang": "de",
+   "format": "memo",
+   "text": "Abmahnung Arbeitnehmer: Markus Senger, Petra Volkmann, Richard Schröder Grund: Unpünktlichkeit und Fehlverhalten Verhältnis: Erste schriftliche Verwarnung",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Markus Senger",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Petra Volkmann",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Richard Schröder",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw129_goethe_zitat",
+   "lang": "de",
+   "format": "memo",
+   "text": "Johann Wolfgang von Goethe (1749-1832) war ein deutscher Dichter und Schriftsteller. Seine Werke 'Faust' und 'Die Leiden des jungen Werther' sind weltberühmt.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Johann Wolfgang von Goethe",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw130_kreditkarte",
+   "lang": "de",
+   "format": "form",
+   "text": "Karteninhaber: Sandra Rosenberg Kartennummer: 4916-5432-1098-7654 Gültig bis: 08/28 CVC: 789",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Sandra Rosenberg",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4916-5432-1098-7654",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw131_chat_nachricht",
+   "lang": "de",
+   "format": "chat",
+   "text": "Silke: Hast du Zeit für ein Treffen? Andreas: Ja, gerne. Silke: Prima! Kannst du auch Daniela Bescheid sagen?",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Silke",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Andreas",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Daniela",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw132_konferenzprotokoll_long",
+   "lang": "de",
+   "format": "memo",
+   "text": "Konferenzprotokoll 2026-09-27 Teilnehmer: Jürgen Herbst (Geschäftsführer), Birgit Müller (Abteilungsleiterin), Olaf Fischer (Projektmanager), Cornelia Bauer (Controllerin) Thema: Budgetplanung Q4 und Personalentwicklung. Jürgen wird die Budgetanträge bis 2026-10-05 prüfen. Birgit koordiniert die Schulungsplanung mit Olaf. Cornelia bereitet die Kostenanalyse vor. Jürgen, Birgit, Olaf und Cornelia werden sich auf Statusbasis am 2026-10-04 erneut treffen. Die Teilnehmer sind sich einig, dass eine bessere Planung erforderlich ist.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Jürgen Herbst",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Birgit Müller",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Olaf Fischer",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Cornelia Bauer",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw133_reisepass",
+   "lang": "de",
+   "format": "form",
+   "text": "Reisepass Nummer: C12345678X Inhaber: Angelika Steiner Geburtsdatum: 16.08.1978 Ablaufdatum: 15.08.2028",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Angelika Steiner",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "C12345678X",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw134_strafzettel",
+   "lang": "de",
+   "format": "memo",
+   "text": "Polizeibericht Beschuldigter: Werner Stähle Delikt: Fahren ohne Führerschein Datum: 2026-09-26 Straßenbahn-Referenznummer: POL-2026-78901",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Werner Stähle",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw135_mitarbeiterliste",
+   "lang": "de",
+   "format": "list",
+   "text": "Abteilung Produktion: Gerhard Hoffmann (Tel. 05-555-1111), Christel Bergmann (Tel. 05-555-1112), Stefan Lechner (Tel. 05-555-1113)",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Gerhard Hoffmann",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "05-555-1111",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Christel Bergmann",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "05-555-1112",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Stefan Lechner",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "05-555-1113",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw136_rechnung",
+   "lang": "de",
+   "format": "form",
+   "text": "Rechnung #RG-20260927-555 Ausgestellt von: Robert Weber Berechnet an: Frau Ursula Hartmann Betrag: €7.850,00",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Robert Weber",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Ursula Hartmann",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw137_systemlog",
+   "lang": "de",
+   "format": "log",
+   "text": "2026-09-27 16:20:45 kernel: System boot sequence completed\n2026-09-27 16:20:46 systemd: Starting daemon processes\n2026-09-27 16:20:47 root: Monitoring enabled",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw138_bewerbung",
+   "lang": "de",
+   "format": "form",
+   "text": "Bewerbungsformular Name: Edgar Waldinger Telefon: 089-9876-5432 E-Mail: edgar.waldinger@example.de Positio: Senior Entwickler",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Edgar Waldinger",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "089-9876-5432",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "edgar.waldinger@example.de",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw139_datenschutzverletzung",
+   "lang": "de",
+   "format": "memo",
+   "text": "Zwischenfall-Meldung Betroffene Personen: Helmut Neumann, Gisela Roth, Viktor Scholz Datum: 2026-09-26 Typ: Unerlaubter Datenzugriff Behörde: Datenschutzbehörde",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Helmut Neumann",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Gisela Roth",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Viktor Scholz",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw140_lieferschein",
+   "lang": "de",
+   "format": "form",
+   "text": "Lieferschein Empfänger: Herr Wilhelm Körner Anschrift: Münchener Str. 78, 80337 München Telefon: 089-1111-2222 Bestellnummer: #ORD-20260924-001",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Wilhelm Körner",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "089-1111-2222",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw141_parte_medico",
+   "lang": "es",
+   "format": "form",
+   "text": "Informe médico Paciente: Fernando García Morales Fecha: 2026-09-26 Diagnóstico: Hiperlipidemia Medicación: Atorvastatina 20mg",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Fernando García Morales",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw142_acta_reunion",
+   "lang": "es",
+   "format": "memo",
+   "text": "Acta de Reunión 2026-09-27 Asistentes: Carlos Ruiz, Elena Martínez, David López, Alejandra Sánchez Temas: Presupuesto Q4 y nuevos proyectos",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Carlos Ruiz",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Elena Martínez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "David López",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Alejandra Sánchez",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw143_contacto_empresa",
+   "lang": "es",
+   "format": "memo",
+   "text": "Servicio al Cliente Teléfono: 0800-555-6666 Correo: contacto@widget-es.example.com Horario: Lunes-Viernes 8:00-18:00",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "phone",
+      "value": "0800-555-6666",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "contacto@widget-es.example.com",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw144_cedula_identidad",
+   "lang": "es",
+   "format": "form",
+   "text": "Cédula de Identidad Numero: 12345678-X Nombre: Roberto Hernández Jiménez Nacimiento: 05/12/1975 Vigencia: 2030-12-04",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Roberto Hernández Jiménez",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "12345678-X",
+      "pii": true,
+      "number_type": "national_id"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw145_tarjeta_credito",
+   "lang": "es",
+   "format": "form",
+   "text": "Titular: Margarita Encinas Número de tarjeta: 5555-1234-5678-9012 Vigencia: 07/27 CVV: 234",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Margarita Encinas",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "5555-1234-5678-9012",
+      "pii": true,
+      "number_type": "credit_card"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw146_cuenta_bancaria",
+   "lang": "es",
+   "format": "form",
+   "text": "Titular de cuenta: Víctor Campos IBAN: ES9121000418450200051332 Saldo: €5.678,90",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Víctor Campos",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "ES9121000418450200051332",
+      "pii": true,
+      "number_type": "bank_account"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw147_expediente_disciplinario",
+   "lang": "es",
+   "format": "list",
+   "text": "Expediente Disciplinario Empleados: Ricardo Gómez, Susana Vázquez, Javier Peña Motivo: Faltas de asistencia Sanción: Amonestación formal",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Ricardo Gómez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Susana Vázquez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Javier Peña",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw148_chat_whatsapp",
+   "lang": "es",
+   "format": "chat",
+   "text": "María: ¿Vienes mañana? Jorge: Sí, ¿a qué hora? María: A las 15:30. ¿Aviso a Lucía?",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "María",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Jorge",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Lucía",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw149_pasaporte",
+   "lang": "es",
+   "format": "form",
+   "text": "Pasaporte Número: ESP123456X Titular: Marta Iglesias Pérez Nacimiento: 22/02/1986 Expiración: 2031-02-21",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Marta Iglesias Pérez",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "ESP123456X",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw150_cervantes_biografia",
+   "lang": "es",
+   "format": "memo",
+   "text": "Miguel de Cervantes (1547-1616) fue un escritor español. Es famoso por su novela 'Don Quijote', considerada una obra maestra de la literatura universal.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Miguel de Cervantes",
+      "pii": true,
+      "public_figure": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw151_firma_email",
+   "lang": "es",
+   "format": "email",
+   "text": "Atentamente,\n\nDra. Isabela Fuentes\nDirectora de Recursos Humanos\nTeléfono: +34 91 555-1234\nCorreo: isabela.fuentes@ejemplo-es.com",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Isabela Fuentes",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+34 91 555-1234",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "isabela.fuentes@ejemplo-es.com",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw152_expediente_penal_long",
+   "lang": "es",
+   "format": "memo",
+   "text": "Sentencia Penal Juzgado: Audiencia Provincial de Madrid Expediente: 2026/CV/98765 Acusado: Ángel Navarro Sánchez Delito: Robo calificado Sentencia: Prisión 36 meses. El acusado Ángel Navarro Sánchez fue hallado culpable de múltiples robos en comercios durante los meses de enero a agosto de 2026. El tribunal consideró que Ángel Navarro Sánchez actuó con premeditación y que sus delitos causaron daño significativo a las víctimas. Se han asegurado pruebas de ADN y registros de video que confirman su participación. Fue puesto en custodia el 2026-09-15.",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Ángel Navarro Sánchez",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw153_factura_comercial",
+   "lang": "es",
+   "format": "form",
+   "text": "Factura #FAC-ES-20260927-447 Expedida por: Sr. Francisco Ruiz Facturado a: Sra. Paula Montero Importe: €6.200,00",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Francisco Ruiz",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Paula Montero",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw154_registro_empleados",
+   "lang": "es",
+   "format": "list",
+   "text": "Plantilla Departamento de Ventas: Ramón Herrera (Tel. 03-888-1234), Claudia Romero (Tel. 03-888-1235), Gustavo Ortega (Tel. 03-888-1236)",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Ramón Herrera",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "03-888-1234",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Claudia Romero",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "03-888-1235",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Gustavo Ortega",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "03-888-1236",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw155_noticia_blog",
+   "lang": "es",
+   "format": "chat",
+   "text": "Comentario de usuario 'blogger_mx': Excelente artículo, muy informativo. Recomendado 100%! ★★★★★",
+   "expected": {
+    "sensitivity": "low",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw156_boleta_entrega",
+   "lang": "es",
+   "format": "form",
+   "text": "Comprobante de Entrega Destinatario: D. Agustín Montes Domicilio: Calle Flores 123, Quito 170104 Teléfono: +593-2-999-8888 Referencia de envío: #TRK-EC-20260927-5678",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Agustín Montes",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "+593-2-999-8888",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw157_receta_farmaceutica",
+   "lang": "es",
+   "format": "form",
+   "text": "Prescripción Médica Paciente: Luisa Quintana Fecha: 2026-09-25 Diagnóstico: Infección urinaria Medicamento: Amoxicilina 500mg cápsulas",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Luisa Quintana",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw158_carnet_conducir",
+   "lang": "es",
+   "format": "form",
+   "text": "Permiso de Conducción Número: 67890123 Titular: Óscar Valencia Buendía Fecha nacimiento: 14/06/1980 Fecha caducidad: 2032-06-13",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Óscar Valencia Buendía",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "67890123",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sw159_log_aplicacion",
+   "lang": "es",
+   "format": "log",
+   "text": "2026-09-27 17:30:22 INFO [main] Application started\n2026-09-27 17:30:23 INFO [auth] Service account login successful\n2026-09-27 17:30:24 INFO [sync] Database synchronization complete",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sw160_declaracion_perjurio",
+   "lang": "es",
+   "format": "memo",
+   "text": "Denuncia por Perjurio Demandante: Tribunal de Justicia Demandado: Tomás Medina Acusa de: Falso testimonio en juicio civil Ref. Expediente: 2026-DJ-55432",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Tomás Medina",
+      "pii": true
+     }
+    ]
+   }
+  }
+ ]
+}

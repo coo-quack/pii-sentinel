@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_it_081",
+   "lang": "it",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "RICEVIMENTO OSPITI HOTEL\n{P1}\t{P1.dob}\t{DATE}\nCamera 312"
+  },
+  {
+   "id": "t_it_082",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "private_messages_of_others",
+   "text": "RICEVUTA {CODE}\nLaboratorio Universitario Ricerca Avanzata\nData: {DATE}\nResponsabile acquisizione: {P1}\nComunicazione acquisita dal responsabile progetto:\n\"Ho i risultati preliminari del campione. Sto perfezionando l'analisi entro venerdì sera come concordato. Ti chiedo di mantenere massima riservatezza su questo accordo informale di collaborazione. Non comunicare a nessuno al di fuori del nostro gruppo di lavoro.\"\nFirma: {P1.i}"
+  },
+  {
+   "id": "t_it_083",
+   "lang": "it",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "RESPONSABILI EVENTO FESTA PATRONALE\nResponsabile generale: {P1}\nCoordinatore logistica: {P2}\nOrganizzatore sponsorizzazioni: {P3}\nSegretario: {P4}\n\nRiunione organizzativa: {DATE}\nLuogo evento: {PLACE}\nNumero partecipanti previsti: oltre 500"
+  },
+  {
+   "id": "t_it_084",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "LETTERA DI NOTIFICA\n\nSpaett. {P1}\n\nLa sua iscrizione è registrata presso l'indirizzo {GPS}. Qualora errato, contatti l'ufficio."
+  },
+  {
+   "id": "t_it_085",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "Diario, 15 febbraio. {P1} è stato dal medico. Risultato allergia confermata: evitare crostacei."
+  },
+  {
+   "id": "t_it_086",
+   "lang": "it",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "Caro collega,\n{DEAD} ({DEAD.born}–{DEAD.died}) è stato un grande letterato italiano. Ho finito di leggere la sua autobiografia.\nSaluti"
+  },
+  {
+   "id": "t_it_087",
+   "lang": "it",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "MODULO RECLAMO\nNome agente: {P1}\nData: {DATE}\nTipologia: Ritardo nella liquidazione"
+  },
+  {
+   "id": "t_it_088",
+   "lang": "it",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "AVVISO DI RECLUTAMENTO\n\nContattare {ORG} al numero {ORG.phone} per informazioni sulle posizioni aperte."
+  },
+  {
+   "id": "t_it_089",
+   "lang": "it",
+   "sensitivity": "none",
+   "cell": "name_like_product_or_place",
+   "text": "PERCORSO MARATONA INTERNAZIONALE 42 KM - EDIZIONE 2024\n\nPartenza principale: Piazza {PLACE} ore 08:00 mattina\nNumero atleti iscritti: 2847\nTempo limite complessivo: 6 ore dall'inizio\n\nPunto di rifornimento 1: Via {PLACE} - km 10.5\nAcqua, bevande energetiche, frutta secca disponibili\n\nTappa intermedia 2: Viale {PLACE} - km 21.0\nCheckpoint medico e assistenza alle spalle\n\nTappa intermedia 3: Ponte {PLACE} - km 31.5\nControllo vitali, zona di riposo\n\nArea di rifornimento principale: {PLACE} Centro Sportivo Comunale - km 35.0\nServizi completi: acqua, integratori, massaggio leggero, bagni\n\nArrivo finale: Stadio Olimpico {PLACE} - km 42.195\nCerimonia premiazione ore 14:00\n\nPercorso certificato internazionale conforme standard IAAF."
+  },
+  {
+   "id": "t_it_090",
+   "lang": "it",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "NOTA VENDITA AUTO\nVeicolo: Fiat 500\nCliente: {P1}\nData: {DATE}\nImporto: €{AMOUNT}"
+  },
+  {
+   "id": "t_it_091",
+   "lang": "it",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Spett.le {P1},\n\nIncarico per il cantiere del progetto Centrale."
+  },
+  {
+   "id": "t_it_092",
+   "lang": "it",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "VERBALE RIUNIONE COMMISSIONE IGIENE OSPEDALIERA\nData: {DATE}\nPartecipanti: {P1}, {P2}, {P3}\nArgomenti trattati:\n1. Protocolli pulizia reparti critici\n2. Sanificazione terminale procedure post-paziente\n3. Controllo qualità prodotti detergenti\n4. Formazione personale su standard igienici"
+  },
+  {
+   "id": "t_it_093",
+   "lang": "it",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "Spett.le Scuola Primaria {PLACE},\n\nDati di contatto del genitore/tutore per comunicazioni urgenti:\nNominativo: {P1}\nTelefono cellulare: {P1.phone}\nIndirizzo email: {P1.email}\nIndirizzo residenza: {P1.addr}\n\nContatti alternativi forniti in allegato. Preghiamo di utilizzare preferibilmente il numero telefonico per emergenze.\nFirma: {P1.i}"
+  },
+  {
+   "id": "t_it_094",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "TICKET CASO #5842 - INVESTIGAZIONE VIOLAZIONE SEVERA CODICE CONDOTTA\n\nData apertura ticket: {DATE}\nUsername segnalato: {P1.handle}\nPiattaforma: Server Discord ufficiale Gioco Multiplayer Online\nLuogo evento virtuoso: Stanza privata server identificata da coordinate {GPS}\n\nDescrizione dettagliata della violazione:\nIl giocatore ha violato ripetutamente il codice di condotta comunitaria. Specificamente:\n- Comportamento estremamente offensivo e denigratorio verso altri giocatori\n- Utilizzo di linguaggio inappropriato e volgare ripetuto su 47 messaggi\n- Tentativo non autorizzato di recruitment di minori verso comunità esterna\n- Condivisione di contenuti esplicitamente proibiti dal regolamento di piattaforma\n- Harassment coordinato di altri utenti durante sessioni di gioco\n\nAzioni intraprese dalla moderation:\n- Sospensione immediata dell'account per 30 giorni consecutivi\n- Rimozione permanente dalla partecipazione a tournament ufficiali\n- Flagging del profilo per future violazioni\n- Notifica all'admin principale della comunità\n\nStatus attuale: In attesa di appello formale"
+  },
+  {
+   "id": "t_it_095",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "TABELLA PAGAMENTI VERIFICHE ACCOUNT GIOCO\nUsername\tNumero Carta\tData Scadenza\tStato Verifica\n{P1.handle}\t{P1.card}\t12/2025\tVerificato\n{P2.handle}\t{P2.card}\t08/2026\tIn sospeso\n{P3.handle}\t{P3.card}\t03/2027\tBloccato"
+  },
+  {
+   "id": "t_it_096",
+   "lang": "it",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "Ho appena scoperto un nuovo trattamento per l'ossiuri che costa molto meno! Chissà perché i medici non ne parlano più spesso."
+  },
+  {
+   "id": "t_it_097",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "RICEVUTA ISCRIZIONE CENTRO FITNESS WELLNESS\nData: {DATE}\nIscritto: {P1}\nTipo iscrizione: Abbonamento annuale\nImporto pagato: €{AMOUNT}\nMetodo pagamento: Carta credito\nAffiliazione speciale: Tesserato come membro Associazione Nazionale Libertà e Diritti\nNota: Beneficio sconto speciale applicato"
+  },
+  {
+   "id": "t_it_098",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "{P1}: Il candidato della sinistra è incompetente\n{P2}: Sono d'accordo, il programma è vuoto"
+  },
+  {
+   "id": "t_it_099",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "MODULO VERIFICA DOCUMENTI AEROPORTO\nNome passeggero: {P1}\nStatus residenza: Permesso di soggiorno categoria B"
+  },
+  {
+   "id": "t_it_100",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "RICEVUTA PAGAMENTO\nRistorante Il Corso\nData: {DATE}\nCliente: {P1}\nNazionalità dichiarata: Cinese\nImporto: €{AMOUNT}"
+  },
+  {
+   "id": "t_it_101",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "RICEVUTA FORMALIZZATA TESSERAMENTO ASSOCIAZIONE SINDACALE NAZIONALE\n\nData registrazione: {DATE}\nAzienda aderente: {ORG}\nCodice contratto: {CODE}\n\nRappresentanti sindacali autorizzati tesserati:\n1. {P1}\n2. {P2}\n3. {P3}\n\nMandato autorizzato: Negoziazioni collettive per stagione 2024-Q4\nCategoria lavorativa: Rappresentanti diritti dei lavoratori e protezione contrattuale\nAmbito d'azione: Tutela interessi occupazionali, vertenze, contrattazione\n\nContatti e sede legale: {ORG.email}\nFirma organizzazione sindacale: {ORG.phone}\n\nAdesione consente partecipazione a scioperi organizzati, assemblee sindacali, negoziati contrattuali.\nValidità: un anno dalla data sottoscrizione."
+  },
+  {
+   "id": "t_it_102",
+   "lang": "it",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "{P1}: Il pacco è in magazzino\n{P2}: Quanto pesa?\n{P1}: 4.5 kg, spedito domani"
+  },
+  {
+   "id": "t_it_103",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "SCHEDA CONDIZIONI FISICHE STUDIO CINEMATOGRAFICO\nData inizio riprese: {DATE}\nAttore principale: {P1}\nRuolo: Protagonista\nCondizioni di salute dichiarate: Allergia confermata ad acrilati monomerici, intolleranza a lattice naturale\nAccorgimenti set: Protezioni speciali, costumi hypoallergenic richiesti"
+  },
+  {
+   "id": "t_it_104",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "REGISTRO UFFICIALE DISCIPLINARE SCOLASTICO - SCUOLA PRIMARIA {PLACE}\n\nRegistrazione 1\nData: {DATE}\nStudente: {P1}\nProvvedimento: Sospensione dalla scuola per 3 giorni consecutivi\nMotivazione ufficiale: Violazione grave e ripetuta del regolamento scolastico\nDettagli: Comportamento aggressivo verso personale docente\n\nRegistrazione 2\nData: {DATE}\nStudente: {P2}\nProvvedimento: Avvertimento formale scritto trasmesso ai genitori\nMotivazione ufficiale: Atteggiamento di totale irrispetto verso l'autorità scolastica\nDettagli: Rifiuto di eseguire compiti assegnati\n\nRegistrazione 3\nData: {DATE}\nStudente: {P3}\nProvvedimento: Rimprovero verbale documentato in fascicolo personale\nMotivazione ufficiale: Comportamento scorretto e dirompente in classe\nDettagli: Interruzioni sistematiche durante lezione\n\nRegistrazione 4\nData: {DATE}\nStudente: {P4}\nProvvedimento: Sospensione per 1 giorno scolastico\nMotivazione ufficiale: Aggressione fisica verso compagno di classe\nDettagli: Incidente durante intervallo, segnalato dai testimoni\n\nFirma: Dirigente Scolastico"
+  },
+  {
+   "id": "t_it_105",
+   "lang": "it",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "RICEVUTA CONTO\nCliente: {P1}\nNato: {P1.dob}\nResidenza: {P1.addr}\nSaldo: €{AMOUNT}"
+  },
+  {
+   "id": "t_it_106",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "MEMO RISERVATO MEDICO CURANTE\nData redazione: {DATE}\nPaziente: {P1}\nDiagnosi clinica: Ipertensione essenziale primaria grave\nTerapia attuale: insufficiente per controllo pressorio\nPressione sistolica: oltre 180 mmHg\nRaccomandazione: Considerare urgentemente ricovero ospedaliero per monitoraggio intensivo e rivalutazione farmacologica"
+  },
+  {
+   "id": "t_it_107",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "Domanda: Lei ha mai avuto problemi respiratori?\n{P1}: Sì, asma da bambino. Controllato con farmaci."
+  },
+  {
+   "id": "t_it_108",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "{P1}: Hotel, prenotazione?\n{P2}: Sì, per domani.\n{P1}: Codice fiscale per la registrazione: {P2.govid}"
+  },
+  {
+   "id": "t_it_109",
+   "lang": "it",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "Produttore: Quale è lo status del contratto di prestazione?\nRegista: {P1} ha concluso venerdì, firma il 21."
+  },
+  {
+   "id": "t_it_110",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "RICEVUTA ISCRIZIONE CORSO SCUOLA DI LINGUA\nData: {DATE}\nStudente: {P1}\nTipo corso: Lezioni private settimanali\nOre totali: 30 ore\nArgomento specialistico: Analisi dei programmi politici della Sinistra Progressista in Italia\nDocente: {P2}\nImporto: €{AMOUNT}"
+  },
+  {
+   "id": "t_it_111",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "REGISTRAZIONE MOVIMENTI PERSONALE AMMINISTRATIVO\n{DATE}: {P1} - Trasferimento a mansione inferiore per scarso rendimento - Valutazione insufficiente\n{DATE}: {P2} - Termine del periodo di prova con esito negativo - Competenze non adeguate\n{DATE}: {P3} - Congedamento per assenteismo cronico - Violazione contratto\n{DATE}: {P4} - Riduzione orario per ristrutturazione - Riorganizzazione aziendale"
+  },
+  {
+   "id": "t_it_112",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "{P1}: È il momento di provare a organizzare una sede sindacale in questa area?\n{P2}: Sì è il momento giusto. Ho già contatti con lavoratori interessati.\n{P1}: Quanto tempo per ottenere adesioni?\n{P2}: Con il clima attuale, almeno 50-60% entro il mese."
+  },
+  {
+   "id": "t_it_113",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "APPUNTI RIUNIONE PRODUZIONE\nData: {DATE}\nAtore {P1}: epilessia. Medicazioni accertate sul set."
+  },
+  {
+   "id": "t_it_114",
+   "lang": "it",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "DEBUG: connessione database fallita\nDEBUG: verifica credenziali in config.yml\nINFO: port configurato su valore standard di industria\nERROR: timeout raggiunto su tentativo connessione\nINFO: sistema in attesa di ripristino risorse\nSTATUS: routine diagnostica completa eseguita su server primario"
+  },
+  {
+   "id": "t_it_115",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "Ho smarrito il mio documento di identità. Purtroppo ricordo il numero di passaporto: {P1.passport}. Qualcuno può aiutarmi con la denuncia?"
+  },
+  {
+   "id": "t_it_116",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "ELENCO FEDELI SOTTOPOSTE A CURE MEDICHE SPECIALI\n{P1} - Diabete mellito tipo 2 insulino-dipendente\n{P2} - Insufficienza renale cronica stadio 3"
+  },
+  {
+   "id": "t_it_117",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "Spett.le {P1},\n\nIn riferimento ai test effettuati alla maratona di ieri, i risultati mostrano disturbi cardiaci lievi. Le consiglio di consultare urgentemente un cardiologo per valutazione completa."
+  },
+  {
+   "id": "t_it_118",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "REGISTRI SANITARI STUDIO MEDICO {PLACE}\n- {P1}: colite ulcerosa\n- {P2}: disturbo d'ansia generalizzata"
+  },
+  {
+   "id": "t_it_119",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "ANALISI GENOTIPICA CAMPIONI BIOBANK\nIdentificativo Campione\tGenotipo Rilevato\n{P1}\tG456A\n{P2}\tA789C"
+  },
+  {
+   "id": "t_it_120",
+   "lang": "it",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "Spett.le {P1},\n\nAbbiamo ricevuto l'incarico di assistenza legale nel caso in questione. Il nostro assistito risulta essere stato vittima di violenza aggravata."
+  }
+ ]
+}

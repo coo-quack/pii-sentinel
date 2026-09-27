@@ -1,0 +1,902 @@
+{
+  "tests": [
+    {
+      "id": "ho001_negative_weather",
+      "lang": "en",
+      "format": "narrative",
+      "text": "The forecast shows clear skies with a high of 28°C tomorrow. Humidity will remain moderate throughout the week.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ho002_negative_product_names",
+      "lang": "en",
+      "format": "narrative",
+      "text": "I use Alexa, Tesla, and Siri on my devices. These AI assistants help with daily tasks.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ho003_negative_place_as_location",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "山梨県と長野県の観光地は人気が高い。富士山の周辺には多くのホテルがある。",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ho004_negative_company_names",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "ソニー株式会社とトヨタ自動車が業務提携した。提携により新しい製品が開発される。",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ho005_negative_code_snippet",
+      "lang": "en",
+      "format": "code",
+      "text": "async function fetchData(url: string) {\n  const response = await fetch(url);\n  return response.json();\n}\nconst data = await fetchData('https://api.example.com/data');",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ho006_negative_date_publication",
+      "lang": "en",
+      "format": "narrative",
+      "text": "The article was published on 2024-09-15. The conference will be held on December 10, 2026.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ho007_negative_server_config",
+      "lang": "en",
+      "format": "config",
+      "text": "server:\n  host: api.service.io\n  port: 443\n  timeout: 30000\ndatabase:\n  pool_size: 25\n  max_connections: 100",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ho008_negative_order_number_labeled",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Order number: 9876543210 has been processed. Tracking ID: 1234567890abcd is ready.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "number",
+            "value": "9876543210",
+            "pii": false,
+            "number_type": "order_or_tracking_number"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho009_resume_excerpt_ja",
+      "lang": "ja",
+      "format": "form",
+      "text": "氏名: 鈴木正孝\n生年月日: 1990年4月15日\n住所: 東京都新宿区西新宿1丁目\n電話: 080-9876-5432\nメール: suzuki.masataka@career.jp\n学歴: 2013年 東京大学工学部卒業",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "鈴木正孝",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "080-9876-5432",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "suzuki.masataka@career.jp",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho010_business_card_ocr",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "田辺洋一\n営業部長\nシンプルシステムズ株式会社\nTEL: 06-1234-5678 | FAX: 06-1234-5679\nEmail: tanabe.yoichi@simplesystems.co.jp",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "田辺洋一",
+            "pii": true,
+            "honorific": "営業部長"
+          },
+          {
+            "type": "phone",
+            "value": "06-1234-5678",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "06-1234-5679",
+            "pii": false,
+            "note": "fax line of the office"
+          },
+          {
+            "type": "email",
+            "value": "tanabe.yoichi@simplesystems.co.jp",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho011_address_book_csv",
+      "lang": "en",
+      "format": "data",
+      "text": "Name,Email,Phone,Address\nMichael Peterson,michael.p@consult.net,(555) 777-2345,\"456 Oak Avenue, Portland, OR 97201\"\nLaura Mitchell,laura.mitchell@connect.io,888-1234-5678,\"789 Pine Street, Seattle, WA 98101\"\nChristopher Lee,c.lee@solution.io,503-555-9876,\"234 Elm Road, Tacoma, WA 98402\"",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Michael Peterson",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "michael.p@consult.net",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "(555) 777-2345",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Laura Mitchell",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "laura.mitchell@connect.io",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "888-1234-5678",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Christopher Lee",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "c.lee@solution.io",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "503-555-9876",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho012_slack_export_mentions",
+      "lang": "en",
+      "format": "chat",
+      "text": "[10:30] @justin.park: Hi team, let me know if you need anything\n[10:45] @sophia.reyes: @justin.park I'll send you the files\n[11:00] @marcus_chen: Great, let's sync at 2pm today",
+      "expected": {
+        "sensitivity": "low",
+        "findings": []
+      }
+    },
+    {
+      "id": "ho013_meeting_minutes_attendees",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Project Kickoff - September 20, 2026\nAttendees: Victoria Brooks (Project Manager), Nathan Price (Developer), Rachel Kim (Designer), Dr. Paul Foster (Consultant)\nNext steps discussed. Budget approved. Timeline: 8 weeks.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Victoria Brooks",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Nathan Price",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Rachel Kim",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Paul Foster",
+            "pii": true,
+            "honorific": "Dr."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho014_git_diff_test_fixture",
+      "lang": "en",
+      "format": "code",
+      "text": "diff --git a/tests/users.json b/tests/users.json\n-  { \"id\": 1, \"name\": \"Angela Thompson\", \"email\": \"angela.t@test.io\", \"phone\": \"(206) 444-5678\" }\n+  { \"id\": 1, \"name\": \"Angela Thompson\", \"email\": \"angela.t@company.io\", \"phone\": \"(206) 444-5679\" }",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Angela Thompson",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "angela.t@test.io",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "(206) 444-5678",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "angela.t@company.io",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "(206) 444-5679",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho015_support_ticket",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Ticket #RQ-78234\nCustomer: Daniel Rogers\nEmail: d.rogers@personal.org\nPhone: 360-555-1234\nIssue: Unable to reset password. Awaiting resolution.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Daniel Rogers",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "d.rogers@personal.org",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "360-555-1234",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho016_order_confirmation_email",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Order Confirmation\nCustomer: Jasmine Wong\nEmail: jasmine.wong@personal.io\nPhone: 1-888-234-5678\nShip to: 567 Maple Drive, Vancouver, BC V6K 2T5\nOrder #: 2026091234567\nETA: 3-5 business days",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Jasmine Wong",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "jasmine.wong@personal.io",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "1-888-234-5678",
+            "pii": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho017_school_contact_list",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "A組連絡網\n学級担任: 川口美沙 先生 (090-8765-4321)\nPTA会長: 小松秀夫 氏 (090-9123-4567)\n保健室: 石原由美子 先生 (03-5678-9012)",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "川口美沙",
+            "pii": true,
+            "honorific": "先生"
+          },
+          {
+            "type": "phone",
+            "value": "090-8765-4321",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "小松秀夫",
+            "pii": true,
+            "honorific": "氏"
+          },
+          {
+            "type": "phone",
+            "value": "090-9123-4567",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "石原由美子",
+            "pii": true,
+            "honorific": "先生"
+          },
+          {
+            "type": "phone",
+            "value": "03-5678-9012",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho018_email_signature_en",
+      "lang": "en",
+      "format": "signature",
+      "text": "---\nProf. Adrian Clarke\nHead of Research, Division of Biology\nUniversity of Edinburgh\nPhone: +44 131 651 3234\nEmail: a.clarke@ed.ac.uk\nOffice: 5.06 Roger Land Building",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Adrian Clarke",
+            "pii": true,
+            "honorific": "Prof."
+          },
+          {
+            "type": "phone",
+            "value": "+44 131 651 3234",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "a.clarke@ed.ac.uk",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho019_invoice_document",
+      "lang": "en",
+      "format": "form",
+      "text": "INVOICE\nBilled to: Trevor Hamilton\nEmail: trevor.h@business.co.uk\nPhone: 020-7946-0958\nCompany: Hamilton Consulting Ltd.\nInvoice #INV-2026-0745\nAmount: £2500",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Trevor Hamilton",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "trevor.h@business.co.uk",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "020-7946-0958",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho020_contractor_agreement",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Contractor: Gregory Matthews\nEmail: g.matthews@contractor.io | Phone: (702) 555-0123\nRate: $150/hour | Start: 2026-10-01\nScope: Software development and testing",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Gregory Matthews",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "g.matthews@contractor.io",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "(702) 555-0123",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho021_chat_conversation_ja",
+      "lang": "ja",
+      "format": "chat",
+      "text": "[14:20] 高橋由紀: こんにちは。報告書が完成しました\n[14:21] 管理者: ありがとう。確認します\n[14:25] 高橋由紀: わかりました。連絡先は090-2345-6789です",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "高橋由紀",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "090-2345-6789",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho022_linkedin_style_bio",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Jessica Huang | Senior Product Manager at InnovateTech | Stanford MBA | Email: jessica.huang@innovatetech.io | +1-415-777-8888 | San Francisco, CA",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Jessica Huang",
+            "pii": true
+          },
+          {
+            "type": "email",
+            "value": "jessica.huang@innovatetech.io",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "+1-415-777-8888",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho023_wikipedia_public_figure",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Alexander Fleming (1881–1955) was a Scottish bacteriologist who discovered penicillin. He studied at St. Mary's Hospital, London, and revolutionized medicine.",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Alexander Fleming",
+            "pii": true,
+            "public_figure": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho024_news_article_official",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Governor Katherine Wilson announced new climate legislation today. She met with Senator Robert Hunt and Mayor Linda Ortega to discuss implementation. The bill takes effect January 2027.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Katherine Wilson",
+            "pii": true,
+            "public_figure": true
+          },
+          {
+            "type": "person_name",
+            "value": "Robert Hunt",
+            "pii": true,
+            "public_figure": true
+          },
+          {
+            "type": "person_name",
+            "value": "Linda Ortega",
+            "pii": true,
+            "public_figure": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho025_product_review_nickname",
+      "lang": "en",
+      "format": "narrative",
+      "text": "★★★★★ Great product! Reviewed by 'TechSamurai2024'. Arrived in 2 days. Customer service was excellent. Highly recommend to anyone looking for quality and value.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": []
+      }
+    },
+    {
+      "id": "ho026_server_access_log",
+      "lang": "en",
+      "format": "log",
+      "text": "2026-09-20 14:32:01 | IP: 192.168.100.45 | User: svc_backup | Action: connect | Status: success\n2026-09-20 14:35:22 | IP: 10.0.0.89 | User: admin_portal | Action: login | Status: success",
+      "expected": {
+        "sensitivity": "none",
+        "findings": []
+      }
+    },
+    {
+      "id": "ho027_terraform_service_accounts",
+      "lang": "en",
+      "format": "code",
+      "text": "resource \"aws_iam_user\" \"service_automation\" {\n  name = \"automation-bot\"\n  tags = { email = \"automation@infra.io\" }\n}\nresource \"aws_iam_user\" \"service_monitoring\" {\n  name = \"monitoring-agent\"\n  tags = { email = \"monitor@infra.io\" }\n}",
+      "expected": {
+        "sensitivity": "none",
+        "findings": [
+          {
+            "type": "email",
+            "value": "automation@infra.io",
+            "pii": false
+          },
+          {
+            "type": "email",
+            "value": "monitor@infra.io",
+            "pii": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho028_english_names_mixed_context",
+      "lang": "en",
+      "format": "narrative",
+      "text": "The design team includes: T. Anderson (lead), Margaret Foster, and Kevin Sato. Meet them on Monday for brainstorming.",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "T. Anderson",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Margaret Foster",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Kevin Sato",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho029_medical_record_with_diagnosis",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Patient: Rebecca Stone | DOB: 1988-11-22\nDiagnosis: Hypertension (ICD-10: I10)\nMedication: Lisinopril 10mg daily\nAllergy: Penicillin (anaphylaxis)\nFollow-up appointment: 2026-10-15",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Rebecca Stone",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho030_insurance_form_mynumber",
+      "lang": "ja",
+      "format": "form",
+      "text": "保険申込書\n申込者: 佐々木克也\nマイナンバー: 987654321098\n生年月日: 1995年7月18日\n勤務先: 東京テクノロジー\n月収: ¥450,000",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "佐々木克也",
+            "pii": true
+          },
+          {
+            "type": "number",
+            "value": "987654321098",
+            "pii": true,
+            "number_type": "my_number"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho031_disciplinary_memo_sensitive",
+      "lang": "en",
+      "format": "narrative",
+      "text": "CONFIDENTIAL - Employee Disciplinary Action\nEmployee: Steven Marshall\nDate: 2026-09-15\nViolation: Theft of company property (USB drive with client data)\nAction: Immediate termination\nNotes: Investigation confirmed unauthorized removal",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Steven Marshall",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho032_harassment_complaint_log",
+      "lang": "en",
+      "format": "list",
+      "text": "Sexual Harassment Complaints - 2026 Q3\n- Complaint A: Fiona Chen (filed 2026-08-10) - unwanted advances from supervisor\n- Complaint B: Marcus Powell (filed 2026-08-22) - derogatory comments about gender identity\n- Complaint C: Nicole Ramirez (filed 2026-09-01) - physical contact without consent",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Fiona Chen",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Marcus Powell",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Nicole Ramirez",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho033_hr_performance_evaluation",
+      "lang": "en",
+      "format": "narrative",
+      "text": "PERFORMANCE REVIEW - CONFIDENTIAL\nEmployee: Howard Gibson\nRating: Below Expectations (2/5)\nIssues: Chronic absenteeism, insubordination, conflicts with team members\nRecommendation: Performance improvement plan or termination\nManager: Patricia Johnson\nDate: 2026-09-10",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Howard Gibson",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Patricia Johnson",
+            "pii": true
+          }
+        ],
+        "note": "disciplinary record with termination recommendation about a named employee"
+      }
+    },
+    {
+      "id": "ho034_background_check_record",
+      "lang": "en",
+      "format": "narrative",
+      "text": "Background Check Report\nSubject: Olivia Barnes\nSSN: 567-89-1234\nRecord Status: 1 misdemeanor conviction (2015: DUI)\nEmployment Clearance: CONDITIONAL (requires manager approval)",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Olivia Barnes",
+            "pii": true
+          },
+          {
+            "type": "number",
+            "value": "567-89-1234",
+            "pii": true,
+            "number_type": "driver_licence_or_passport"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho035_employment_termination_record",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "雇用終了通知\n対象者: 岡本繁樹\n終了日: 2026年9月30日\n理由: 経営上の理由による整理解雇\n退職金: ¥3,500,000\nマイナンバー: 345678901234\n銀行口座: 1234567890123",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "岡本繁樹",
+            "pii": true
+          },
+          {
+            "type": "number",
+            "value": "345678901234",
+            "pii": true,
+            "number_type": "my_number"
+          },
+          {
+            "type": "number",
+            "value": "1234567890123",
+            "pii": true,
+            "number_type": "bank_account"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho036_real_estate_contract",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "不動産売買契約書\n売主: 武田誠一郎 (昭和45年3月7日生)\nマイナンバー: 456789012345\n売却物件: 東京都渋谷区宮益坂3丁目 \n契約金額: ¥85,000,000\n振込先口座: 0987654321098",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "武田誠一郎",
+            "pii": true
+          },
+          {
+            "type": "number",
+            "value": "456789012345",
+            "pii": true,
+            "number_type": "my_number"
+          },
+          {
+            "type": "number",
+            "value": "0987654321098",
+            "pii": true,
+            "number_type": "bank_account"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho037_medical_intake_form_en",
+      "lang": "en",
+      "format": "form",
+      "text": "Medical Intake Form\nName: Dr. Andrew Rivera\nDOB: 1980-05-14\nAllergies: Sulfa drugs, Latex\nCurrent medications: Atorvastatin 20mg, Metoprolol 50mg\nPrevious surgeries: Appendectomy (2005), Knee repair (2018)\nCancer history: Father - lung cancer (2008)",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Andrew Rivera",
+            "pii": true,
+            "honorific": "Dr."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho038_criminal_record_sheet",
+      "lang": "en",
+      "format": "narrative",
+      "text": "CRIMINAL HISTORY - CONFIDENTIAL\nSubject: Derek Watson\nArrest Record: 3 felonies (2010: assault; 2013: possession; 2018: fraud)\nIncarcerations: 18 months total\nCurrent Status: Probation (expires 2027-02-15)\nProbation Officer: Captain Samuel Hughes",
+      "expected": {
+        "sensitivity": "high",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "Derek Watson",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "Samuel Hughes",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho039_chinese_korean_names_context",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "受付スタッフは王さんと김민수さんです。新規採用者は2名です。連絡先: 王さん (090-3333-4444)、김민수さん (090-5555-6666)",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "王",
+            "pii": true,
+            "honorific": "さん"
+          },
+          {
+            "type": "person_name",
+            "value": "김민수",
+            "pii": true,
+            "honorific": "さん"
+          },
+          {
+            "type": "phone",
+            "value": "090-3333-4444",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "090-5555-6666",
+            "pii": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ho040_katakana_foreign_names",
+      "lang": "ja",
+      "format": "narrative",
+      "text": "新規講師: マリー＝ルイーズさん (フランス出身)\nEmail: marie-louise@academy.jp\n次の研修: イヴ・パトリック (スイス)\nTel: 080-4567-8901",
+      "expected": {
+        "sensitivity": "low",
+        "findings": [
+          {
+            "type": "person_name",
+            "value": "マリー＝ルイーズ",
+            "pii": true,
+            "honorific": "さん"
+          },
+          {
+            "type": "email",
+            "value": "marie-louise@academy.jp",
+            "pii": true
+          },
+          {
+            "type": "person_name",
+            "value": "イヴ・パトリック",
+            "pii": true
+          },
+          {
+            "type": "phone",
+            "value": "080-4567-8901",
+            "pii": true
+          }
+        ]
+      }
+    }
+  ]
+}

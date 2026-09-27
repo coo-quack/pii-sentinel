@@ -1,0 +1,1827 @@
+{
+ "description": "Multilingual reference set (96 documents) (2026-09-26). Never used for training, data generation or model selection. Labels reviewed and corrected on 2026-09-26 (generic mailboxes added as pii:false, one duplicate removed, NIR and French account made realistic).",
+ "tests": [
+  {
+   "id": "sv001_ja_miyazaki_none",
+   "lang": "ja",
+   "format": "narrative",
+   "text": "宮崎県は九州南東部に位置し、日向灘に面している。観光地として知られており、毎年多くの訪問者が訪れる。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv002_ja_panasonic_none",
+   "lang": "ja",
+   "format": "product",
+   "text": "松下電器製造所 型番 PE-4521X 家庭用冷蔵庫 定格電圧100V",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv003_ja_support_email_none",
+   "lang": "ja",
+   "format": "email",
+   "text": "お問い合わせは support@example.jp までお願いします。営業時間内にご返信させていただきます。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "support@example.jp",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv004_ja_tanaka_name_low",
+   "lang": "ja",
+   "format": "narrative",
+   "text": "プロジェクトの主任は田中太郎さんです。彼は営業部で5年の経歴があります。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "田中太郎",
+      "pii": true,
+      "honorific": "さん"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv005_ja_yamada_phone_low",
+   "lang": "ja",
+   "format": "chat",
+   "text": "山田花子です。急な相談があるので、僕の携帯番号 090-2234-5678 に連絡ください。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "山田花子",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "090-2234-5678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv006_ja_sato_email_low",
+   "lang": "ja",
+   "format": "email",
+   "text": "佐藤健一様\n\nご連絡ありがとうございます。私の個人メールアドレスは s.kenichi@example.jp です。\n\n佐藤より",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "佐藤健一",
+      "pii": true,
+      "honorific": "様"
+     },
+     {
+      "type": "person_name",
+      "value": "佐藤",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "s.kenichi@example.jp",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv007_ja_suzuki_address_low",
+   "lang": "ja",
+   "format": "form",
+   "text": "氏名: 鈴木由美\n住所: 東京都渋谷区代々木1-2-3\n連絡先: 080-1234-5678",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "鈴木由美",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "080-1234-5678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv008_ja_engineer_title_low",
+   "lang": "ja",
+   "format": "narrative",
+   "text": "ソフトウェアエンジニアの伊藤大輔は、このプロジェクトの技術責任者を務めている。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "伊藤大輔",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv009_ja_mynumber_high",
+   "lang": "ja",
+   "format": "log",
+   "text": "2026-09-26 14:23:45 ユーザー登録完了: 名前=高橋智也, マイナンバー=123456789012, ステータス=確認済み",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "高橋智也",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "123456789012",
+      "number_type": "my_number",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv010_ja_creditcard_high",
+   "lang": "ja",
+   "format": "form",
+   "text": "カード所有者: 木村優子\nクレジットカード番号: 4532123456789012\n有効期限: 12/28",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "木村優子",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4532123456789012",
+      "number_type": "credit_card",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv011_ja_patient_list_high",
+   "lang": "ja",
+   "format": "csv",
+   "text": "患者ID,氏名,診断\n1001,渡辺健太,2型糖尿病\n1002,中野美咲,うつ病\n1003,小林昌弘,肝硬変",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "渡辺健太",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "中野美咲",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "小林昌弘",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv012_ja_bank_account_high",
+   "lang": "ja",
+   "format": "memo",
+   "text": "本田美咲の給与振込先: 東京銀行 口座番号 1234567890123 普通預金",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "本田美咲",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "1234567890123",
+      "number_type": "bank_account",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv013_zh_beijing_none",
+   "lang": "zh",
+   "format": "narrative",
+   "text": "北京市是中国的首都,位于华北地区。这个城市有着悠久的历史和文化遗产。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv014_zh_huawei_none",
+   "lang": "zh",
+   "format": "product",
+   "text": "华为产品系列 型号: MateBook D15 处理器: AMD Ryzen 5",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv015_zh_info_email_none",
+   "lang": "zh",
+   "format": "email",
+   "text": "如有疑问,请发送邮件至 info@example.com.cn 进行咨询。我们会在24小时内回复。",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "info@example.com.cn",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv016_zh_wang_name_low",
+   "lang": "zh",
+   "format": "narrative",
+   "text": "王成功是这个团队的项目经理,有10年的行业经验。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "王成功",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv017_zh_liu_phone_low",
+   "lang": "zh",
+   "format": "chat",
+   "text": "我是刘美娟。如需紧急联系,请拨打我的手机 138-1234-5678。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "刘美娟",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "138-1234-5678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv018_zh_zhang_email_low",
+   "lang": "zh",
+   "format": "email",
+   "text": "张浩宇\n\n感谢您的来信。我的个人邮箱是 z.haoyu@example.cn\n\n张浩宇",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "张浩宇",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "z.haoyu@example.cn",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv019_zh_chen_address_low",
+   "lang": "zh",
+   "format": "form",
+   "text": "姓名:陈晓丽\n地址:上海市浦东新区陆家嘴环路1号\n电话:010-6789-1234",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "陈晓丽",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-6789-1234",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv020_zh_xiao_title_low",
+   "lang": "zh",
+   "format": "narrative",
+   "text": "财务总监肖明是公司最资深的高管,负责所有财务决策。",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "肖明",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv021_zh_shenfenzheng_high",
+   "lang": "zh",
+   "format": "log",
+   "text": "2026-09-26 09:15:32 用户注册:姓名=李强,身份证号=110101199503151234,状态=已验证",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "李强",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "110101199503151234",
+      "number_type": "national_id",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv022_zh_creditcard_high",
+   "lang": "zh",
+   "format": "form",
+   "text": "卡主姓名:何晓雨\n银行卡号:6225889012345678\n有效期:08/29",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "何晓雨",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "6225889012345678",
+      "number_type": "credit_card",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv023_zh_patient_list_high",
+   "lang": "zh",
+   "format": "csv",
+   "text": "患者ID,患者姓名,诊断\n2001,吴文杰,高血压\n2002,郑丹丹,乳腺癌\n2003,邵建军,艾滋病",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "吴文杰",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "郑丹丹",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "邵建军",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv024_zh_bank_account_high",
+   "lang": "zh",
+   "format": "memo",
+   "text": "员工薪资转账:周文芳\n账户:中国银行 账号 123456789012345 储蓄账户",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "周文芳",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "123456789012345",
+      "number_type": "bank_account",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv025_ko_seoul_none",
+   "lang": "ko",
+   "format": "narrative",
+   "text": "서울은 한국의 수도이며 동아시아에서 가장 큰 도시 중 하나입니다. 많은 관광객들이 방문합니다.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv026_ko_samsung_none",
+   "lang": "ko",
+   "format": "product",
+   "text": "삼성 갤럭시 노트 시리즈 모델명 SM-N980F 스토리지 256GB",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv027_ko_sales_email_none",
+   "lang": "ko",
+   "format": "email",
+   "text": "문의사항이 있으시면 sales@example.kr로 이메일을 보내주세요. 신속하게 처리하겠습니다.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "sales@example.kr",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv028_ko_kim_name_low",
+   "lang": "ko",
+   "format": "narrative",
+   "text": "김진호는 이 회사의 마케팅 담당자이며 3년의 경력을 가지고 있습니다.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "김진호",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv029_ko_lee_phone_low",
+   "lang": "ko",
+   "format": "chat",
+   "text": "저는 이미영입니다. 긴급 연락 사항이 있으면 010-1234-5678로 전화해 주세요.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "이미영",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-1234-5678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv030_ko_park_email_low",
+   "lang": "ko",
+   "format": "email",
+   "text": "박준민 님\n\n안녕하세요. 개인 메일 주소는 p.junmin@example.kr입니다.\n\n박준민 올림",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "박준민",
+      "pii": true,
+      "honorific": "님"
+     },
+     {
+      "type": "person_name",
+      "value": "박준민",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "p.junmin@example.kr",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv031_ko_choi_address_low",
+   "lang": "ko",
+   "format": "form",
+   "text": "성명:최수진\n주소:서울시 강남구 테헤란로 123, 4층\n전화:02-6789-1234",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "최수진",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02-6789-1234",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv032_ko_jung_title_low",
+   "lang": "ko",
+   "format": "narrative",
+   "text": "정영수 회장은 회사 전략 및 경영 정책을 담당하고 있습니다.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "정영수",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv033_ko_jumineung_high",
+   "lang": "ko",
+   "format": "log",
+   "text": "2026-09-26 11:45:22 사용자등록:이름=조혜은,주민등록번호=850315-1234567,상태=확인됨",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "조혜은",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "850315-1234567",
+      "number_type": "national_id",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv034_ko_creditcard_high",
+   "lang": "ko",
+   "format": "form",
+   "text": "카드소유자:한영미\n카드번호:5412345678901234\n유효기간:07/27",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "한영미",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "5412345678901234",
+      "number_type": "credit_card",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv035_ko_patient_list_high",
+   "lang": "ko",
+   "format": "csv",
+   "text": "환자ID,환자명,진단\n3001,윤기철,당뇨병\n3002,송연희,우울증\n3003,임도현,간암",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "윤기철",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "송연희",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "임도현",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv036_ko_bank_account_high",
+   "lang": "ko",
+   "format": "memo",
+   "text": "직원 급여 이체:강민서\n계좌:국민은행 계좌번호 1234567890123 보통예금",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "강민서",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "1234567890123",
+      "number_type": "bank_account",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv037_en_london_none",
+   "lang": "en",
+   "format": "narrative",
+   "text": "London is the capital city of the United Kingdom and one of the largest cities in Europe. It attracts millions of tourists annually.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv038_en_apple_none",
+   "lang": "en",
+   "format": "product",
+   "text": "Apple Inc. MacBook Pro Model A2141 Processor: Intel Core i7",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv039_en_contact_email_none",
+   "lang": "en",
+   "format": "email",
+   "text": "For inquiries, please contact us at contact@example.org. We will respond within 48 hours.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "contact@example.org",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv040_en_smith_name_low",
+   "lang": "en",
+   "format": "narrative",
+   "text": "John Smith is the project lead on this team with 8 years of experience in software development.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "John Smith",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv041_en_johnson_phone_low",
+   "lang": "en",
+   "format": "chat",
+   "text": "Hi, this is Sarah Johnson. Please call me at 555-234-5678 if you need to reach me urgently.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Sarah Johnson",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "555-234-5678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv042_en_williams_email_low",
+   "lang": "en",
+   "format": "email",
+   "text": "Dear Mr. Williams,\n\nThank you for your message. My personal email is m.williams@example.com\n\nBest regards,\nMichael Williams",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Williams",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Michael Williams",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "m.williams@example.com",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv043_en_brown_address_low",
+   "lang": "en",
+   "format": "form",
+   "text": "Name: Elizabeth Brown\nAddress: 456 Oak Street, Springfield, IL 62701\nPhone: 217-555-0123",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Elizabeth Brown",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "217-555-0123",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv044_en_taylor_title_low",
+   "lang": "en",
+   "format": "narrative",
+   "text": "Dr. James Taylor, Chief Medical Officer, oversees all clinical operations at the facility.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "James Taylor",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv045_en_ssn_high",
+   "lang": "en",
+   "format": "log",
+   "text": "2026-09-26 16:30:45 User registered: Name=Robert Anderson, SSN=123-45-6789, Status=Verified",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Robert Anderson",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "123-45-6789",
+      "number_type": "national_id",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv046_en_creditcard_high",
+   "lang": "en",
+   "format": "form",
+   "text": "Cardholder: Patricia Martinez\nCard Number: 4111111111111111\nExpiration: 06/28",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Patricia Martinez",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4111111111111111",
+      "number_type": "credit_card",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv047_en_patient_list_high",
+   "lang": "en",
+   "format": "csv",
+   "text": "PatientID,PatientName,Diagnosis\n4001,Thomas Wilson,Type 2 Diabetes\n4002,Jennifer Lee,Bipolar Disorder\n4003,David Garcia,Hepatitis C",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Thomas Wilson",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Jennifer Lee",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "David Garcia",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv048_en_bank_account_high",
+   "lang": "en",
+   "format": "memo",
+   "text": "Employee Payroll: Christopher White\nAccount: First National Bank Account Number 9876543210123 Checking",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Christopher White",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "9876543210123",
+      "number_type": "bank_account",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv049_fr_paris_none",
+   "lang": "fr",
+   "format": "narrative",
+   "text": "Paris est la capitale de la France et l'une des plus grandes métropoles du monde. Elle est célèbre pour sa culture et son art.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv050_fr_renault_none",
+   "lang": "fr",
+   "format": "product",
+   "text": "Renault Clio Modèle 4 Moteur: 1.0 TCe 100 cv",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv051_fr_noreply_email_none",
+   "lang": "fr",
+   "format": "email",
+   "text": "Merci de ne pas répondre à cet email. Pour toute question, veuillez contacter noreply@example.fr",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "noreply@example.fr",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv052_fr_dubois_name_low",
+   "lang": "fr",
+   "format": "narrative",
+   "text": "Marc Dubois est le responsable du projet avec 6 ans d'expérience dans le secteur.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Marc Dubois",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv053_fr_lefevre_phone_low",
+   "lang": "fr",
+   "format": "chat",
+   "text": "Bonjour, je m'appelle Sophie Lefèvre. Vous pouvez m'appeler au 06 12 34 56 78 en cas d'urgence.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Sophie Lefèvre",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "06 12 34 56 78",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv054_fr_martin_email_low",
+   "lang": "fr",
+   "format": "email",
+   "text": "Monsieur Martin,\n\nMerci de votre message. Mon adresse email personnelle est j.martin@example.fr\n\nCordialement,\nJean Martin",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Martin",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Jean Martin",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "j.martin@example.fr",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv055_fr_bernard_address_low",
+   "lang": "fr",
+   "format": "form",
+   "text": "Nom: Élisabeth Bernard\nAdresse: 123 Rue de la Paix, 75002 Paris\nTéléphone: 01 42 34 56 78",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Élisabeth Bernard",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "01 42 34 56 78",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv056_fr_collet_title_low",
+   "lang": "fr",
+   "format": "narrative",
+   "text": "Mme Véronique Collet, Directrice Générale, supervise toutes les opérations stratégiques.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Véronique Collet",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv057_fr_nir_high",
+   "lang": "fr",
+   "format": "log",
+   "text": "2026-09-26 13:22:10 Enregistrement: Nom=Vincent Moreau, NIR=1 75 08 75 123 456 23, Statut=Vérifié",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Vincent Moreau",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "1 75 08 75 123 456 23",
+      "number_type": "national_id",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv058_fr_creditcard_high",
+   "lang": "fr",
+   "format": "form",
+   "text": "Titulaire: Madeleine Rousseau\nNuméro de carte: 3782 822463 10005\nExpiration: 03/29",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Madeleine Rousseau",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "3782 822463 10005",
+      "number_type": "credit_card",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv059_fr_patient_list_high",
+   "lang": "fr",
+   "format": "csv",
+   "text": "PatientID,Nom du Patient,Diagnostic\n5001,Alain Fournier,Diabète de type 2\n5002,Céline Giroux,Dépression\n5003,Hervé Gauthier,Cirrhose hépatique",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Alain Fournier",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Céline Giroux",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Hervé Gauthier",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv060_fr_bank_account_high",
+   "lang": "fr",
+   "format": "memo",
+   "text": "Virement salaire: Amélie Gautier\nCompte: BNP Paribas IBAN FR76 3000 4000 0312 3456 7890 143 Compte chèques",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Amélie Gautier",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "FR76 3000 4000 0312 3456 7890 143",
+      "number_type": "bank_account",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv061_it_rome_none",
+   "lang": "it",
+   "format": "narrative",
+   "text": "Roma è la capitale d'Italia e una delle città storiche più importanti del mondo. Attrae milioni di visitatori ogni anno.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv062_it_fiat_none",
+   "lang": "it",
+   "format": "product",
+   "text": "FIAT 500 Modello 2026 Motore: 1.2 benzina 70 cv",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv063_it_info_email_none",
+   "lang": "it",
+   "format": "email",
+   "text": "Per informazioni, contattaci all'indirizzo info@example.it. Risponderemo entro 2 giorni lavorativi.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "info@example.it",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv064_it_rossi_name_low",
+   "lang": "it",
+   "format": "narrative",
+   "text": "Antonio Rossi è il capo progetto del team con 7 anni di esperienza.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Antonio Rossi",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv065_it_bianchi_phone_low",
+   "lang": "it",
+   "format": "chat",
+   "text": "Salve, sono Francesca Bianchi. Per urgenze potete contattarmi al 333 123 4567.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Francesca Bianchi",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "333 123 4567",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv066_it_verdi_email_low",
+   "lang": "it",
+   "format": "email",
+   "text": "Sig. Verdi,\n\nLa ringrazio per il messaggio. La mia email personale è g.verdi@example.it\n\nCordiali saluti,\nGiuseppe Verdi",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Verdi",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Giuseppe Verdi",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "g.verdi@example.it",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv067_it_ferrari_address_low",
+   "lang": "it",
+   "format": "form",
+   "text": "Nome: Claudia Ferrari\nIndirizzo: Via Roma 42, 20100 Milano\nTelefono: 02 1234 5678",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Claudia Ferrari",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "02 1234 5678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv068_it_moretti_title_low",
+   "lang": "it",
+   "format": "narrative",
+   "text": "Dott.ssa Lucia Moretti, Direttrice Medica, supervisiona tutte le operazioni cliniche.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Lucia Moretti",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv069_it_codice_fiscale_high",
+   "lang": "it",
+   "format": "log",
+   "text": "2026-09-26 10:15:33 Registrazione: Nome=Roberto Conti, Codice Fiscale=CNTBRR74A15H501Z, Stato=Verificato",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Roberto Conti",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "CNTBRR74A15H501Z",
+      "number_type": "national_id",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv070_it_creditcard_high",
+   "lang": "it",
+   "format": "form",
+   "text": "Titolare: Martina Gallo\nNumero carta: 5432123456789012\nScadenza: 09/27",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Martina Gallo",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "5432123456789012",
+      "number_type": "credit_card",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv071_it_patient_list_high",
+   "lang": "it",
+   "format": "csv",
+   "text": "PazienteID,Nome Paziente,Diagnosi\n6001,Marco Leone,Diabete tipo 2\n6002,Silvia Russo,Depressione\n6003,Paolo Colombo,Cirrosi epatica",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Marco Leone",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Silvia Russo",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Paolo Colombo",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv072_it_bank_account_high",
+   "lang": "it",
+   "format": "memo",
+   "text": "Bonifico stipendio: Alessandra Rizzo\nConto: Intesa Sanpaolo IBAN IT87 0100 0000 0000 0000 0001 Conto corrente",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Alessandra Rizzo",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "IT87 0100 0000 0000 0000 0001",
+      "number_type": "bank_account",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv073_de_berlin_none",
+   "lang": "de",
+   "format": "narrative",
+   "text": "Berlin ist die Hauptstadt Deutschlands und eine der größten Städte Europas. Sie zieht jährlich Millionen von Besuchern an.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv074_de_bmw_none",
+   "lang": "de",
+   "format": "product",
+   "text": "BMW 3er Baureihe G20 Modell 330i xDrive Motor: 3.0L Benzin",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv075_de_kontakt_email_none",
+   "lang": "de",
+   "format": "email",
+   "text": "Für Fragen wenden Sie sich bitte an kontakt@example.de. Wir antworten innerhalb von 48 Stunden.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "kontakt@example.de",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv076_de_mueller_name_low",
+   "lang": "de",
+   "format": "narrative",
+   "text": "Hans Müller ist der Projektleiter mit 9 Jahren Erfahrung in der Branche.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Hans Müller",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv077_de_schmidt_phone_low",
+   "lang": "de",
+   "format": "chat",
+   "text": "Hallo, ich bin Petra Schmidt. Im Notfall können Sie mich unter 0151 23456789 erreichen.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Petra Schmidt",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "0151 23456789",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv078_de_fischer_email_low",
+   "lang": "de",
+   "format": "email",
+   "text": "Herr Fischer,\n\nVielen Dank für Ihre Nachricht. Meine persönliche E-Mail ist k.fischer@example.de\n\nMit freundlichen Grüßen,\nKurt Fischer",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Fischer",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Kurt Fischer",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "k.fischer@example.de",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv079_de_weber_address_low",
+   "lang": "de",
+   "format": "form",
+   "text": "Name: Brigitte Weber\nAdresse: Unter den Linden 5, 10117 Berlin\nTelefon: 030 1234567",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Brigitte Weber",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "030 1234567",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv080_de_meyer_title_low",
+   "lang": "de",
+   "format": "narrative",
+   "text": "Dr. Helmut Meyer, Geschäftsführer, beaufsichtigt alle strategischen Operationen.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Helmut Meyer",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv081_de_steuernummer_high",
+   "lang": "de",
+   "format": "log",
+   "text": "2026-09-26 14:45:20 Registrierung: Name=Dieter Hoffmann, Steuer-ID=12 345 678 901, Status=Verifiziert",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Dieter Hoffmann",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "12 345 678 901",
+      "number_type": "national_id",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv082_de_creditcard_high",
+   "lang": "de",
+   "format": "form",
+   "text": "Karteninhaber: Sonja Krause\nKartennummer: 6011123456789012\nGültig bis: 11/28",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Sonja Krause",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "6011123456789012",
+      "number_type": "credit_card",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv083_de_patient_list_high",
+   "lang": "de",
+   "format": "csv",
+   "text": "PatientenID,Patientenname,Diagnose\n7001,Andreas König,Typ-2-Diabetes\n7002,Heike Schulze,Depressionen\n7003,Wolfgang Richter,Leberzirrhose",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Andreas König",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Heike Schulze",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Wolfgang Richter",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv084_de_bank_account_high",
+   "lang": "de",
+   "format": "memo",
+   "text": "Gehaltsweis: Ingrid Bachmeier\nKonto: Deutsche Bank IBAN DE89 1234 5678 9012 3456 78 Girokonto",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Ingrid Bachmeier",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "DE89 1234 5678 9012 3456 78",
+      "number_type": "bank_account",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv085_es_madrid_none",
+   "lang": "es",
+   "format": "narrative",
+   "text": "Madrid es la capital de España y una de las ciudades más importantes de Europa. Atrae a millones de visitantes cada año.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv086_es_seat_none",
+   "lang": "es",
+   "format": "product",
+   "text": "SEAT Ibiza Modelo 2026 Motor: 1.0 MPI 75 cv",
+   "expected": {
+    "sensitivity": "none",
+    "findings": []
+   }
+  },
+  {
+   "id": "sv087_es_info_email_none",
+   "lang": "es",
+   "format": "email",
+   "text": "Para consultas, póngase en contacto con info@example.es. Responderemos en el plazo de 2 días.",
+   "expected": {
+    "sensitivity": "none",
+    "findings": [
+     {
+      "type": "email",
+      "value": "info@example.es",
+      "pii": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv088_es_garcia_name_low",
+   "lang": "es",
+   "format": "narrative",
+   "text": "Carlos García es el jefe de proyecto con 5 años de experiencia en el sector.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Carlos García",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv089_es_lopez_phone_low",
+   "lang": "es",
+   "format": "chat",
+   "text": "Hola, soy María López. Pueden contactarme al 612 345 678 en caso de urgencia.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "María López",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "612 345 678",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv090_es_martinez_email_low",
+   "lang": "es",
+   "format": "email",
+   "text": "Sr. Martínez,\n\nGracias por su mensaje. Mi correo personal es j.martinez@example.es\n\nSaludos cordiales,\nJavier Martínez",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Martínez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Javier Martínez",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "j.martinez@example.es",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv091_es_fernandez_address_low",
+   "lang": "es",
+   "format": "form",
+   "text": "Nombre: Isabel Fernández\nDirección: Calle Mayor 10, 28001 Madrid\nTeléfono: 91 123 4567",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Isabel Fernández",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "91 123 4567",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv092_es_perez_title_low",
+   "lang": "es",
+   "format": "narrative",
+   "text": "Dra. Dolores Pérez, Directora General, supervisa todas las operaciones estratégicas.",
+   "expected": {
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Dolores Pérez",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv093_es_dni_high",
+   "lang": "es",
+   "format": "log",
+   "text": "2026-09-26 12:30:15 Registro: Nombre=Francisco Rodríguez, DNI=12345678Z, Estado=Verificado",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Francisco Rodríguez",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "12345678Z",
+      "number_type": "national_id",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv094_es_creditcard_high",
+   "lang": "es",
+   "format": "form",
+   "text": "Titular: Laura Sánchez\nNúmero de tarjeta: 4916567890123456\nCaducidad: 05/29",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Laura Sánchez",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4916567890123456",
+      "number_type": "credit_card",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv095_es_patient_list_high",
+   "lang": "es",
+   "format": "csv",
+   "text": "PacienteID,Nombre Paciente,Diagnóstico\n8001,Ricardo Cortés,Diabetes tipo 2\n8002,Francisca Mendoza,Depresión\n8003,Jorge Navarro,Cirrosis hepática",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Ricardo Cortés",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Francisca Mendoza",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Jorge Navarro",
+      "pii": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "sv096_es_bank_account_high",
+   "lang": "es",
+   "format": "memo",
+   "text": "Transferencia nómina: Óscar Gutiérrez\nCuenta: Banco Santander IBAN ES91 2100 0001 1234 5678 9123 Cuenta corriente",
+   "expected": {
+    "sensitivity": "high",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Óscar Gutiérrez",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "ES91 2100 0001 1234 5678 9123",
+      "number_type": "bank_account",
+      "pii": true
+     }
+    ]
+   }
+  }
+ ]
+}

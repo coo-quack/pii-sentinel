@@ -1,0 +1,284 @@
+{
+  "templates": [
+    {
+      "id": "t_it_041",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "RICEVUTA SINISTRO\nData: {DATE}\nNominativo: {P1}\nNumerazione polizza: {CODE}\nTipo copertura: Responsabilità civile\nPratica: {AMOUNT}€\nDocumenti forniti: Certificato di residenza, Passaporto {P1.passport}, Modello di domanda"
+    },
+    {
+      "id": "t_it_042",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Oggetto: Campioni biologici in archivio\n\nCaro {P1},\n\nAbbiamo ricevuto i risultati dell'esame del sangue per la ricerca sui marcatori tumorali. Il campione di {P1} mostra un aumento dei livelli di PSA coerente con la diagnosi di carcinoma prostatico. I dati sono stati archiviati nel database biomedico.\n\nDistinti saluti,\nDott. {P2.s}"
+    },
+    {
+      "id": "t_it_043",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "Verbale di audizione - {DATE}\nSoggetto: {P1}\nCittadinanza: Italiana\nPresidente della sezione locale di partito di estrema destra per le elezioni regionali. Durante l'intervista ha espresso opinioni critiche verso l'immigrazione e il multiculturalismo. Informazioni acquisite per fascicolo antiterrorismo."
+    },
+    {
+      "id": "t_it_044",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "private_messages_of_others",
+      "text": "Memo interno - {DATE}\nDa: Direttore\nRe: Discussione con {P1}\nMessaggio WhatsApp intercettato: '{P2}: credo che il capo non sappia che il fornitore è corrotto... ti prego non dire niente'"
+    },
+    {
+      "id": "t_it_045",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "deceased_person",
+      "text": "Oggetto: Commemorazione leggende del club\n\nCari tifosi,\n\nQuesta stagione ricordiamo {DEAD} ({DEAD.born}-{DEAD.died}), la più grande punta della nostra storia. Ha vinto tre scudetti e rimane il miglior marcatore di tutti i tempi con 247 reti. La sua maglia sarà esposta al museo dello stadio.\n\nForza club!"
+    },
+    {
+      "id": "t_it_046",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "Oggetto: Situazione membro {P1}\n\nHo osservato che {P1} accede sempre agli spogliatoi per donne ed ha iniziato il percorso di transizione di genere. Ha richiesto di cambiare il nome nei registri da {P1.rev}. Considerazioni sulla politica inclusiva del centro fitness."
+    },
+    {
+      "id": "t_it_047",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "Oggi grande festa alla scuola! 🎉 La classe di {P1} ha vinto il concorso di musica corale cantando inni religiosi. Domani visita alla chiesa per il canto del Magnificat. Bellissimo vedere questi ragazzi uniti nella fede! #Comunità #Scuola"
+    },
+    {
+      "id": "t_it_048",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "deceased_person",
+      "text": "COMUNICATO\nLa cooperativa annuncia il decesso di {DEAD} ({DEAD.born}-{DEAD.died}), fondatore."
+    },
+    {
+      "id": "t_it_049",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "Diario personale - {DATE}\nCaro diario, oggi è una giornata difficile. Ho ricontattato l'agenzia {ORG} per il rinnovo della polizza di malattia. L'agente mi ha spiegato che il mio stato attuale di residente permanente con visto europeo non è considerato sufficiente per alcuni benefici. Avrò bisogno di aspettare la cittadinanza definitiva. Che stress e quanta burocrazia! Spero che le cose si risolvano presto. {P1} continua a rassicurarmi che andrà bene."
+    },
+    {
+      "id": "t_it_050",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "criminal_record_or_victim",
+      "text": "{DATE} 14:30 - Ammissione urgenza: {P1}, ferita d'arma da fuoco addome\n{DATE} 15:15 - Vittima di aggressione; denuncia già presentata in PS\n{DATE} 16:45 - Intervento chirurgico eseguito"
+    },
+    {
+      "id": "t_it_051",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "Verbale della riunione della community - {DATE}\nAssistenza: 47 giocatori presenti\nArgomenti discussi:\n- {PUB} ha confermato la sua partecipazione al torneo mondiale\n- Nuove regole di competizione per la prossima stagione\n- Comunicazioni da parte della federazione mondiale"
+    },
+    {
+      "id": "t_it_052",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "neutral_roster",
+      "text": "Trascrizione intervista - {DATE}\nIntervistatore: Quanti dipendenti lavora presso la sede di Milano?\nDirettore della filiale: Abbiamo una squadra di 12 persone: {P1}, {P2}, {P3}, {P4} nei servizi finanziari, e gli altri nel back office."
+    },
+    {
+      "id": "t_it_053",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "criminal_record_or_victim",
+      "text": "Spett.le Concessionaria,\n\nHo l'onore di informarvi che il nostro cliente {P1}, in seguito a condanna passata in giudicato per frode automobilistica del 2018, è stato sottoposto a verifica approfondita. È stato condannato per riciclaggio di veicoli rubati presso il tribunale competente. Inoltre, {P1} è stato arrestato nuovamente nel 2021 per ricettazione di autovetture di provenienza illecita. La sua storia criminale estesa lo rende un soggetto ad alto rischio. Sono stati inoltre accertati i seguenti antecedenti: truffa nei confronti di diverse concessionarie nel nord Italia, falsificazione di documenti di proprietà e circolazione, nonché associazione con noti trafficanti di veicoli rubati. Vi consigliamo massima cautela nell'instaurare rapporti commerciali con questo individuo e di verificare tutta la documentazione con estremo rigore.\n\nDistinti saluti\nDott. {P2.s}"
+    },
+    {
+      "id": "t_it_054",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "Blog - {DATE}\nHo elaborato il rendiconto: {P1} ha ricevuto {AMOUNT}€."
+    },
+    {
+      "id": "t_it_055",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "Memo interno - {DATE}\nOggetto: Allestimento mostra temporanea\nAbbiamo ricevuto la richiesta di {P1} di posizionare due icone ortodosse e una reliquia di un santo nella sezione arte religiosa. Sono stati già predisposti gli spazi protetti e la documentazione sulla provenienza ecclesiastica."
+    },
+    {
+      "id": "t_it_056",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "address_or_birthday",
+      "text": "Cantiere - {DATE}\nSopralluogo a {P1.addr}. Cliente nato {P1.dob}, necessita ristrutturazione."
+    },
+    {
+      "id": "t_it_057",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "genetic_or_biometric",
+      "text": "Diario di cantiere - {DATE}\nLa nuova procedura di sicurezza richiede il riconoscimento tramite scansione dell'iride. {P1} è stato il primo a completare il sistema di accesso biometrico. Tutti gli operai hanno depositato le loro scansioni oculari nel database di sicurezza del cantiere per l'identificazione rapida."
+    },
+    {
+      "id": "t_it_058",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "formal_hr_record",
+      "text": "Oggetto: Disciplina\nCaro {P1}, procedimento disciplinare avviato per violazione policy aziendali."
+    },
+    {
+      "id": "t_it_059",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "Diario - {DATE}\nOggi ho accompagnato {P1} alla mostra sulla storia dell'immigrazione al museo civico. Lui mi ha raccontato la sua storia di rifugiato: è arrivato dal Pakistan nel 2010 con status di rifugiato perseguitato per motivi religiosi. Ha ottenuto il permesso di soggiorno umanitario ma ancora non ha la cittadinanza italiana. Spera di ottenerla quest'anno."
+    },
+    {
+      "id": "t_it_060",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "names_in_everyday_work",
+      "text": "Turni personale - {DATE}\nRicezione: {P1}, {P2}\nCuisine: {P3}\nServizio: {P4}, {P1.s}\nPulizie: Marina"
+    },
+    {
+      "id": "t_it_061",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "deceased_person",
+      "text": "Caso {CODE}\nVendita eredità veicolo di {DEAD} ({DEAD.born}-{DEAD.died})"
+    },
+    {
+      "id": "t_it_062",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "name_like_product_or_place",
+      "text": "Annuncio - {DATE}\nIl laboratorio annuncia l'acquisizione del software {PRODUCT} per l'analisi dei dati."
+    },
+    {
+      "id": "t_it_063",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "sensitive_topic_in_general",
+      "text": "Rapporto incidente - {DATE}\nNel reparto di ricerca dell'ospedale sono state riscontrate irregolarità nella gestione dei reagenti chimici. I protocolli di sicurezza per le sostanze tossiche non sono stati rispettati. È stato avviato un procedimento disciplinare."
+    },
+    {
+      "id": "t_it_064",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "contact_details",
+      "text": "Incidente - {DATE}\nSegnalazione di allarme: {P1}, Tel {P1.phone}"
+    },
+    {
+      "id": "t_it_065",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Mi è appena servito il miglior risotto della mia vita! 🍚 @{P1.handle} è un genio in cucina. #RisottoMilanese"
+    },
+    {
+      "id": "t_it_066",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Tracciamento pacchetto {CODE}\nUtente: {P1.handle}\nIndirizzo IP: {P1.ip}\nStato: in consegna"
+    },
+    {
+      "id": "t_it_067",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "Spett.le Struttura,\nContabilità mensilità {DATE}: {P1}, importo {AMOUNT}€, rette alloggio.\nDistinti saluti"
+    },
+    {
+      "id": "t_it_068",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "criminal_record_or_victim",
+      "text": "Spett.le Dipartimento Risorse Umane,\n\nDurante la procedura di verifica per l'assunzione di {P1} come sviluppatore senior, è emerso un procedimento legale: è stato vittima di un furto d'identità nel 2019, con conseguente frode creditizia. Inoltre, risulta essere stato querelato per diffamazione online nel 2020. La situazione è stata chiarita in tribunale con sua assoluzione completa.\n\nDistinti saluti"
+    },
+    {
+      "id": "t_it_069",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "genetic_or_biometric",
+      "text": "Memo - {DATE}\nCampione DNA archiviato: {P1}\nSequenza genetica: marcatore BRCA1 positivo"
+    },
+    {
+      "id": "t_it_070",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "formal_hr_record",
+      "text": "Rapporto disciplinare - {DATE}\n{P1}, organista, licenziamento per insufficiente competenza e conflitti con parroco."
+    },
+    {
+      "id": "t_it_071",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "contact_details",
+      "text": "Caso ID: {CODE}\nParticipant: {P1}\nRecapito telefonico per follow-up: {P1.phone}\nIndirizzo per invio risultati: {P1.addr}\nEmail per comunicazioni: {P1.email}\nData ultimo contatto: {DATE}\nNote: Il paziente ha confermato la continuazione del programma di ricerca. Sono stati programmati ulteriori test nel prossimo mese."
+    },
+    {
+      "id": "t_it_072",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "names_in_everyday_work",
+      "text": "Rapporto - {DATE}\nVolontari: {P1}, {P2} (ristori), {P3} (medico di servizio)"
+    },
+    {
+      "id": "t_it_073",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "race_or_ethnic_origin",
+      "text": "Successo medico! {P1}, paziente di origine africana, curato con successo per malaria nel nostro ospedale. Guarigione completa in 2 settimane. #Medicina #Africa"
+    },
+    {
+      "id": "t_it_074",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "statistics_or_news_without_people",
+      "text": "D: Quanti trattamenti di carie eseguite mensilmente? R: In media 45-50 trattamenti al mese, con picchi nei periodi invernali."
+    },
+    {
+      "id": "t_it_075",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "neutral_roster",
+      "text": "{DATE} 06:00 - Equipaggio volo IT204: Comandante {P1}, Primo Ufficiale {P2}, Hostess {P3}, {P4}, Stewcard aggiuntivo\n{DATE} 06:30 - Passeggeri imbarcati: 187 persone\n{DATE} 07:15 - Decollo autorizzato dalla torre di controllo\n{DATE} 08:45 - Arrivo a destinazione programmato"
+    },
+    {
+      "id": "t_it_076",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "race_or_ethnic_origin",
+      "text": "{DATE} 10:00 - Iscrizione nuovo membro: {P1}, origine etnica: Rom\n{DATE} 10:30 - Discussione su discriminazione sul lavoro verso comunità Rom\n{DATE} 11:00 - Presentazione denunce di discriminazione etnica nel settore edile"
+    },
+    {
+      "id": "t_it_077",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "Rapporto incidente - {DATE}\nPer informazioni contattare la Divisione Polizia Stradale\nTelefono: {ORG.phone}\nEmail: {ORG.email}\nOrario di apertura: 08:00-20:00 tutti i giorni incluse le festività\nResponsabile: Commissario delegato all'ufficio sinistri"
+    },
+    {
+      "id": "t_it_078",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "Assistenza clienti {ORG}\nTelefono: {ORG.phone}\nEmail: {ORG.email}\nSito web: www.{ORG}.it"
+    },
+    {
+      "id": "t_it_079",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "Rendiconto mensile - {DATE}\nConti correnti aperti presso la filiale:\n- {P1}: saldo {AMOUNT}€, tipo: corrente ordinario\n- {P2}: saldo {AMOUNT}€, tipo: deposito con interessi\n- {P3}: saldo {AMOUNT}€, tipo: conto giovani\nTotale depositi complessivi: {AMOUNT}€\nVariazione rispetto al mese precedente: +{CODE}€"
+    },
+    {
+      "id": "t_it_080",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "criminal_record_or_victim",
+      "text": "Chat - {DATE}\nMessaggio 1: {P1} mi ha chiesto se qualcuno sa della sua condanna per furto nel 2015\nMessaggio 2: {P2} ha risposto che ha saputo dal sindacato che {P1} era stato vittima di frode bancaria da parte del suo ex partner\nMessaggio 3: Comunque, {P1} ha completato il programma di riabilitazione"
+    }
+  ]
+}

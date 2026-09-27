@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_en_041",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "Visa Renewal Receipt\nApplicant: {DEAD}\nDate Processed: {DATE}\nFee: ${AMOUNT}"
+  },
+  {
+   "id": "t_en_042",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "Today's shift went smoothly. {P1}, {P2}, and {P3} worked the register. {P4} was on stocking. Good team."
+  },
+  {
+   "id": "t_en_043",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "private_messages_of_others",
+   "text": "Meeting Notes - Service Department\n\nFrom text chain with {P1}:\n\"The brake pads on unit #423 are worn. I sent photos to inventory.\"\n\nFrom email with {P2}:\n\"Customer keeps calling about the appointment. Can we squeeze them in Friday?\"\n\nAction: Follow up on both items."
+  },
+  {
+   "id": "t_en_044",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "Participant ID: {CODE}\nDate Enrolled: {DATE}\nSample Type: Blood serum and tissue\nClinical Notes: Baseline assessment completed. Participant {P1} enrolled through the international research program and has provided all required documentation for study participation. Medical history reviewed and entered into database. {P2} completed intake questionnaire. Consent forms signed and witnessed. Next visit scheduled for {DATE}. Follow-up blood draw ordered. {P3} to confirm appointment. Vitals recorded: BP 120/80, HR 72, Temp 98.6F. Study protocol requirements verified and documented. All clearances received from institutional review board. Researcher contact: {ORG.email}. Monitoring period: {DATE} through {DATE}."
+  },
+  {
+   "id": "t_en_045",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "STAFF NOTICE\n\n{P1}: Union representatives visit Wednesday 3pm for membership session in break room."
+  },
+  {
+   "id": "t_en_046",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "CONFIDENTIAL - HR MEMO\n\nDate: {DATE}\nRE: Formal Review - {P1.rev}\n\n{P1} received a formal performance review on {DATE}. Documented concerns include attendance and project completion. Coaching plan has been established with 30-day checkpoint. HR file updated."
+  },
+  {
+   "id": "t_en_047",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "Watched a documentary about {DEAD} this evening. Remarkable life. His influence on aviation is still felt today."
+  },
+  {
+   "id": "t_en_048",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "Restaurant Loyalty Program Registration\n\nName: {P1}\nUsername: {P1.handle}\nEmail: {P1.email}\n\nJoin to earn points on every visit."
+  },
+  {
+   "id": "t_en_049",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "This week's retreat was perfect. The cabin at {GPS} provided everything we needed. {P1} brought her daughter, and {P2} led morning meditations on the porch. Sunday evening we gathered for the closing ceremony. It was a meaningful few days away from the city."
+  },
+  {
+   "id": "t_en_050",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "{P1}: The genetic testing results are in\n{P2}: For the new staff initiative?\n{P1}: Yes. Facial recognition mapping for the new security system. {P3} is ready to start enrollment\n{P2}: When?\n{P1}: This Friday if possible"
+  },
+  {
+   "id": "t_en_051",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "Meeting Notes - Front Desk Management\nDate: {DATE}\n\nGuest Verification Protocol Update\n{P1.rev} - Passport {P1.passport}\n{P2.rev} - Driver License {P2.govid}\n{P3.rev} - Government ID {P3.govid}\n\nAll documents verified and returned to guests. Standard check-in completed."
+  },
+  {
+   "id": "t_en_052",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "Name,Affiliation\n{P1},Independent\n{P2},Green\n{P3},Libertarian"
+  },
+  {
+   "id": "t_en_053",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "{P1} back on site after medication adjustment. Early start makes all the difference. {P2} says we're making good progress on schedule. Ready for the week."
+  },
+  {
+   "id": "t_en_054",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "Subject: VFX Render Server Configuration\n\nHi team,\n\nThe new render configuration is ready:\n- Max threads: 128\n- Memory allocation: 256GB\n- Timeout threshold: 3600s\n\nPlease update your local configs with these parameters.\n\nBest,\n{ORG}"
+  },
+  {
+   "id": "t_en_055",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "Difficult day. {P1} came in to discuss the workplace harassment case from last month. Everything documented. Hard to relive those conversations."
+  },
+  {
+   "id": "t_en_056",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "WORKPLACE WELLNESS NOTICE\n\nDental health and vision screening appointments are available for all employees. These covered benefits include routine exams and cleanings. {P1} and {P2} are scheduled for baseline assessments. Hypertension screening and diabetes risk evaluations are also offered. Appointments must be scheduled by {DATE}."
+  },
+  {
+   "id": "t_en_057",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "Crew Schedule - {DATE} to {DATE}\n\n{P1}\n{P2}\n{P3}\n{P4}"
+  },
+  {
+   "id": "t_en_058",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "EMPLOYEE HEALTH & SAFETY ANNOUNCEMENT\n\nEffective {DATE}, employees like {P1} and {P2} who require accommodation for respiratory conditions or compromised immune systems may request flexible work arrangements. Reasonable accommodations will be provided in compliance with medical documentation. Please contact HR to begin the process."
+  },
+  {
+   "id": "t_en_059",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "CONFIDENTIAL MEMO\n\nRe: Claim {CODE}\n\nPolicy holder {P1} has submitted claim for damages. Background check complete. File flagged for supervisor review. Documentation attached."
+  },
+  {
+   "id": "t_en_060",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "{P1}: Are you coming to the meeting tonight?\n{P2}: Which one?\n{P1}: The organizing committee gathering. We're discussing the contract.\n{P2}: Yes, I'll be there at 6"
+  },
+  {
+   "id": "t_en_061",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "[09:45] {P1} logged in to exhibition system\n[10:15] {P2} updated gallery descriptions\n[11:30] {P3} submitted artifact condition report"
+  },
+  {
+   "id": "t_en_062",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "CONTACT US\n\nGeneral Inquiries: {ORG.email}\nCustomer Support: {ORG.phone}\nShipping Department: shipping@{ORG}\nCareers: jobs@{ORG}\nTechnical Support: support@{ORG}\nBilling Questions: billing@{ORG}\n\nBusiness Hours: Monday-Friday 8am-6pm, Saturday 9am-2pm"
+  },
+  {
+   "id": "t_en_063",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "deceased_person",
+   "text": "Today marks {DEAD.died} years since {DEAD} published his revolutionary work on sustainable farming. His legacy continues to inspire our cooperative's practices. We're proud to carry forward his vision of agricultural stewardship."
+  },
+  {
+   "id": "t_en_064",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "formal_hr_record",
+   "text": "Meeting Notes - HR Review\nDate: {DATE}\n\n{P1} absent. Decision made regarding employment status. Effective {DATE}. Documentation provided to legal."
+  },
+  {
+   "id": "t_en_065",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "Tax Registration List - {DATE}\n\n{P1} - ID: {P1.govid}\n{P2} - ID: {P2.govid}\n{P3} - ID: {P3.govid}"
+  },
+  {
+   "id": "t_en_066",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "SHIFT ASSIGNMENT LOG - {DATE}\n\nDate,Store,Employee,Position,Hours,Supervisor\n{DATE},Downtown,{P1},Cashier,8,Manager A\n{DATE},Downtown,{P2},Stocking,8,Manager A\n{DATE},Midtown,{P3},Deli,6,Manager B\n{DATE},Midtown,{P4},Service Desk,8,Manager B\n{DATE},Downtown,{P1},Produce,8,Manager A\n{DATE},Downtown,{P2},Stocking,4,Manager A\n{DATE},Midtown,{P3},Deli,8,Manager B\n{DATE},Airport,{P4},Inventory,8,Manager C\n{DATE},Downtown,{P1},Express Register,6,Manager A\n{DATE},Midtown,{P2},Returns Processing,6,Manager B\n{DATE},Airport,{P3},Night Checkout,8,Manager C\n{DATE},Midtown,{P4},Deli Support,8,Manager B\n{DATE},Downtown,{P1},Cashier Trainer,7,Manager A"
+  },
+  {
+   "id": "t_en_067",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "Exhibition Accessibility List\n\nVisitors Requiring Mobility Assistance:\n{P1}\n{P2}\n\nVisitors Requiring Hearing Assistance:\n{P3}"
+  },
+  {
+   "id": "t_en_068",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "statistics_or_news_without_people",
+   "text": "Monthly Ward Statistics - {DATE}\n\nMetric,Count,Target,Variance\nAdmissions,145,140,+5\nDischarges,138,135,+3\nAverage Length of Stay,5.2 days,5.5 days,-0.3\nBed Occupancy Rate,87%,85%,+2\nCleanliness Score,96%,95%,+1\nEquipment Utilization,92%,90%,+2"
+  },
+  {
+   "id": "t_en_069",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "PATIENT SERVICES FORM\n\nHospital Main Line: {ORG.phone}\nAdmissions Department: {ORG.email}\nBilling Inquiries: billing@{ORG}\nAppointment Scheduling: appointments@{ORG}\nMedical Records: records@{ORG}\nQuality Assurance: qa@{ORG}\n\nAfter Hours Emergency: Call 911 or visit nearest emergency room"
+  },
+  {
+   "id": "t_en_070",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "INCIDENT REPORT - CONFIDENTIAL\n\nDate: {DATE}\nIncident Type: Data Security Breach - Biometric Database\nAffected Area: Biometric Access System\nReported By: {P1}\nDiscovery Date: {DATE}\n\nSummary: Unauthorized access to the fingerprint and facial recognition database for building security was discovered during routine audit. The system contained biometric data for approximately four individuals including {P1}, {P2}, {P3}, and {P4}. Investigation has commenced to determine scope of unauthorized access. All staff with access to affected systems have been notified via email and phone. System has been taken offline pending comprehensive security review by external firm."
+  },
+  {
+   "id": "t_en_071",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "Incident Report\nDate: {DATE}\nResident: {P1}\nIssue: Documentation review during quarterly audit\nOutcome: Documentation filed"
+  },
+  {
+   "id": "t_en_072",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "NOTICE: {P1} and {P2} genetic test results must remain secure. Staff cannot handle without protocols."
+  },
+  {
+   "id": "t_en_073",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Great news! {P1}, {P2}, and {P3} just closed on their dream home. Welcome to the neighborhood! Congratulations to our whole team for making it happen. Special thanks to {P4} for coordinating the final inspections."
+  },
+  {
+   "id": "t_en_074",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "online_identifier",
+   "text": "Incident Report: System Access\n\nDate: {DATE}\nUser Account: {P1.handle}\nAction: Failed login attempt\nTimestamp: {DATE}\nResolved: Password reset requested"
+  },
+  {
+   "id": "t_en_075",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "political_opinion",
+   "text": "Cooperative Board Meeting - {DATE}\n\nAgenda Item: Agricultural Policy Advocacy\n\n{P1} expressed strong support for carbon sequestration subsidies. {P2} argued for stronger pesticide regulation. {P3} raised concerns about trade restrictions. {P4} advocated for small farm protection measures. Discussion noted for policy committee review."
+  },
+  {
+   "id": "t_en_076",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "Work Visa Verification List - {DATE}\n\n{P1} - Documentation Approved\n{P2} - Documentation Approved\n{P3} - Pending Review"
+  },
+  {
+   "id": "t_en_077",
+   "lang": "en",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "Client Contact Directory - {DATE}\n\nName,Email,Phone,Address\n{P1},{P1.email},{P1.phone},{P1.addr}\n{P2},{P2.email},{P2.phone},{P2.addr}\n{P3},{P3.email},{P3.phone},{P3.addr}\n{P4},{P4.email},{P4.phone},{P4.addr}\n\nNote: Keep current with each client contact cycle."
+  },
+  {
+   "id": "t_en_078",
+   "lang": "en",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "RISK ASSESSMENT FORM\n\nClaimant Name: [BLANK]\n\nHas the claimant been involved in any high-risk activities in the past year?\n\u2610 Yes \u2610 No\n\nHas the claimant reported any workplace safety incidents?\n\u2610 Yes \u2610 No\n\nAre there any ongoing legal matters?\n\u2610 Yes \u2610 No"
+  },
+  {
+   "id": "t_en_079",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "[{DATE}] {P1} - Southeast Asian\n[{DATE}] {P2} - Black or African American\n[{DATE}] {P3} - European heritage"
+  },
+  {
+   "id": "t_en_080",
+   "lang": "en",
+   "sensitivity": "high",
+   "cell": "private_messages_of_others",
+   "text": "Subject: Exhibition Team Coordination\n\nHi {P1},\n\nI wanted to follow up on the email thread from {P2} and {P3} this week. Here's what they said about the timeline:\n\n{P2}: \"We can have the pieces ready by next Thursday if the paperwork goes through.\"\n\n{P3}: \"I'm concerned about the humidity levels. Let's check the climate system first.\"\n\nCan you schedule a meeting with everyone?\n\nBest,\n{P4}"
+  }
+ ]
+}

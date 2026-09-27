@@ -1,0 +1,284 @@
+{
+ "templates": [
+  {
+   "id": "t_fr_001",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Jour 4\n\nAujourd'hui, {P1} a analysé les échantillons. {P2} a traité les résultats. {P3} aide au tri du matériel."
+  },
+  {
+   "id": "t_fr_002",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "Bénévoles du 15 novembre\n{P1}\n{P2}\n{P3}\n{P4}"
+  },
+  {
+   "id": "t_fr_003",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Monsieur {P1.rev},\n\nJe vous écris concernant la restauration. L'équipe de {P2.s} a commencé jeudi. {P3} a documenté les dommages identifiés. Nous remercions {P4} pour sa coordination. Les progrès sont remarquables et nous vous tiendrons informé régulièrement.\n\nCordialement"
+  },
+  {
+   "id": "t_fr_004",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "race_or_ethnic_origin",
+   "text": "Reçu de casting - Studio Cinématique\n\nCandidat: {P1}\nDate: {DATE}\nRôle: Serviteur du palais royal\nOrigine ethnique: Moyen-Oriental\nNotes: Physique correspondant au rôle pour les scènes du marché orientale\nMontant: {AMOUNT}"
+  },
+  {
+   "id": "t_fr_005",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "citizenship_or_immigration",
+   "text": "Log d'accès système - Bureau syndical\n\n{DATE} 14:23 {P1} statut vérifié comme consultant externe\n{DATE} 15:10 {P2} visa étudiant valide jusqu'à {DATE}\n{DATE} 15:45 {P3} titulaire résident depuis cinq années consécutives\n{DATE} 16:20 {P4} permis de travail approuvé pour la région complète"
+  },
+  {
+   "id": "t_fr_006",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "Registre de garde - 12 septembre\n{P1}\n{P2}\n{P3}\n{P4}"
+  },
+  {
+   "id": "t_fr_007",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "contact_details",
+   "text": "Incident: Perturbation réunion publique\nDate: 22 octobre 2026\nContacté: {P1}\nTéléphone: {P1.phone}\nCourriel: {P1.email}\nAdresse: {P1.addr}\nDescription: Manifestant a interrompu la session. Contact établi pour rapport détaillé et enquête."
+  },
+  {
+   "id": "t_fr_008",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "Facture de prêt d'œuvres - Musée des Beaux-Arts\nProjet: Exposition automne 2026\n{P1} - Vase grec antique - référence 2014\n{P2} - Portrait huile sur toile - référence 1847\n{P3} - Sculpture bronze - référence 1932\n{P4} - Céramique japonaise - référence 1205"
+  },
+  {
+   "id": "t_fr_009",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "Fiche d'inscription - Salle de sport Saint-Michel\nNom: {P1}\nDate d'entrée: {DATE}\nFormation: Yoga spécialisé\nGroupes de pratique autorisés: Oui\nAccès aux salles de méditation: Réservé\nParticipation aux événements: Facultatif"
+  },
+  {
+   "id": "t_fr_010",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "Mémo interne\n\nSujet: Fermeture hebdomadaire\n\nÀ partir du {DATE}, le restaurant fermera le lundi. Économies prévues: 12% des coûts énergétiques."
+  },
+  {
+   "id": "t_fr_011",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "code_log_or_config",
+   "text": "Configuration serveur hôtel - prod.hotel-system.conf\n\nSERVER_HOST=hotel-prod.internal\nSERVER_PORT={CODE}\nDATABASE_HOST=db01.hotel-internal\nDATABASE_PORT={CODE}\nDATABASE_USER=hotel_app\nDATABASE_PASSWORD_FILE=/var/secrets/db.pwd\nCACHE_HOST=redis-prod.internal\nCACHE_PORT={CODE}\nCACHE_TTL={CODE}\nMAX_CONNECTIONS={CODE}\nLOG_LEVEL=INFO\nSERVER_TIMEOUT={CODE}\nAPI_RATE_LIMIT={CODE}\nSSL_CERTIFICATE=/etc/ssl/certs/hotel.pem\nBACKUP_INTERVAL={CODE}\nBACKUP_DESTINATION=/backups/daily\nMONITOR_EMAIL={ORG.email}\nAPI_ENDPOINT=https://api.hotel-internal.local\nQUEUE_SIZE={CODE}\nRETRY_ATTEMPTS={CODE}\nHEALTH_CHECK_PATH=/health/status\nHEALTH_CHECK_INTERVAL={CODE}\nLOG_ROTATION=daily\nLOG_FORMAT=json\nCOMPRESSION=gzip\nVERBOSE_MODE=false\nMONITORING_ENABLED=true\nALERT_THRESHOLD={CODE}\nTLS_VERSION=1.3"
+  },
+  {
+   "id": "t_fr_012",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "Enregistrement - Marathon annuel\n\nNom: {P1}\nCourse: Semi-marathon\nScannage rétinien: Effectué\nRésultat: Accepté pour la compétition"
+  },
+  {
+   "id": "t_fr_013",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "sex_life_or_orientation",
+   "text": "Évaluation clients - Concessionnaire automobile\n\n{P1},M,Marié,Intéressé par configuration famille\n{P2},F,Célibataire,Véhicule solo sport\n{P3},M,Divorcé,Financement simplifié\n{P4},F,En couple,Véhicule luxe pour couple"
+  },
+  {
+   "id": "t_fr_014",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "statistics_or_news_without_people",
+   "text": "Discussion: Avancées scientifiques sans échantillon biologique\n\nChercheur A: Les résultats montrent une amélioration de 34% en efficacité diagnostic\nChercheur B: Oui, la méthode réduit le temps de traitement de 6 heures à 90 minutes exact\nChercheur C: L'analyse coûte maintenant 23% moins cher par test effectué\nChercheur D: Le taux d'erreur est tombé à 0.8% de la moyenne précédente\nChercheur A: Nous devrions publier ces données significatives au journal\nChercheur B: Accord complet. C'est significatif pour tout le domaine scientifique\nChercheur C: Quelle est la prochaine étape de validation expérimentale\nChercheur D: Tests sur population large en novembre prochain"
+  },
+  {
+   "id": "t_fr_015",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "Demande de visite guidée - Musée\n\nContactez-nous à: {ORG.email}\nOu appelez: {ORG.phone}\n\nLes groupes de plus de 10 personnes reçoivent une réduction de 15%. Les visites guidées professionnelles sont disponibles sur réservation."
+  },
+  {
+   "id": "t_fr_016",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "precise_location",
+   "text": "Journal - 15 septembre\n\nAujourd'hui, {P1} était à {GPS} pour affaires. Lieu stratégiquement important pour sa mission."
+  },
+  {
+   "id": "t_fr_017",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "@MuseumWorks Aujourd'hui, {P1} a quitté le travail à cause d'une crise d'asthme sévère. Nous lui souhaitons un prompt rétablissement. #Santé #Soutien"
+  },
+  {
+   "id": "t_fr_018",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "Mémo interne - Compagnie d'assurance\n\nSujet: Augmentation des réclamations\n\nLe nombre de réclamations automobiles a augmenté de 8% ce trimestre. Les sinistres météorologiques représentent 45% du total. Les coûts de réparation moyens ont augmenté."
+  },
+  {
+   "id": "t_fr_019",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "Liste des expositions - Musée des Religions\n\n{P1},Conférencier,Bouddhisme\n{P2},Assistant,Hindouisme\n{P3},Coordinateur,Judaïsme"
+  },
+  {
+   "id": "t_fr_020",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Journal d'activité - Centre caritatif du mois\n\n{DATE} matin {P1} a enregistré donation importante pour projet\n{DATE} après-midi {P2} a traité demande subvention d'organisme local\n{DATE} matin {P3} a vérifié tous documents de conformité nécessaire\n{DATE} après-midi {P4} a coordonné avec partenaires régionaux"
+  },
+  {
+   "id": "t_fr_021",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "business_paperwork",
+   "text": "Feuille de récolte mensuelle - Coopérative agricole septembre 2026\n\nProduits cultivés et rendements mensuels:\n{P1},Maïs,{AMOUNT},{PLACE},Rendement exceptionnel cette année\n{P2},Blé,{AMOUNT},{PLACE},Rendement dans la normale\n{P3},Orge,{AMOUNT},{PLACE},Rendement bon et satisfaisant\n{P4},Avoine,{AMOUNT},{PLACE},Rendement correct et acceptable\n\nTotaux du mois complètes:\nRécolte totale mensuelle:{AMOUNT}\nPrix moyen par tonne de grain:{AMOUNT}\nQualité globale évaluée:Bonne\nConditions météorologiques:Favorables et stables\nProchaines cultures prévues:{DATE}\nCoordination transport: Organisée et planifiée\nStockage temporaire: Sécurisé"
+  },
+  {
+   "id": "t_fr_022",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Cas {CODE} - Patient reçu\nNom: {P1}\nAccompagnant: {P2}\nDiagnostic initial: En cours\nInfirmier: {P3}\nDate: {DATE}"
+  },
+  {
+   "id": "t_fr_023",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "statistics_or_news_without_people",
+   "text": "Rapport d'exposition - Musée\n\nVisiteurs août: {CODE}\nVisiteurs septembre: {CODE}\nAugmentation: 12%\nDurée moyenne visite: 2 heures\nAges représentés: 15 à 75 ans\nSatisfaction: 94%"
+  },
+  {
+   "id": "t_fr_024",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "@FitnessPro\n\nBienvenue dans notre famille! Commencez votre parcours fitness. Rejoignez-nous: {ORG.phone} ou {ORG.email}"
+  },
+  {
+   "id": "t_fr_025",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "government_id_number",
+   "text": "Reçu de prélèvement - Supermarché\n\nClient: {P1}\nNuméro de client national: {P1.govid}\nDate d'achat: {DATE}\nAchat: Produits alimentaires variés\nMontant total: {AMOUNT}\nModèle de paiement: Carte de fidélité\nPoints gagnés: {CODE}\nProchaine offre disponible"
+  },
+  {
+   "id": "t_fr_026",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "Courriel - Agence immobilière\n\nObjet: Identifiant\n\nNuméro compte: {P1.bank}\nMot de passe: {PW}"
+  },
+  {
+   "id": "t_fr_027",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "address_or_birthday",
+   "text": "Notes de réunion - Agence immobilière\n\nSujet: Inspection de propriété et évaluation\n\nClient: {P1}\nAdresse de résidence actuelle: {P1.addr}\nDate de naissance: {P1.dob}\nBudget disponible: {AMOUNT}\nPréférences de localisation: Zone résidentielle calme\nProchaine visite prévue: {DATE}\nCommentaires: Client très sérieux"
+  },
+  {
+   "id": "t_fr_028",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "Notes de réunion - Séance de conseil social\n\nPatienta: {P1}\nDate consultation: {DATE}\nDiagnostic: Dépression post-natale sévère\nRéférence médicale: {P1.phone}\nIntervention recommandée: Thérapie cognitive comportementale intensivée\nSuivi mensuel requis"
+  },
+  {
+   "id": "t_fr_029",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "sensitive_topic_in_general",
+   "text": "Cas {CODE} - Situation critique\nDate: {DATE}\nStatut: Résolu\nRésultat: Positif"
+  },
+  {
+   "id": "t_fr_030",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "Avis - Cours de langue\n\nNous vous proposons des cours intensifs de français, anglais et mandarin. Tous niveaux acceptés. Pour renseignements détaillés:\nTéléphone: {ORG.phone}\nCourriel: {ORG.email}\nAdresse web: www.school.local\nFormules d'abonnement disponibles"
+  },
+  {
+   "id": "t_fr_031",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "neutral_roster",
+   "text": "Journal de chantier - 14 septembre 2026\n\nOuvriers présents aujourd'hui:\n{P1} - Responsable maçonnerie\n{P2} - Superviseur charpente\n{P3} - Responsable électricité\n{P4} - Superviseur plomberie\nTemps travail: Jour complet\nMétéo: Ensoleillé"
+  },
+  {
+   "id": "t_fr_032",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "names_in_everyday_work",
+   "text": "Journal d'activité agricole - Coopérative\n\n{DATE} matin {P1} supervisait la récolte du maïs\n{DATE} après-midi {P2} traitait les semences de blé\n{DATE} matin {P3} vérifiait toutes les machines agricoles\n{DATE} après-midi {P4} documentait les rendements\nRendement total du jour: {AMOUNT}"
+  },
+  {
+   "id": "t_fr_033",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "religion_or_belief",
+   "text": "Fiche patiente - Biothèque de recherche\n\nNom: {P1}\nPrélèvement date: {DATE}\nReligion déclarée: Bouddhisme tibétain\nParticipation rituelle: Importante pour consentement\nCommunauté religieuse: Temple local mentionné"
+  },
+  {
+   "id": "t_fr_034",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "health",
+   "text": "Formulaire d'évaluation médicale - Chantier de construction\n\nTravailleur: {P1}\nDate d'évaluation: {DATE}\nÉvaluateur médecin: {P1.i}\n\nHistorique médical détaillé:\n- Asthme chronique modéré\n- Allergie reconnue à produits chimiques\n- Mobilité réduite genou droit depuis accident\n- Fatigue chronique signalée\n- Limitations physiques identifiées\n\nRestrictions de travail obligatoires:\n- Travail sédentaire uniquement autorisé\n- Éloigné des poussières et vapeurs\n- Pause obligatoire toutes les deux heures\n- Pas d'exposition au bruit excessif\n- Surveillance médicale mensuelle requise\n\nAménagements recommandés:\n- Bureau ergonomique\n- Horaires flexibles\n- Accompagnement régulier\n\nDate de révision: {DATE}"
+  },
+  {
+   "id": "t_fr_035",
+   "lang": "fr",
+   "sensitivity": "none",
+   "cell": "company_contact_only",
+   "text": "@HotelDeLuxe\n\nVous recherchez une escapade parfaite pour vos vacances inoubliables? Notre établissement hôtelier est ravi de vous accueillir dans le confort et l'élégance absolue. Services cinq étoiles garantis pour tous nos clients prestigieux. Nous proposons des suites spacieuses avec vue panoramique sur la ville, un restaurant gastronomique réputé, un spa complet avec soins luxueux, et une piscine intérieure chauffée disponible toute l'année. Notre équipe dévouée est disponible vingt-quatre heures par jour pour tous vos besoins spécifiques. Téléphone de réservation: {ORG.phone} Courriel: {ORG.email} Retrouvez nos offres"
+  },
+  {
+   "id": "t_fr_036",
+   "lang": "fr",
+   "sensitivity": "low",
+   "cell": "living_public_figure",
+   "text": "Articles cités - Cabinet juridique\n\n{PUB} - Politicien en charge\n{PUB} - Directeur général secteur public\n{PUB} - Ministre responsable\nRéférence légale: Affaire {CODE}"
+  },
+  {
+   "id": "t_fr_037",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "trade_union",
+   "text": "@UnionFarm\n\nGrande nouvelle! Notre mouvement social continue de recruter. Les agriculteurs se mobilisent. {P1} parle du syndicat dans notre région. Rejoignez la solidarité!"
+  },
+  {
+   "id": "t_fr_038",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "genetic_or_biometric",
+   "text": "Notes de réunion - Direction hôtel\n\nSujet: Système de reconnaissance faciale\n\nClient {P1}\nScannage biométrique: Accepté\nDonnées faciales: Enregistrées en base"
+  },
+  {
+   "id": "t_fr_039",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "criminal_record_or_victim",
+   "text": "Formulaire - Marathon\n\nParticipant: {P1}\nNuméro dossier: {CODE}\nAncien sinistré: Oui\nJustification: Engagement social"
+  },
+  {
+   "id": "t_fr_040",
+   "lang": "fr",
+   "sensitivity": "high",
+   "cell": "financial_account_or_credentials",
+   "text": "Journal d'accès système - Club de football\n\n{DATE} 08:15 {P1} connexion avec identifiant {P1.handle}\n{DATE} 09:30 {P2} accès autorisé avec code {CODE}\n{DATE} 14:20 {P3} utilisation numéro carte {P3.card}\n{DATE} 15:45 {P4} transaction avec compte bancaire {P4.bank}"
+  }
+ ]
+}
