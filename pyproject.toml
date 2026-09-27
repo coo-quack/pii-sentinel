@@ -5,19 +5,19 @@ description = "Multilingual PII detector: span labelling and document sensitivit
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
-requires-python = ">=3.12"
+requires-python = "==3.14.7"
 dependencies = [
-  "torch>=2.9",
-  "transformers>=5.17",
-  "safetensors>=0.8",
-  "regex>=2026.9",
+  "torch==2.14.0",
+  "transformers==5.17.0",
+  "safetensors==0.8.0",
+  "regex==2026.9.10",
 ]
 
 [project.scripts]
 pii-sentinel = "pii_sentinel.cli:main"
 
 [dependency-groups]
-dev = ["pytest>=8", "ruff>=0.13", "mypy>=1.18"]
+dev = ["pytest==9.1.1", "ruff==0.16.9", "mypy==2.3.1"]
 
 [build-system]
 requires = ["hatchling"]
