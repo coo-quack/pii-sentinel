@@ -79,12 +79,22 @@ def losses(out, labels, sens, cats):
     )
 
 
+def per_doc_max(x, doc_index, n_docs):
+    init = torch.full((n_docs, x.shape[-1]), float("-inf"), dtype=x.dtype, device=x.device)
+    return init.scatter_reduce(0, doc_index.unsqueeze(-1).expand_as(x), x, reduce="amax")
+
+
 def forward(model, ids, mask, sens, cats, doc_index, doc_pooling):
     """window_max: the document heads see all windows of a document pooled together. per_window: every
-    window is judged on its own and carries its document's labels."""
+    window is judged on its own, and the document is scored on the feature-wise maximum of its windows'
+    logits (as inference takes the most sensitive window), so a window without the deciding fact is not
+    trained to report it."""
     if doc_pooling == "window_max":
         return model(ids, mask, doc_index, len(sens)), sens, cats
-    return model(ids, mask), sens[doc_index], cats[doc_index]
+    out = model(ids, mask)
+    for k in ("sensitivity", "categories"):
+        out[k] = per_doc_max(out[k], doc_index, len(sens))
+    return out, sens, cats
 
 
 @torch.no_grad()
