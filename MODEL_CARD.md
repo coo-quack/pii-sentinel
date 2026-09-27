@@ -23,6 +23,17 @@ A fine-tuned derivative of [jhu-clsp/mmBERT-base](https://huggingface.co/jhu-cls
 
 This model is not affiliated with or endorsed by the authors of mmBERT.
 
+## Usage
+
+The checkpoint has its own heads, so it is loaded with the pii-sentinel tool rather than a transformers pipeline:
+
+```sh
+git clone https://github.com/coo-quack/pii-sentinel.git && cd pii-sentinel && uv sync
+uv run pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
+```
+
+The model files are `model.safetensors` (weights) and `pii_sentinel.json` (label sets and training settings).
+
 ## Training data
 
 Synthetic documents generated from templates in eight languages (ja, zh, ko, en, fr, it, de, es). Every person, number
