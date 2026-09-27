@@ -94,3 +94,23 @@ class TestScanContextWindow:
 def text_at_span(text: str, match) -> str:
     """Extract text at match span."""
     return text[match.start : match.end]
+
+
+def test_a_rule_raises_the_level_even_when_the_model_found_the_value():
+    from pii_sentinel.predict import add_rule_findings
+
+    text = "Card: 4000 0000 0000 0002"
+    found = [{"type": "number", "value": text[6:], "start": 6, "end": len(text), "pii": True}]
+    assert add_rule_findings(text, [])[1] == "high"
+    assert add_rule_findings(text, found)[1] == "high"
+
+
+def test_findings_inside_a_secret_are_dropped():
+    from pii_sentinel.predict import add_rule_findings
+
+    text = "postgres://admin:S3cretPass@db.internal.example.com:5432/app"
+    s = text.index("S3cret")
+    e = text.index(":5432")
+    findings = [{"type": "email", "value": text[s:e], "start": s, "end": e, "pii": True}]
+    secrets, _ = add_rule_findings(text, findings)
+    assert secrets and findings == []

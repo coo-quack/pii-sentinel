@@ -71,8 +71,11 @@ def windows(tokenizer, text, max_length, stride=None):
     enc = tokenizer(text, add_special_tokens=False, return_offsets_mapping=True)
     ids, offsets = enc["input_ids"], [tuple(o) for o in enc["offset_mapping"]]
     specials = tokenizer("", add_special_tokens=True)["input_ids"]
-    assert len(specials) == 2, "expected one special token before and one after the text"
+    if len(specials) != 2:
+        raise ValueError("expected one special token before and one after the text")
     size = max_length - 2
+    if not 0 <= stride < size:
+        raise ValueError(f"stride must be at least 0 and less than {size} (max_length - 2), got {stride}")
     out, start = [], 0
     while True:
         end = min(start + size, len(ids))

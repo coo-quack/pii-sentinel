@@ -133,3 +133,28 @@ def test_windows_cover_the_whole_text():
     }
     assert covered == everything
     assert windows(tok, "short text", 128)[0][0] == tok("short text")["input_ids"]
+
+
+def test_windows_reject_a_stride_that_would_not_advance():
+    import pytest
+
+    from pii_sentinel import model as M
+    from pii_sentinel.data import windows
+
+    tok = M.load_tokenizer()
+    with pytest.raises(ValueError):
+        windows(tok, "text " * 400, 128, 126)
+
+
+def test_mask_hides_one_character_values():
+    from pii_sentinel.cli import mask
+
+    assert mask("李", "person_name") == "…"
+    assert mask("") == "…"
+
+
+def test_printed_rates_come_from_the_counts():
+    from pii_sentinel.evaluate import pr
+
+    assert pr({"tp": 621, "fp": 22, "fn": 13}) == "P96.6% R97.9%"
+    assert pr({"tp": 3}) == "P100.0% R100.0%"

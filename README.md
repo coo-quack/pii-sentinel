@@ -22,10 +22,14 @@ The model's findings are combined with the regex rules of
 [sensitive-canary](https://github.com/coo-quack/sensitive-canary) (`src/pii_sentinel/canary_rules.json`):
 
 - a value the model did not mark but a rule recognises (a checksummed national ID or card number, an e-mail
-  address, a phone number, a postal code, a public IP address) is added as a finding; a checksummed ID or card
-  number also makes the document high;
+  address, a phone number, a postal code, a public IP address) is added as a finding;
+- a checksummed ID or card number makes the document high, whether the model or a rule found it;
 - secrets (API keys, tokens, private keys, credentials in URLs and connection strings) are reported under
-  `secrets`, apart from personal information, and do not change the sensitivity level.
+  `secrets`, apart from personal information, and do not change the sensitivity level; a model finding inside a
+  secret (the password before the "@" of a connection string) is dropped.
+
+`sensitivity.probabilities` in the JSON output is the model's own judgement for the window that decided the
+level; the rules and a personal contact or number can raise `level` above it.
 
 ## Develop
 

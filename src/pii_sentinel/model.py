@@ -29,14 +29,18 @@ class PiiSentinel(nn.Module):
         self.sensitivity_head = nn.Linear(hidden, len(SENSITIVITY))
         self.category_head = nn.Linear(hidden, len(CATEGORIES))
 
+    def encode(self, input_ids, attention_mask):
+        """Token states and the mean-pooled state of each window."""
+        states = self.encoder(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state
+        states = self.dropout(states)
+        mask = attention_mask.unsqueeze(-1).to(states.dtype)
+        return states, (states * mask).sum(1) / mask.sum(1).clamp(min=1)
+
     def forward(self, input_ids, attention_mask, doc_index=None, n_docs=None):
         """One row per window. With doc_index, the windows of each document are pooled together (the
         feature-wise maximum of their mean-pooled states), so the document heads see the whole document even
         when a fact and the person it concerns fall in different windows."""
-        states = self.encoder(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state
-        states = self.dropout(states)
-        mask = attention_mask.unsqueeze(-1).to(states.dtype)
-        pooled = (states * mask).sum(1) / mask.sum(1).clamp(min=1)
+        states, pooled = self.encode(input_ids, attention_mask)
         if doc_index is not None:
             index = doc_index.unsqueeze(-1).expand_as(pooled)
             init = torch.full(
