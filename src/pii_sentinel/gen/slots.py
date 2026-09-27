@@ -26,6 +26,7 @@ PERSON_ATTRS = {
     "bank",
     "handle",
     "ip",
+    "id",
 }
 OTHER = {
     "ORG",
@@ -43,10 +44,14 @@ OTHER = {
     "GPS",
     "PW",
     "PRODUCT",
+    "ORG.bank",
+    "ORG.regno",
+    "HASH",
 }
 PLACEHOLDER = re.compile(r"\{([A-Za-z0-9_.]+)\}")
 PERSON = re.compile(r"^P([1-4])(?:\.([a-z]+))?$")
 HIGH_SLOTS = {"govid", "passport", "card", "bank"}
+NAME_ATTRS = {"", "s", "g", "i", "rev"}
 LIMITS = {"short": (0, 200), "medium": (200, 600), "long": (600, 1100)}
 CJK = {"ja", "zh", "ko"}
 
@@ -64,6 +69,7 @@ CELL_CATEGORY = {
     "citizenship_or_immigration": "citizenship_or_immigration",
     "precise_location": "precise_location",
     "private_messages_of_others": "private_communications",
+    "marriage_or_partnership_record": "sex_life_or_orientation",
 }
 # Categories implied by the placeholders used.
 SLOT_CATEGORY = {
@@ -78,6 +84,7 @@ SLOT_CATEGORY = {
     "bank": "financial_account",
     "ip": "ip_address_of_a_person",
     "handle": "sns_handle",
+    "id": "person_name",
 }
 
 
@@ -118,6 +125,16 @@ def problems(t, brief=None):
         any(a in ("card", "bank") for _, a in persons) or "{PW}" in text
     ):
         out.append("financial_account_or_credentials needs .card, .bank or {PW}")
+    if t["cell"].startswith("identifier_only") and (
+        not any(a == "id" for _, a in persons) or any(a in NAME_ATTRS for _, a in persons)
+    ):
+        out.append("identifier_only templates use {P1.id} and no name placeholders")
+    if t["cell"] == "table_of_numbers" and len({(n, a) for n, a in persons if a in HIGH_SLOTS}) < 3:
+        out.append("table_of_numbers needs at least three ID, card or account numbers")
+    if t["cell"] == "numbers_of_no_person" and not any(
+        x in text for x in ("{HASH}", "{ORG.bank}", "{ORG.regno}")
+    ):
+        out.append("numbers_of_no_person needs {HASH}, {ORG.bank} or {ORG.regno}")
     if t["sensitivity"] != "high" and any(a in HIGH_SLOTS for _, a in persons):
         out.append("an ID or account number makes the document high")
     if brief:

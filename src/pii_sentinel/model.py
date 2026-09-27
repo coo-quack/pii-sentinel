@@ -28,11 +28,20 @@ class PiiSentinel(nn.Module):
         self.sensitivity_head = nn.Linear(hidden, len(SENSITIVITY))
         self.category_head = nn.Linear(hidden, len(CATEGORIES))
 
-    def forward(self, input_ids, attention_mask):
+    def forward(self, input_ids, attention_mask, doc_index=None, n_docs=None):
+        """One row per window. With doc_index, the windows of each document are pooled together (the
+        feature-wise maximum of their mean-pooled states), so the document heads see the whole document even
+        when a fact and the person it concerns fall in different windows."""
         states = self.encoder(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state
         states = self.dropout(states)
         mask = attention_mask.unsqueeze(-1).to(states.dtype)
         pooled = (states * mask).sum(1) / mask.sum(1).clamp(min=1)
+        if doc_index is not None:
+            index = doc_index.unsqueeze(-1).expand_as(pooled)
+            init = torch.full(
+                (n_docs, pooled.shape[-1]), float("-inf"), dtype=pooled.dtype, device=pooled.device
+            )
+            pooled = init.scatter_reduce(0, index, pooled, reduce="amax")
         return {
             "span": self.span_head(states),
             "sensitivity": self.sensitivity_head(pooled),
@@ -40,24 +49,24 @@ class PiiSentinel(nn.Module):
         }
 
 
-def load_tokenizer(revision=BASE_REVISION):
-    return AutoTokenizer.from_pretrained(BASE_MODEL, revision=revision)
+def load_tokenizer(base=BASE_MODEL, revision=BASE_REVISION):
+    return AutoTokenizer.from_pretrained(base, revision=revision)
 
 
-def new_model():
+def new_model(base=BASE_MODEL, revision=BASE_REVISION):
     """The base encoder with freshly initialised heads (for training)."""
-    return PiiSentinel(AutoModel.from_pretrained(BASE_MODEL, revision=BASE_REVISION, dtype=torch.float32))
+    return PiiSentinel(AutoModel.from_pretrained(base, revision=revision, dtype=torch.float32))
 
 
-def save(model, out: Path, meta: dict):
+def save(model, out: Path, meta: dict, base=BASE_MODEL, revision=BASE_REVISION):
     out.mkdir(parents=True, exist_ok=True)
     state = {k: v.detach().cpu().contiguous() for k, v in model.state_dict().items()}
     save_file(state, str(out / WEIGHTS_FILE))
     full = {
         "format": FORMAT,
         "model_name": MODEL_NAME,
-        "base_model": BASE_MODEL,
-        "base_revision": BASE_REVISION,
+        "base_model": base,
+        "base_revision": revision,
         "bio": BIO,
         "categories": CATEGORIES,
         "sensitivity": SENSITIVITY,
@@ -75,4 +84,4 @@ def load(path: Path, device="cpu"):
     config = AutoConfig.from_pretrained(meta["base_model"], revision=meta["base_revision"])
     model = PiiSentinel(AutoModel.from_config(config))
     model.load_state_dict(load_file(str(path / WEIGHTS_FILE)))
-    return model.to(device).eval(), load_tokenizer(meta["base_revision"]), meta
+    return model.to(device).eval(), load_tokenizer(meta["base_model"], meta["base_revision"]), meta

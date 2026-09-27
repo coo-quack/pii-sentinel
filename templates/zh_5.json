@@ -1,0 +1,212 @@
+{"templates": [
+  {
+    "id": "f_zh_031",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "table_of_numbers",
+    "text": "生物库参与者医学检查数据\n\n邮件主题：第三季度体检报告汇总\n\n下面是本季度完成体检的参与者信息。请确认无误后存档。\n\n姓名\t身份证号\t医疗保险号\t银行账户\n{P1}\t{P1.govid}\t{P1.passport}\t{P1.bank}\n{P2}\t{P2.govid}\t{P2.card}\t{P2.bank}\n{P3}\t{P3.govid}\t{P3.passport}\t{P3.card}"
+  },
+  {
+    "id": "f_zh_032",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "formal_hr_record",
+    "text": "小学教师处分记录\n\n【聊天记录】\n\n主管：{P1}老师，我需要和你讨论一下最近发生的事。\n\n{P1}：好的，请说。\n\n主管：根据家长投诉和监控记录，你在课堂上对{P2}进行了言语骚扰。学校决定对你进行严重警告处分。\n\n{P1}：我不同意这个结论。\n\n主管：会议记录已归档，此处分将记入你的人事档案。"
+  },
+  {
+    "id": "f_zh_033",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "table_of_numbers",
+    "text": "案件信息导出\n\n案号\t嫌疑人\t身份证\t驾照号\t银行卡\n{CODE}\t{P1}\t{P1.govid}\t{P1.passport}\t{P1.card}\n{CODE}\t{P2}\t{P2.govid}\t{P2.passport}\t{P2.bank}\n{CODE}\t{P3}\t{P3.govid}\t{P3.card}\t{P3.bank}"
+  },
+  {
+    "id": "f_zh_034",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "慈善机构工会成员入会申请表\n\n申请人基本信息\n姓名\t{P1}\t年龄\t{AMOUNT}\n工作部门\t财务部\t工作岗位\t会计\n入会时间申请\t{DATE}\n\n推荐人信息\n推荐人姓名\t{P2}\t职务\t财务主管\n推荐理由\t政治素质好，工作认真\n\n入会原因及承诺\n\n本人申请加入工会的主要原因是维护员工的劳动权益和工资福利，积极参与工会组织活动。本人自愿加入工会组织，同意遵守《工会章程》、《工会纪律规范》和工会大会的相关决议。承诺未来积极参与工会活动，维护全体成员的共同利益，支持工会的合法工作。\n\n申请人签名：{P1}\n\n工会审核意见：申请人资格符合要求，同意批准入会。此表由工会主席{P3}审核批准后，报送上级工会备案。"
+  },
+  {
+    "id": "f_zh_035",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "genetic_or_biometric",
+    "text": "工会会员生物认证系统备案\n\n本工会为全体会员建立完整的生物特征档案库，用于会员身份认证和会务管理工作。会员{P1}、{P2}、{P3}、{P4}已根据规定提供指纹扫描和面部识别样本。各会员对应的基因序列号分别编码为{HASH}、{HASH}、{HASH}、{HASH}。面部识别模板由各会员的用户身份{P1.handle}、{P2.handle}、{P3.handle}、{P4.handle}唯一对应。所有采集的生物识别信息严格遵守工会纪律条例和国家隐私法规进行存管和保密。任何违反保密规定的行为将按规定追究法律和纪律责任。系统注册日期为{DATE}，管理员为{P1.job}。备案类型：生物认证。"
+  },
+  {
+    "id": "f_zh_036",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "religion_or_belief",
+    "text": "案件记录：宗教信仰相关调查\n\n案件编号：2024-PS-0847\n被调查人：{P1}\n\n笔录：被调查人声称与某非法宗教组织有联系。需进一步核实其参与情况。"
+  },
+  {
+    "id": "f_zh_037",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "health",
+    "text": "党办会议记录\n\n时间：{DATE}\n地点：会议室B\n主持人：{P1}\n\n会议议题讨论\n\n{P2}同志因心脏病不能出席今日会议。"
+  },
+  {
+    "id": "f_zh_038",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "marriage_or_partnership_record",
+    "text": "结婚证明书\n\n领事馆发布\n\n新郎姓名：{P1}\n新娘姓名：{P2}\n\n上述两人已于{DATE}在本领事馆登记结婚。"
+  },
+  {
+    "id": "f_zh_039",
+    "lang": "zh",
+    "sensitivity": "low",
+    "cell": "identifier_only",
+    "text": "养老院日常工作交接邮件\n\n亲爱的护理工作人员：\n\n以下是今日所有住户的日常交接内容，请按照记录认真完成相应的护理和服务工作。所有住户信息已使用编号系统进行隐私保护。\n\n房间号及住户信息表\n房间号\t住户代号\t当日护理备注\t特殊需求\n101\t{P1.id}\t无特殊情况，按常规进行日常护理\t继续用药\n102\t{P2.id}\t晚餐已配送至房间，需监督进食情况\t无\n103\t{P3.id}\t社工今日15:00进行家庭访问，请提前通知\t会客安排\n104\t{P4.id}\t常规月度健康体检已完成，检查结果待出\t观察血压\n\n请各位同事确认所有事项已按时完成。负责区域A的同事还需完成晨间巡查和健康检查记录。感谢你们的辛勤工作。"
+  },
+  {
+    "id": "f_zh_040",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "religion_or_belief",
+    "text": "超市员工调查邮件\n\n主题：宗教背景员工身份确认\n\n{P1}：\n\n根据问卷反馈，你在入职信息表中勾选了\"有宗教信仰\"。请在回复中再次确认你的宗教信仰状况。"
+  },
+  {
+    "id": "f_zh_041",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "sex_life_or_orientation",
+    "text": "实验室事件报告\n\n报告人：{P1}\n日期：{DATE}\n\n事件描述：在走廊里发现{P2}与同性别同事有不当身体接触。"
+  },
+  {
+    "id": "f_zh_042",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "marriage_or_partnership_record",
+    "text": "医院家属名单更新通知\n\n亲爱的患者及家属：\n\n我们很高兴通知您，患者{P1}的法定配偶{P2}已在我们的医院系统中更新并登记。{P1}与{P2}的登记婚姻关系信息已确认无误。\n\n根据医院规定，任何重要的医疗决定必须征得患者本人或其配偶{P2}的同意和签字。感谢您的配合。"
+  },
+  {
+    "id": "f_zh_043",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "criminal_record_or_victim",
+    "text": "餐厅日记\n\n{DATE}\n\n今天{P1}来过餐厅，他之前因为抢劫罪入狱。我有点担心他的行为举止。"
+  },
+  {
+    "id": "f_zh_044",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "race_or_ethnic_origin",
+    "text": "软件公司案件记录\n\n案件号：{CODE}\n报告日期：{DATE}\n所属部门：人力资源部\n\n受害人姓名：{P1}\n职位：软件工程师\n\n事件描述：员工{P2}因{P1}具有中东血统而对其进行持续的工作场所歧视，包括不适当的评论和工作机会的差别对待。\n\n调查人员：{P3}\n处理状态：待处理"
+  },
+  {
+    "id": "f_zh_045",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "formal_hr_record",
+    "text": "马拉松赛事处分名单\n\n已被解聘的工作人员\n\n1. {P1} - 因在赛事期间醉酒\n2. {P2} - 因挪用赛事资金"
+  },
+  {
+    "id": "f_zh_046",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "sex_life_or_orientation",
+    "text": "养老院家属通知信\n\n尊敬的{P1}：\n\n我们谨此通知您一个重要事项。居民{P2}与本院另一位男性居民{P3}已正式建立了同性伴侣关系。两位居民已向我院提交书面申请，要求将彼此列为紧急联系人，并享受配偶相关的医疗决策权。\n\n请您在三个工作日内回复此信，以确认相关文件的执行。\n\n养老院行政部\n{DATE}"
+  },
+  {
+    "id": "f_zh_047",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "health",
+    "text": "保险公司内部备忘录\n\n收件人：{P1}\n发件人：理赔部审核员\n发送日期：{DATE}\n\n备忘主题：理赔申请审查\n\n客户{P2}因糖尿病并发症在医院住院治疗，现已提出理赔申请。建议审核部门重点审查其过往五年的病历、用药记录和诊疗费用明细，确认是否符合赔付条件。"
+  },
+  {
+    "id": "f_zh_048",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "超市工会年度工作事件报告\n\n报告日期：{DATE}\n报告部门：工会办公室\n报告人：{P1}\n报告类别：年度工会活动总结\n\n事件摘要与经过\n\n昨日下午在员工食堂召开了超市全体员工大会，工会主席{P2}代表工会委员会宣布了新一年的工会工作计划和目标。主要议题包括：争取提高最低工资标准、改善店内工作环境和安全条件、推进员工福利制度改革、建立员工申诉机制等多项重要事项。\n\n会上，财务部代表{P3}和采购部代表{P4}分别发言，坚定表示支持工会的集体谈判立场和工会的各项要求。众多员工踊跃发言，提出了自身关切的问题。会议最后进行了无记名投票表决，98%的与会成员同意继续支持工会的行动方向、工作计划和年度目标。"
+  },
+  {
+    "id": "f_zh_049",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "religion_or_belief",
+    "text": "博物馆来信\n\n尊敬的{P1}：\n\n感谢你的捐赠。我们注意到你自称是虔诚的天主教徒，对宗教艺术有特殊兴趣。"
+  },
+  {
+    "id": "f_zh_050",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "religion_or_belief",
+    "text": "游戏社区备忘\n\n用户：{P1}\n发言内容：我来自穆斯林家庭，游戏给了我宣传我信仰的空间。"
+  },
+  {
+    "id": "f_zh_051",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "table_of_numbers",
+    "text": "{P1.passport} {P1.card} {P1.bank}\n{P2.passport} {P2.card} {P2.bank}\n{P3.govid} {P3.card} {P3.bank}"
+  },
+  {
+    "id": "f_zh_052",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "identifier_only_sensitive",
+    "text": "餐厅员工会议记录\n\n会议日期：{DATE}\n主题：员工代码{P1.id}的绩效评估和纪律处分\n参与者：店长和人力资源经理\n\n经理发言：员工代码{P1.id}在最近两个月因重复迟到已被列入观察期。经过调查，该员工迟到次数达8次，严重影响了店铺运营。决定对该员工进行为期三个月的纪律察看。"
+  },
+  {
+    "id": "f_zh_053",
+    "lang": "zh",
+    "sensitivity": "none",
+    "cell": "numbers_of_no_person",
+    "text": "健身房收据\n\n交易单号：{CODE}\n交易哈希：{HASH}\n企业账户号：{ORG.bank}\n企业注册号：{ORG.regno}\n\n年度会员费\t{AMOUNT}"
+  },
+  {
+    "id": "f_zh_054",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "citizenship_or_immigration",
+    "text": "会议记录\n\n日期：{DATE}\n议题：{P1}的永久居民申请\n\n笔记：{P1}持临时签证，已提交永久居民申请，待移民局审批。"
+  },
+  {
+    "id": "f_zh_055",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "health",
+    "text": "小学健康检查表\n\n学生姓名\t学号\t健康问题\n{P1}\t{P1.id}\t哮喘\n{P2}\t{P2.id}\t食物过敏"
+  },
+  {
+    "id": "f_zh_056",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "系统日志\n\n{CODE} - {P1.handle}加入#工会\n{CODE} - {P2.handle}发布谈判信息"
+  },
+  {
+    "id": "f_zh_057",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "political_opinion",
+    "text": "生物库研究方向意见调查公告\n\n重要通知\n\n我们的参与者{P1}对目前的研究方向提出了政治异议。{P1}认为本研究项目与特定政党的政治议程不符，并对研究的公正性表示担忧。我们已收到{P1}的详细书面意见，并正在与伦理委员会协商是否调整研究计划以确保政治中立性。"
+  },
+  {
+    "id": "f_zh_058",
+    "lang": "zh",
+    "sensitivity": "none",
+    "cell": "numbers_of_no_person",
+    "text": "航空公司配置表单\n\n字段名\t值\n公司法人登记号\t{ORG.regno}\n公司对公银行账户\t{ORG.bank}\n系统配置文件版本标识\t{HASH}\n数据库访问加密密钥\t{PW}\n备用系统哈希值\t{HASH}"
+  },
+  {
+    "id": "f_zh_059",
+    "lang": "zh",
+    "sensitivity": "low",
+    "cell": "identifier_only",
+    "text": "小学教师聊天记录\n\n数学老师：今天的作业是第5-7页的练习题，请学生完成。\n体育老师：同学代号{P1.handle}今天缺席了体育课程，已记录在案。\n班主任：学生ID {P2.id} 和 {P3.id} 请在放学后来办公室一趟，我需要和你们讨论学科选择的事宜。\n音乐老师：确认了，我会让他们知道。"
+  },
+  {
+    "id": "f_zh_060",
+    "lang": "zh",
+    "sensitivity": "high",
+    "cell": "health",
+    "text": "生物库日记\n\n{DATE}\n\n今天{P1}来参加了例行检查。检查结果显示他患有高血压。他要求对此保密，不希望其他参与者了解他的诊断。"
+  }
+]}

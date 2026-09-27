@@ -1,21 +1,21 @@
 # Adjudication guide
 
 Two people labelled the same documents independently and disagreed on some of them. You decide the correct labels for those documents.
-The rules are in `docs/labeling-policy.md` (Japanese) and the label format in `docs/testset-labeler-guide.md`. Follow them exactly.
+The rules are in `docs/labeling-policy.md` and the label format in `docs/testset-labeler-guide.md`. Follow them exactly.
 Do not read anything else in the repository except the files named below.
 
 ## Input and output
 
-- `eval/work/disagreements/<name>.json`: one row per disputed document with `sensitivity` (the two answers), `only_first` and `only_second` (findings only one of them listed).
+- a disagreements file (the path is given in your instructions): one row per disputed document with `sensitivity` (the two answers), `only_first` and `only_second` (findings only one of them listed).
 - `eval/work/blind/<name>.json`: the texts.
 
-Write `eval/work/decisions/<name>.json`:
+Write the decisions file named in your instructions:
 
 ```json
 {"tests": [{"id": "...", "expected": {"sensitivity": "none|low|high", "findings": [ ... ]}, "note": "<one short reason>"}]}
 ```
 
-For each disputed document, read the text yourself and write the complete correct label set (all findings, not only the disputed ones). Neither side is presumed right; either or both may have missed something. Every `value` must be an exact substring of the text.
+For each disputed document, read the whole text yourself and write the complete correct label set (all findings, not only the disputed ones). Neither side is presumed right; either or both may have missed something, so look for values neither of them listed. Apply the policy as written, in particular: names of public figures, historical figures and deceased persons are listed as names; a roster under a heading that reveals a sensitive fact is high; every category of sensitive information is judged by the same standard. Every `value` must be an exact substring of the text.
 
 ## Working method
 

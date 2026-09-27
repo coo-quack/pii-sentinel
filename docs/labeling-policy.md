@@ -1,93 +1,103 @@
-# 個人情報の判定方針
+# Labelling policy
 
-pii-sentinel の学習データと評価データの正解は、この方針に従って付ける。
-方針は、次の基準の定義を突き合わせて決めた（2026-09-27 に原文または公式の解説で確認）。
+Gold labels for pii-sentinel's training and evaluation data follow this policy.
+It was set by comparing the definitions in the following standards (checked against the original texts or their official commentary on 2026-09-27):
 
-- EU 一般データ保護規則（GDPR）第 4 条第 1 号、第 9 条、第 10 条、前文 27
-- 米国 NIST SP 800-122（PII の機密性の保護の指針）
-- 米国カリフォルニア州 CCPA/CPRA（Civil Code 1798.140(ae)）
-- 日本の個人情報の保護に関する法律と、個人情報保護委員会のガイドライン（通則編）
-- ISO/IEC 29100（プライバシーフレームワーク）
+- EU General Data Protection Regulation (GDPR), Article 4(1), Article 9, Article 10 and Recital 27
+- US NIST SP 800-122 (Guide to Protecting the Confidentiality of PII)
+- California CCPA/CPRA (Civil Code 1798.140(ae))
+- Japan's Act on the Protection of Personal Information and the Personal Information Protection Commission's general guidelines
+- ISO/IEC 29100 (privacy framework)
 
-これは法的な判断ではなく、検出器の正解を揃えるための方針である。
+This is not a legal assessment; it is a policy for making the detector's gold labels consistent.
 
-## 個人情報とは何か
+## What personal information is
 
-**個人情報**：生きている特定の個人に関する情報のうち、その人を直接または間接に識別できるもの。
+**Personal information**: information about a specific living individual that identifies that person directly or indirectly.
 
-GDPR は、識別の手がかりとして「氏名、識別番号、位置データ、オンライン識別子、身体的、生理的、遺伝的、精神的、経済的、文化的、社会的な固有の要素」を挙げている[^gdpr4]。
-NIST SP 800-122 も、個人を「区別する（distinguish）」か「追跡する（trace）」ために使える情報と、個人に結び付いた（linked）または結び付けうる（linkable）情報を PII としている[^nist21]。
-どちらも、単独では誰かわからない情報でも、組み合わせると特定できるなら個人情報に含める。
+The GDPR lists as means of identification "a name, an identification number, location data, an online identifier or one or more factors specific to the physical, physiological, genetic, mental, economic, cultural or social identity" of the person[^gdpr4].
+NIST SP 800-122 likewise treats as PII information that can be used to distinguish or trace an individual, and information that is linked or linkable to an individual[^nist21].
+Both include information that does not identify anyone on its own but does when combined with other information.
 
-この定義から、次のものは個人情報として扱う。
+Under this definition, the following count as personal information:
 
-- 氏名（姓だけ、名だけ、ニックネームでも、特定の個人を指すなら含む。存命の有名人も含む）
-- 個人のメールアドレス、電話番号、住所、生年月日
-- 勤務先、役職、所属
-- オンライン識別子（IP アドレス、Cookie の ID、端末の ID、SNS のユーザー名）[^online]
-- 位置情報、購買や閲覧の履歴のように、特定の人に結び付いた行動の記録
+- names (surname only, given name only or a nickname too, when they refer to a specific person; living celebrities included)
+- a person's e-mail address, phone number, home address and date of birth
+- employer, job title and affiliation
+- online identifiers (IP address, cookie ID, device ID, SNS handle)[^online]
+- location data and records of behaviour tied to a specific person, such as purchase or browsing history
 
-次のものは個人情報として扱わない。
+The following do not count as personal information:
 
-- 法人、団体、部署の情報（会社の代表番号、汎用の宛先 info@ など）
-- 製品名、ブランド名（人名に見えても人を指していないもの）
-- 個人に結び付かない統計や一般論、サービスアカウントだけのシステムのログ
-- **亡くなった人の情報**：GDPR は亡くなった人の個人データに適用されず[^recital27]、日本の法律も個人情報を「生存する個人に関する情報」としている。歴史上の人物の名前は人名として検出するが、文書の機密度は上げない。
+- information about companies, organisations and departments (a switchboard number, a generic address such as info@)
+- product and brand names, even when they look like personal names
+- statistics and general discussion not tied to a person, and system logs that only contain service accounts
+- **information about deceased persons**: the GDPR does not apply to the personal data of deceased persons[^recital27], and Japanese law defines personal information as information about a living individual. Names of historical figures are still detected as names, but they do not raise the document's sensitivity.
 
-## 機密度の 3 段階
+## Three sensitivity levels
 
-| 段階 | 意味 |
+| Level | Meaning |
 |---|---|
-| none | 個人情報を含まない |
-| low | 個人情報を含む |
-| high | 機微な個人情報を含む |
+| none | contains no personal information |
+| low | contains personal information |
+| high | contains sensitive personal information |
 
-low は「個人情報ではない」という意味ではない。
-名前や連絡先だけの文書も、個人情報を含む文書として必ず検出する。
-low と high の違いは、漏れたときの害の大きさである。
-NIST SP 800-122 は、低い影響の例を「電話番号を変える程度の不便」、中程度以上の例を「なりすましによる金銭的損失、社会的な辱め、差別、恐喝の材料」としている[^nist-impact]。
+Low does not mean "not personal information".
+A document with only a name or a contact detail must still be detected as containing personal information.
+Low and high differ in how much harm a leak would cause.
+NIST SP 800-122 gives as a low-impact example the inconvenience of changing a phone number, and as moderate or higher impacts financial loss from identity theft, public humiliation, discrimination and blackmail[^nist-impact].
 
-## high にする情報（機微な個人情報）
+## What makes a document high (sensitive personal information)
 
-次のどれかを、特定の個人について含む文書は high にする。
-各基準の「特別な扱いを要する情報」の和集合にしている。
+A document is high when it contains any of the following about a specific person.
+The list is the union of each standard's categories that need special handling.
 
-| 種類 | 根拠 |
+| Category | Basis |
 |---|---|
-| 人種、民族的出身 | GDPR 第 9 条、CPRA、日本の要配慮個人情報（人種） |
-| 政治的意見、宗教や思想上の信条、労働組合への加入 | GDPR 第 9 条、CPRA、要配慮個人情報（信条） |
-| 健康に関する情報（病歴、診断、治療、障害、健康診断の結果、妊娠、病気による休業） | GDPR 第 9 条、CPRA、要配慮個人情報（病歴、障害、健康診断等の結果） |
-| 性生活、性的指向 | GDPR 第 9 条、CPRA |
-| 遺伝情報、個人を識別するための生体情報（指紋、顔認証のデータ、虹彩など） | GDPR 第 9 条、CPRA、日本の個人識別符号 |
-| 犯罪の経歴、逮捕や起訴などの刑事手続、犯罪の被害 | GDPR 第 10 条、要配慮個人情報 |
-| 社会的身分、国籍や在留資格 | 要配慮個人情報（社会的身分）、CPRA（citizenship or immigration status） |
-| 公的な識別番号（マイナンバー、社会保障番号、旅券番号、運転免許証番号、在留カード番号、保険者番号など） | 日本の個人識別符号、CPRA |
-| 金融口座の番号、クレジットカードの番号、ログインの資格情報 | CPRA、NIST SP 800-122（SSN や金融口座は影響度を中程度以上にするのが通例） |
-| 正確な位置情報 | CPRA |
-| 他人の私信（メールやメッセージ）を転載、収集したもの | CPRA（受け取り手が事業者でない場合） |
-| 正式な人事の記録（懲戒、解雇、ハラスメントの申し立て、正式な人事評価） | 組織の方針。NIST SP 800-122 が機微な話題の例に「雇用可能性や評判を損なう情報」を挙げている[^census] |
+| racial or ethnic origin | GDPR Art. 9, CPRA, Japan's special care-required personal information (race) |
+| political opinions, religious or philosophical beliefs, trade union membership | GDPR Art. 9, CPRA, special care-required personal information (creed) |
+| health (medical history, diagnosis, treatment, disability, health check results, pregnancy, sick leave) | GDPR Art. 9, CPRA, special care-required personal information (medical history, disability, health check results) |
+| sex life or sexual orientation | GDPR Art. 9, CPRA |
+| genetic data and biometric data used to identify a person (fingerprints, face templates, iris) | GDPR Art. 9, CPRA, Japan's individual identification codes |
+| criminal records, arrests, prosecutions and other criminal proceedings, being a victim of crime | GDPR Art. 10, special care-required personal information |
+| social status, citizenship or immigration status | special care-required personal information (social status), CPRA (citizenship or immigration status) |
+| government identification numbers (my number, social security number, passport, driving licence, residence card, health insurance number) | Japan's individual identification codes, CPRA |
+| financial account numbers, credit card numbers, login credentials | CPRA, NIST SP 800-122 (SSNs and financial accounts are usually rated moderate impact or higher) |
+| precise geolocation | CPRA |
+| someone else's private messages (e-mail, chat) that were copied or collected | CPRA (when the business is not the intended recipient) |
+| formal HR records (disciplinary action, dismissal, harassment complaints, formal performance reviews) | organisational policy; NIST SP 800-122 lists information that could harm employability or reputation among sensitive topics[^census] |
 
-**名簿の扱い**：名前だけが並ぶ名簿でも、名簿の見出しや文脈が上の事実を示すなら high にする（「〇〇クリニック受診者一覧」「産休・育休予定者リスト」「教会の会員名簿」など）。
-見出しが中立な名簿（会議の出席者、部署の連絡先）は low にする。
+**Equal treatment**: every category above is judged by the same standard. The only question is whether the document reveals that fact about a specific person; no category is judged more or less strictly than another. A fact revealed only by the heading or the kind of document counts the same as a fact stated outright (a church member list, a roster of an LGBTQ support group, the attendees or chair of a trade union meeting and the speakers at a party rally are all equally high).
 
-## 例
+The test is whether the document shows that the person belongs to the group or holds the belief. A document that only discusses religion, politics or another topic, or that names members of a body outside these categories (a works council, a research seminar), does not reveal it. A living public figure's public office (a politician's party or government post) is part of the public role and stays low.
 
-| 文書 | 段階 | 理由 |
+**Identified by an identifier alone**: a person is identifiable even without a name when the document has an identifier that singles them out, such as an employee or member number, a patient or case number, an account ID, an SNS handle, a device ID, a person's IP address or a government ID number. A sensitive fact attached to such an identifier makes the document high; the identifier alone makes it low.
+
+**Marriage and partnership records**: registrations, certificates, contracts and other records of a marriage or partnership are high, whatever the genders of the couple, as information from which sex life or sexual orientation can be inferred. Everyday mentions of a wife, husband or partner do not count.
+
+**Rosters**: a list of names alone is high when its heading or context reveals one of the facts above ("patients of X clinic", "staff going on maternity leave", "church member list").
+A roster under a neutral heading (meeting attendees, department contacts) is low.
+
+## Examples
+
+| Document | Level | Reason |
 |---|---|---|
-| 「田中美咲さんがプロジェクトに参加しました」 | low | 氏名だけ |
-| 「Call me at 06 12 34 56 78」 | low | 名前はないが個人の電話番号 |
-| 「IP: 192.168.1.10（佐藤さんの自宅の PC）」 | low | 特定の人に結び付いたオンライン識別子 |
-| 「お問い合わせは support@example.com まで」 | none | 汎用の宛先 |
-| 「夏目漱石は日本の作家です」 | none | 亡くなった人（人名としては検出する） |
-| 「CEO の Tim Cook が新製品を発表した」 | low | 存命の有名人 |
-| 「I use Claude and iPhone daily」 | none | 製品名 |
-| 「産休・育休予定者リスト：村田由子 090-…」 | high | 妊娠（健康）を示す名簿 |
-| 「停職処分の社員：A、B、C」 | high | 正式な懲戒の記録 |
-| 「山田太郎のマイナンバー：1234 5678 9012」 | high | 公的な識別番号 |
+| "田中美咲さんがプロジェクトに参加しました" | low | a name only |
+| "Call me at 06 12 34 56 78" | low | a personal phone number, no name |
+| "IP: 192.168.1.10（佐藤さんの自宅の PC）" | low | an online identifier tied to a person |
+| "お問い合わせは support@example.com まで" | none | a generic address |
+| "夏目漱石は日本の作家です" | none | a deceased person (still detected as a name) |
+| "CEO の Tim Cook が新製品を発表した" | low | a living public figure |
+| "I use Claude and iPhone daily" | none | product names |
+| "産休・育休予定者リスト：村田由子 090-…" | high | a roster revealing pregnancy (health) |
+| "停職処分の社員：A、B、C" | high | a formal disciplinary record |
+| "婚姻届の受理証明：夫 佐藤一郎、妻 佐藤花子" | high | a marriage record (whatever the genders of the couple) |
+| "社員番号 E-204518：うつ病のため休職" | high | health information about a person identified by an identifier, no name |
+| "山田太郎のマイナンバー：1234 5678 9012" | high | a government identification number |
 
-[^gdpr4]: GDPR 第 4 条第 1 号。https://gdpr-info.eu/art-4-gdpr/
-[^nist21]: NIST SP 800-122、2.1 節。https://csrc.nist.gov/pubs/sp/800/122/final
-[^online]: 欧州司法裁判所は、動的 IP アドレスも、識別に要る追加情報を第三者が持っている場合に個人データになりうると判断している（gdpr-info.eu の「Personal Data」の解説による）。日本の法律では、他の情報と照合できない Cookie や閲覧履歴は「個人関連情報」として別に扱われるが、この方針では GDPR に合わせて個人情報に含める。
-[^recital27]: GDPR 前文 27「This Regulation does not apply to the personal data of deceased persons.」https://gdpr-info.eu/recitals/no-27/
-[^nist-impact]: NIST SP 800-122、3.1 節の影響度の説明。
-[^census]: NIST SP 800-122、3.2.3 節の脚注 35 が引く米国国勢調査局の方針。
+[^gdpr4]: GDPR Article 4(1). https://gdpr-info.eu/art-4-gdpr/
+[^nist21]: NIST SP 800-122, section 2.1. https://csrc.nist.gov/pubs/sp/800/122/final
+[^online]: The Court of Justice of the EU has held that a dynamic IP address can be personal data when a third party holds the additional information needed to identify the person (per gdpr-info.eu's commentary on "Personal Data"). Japanese law treats cookies and browsing history that cannot be matched with other information separately, as "personally referable information"; this policy follows the GDPR and counts them as personal information.
+[^recital27]: GDPR Recital 27: "This Regulation does not apply to the personal data of deceased persons." https://gdpr-info.eu/recitals/no-27/
+[^nist-impact]: NIST SP 800-122, section 3.1, on impact levels.
+[^census]: The US Census Bureau policy cited in footnote 35 of NIST SP 800-122, section 3.2.3.

@@ -1,0 +1,212 @@
+{"templates": [
+  {
+    "id": "f_de_031",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "marriage_or_partnership_record",
+    "text": "Liebe Gemeinschaft,\n\nwir freuen uns mitteilen zu können, dass die Verbindung zwischen {P1} und {P2} registriert wurde. Die Trauung fand am {DATE} statt.\n\nHerzliche Glückwünsche für das Paar!"
+  },
+  {
+    "id": "f_de_032",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "Protokoll Betriebsratssitzung vom {DATE}\n\nAnwesend: {P1}, {P2}, {P3}\n\nThemen:\n- Arbeitsschutz und Arbeitsbedingungen\n- Tarifverhandlungen für nächstes Quartal\n- Schichtplanung in der Verkaufsabteilung\n\nNächste Sitzung am {DATE}."
+  },
+  {
+    "id": "f_de_033",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "health",
+    "text": "Notizen zur Besprechung vom {DATE}\n\n{P1.s} befindet sich derzeit in stationärer Pflege. Tägliche Hygiene unterstützt. Mobilität eingeschränkt. Schmerzmanagement wird regelmäßig überprüft. Besuchszeiten nach Absprache."
+  },
+  {
+    "id": "f_de_034",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "citizenship_or_immigration",
+    "text": "Sehr geehrter {P1.s},\n\nwir bestätigen den Erhalt Ihres Visumantrags für {PLACE}. Ihre Aufenthaltserlaubnis wird in Kürze bearbeitet.\n\nMit freundlichen Grüßen\nImmigrationsamt"
+  },
+  {
+    "id": "f_de_035",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "marriage_or_partnership_record",
+    "text": "Die Eheschließung von {P1} und {P2} wurde heute registriert. Herzliche Glückwünsche zu diesem besonderen Tag! #Ehe #Neuanfang"
+  },
+  {
+    "id": "f_de_036",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "genetic_or_biometric",
+    "text": "Betreff: Biometrische Erfassung\n\nHallo {P1.s},\n\nwie besprochen wurde Ihre Iris-Erkennung in unser System aufgenommen. Die Daten sind verschlüsselt gespeichert. Für Fragen wenden Sie sich bitte an unser Technik-Team.\n\nViele Grüße\n{ORG}"
+  },
+  {
+    "id": "f_de_037",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "identifier_only_sensitive",
+    "text": "Fallnummer: {P1.id}\nDatum: {DATE}\nStatus: Beratung erhält Unterstützung\n\nKunde {P1.id} benötigt besondere Betreuung aufgrund von Erkrankung. Regelmäßige Kontrolle geplant. Kundennummer {P1.id} wird regelmäßig überprüft. Die medizinische Geschichte wird geheim gehalten und ist nur dem autorisiertem Personal zugänglich. Weitere Details folgen nach Rücksprache mit dem Arzt. Die nächste Kontrolle ist für {DATE} geplant."
+  },
+  {
+    "id": "f_de_038",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "formal_hr_record",
+    "text": "Verwarnung vom {DATE}\n\nDem Mitarbeiter {P1} wird hiermit eine schriftliche Verwarnung erteilt. Grund: Wiederholte Unpünktlichkeit trotz vorheriger Gespräche. Verbesserte Pünktlichkeit ist erforderlich."
+  },
+  {
+    "id": "f_de_039",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "health",
+    "text": "Polizeibericht Verkehrskontrolle vom {DATE} in {PLACE}\n\nUhrzeit: 14:30 Uhr\nOrt: Hauptstraße Ecke Bahnhofplatz\n\n{P1} wurde bei Verdacht auf Fahren unter Drogeneinfluss überprüft. Orientierungstests durchgeführt. Fahrer wirkte verwirrt und hielt sich an Fahrzeugkarosserie fest. Bluttest durchgeführt. Diabetes-Notfallarmband gefunden. Polizist bemerkte medizinische Warnung am Armband. Rettungswagen angefordert. Transport ins Krankenhaus {PLACE}. Behandlung wegen Unterzuckerung eingeleitet. Fahrer {P1} erhielt Glukose intravenös. Familienangehöriger {P2} unter Telefonnummer {P2.phone} informiert. Der Führerschein wurde bis zur medizinischen Freigabe eingezogen."
+  },
+  {
+    "id": "f_de_040",
+    "lang": "de",
+    "sensitivity": "low",
+    "cell": "identifier_only",
+    "text": "{P1.id}: Hallo, wann schließt der Laden heute?\n{ORG}: Um 20:00 Uhr. Viel Spaß beim Einkaufen!"
+  },
+  {
+    "id": "f_de_041",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "religion_or_belief",
+    "text": "@TechTeam: Hey {P1}, schönes Wochenende! Freust du dich auf den Sabbat?\n@{P1}: Ja, endlich wieder Zeit zum Beten. Code kann warten. :)"
+  },
+  {
+    "id": "f_de_042",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "formal_hr_record",
+    "text": "Kündigungen vom {DATE}\n| Name | Grund | Datum |\n| {P1} | Wirtschaftliche Gründe | {DATE} |\n| {P2} | Umstrukturierung | {DATE} |"
+  },
+  {
+    "id": "f_de_043",
+    "lang": "de",
+    "sensitivity": "none",
+    "cell": "numbers_of_no_person",
+    "text": "Schulseite: Bestätigungsnummern {CODE}, {CODE}. Hash: {HASH}. Konto: {ORG.bank}."
+  },
+  {
+    "id": "f_de_044",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "sex_life_or_orientation",
+    "text": "Glücklich, dass ich mich in der Suite mit meinem Partner {P2} wiedersehen durfte. Ein perfektes Wochenende im Hotel! 🏳️‍🌈"
+  },
+  {
+    "id": "f_de_045",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "health",
+    "text": "Bericht vom {DATE}, {P1.s}\n\nPatient wurde mit Kopfverletzung ins Krankenhaus gebracht. CT-Scan zeigt milde Gehirnerschütterung. Beobachtung empfohlen."
+  },
+  {
+    "id": "f_de_046",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "formal_hr_record",
+    "text": "Sitzungsprotokoll Leistungsbewertung vom {DATE}\n\nTeilnehmer: Pflegedirektion, {P1.s} als Pflegekraft, HR-Vertreter {P2.s}, Personalrätin {P3.s}\nDauer: 09:00 bis 10:30 Uhr\n\nBewertung: Unzureichend. {P1.s} zeigt mangelnde Kommunikation mit Bewohnern, fehlerhafte Dokumentation in drei Fällen, verzögerte Reaktion auf Notrufe. Während der Schicht vom {DATE} waren mehrere Beschwerden eingegangen. Der Bewohner in Zimmer 204 musste 45 Minuten auf Hilfe warten. \n\nVerbesserungsplan bis zum {DATE} erforderlich. Folgende Punkte müssen adressiert werden:\n1. Tägliche Ausbildung in Kommunikationstechniken\n2. Supervision bei der Dokumentation\n3. Notrufreaktionszeit unter 10 Minuten\n\nDritte schriftliche Verwarnung eingeleitet. Weitere Pflichtverletzung führt zu Kündigung."
+  },
+  {
+    "id": "f_de_047",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "table_of_numbers",
+    "text": "Filmstudio Gehaltsabwicklung {DATE}\nZahlungsinformationen für Darsteller:\n{P1} erhält Gehalt auf Bankkonto {P1.bank} mit Freigabecode {CODE}\n{P2} - Kontonummer {P2.bank}, Zugang {CODE}\nDarstellerin {P3} bekommt Honorar auf {P3.bank}, Geheimcode {CODE}"
+  },
+  {
+    "id": "f_de_048",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "health",
+    "text": "Interview Laborassistent {P1} vom {DATE}\n\nFragesteller: Inwiefern hat die Diagnose Ihren Alltag verändert?\n{P1}: Die Hepatitis-C-Diagnose war ein Schock, aber die Behandlung hilft."
+  },
+  {
+    "id": "f_de_049",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "table_of_numbers",
+    "text": "Fall {CODE}: Vermögensbestandteile\n| ID | Eigenschaft | Nummer | Typ |\n| {P1.id} | Kreditkarte | {P1.card} | Visa |\n| {P2.id} | Bankkonto | {P2.bank} | Sparkasse |\n| {P3.id} | Debit-Nummer | {P3.passport} | ID |"
+  },
+  {
+    "id": "f_de_050",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "political_opinion",
+    "text": "Befragung zum Unterrichtsprogramm\n\n| Schüler | Politische Einstellung |\n| {P1.i} | Unterstützt grüne Partei |\n| {P2.i} | Konservative Wähler |"
+  },
+  {
+    "id": "f_de_051",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "sex_life_or_orientation",
+    "text": "Fallnummer {CODE} vom {DATE}\n\n{P1.s} hat den Schulberater aufgesucht und erwähnt seine romantische Beziehung zu {P2}, der ebenfalls ein Schüler in der Schule ist. Der Schüler wirkte emotional belastet und unsicher. Unterstützungsbedarf für die psychische Gesundheit erkannt. Es wurden Bewältigungsstrategien diskutiert. Nachfolgetermin geplant. Eltern noch nicht benachrichtigt. Schüler hat sich gegen Benachrichtigung ausgesprochen."
+  },
+  {
+    "id": "f_de_052",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "identifier_only_sensitive",
+    "text": "Ticket #{CODE}\nDatum: {DATE}\nLabor: Genetische Forschungsbank\n\nProband {P1.id} wird wegen abnormalen genetischen Befunds kontaktiert. Genomische Sequenzierung hat eine pathogene Variante in einem Krankheitsgen nachgewiesen. Genetische Beratung wird dringend angeboten. Ein Fachgenetiker wird das Ergebnis besprechen. Familientestung könnte erforderlich sein."
+  },
+  {
+    "id": "f_de_053",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "Ankündigung: Versammlung der Immobilienmakler-Gewerkschaft am {DATE} um 19:00 Uhr im Konferenzsaal von {ORG}. {P1} wird die Sitzung leiten. Thema: Arbeitsvertrag-Neuerungen und Tarifverhandlungen."
+  },
+  {
+    "id": "f_de_054",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "identifier_only_sensitive",
+    "text": "Memo vom {DATE}\n\nVisumantrag P-{P1.id}: Asylstatus wird überprüft. Weitere Dokumente erforderlich bis {DATE}."
+  },
+  {
+    "id": "f_de_055",
+    "lang": "de",
+    "sensitivity": "none",
+    "cell": "numbers_of_no_person",
+    "text": "Admin: Die Lizenz-Hashes sind: {HASH}, {HASH}, {HASH}. Bitte installieren."
+  },
+  {
+    "id": "f_de_056",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "Der Tarifkonflikt bei {ORG} verschärft sich weiter. Die Gewerkschaft fordert bessere Arbeitsbedingungen und eine Erhöhung der Löhne um 8 Prozent. {P1} und {P2} führen die Verhandlungen und planen Streikmaßnahmen. Die nächste Verhandlungsrunde findet am {DATE} statt. Alle Logistik-Arbeitnehmer sind aufgerufen, sich an der Gewerkschaftsversammlung zu beteiligen. #Arbeit #Tarif #Streik"
+  },
+  {
+    "id": "f_de_057",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "religion_or_belief",
+    "text": "Sehr geehrte Damen und Herren,\n\n{P1} hat sich an uns gewandt mit der Bitte, für die Moschee-Gemeinde einen Lieferdienst bereitzustellen. Salam alaikum.\n\nGrüße\n{ORG}"
+  },
+  {
+    "id": "f_de_058",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "race_or_ethnic_origin",
+    "text": "Interner Memo vom {DATE}\n\nAn die Personalabteilung und das Management,\n\ndie neue Diversity-Initiative benötigt eine umfassende Liste von Mitarbeitern mit verschiedenen ethnischen Wurzeln. Dies dient dazu, unsere Unternehmenskultur und unser Angebot besser an unsere vielfältige Kundenbasis anzupassen.\n\nFolgende Mitarbeiter haben sich bereits zur Teilnahme angemeldet:\n- {P1} (Nigeria)\n- {P2} (Türkei)\n- {P3} (Ghana)\n- {P4} (Mali)\n\nIhre ethnischen Hintergründe wurden anhand von freiwilligen Angaben dokumentiert. Diese Daten sind streng vertraulich und werden unter Verschluss aufbewahrt. Sie dienen nur statistischen und Planungszwecken innerhalb der HR-Abteilung. Datenschutz ist gewährleistet. Mitarbeiter können sich jederzeit abmelden.\n\nMit freundlichen Grüßen,\nAbteilungsleiter {P3.s}"
+  },
+  {
+    "id": "f_de_059",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "citizenship_or_immigration",
+    "text": "Tagebucheintrag vom {DATE}\n\n{P1} und ich unterhalten uns über die Aufenthaltserlaubnis. Sie macht sich Sorgen um die Verlängerung. Das Verfahren wird sicher mehrere Monate dauern."
+  },
+  {
+    "id": "f_de_060",
+    "lang": "de",
+    "sensitivity": "high",
+    "cell": "table_of_numbers",
+    "text": "Quittung vom {DATE}\n\nMuseum {ORG}\nSpender-Informationen:\n| Name | Personalausweis | Kreditkarte | Passnummer |\n| {P1} | {P1.govid} | {P1.card} | {P1.passport} |\n| {P2} | {P2.govid} | {P2.card} | {P2.passport} |"
+  }
+]}

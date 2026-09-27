@@ -1,5 +1,5 @@
 {
- "description": "Development half of the multilingual test set (2026-09-27): 320 documents in 8 languages written to a coverage table (eval/coverage.json). Each document was labelled by its writer and independently by a second labeller who saw only the text; disagreements were adjudicated separately, and a few were corrected by hand (eval/work/corrections.json). Used for error analysis.",
+ "description": "Test half of the multilingual test set (2026-09-27): 320 documents in 8 languages written to a coverage table (eval/coverage.json), labelled like the development half. Only aggregate scores are looked at; used for acceptance.",
  "tests": [
   {
    "id": "ts_de_003",
@@ -89,7 +89,7 @@
      {
       "type": "phone",
       "value": "+49 89 777-5432",
-      "pii": true
+      "pii": false
      }
     ]
    }
@@ -228,6 +228,11 @@
       "type": "phone",
       "value": "030 - 9876543",
       "pii": false
+     },
+     {
+      "type": "email",
+      "value": "presse@techcorp.de",
+      "pii": false
      }
     ]
    }
@@ -317,7 +322,13 @@
    "text": "Historischer Überblick: Deutsche Schriftsteller\n\nJohann Wolfgang von Goethe (1749-1832)\nAutor von Faust und Die Leiden des jungen Werther",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Johann Wolfgang von Goethe",
+      "pii": true
+     }
+    ]
    }
   },
   {
@@ -344,7 +355,13 @@
    "text": "Betreff: Benachrichtigung zu Ihrem Gerät\n\nIhre Geräte-ID: 8A.B2.FF.01.9C.D3\n\nBei Fragen wenden Sie sich an support@techforum.de",
    "expected": {
     "sensitivity": "low",
-    "findings": []
+    "findings": [
+     {
+      "type": "email",
+      "value": "support@techforum.de",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -659,6 +676,11 @@
       "type": "person_name",
       "value": "Marcus Keller",
       "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Keller",
+      "pii": true
      }
     ]
    }
@@ -674,7 +696,7 @@
      {
       "type": "person_name",
       "value": "Wilhelm Hartmann",
-      "pii": false
+      "pii": true
      }
     ]
    }
@@ -688,14 +710,25 @@
     "sensitivity": "high",
     "findings": [
      {
-      "type": "person_name",
-      "value": "Anna Müller",
-      "pii": true
+      "type": "email",
+      "value": "service@bank.de",
+      "pii": false
      },
      {
       "type": "email",
       "value": "anna.mueller.85@example.com",
       "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Anna Müller",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "DE 89 1234 5678 9012 3456 78",
+      "pii": true,
+      "number_type": "bank_account"
      },
      {
       "type": "number",
@@ -736,6 +769,11 @@
      },
      {
       "type": "person_name",
+      "value": "Richter",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "Thomas Hoffmann",
       "pii": true
      },
@@ -744,6 +782,11 @@
       "value": "123 456 789 012",
       "pii": true,
       "number_type": "national_id"
+     },
+     {
+      "type": "person_name",
+      "value": "Weber",
+      "pii": true
      }
     ]
    }
@@ -778,26 +821,6 @@
     "sensitivity": "low",
     "findings": [
      {
-      "type": "person_name",
-      "value": "Frank Weber",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Thomas Mueller",
-      "pii": true
-     },
-     {
-      "type": "email",
-      "value": "weber@company.de",
-      "pii": true
-     },
-     {
-      "type": "email",
-      "value": "mueller@company.de",
-      "pii": true
-     },
-     {
       "type": "email",
       "value": "leitung@architekturbüro.de",
       "pii": false
@@ -806,6 +829,31 @@
       "type": "email",
       "value": "project-team@company.de",
       "pii": false
+     },
+     {
+      "type": "person_name",
+      "value": "Bauer",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "weber@company.de",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Frank Weber",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "mueller@company.de",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Thomas Mueller",
+      "pii": true
      }
     ]
    }
@@ -821,6 +869,11 @@
      {
       "type": "person_name",
       "value": "Robert Schneider",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Schneider",
       "pii": true
      }
     ]
@@ -848,8 +901,14 @@
    "split": "dev",
    "text": "KONFERENZPROTOKOLL - Querschnittsthema Klimawandel und Nachhaltigkeit\n\nDatum: 22. September 2024\nTeilnehmer: 45 Vertreter aus verschiedenen Departmenten und Organisationen\nTagesordnung Nr. 34567:\nOrt: Konferenzzentrum Berlin-Tempelhof\n\n1. Eröffnung durch Moderator Hansen\n   - Vorstellung der täglichen Agenda\n   - Zeitmanagement (09:00-16:30 Uhr mit einer Stunde Mittagspause)\n   - Sicherheitseinweisung und Evakuierungsplan\n   - Verfügbarkeit von Catering und technischen Ressourcen\n\n2. Präsentation: Globale Erwärmungstrends und deren Konsequenzen\n   - Temperaturanstieg der letzten 20 Jahre: +1,8°C weltweit\n   - Meeresspiegel-Anstieg: +8,8 cm seit 1990\n   - CO2-Konzentration in der Atmosphäre: 419 ppm (parts per million)\n   - Eisverlust in der Arktis: -13% pro Jahrzehnt\n   - Veränderung von Regenfallmustern in Mittelafrika und Südostasien\n   - Korallenbleiche im Pazifik: 98% der Riffe betroffen\n   - Zunahme von Wetterextremen und Naturkatastrophen\n\n3. Breakout-Session A: Energiewende und erneuerbare Ressourcen\n   - Globales Solarenergie-Potentiale: 450 GW verfügbar\n   - Windkraft-Investitionen weltweit: 303 Milliarden USD pro Jahr\n   - Batterie-Speicherung: Kosten um 89% in 10 Jahren gefallen\n   - Effizienzgewinne im Stromsektor durch intelligente Netze\n   - Wasserkraft-Expansion in Südostasien\n   - Biomasse und Biogas-Potentiale\n\n4. Breakout-Session B: Industrie und Kreislaufwirtschaft\n   - Umsetzung von Kreislaufwirtschaftsprinzipien\n   - Reduktion von Abfall in Produktionsprozessen\n   - Recycling-Infrastruktur in verschiedenen Regionen\n   - Corporate Social Responsibility Initiativen\n   - Zerlegbarkeit von Produkten für Wiederverwendung\n\n5. Diskussion: Politische Implikationen und Governance\n   - Nationale Klimaziele bis 2030 und 2050\n   - Internationale Abkommen wie Paris-Abkommen und Auswirkungen\n   - Verpflichtungen für entwickelte vs. Entwicklungsländer\n   - Investitionen und finanzielle Anreize für grüne Technologien\n   - Carbon Pricing und Steuerliche Instrumente\n   - Role der Regierungen in Energiewende\n\n6. Panel-Diskussion: Chancen und Risiken\n   - Job-Schaffung in erneuerbaren Energien\n   - Wirtschaftliche Übergänge in traditionellen Industrien\n   - Gerechtigkeit und soziale Auswirkungen\n   - Technologische Fortschritte und Innovation\n\n7. Ausblick und nächste Schritte\n   - Geplante Folgeveranstaltung am 15. November in Amsterdam\n   - Bildung von Arbeitsgruppen\n   - Veröffentlichung von Konferenz-Dokumenten",
    "expected": {
-    "sensitivity": "none",
-    "findings": []
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Hansen",
+      "pii": true
+     }
+    ]
    }
   },
   {
@@ -885,6 +944,11 @@
       "type": "person_name",
       "value": "Dimitris Papadopoulos",
       "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Papadopoulos",
+      "pii": true
      }
     ]
    }
@@ -916,6 +980,11 @@
      {
       "type": "person_name",
       "value": "Klaus Weber",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "klaus.weber [at] igmetall.de",
       "pii": true
      }
     ]
@@ -1021,6 +1090,11 @@
       "type": "person_name",
       "value": "Angela Merkel",
       "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Merkel",
+      "pii": true
      }
     ]
    }
@@ -1054,14 +1128,40 @@
     "sensitivity": "high",
     "findings": [
      {
+      "type": "email",
+      "value": "beratung@ministry.de",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "hoffmann.josef@business.de",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Hoffmann",
+      "pii": true
+     },
+     {
       "type": "person_name",
       "value": "Josef Hoffmann",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Schäfer",
       "pii": true
      },
      {
       "type": "number",
       "value": "456 789 123 012",
       "pii": true,
+      "number_type": "national_id"
+     },
+     {
+      "type": "number",
+      "value": "HRB 123456",
+      "pii": false,
       "number_type": "national_id"
      }
     ]
@@ -1073,7 +1173,7 @@
    "split": "dev",
    "text": "Admin: Welche IP-Adresse hat Benutzer XYZ heute verwendet?\n\nSystem: IP 192.168.1.101 - Desktop Computer\n\nAdmin: Danke.",
    "expected": {
-    "sensitivity": "none",
+    "sensitivity": "low",
     "findings": []
    }
   },
@@ -1113,17 +1213,17 @@
      {
       "type": "person_name",
       "value": "William Shakespeare",
-      "pii": false
+      "pii": true
      },
      {
       "type": "person_name",
       "value": "Jane Austen",
-      "pii": false
+      "pii": true
      },
      {
       "type": "person_name",
       "value": "Charles Dickens",
-      "pii": false
+      "pii": true
      }
     ]
    }
@@ -1189,7 +1289,27 @@
     "findings": [
      {
       "type": "person_name",
+      "value": "Ray",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Sarah Mitchell",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "Raymond Chen",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Marcus Thompson",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Elena Rodriguez",
       "pii": true
      }
     ]
@@ -1305,7 +1425,18 @@
    "text": "MEETING NOTES - September 15, 2024\n\nFor inquiries, please contact:\nPhone: 555-0189\nEmail: support@events.org",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "phone",
+      "value": "555-0189",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "support@events.org",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -1372,12 +1503,7 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Campbell, Robert",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Evans, William",
+      "value": "Anderson, Michael",
       "pii": true
      },
      {
@@ -1387,37 +1513,7 @@
      },
      {
       "type": "person_name",
-      "value": "Quinn, James",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "O'Brien, Kevin",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Harrison, Jessica",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Roberts, Diana",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Kim, David",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Green, Christopher",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Thompson, Anna",
+      "value": "Campbell, Robert",
       "pii": true
      },
      {
@@ -1427,7 +1523,37 @@
      },
      {
       "type": "person_name",
+      "value": "Evans, William",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Foster, Amanda",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Green, Christopher",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Harrison, Jessica",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "Ibrahim, Hassan",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Jackson, Patricia",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Kim, David",
       "pii": true
      },
      {
@@ -1447,12 +1573,7 @@
      },
      {
       "type": "person_name",
-      "value": "Foster, Amanda",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Anderson, Michael",
+      "value": "O'Brien, Kevin",
       "pii": true
      },
      {
@@ -1462,12 +1583,22 @@
      },
      {
       "type": "person_name",
+      "value": "Quinn, James",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Roberts, Diana",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "Stevens, Thomas",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Jackson, Patricia",
+      "value": "Thompson, Anna",
       "pii": true
      }
     ]
@@ -1498,13 +1629,13 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Wolfgang Amadeus Mozart",
-      "pii": false
+      "value": "Ludwig van Beethoven",
+      "pii": true
      },
      {
       "type": "person_name",
-      "value": "Ludwig van Beethoven",
-      "pii": false
+      "value": "Wolfgang Amadeus Mozart",
+      "pii": true
      }
     ]
    }
@@ -1533,7 +1664,7 @@
    "format": "chat",
    "text": "User1: Hey, I need to mail that package we discussed\nUser2: Sure! Where should we send it?\nUser1: 528 Harbor View Road, Seattle, Washington 98101\nUser1: Tres importante que llegue rápido\nUser2: Got it. I'll arrange express shipping\nUser1: Also mark it fragile - contains electronics\nUser2: Will do. Priority handling enabled.\nUser1: Thanks! Estimation for arrival?\nUser2: Should arrive by Friday\nUser1: Perfect, that works with my schedule",
    "expected": {
-    "sensitivity": "none",
+    "sensitivity": "low",
     "findings": []
    }
   },
@@ -1710,6 +1841,16 @@
       "type": "person_name",
       "value": "Ferguson",
       "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "1-800-555-0198",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "research@biotech.org",
+      "pii": false
      }
     ]
    }
@@ -1747,6 +1888,11 @@
      },
      {
       "type": "person_name",
+      "value": "Montgomery",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "Robert Montgomery",
       "pii": true
      },
@@ -1761,18 +1907,23 @@
       "pii": true
      },
      {
+      "type": "person_name",
+      "value": "Margaret Chen",
+      "pii": true
+     },
+     {
       "type": "phone",
       "value": "2 0 1 . 5 5 5 . 0 1 2 3",
       "pii": true
      },
      {
       "type": "phone",
-      "value": "2 0 1 . 5 5 5 . 0 1 4 5",
+      "value": "2 0 1 . 5 5 5 . 0 1 8 7",
       "pii": true
      },
      {
       "type": "phone",
-      "value": "2 0 1 . 5 5 5 . 0 1 8 7",
+      "value": "2 0 1 . 5 5 5 . 0 1 4 5",
       "pii": true
      }
     ]
@@ -1800,7 +1951,18 @@
    "text": "We're excited to announce our new customer support chatbot! Available 24/7 to help. Questions? Contact us: support@company.com or call 1-888-555-0156.",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "email",
+      "value": "support@company.com",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "1-888-555-0156",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -1920,27 +2082,7 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Olaf Scholz",
-      "pii": true
-     },
-     {
-      "type": "person_name",
       "value": "Justin Trudeau",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Georgia Meloni",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Pedro Sánchez",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Antoni Costa",
       "pii": true
      },
      {
@@ -1951,6 +2093,26 @@
      {
       "type": "person_name",
       "value": "Emmmanuel Macron",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Olaf Scholz",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Pedro Sánchez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Georgia Meloni",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Antoni Costa",
       "pii": true
      }
     ]
@@ -2039,6 +2201,11 @@
      },
      {
       "type": "person_name",
+      "value": "Patterson",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "Sophia Menez",
       "pii": true
      }
@@ -2071,6 +2238,21 @@
    "expected": {
     "sensitivity": "high",
     "findings": [
+     {
+      "type": "email",
+      "value": "corporate.outreach@ministry.org",
+      "pii": false
+     },
+     {
+      "type": "person_name",
+      "value": "Jacob",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Jakob",
+      "pii": true
+     },
      {
       "type": "person_name",
       "value": "Margaret Henderson",
@@ -2107,7 +2289,17 @@
     "findings": [
      {
       "type": "person_name",
+      "value": "Aleksander Volkov",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "Jennifer Walsh",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Aleksander",
       "pii": true
      }
     ]
@@ -2142,6 +2334,11 @@
      {
       "type": "person_name",
       "value": "Alexandra Brenner",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Alexandra",
       "pii": true
      }
     ]
@@ -2228,7 +2425,23 @@
    "text": "CONTACT INFORMATION\n\nOffice Phone: 1-800-555-0142\nTechnical Support: support@company.com\nFax: 1-800-555-0143",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "phone",
+      "value": "1-800-555-0142",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "support@company.com",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "1-800-555-0143",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -2255,14 +2468,7 @@
    "text": "[2025-03-15 08:30] Patient ID: 0 9 2 . 4 5 . 8 3 0 1\nPresentation: Acute myocardial infarction\nTroponin: Elevated at 2.4 ng/mL\nECG: ST elevation in leads II, III",
    "expected": {
     "sensitivity": "high",
-    "findings": [
-     {
-      "type": "number",
-      "value": "0 9 2 . 4 5 . 8 3 0 1",
-      "pii": true,
-      "number_type": "national_id"
-     }
-    ]
+    "findings": []
    }
   },
   {
@@ -2303,7 +2509,7 @@
      {
       "type": "phone",
       "value": "+1-503-555-0187",
-      "pii": true
+      "pii": false
      }
     ]
    }
@@ -2385,6 +2591,11 @@
    "expected": {
     "sensitivity": "high",
     "findings": [
+     {
+      "type": "person_name",
+      "value": "Johnson",
+      "pii": true
+     },
      {
       "type": "number",
       "value": "X7829401CC",
@@ -2508,7 +2719,13 @@
    "text": "Social Media Update\n\nHey everyone! Just wanted to share some exciting updates from the past month.\n\nI've been working on several new projects and connecting with amazing people in the tech community. \n\nMy social handles for those who want to follow:\n@TechGuru_Marcus (LinkedIn: 192.168.100.147)\nTwitter: @MarcusInnovates\nInstagram: @marcus.tech.solutions\n\nMr. Marcus has been particularly active on these platforms, sharing insights about digital transformation and industry trends. If you're interested in networking, please feel free to reach out through any of these channels.\n\nCurrently exploring opportunities in AI and cloud infrastructure. Always happy to discuss new technologies and collaborate on interesting projects.\n\nThanks for the continued support and engagement!",
    "expected": {
     "sensitivity": "low",
-    "findings": []
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Marcus",
+      "pii": true
+     }
+    ]
    }
   },
   {
@@ -2535,11 +2752,16 @@
    "format": "email_thread",
    "text": "CONFIDENTIAL GENETIC RESEARCH CORRESPONDENCE\n\nMessage 1\nFrom: Mendez, Patricia PhD <p.mendez@genlab.com>\nSent: March 15, 2025\nSubject: Research Completion Status\n\nOur genomic sequencing phase is now complete. We have successfully processed genetic material from 143 research subjects. Each participant underwent comprehensive biometric collection including iris template generation, facial recognition mapping, and fingerprint digitization for identification purposes. These identifiers are now stored securely in our research database.\n\nStatistical analysis is scheduled to begin tomorrow.\n\n---\n\nMessage 2\nFrom: Wu, James (Director) <j.wu@genlab.com>\nSent: March 15, 2025, 11:30 AM\nSubject: Data Security Verification\n\nAll biometric data has been properly encrypted and archived according to protocol. The iris scans, facial templates, and fingerprint records meet our security requirements. Quality control validation is 98.9% complete.\n\nYou may proceed with the analysis phase immediately.\n\n---\n\nMessage 3\nSender: Patricia Mendez\nTimestamp: March 16, 2025, 09:00 AM\n\nData validation confirmed across all 143 participant records. Biometric templates for identification and research indexing are now fully functional within our system. Facial recognition accuracy metrics demonstrate excellent performance. All compliance requirements have been satisfied.\n\nBeginning statistical analysis phase now.",
    "expected": {
-    "sensitivity": "high",
+    "sensitivity": "low",
     "findings": [
      {
       "type": "person_name",
       "value": "Mendez, Patricia",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "p.mendez@genlab.com",
       "pii": true
      },
      {
@@ -2549,12 +2771,12 @@
      },
      {
       "type": "email",
-      "value": "p.mendez@genlab.com",
+      "value": "j.wu@genlab.com",
       "pii": true
      },
      {
-      "type": "email",
-      "value": "j.wu@genlab.com",
+      "type": "person_name",
+      "value": "Patricia Mendez",
       "pii": true
      }
     ]
@@ -2586,8 +2808,18 @@
     "sensitivity": "high",
     "findings": [
      {
+      "type": "person_name",
+      "value": "Alex",
+      "pii": true
+     },
+     {
       "type": "email",
       "value": "alex.support@email.com",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Jordan",
       "pii": true
      },
      {
@@ -2596,8 +2828,18 @@
       "pii": true
      },
      {
+      "type": "person_name",
+      "value": "Sam",
+      "pii": true
+     },
+     {
       "type": "email",
       "value": "sam.proud@email.com",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Casper",
       "pii": true
      },
      {
@@ -2648,6 +2890,11 @@
       "type": "person_name",
       "value": "Raymond",
       "pii": true
+     },
+     {
+      "type": "email",
+      "value": "hr-team@company.com",
+      "pii": false
      }
     ]
    }
@@ -2680,17 +2927,22 @@
     "findings": [
      {
       "type": "person_name",
+      "value": "James Martinez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "Gregory Mitchell",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Helena Robertson",
+      "value": "Mitchell",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "James Martinez",
+      "value": "Helena Robertson",
       "pii": true
      }
     ]
@@ -2816,6 +3068,11 @@
       "pii": true
      },
      {
+      "type": "email",
+      "value": "sandra [at] company [dot] com",
+      "pii": true
+     },
+     {
       "type": "person_name",
       "value": "Carlos Fernández",
       "pii": true
@@ -2833,11 +3090,6 @@
      {
       "type": "person_name",
       "value": "Patricia Guzmán",
-      "pii": true
-     },
-     {
-      "type": "email",
-      "value": "sandra [at] company [dot] com",
       "pii": true
      }
     ]
@@ -2939,7 +3191,33 @@
    "text": "De: operaciones@distribuidora.com\nPara: contacto@cliente.com\nAsunto: Solicitud de presupuesto\nFecha: 2024-09-17\n\nEstimado cliente,\n\nAgradecemos su interés en nuestros servicios de distribución. Hemos preparado un presupuesto detallado para su empresa.\n\nLos términos incluyen:\n- Entrega garantizada en 48 horas\n- Warehouse management and logistics coordination\n- Seguimiento en tiempo real de pedidos\n\nPara cualquier consulta o aclaración sobre el presupuesto, please contact us at:\n\nTeléfono: +56-2-3847-5920\nEmail: soporte@distribuidora.com\nWhatsApp: +56987654321\n\nQuedamos atentos a sus comentarios.",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "email",
+      "value": "operaciones@distribuidora.com",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "contacto@cliente.com",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "+56-2-3847-5920",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "soporte@distribuidora.com",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "+56987654321",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -2969,6 +3247,12 @@
     "sensitivity": "high",
     "findings": [
      {
+      "type": "number",
+      "value": "5847-2938-4756-1920",
+      "pii": true,
+      "number_type": "bank_account"
+     },
+     {
       "type": "person_name",
       "value": "Rodrigo Valencia",
       "pii": true
@@ -2978,12 +3262,6 @@
       "value": "18.847.293-K",
       "pii": true,
       "number_type": "national_id"
-     },
-     {
-      "type": "number",
-      "value": "5847-2938-4756-1920",
-      "pii": true,
-      "number_type": "bank_account"
      },
      {
       "type": "phone",
@@ -3019,12 +3297,37 @@
      {
       "type": "person_name",
       "value": "Andrés Segovia",
-      "pii": false
+      "pii": true
      },
      {
       "type": "person_name",
       "value": "Andrés Segovia Martínez",
-      "pii": false
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Segovia",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Manuel Ponce",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Heitor Villa-Lobos",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Lennart Bernstein",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Paul Hindemith",
+      "pii": true
      }
     ]
    }
@@ -3055,6 +3358,16 @@
    "expected": {
     "sensitivity": "high",
     "findings": [
+     {
+      "type": "email",
+      "value": "rrhh@empresa.com",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "coordinador@empresa.com",
+      "pii": false
+     },
      {
       "type": "person_name",
       "value": "Marcela Fuentes",
@@ -3207,12 +3520,12 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Cristina Villanueva Mora",
+      "value": "Jorge Delgado",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Jorge Delgado",
+      "value": "Cristina Villanueva Mora",
       "pii": true
      }
     ]
@@ -3242,8 +3555,14 @@
    "format": "ocr_scan",
    "text": "RECIBO DE PAGO - FACTURA\n\nFechaEmisión: 15-09-2024\nNúmero Factura: 2024-F847\n\nProveedor: Martinez Constructora SpA\nRUT Proveedor: 76.847.293-K\n\nCliente: Sr. Fernandez Lopez\nRUT Cliente: 12.847.293-8\nDomicilio: Calle Principal 456, Piso 5\n\nDetalle de Servicio:\nConcepto: Reparación de infraestructura\nCantidad: 1\nValor Unitario: $3,847,500\nValor Total: $3,847,500\nIVA (19%): $731,025\nTotal a Pagar: $4,578,525\n\nForma de Pago: Transferencia bancaria\nFecha de Vencimiento: 30-10-2024\n\nAutorizado por: Gerente General\nFirma: __________",
    "expected": {
-    "sensitivity": "low",
+    "sensitivity": "high",
     "findings": [
+     {
+      "type": "number",
+      "value": "76.847.293-K",
+      "pii": false,
+      "number_type": "national_id"
+     },
      {
       "type": "person_name",
       "value": "Fernandez Lopez",
@@ -3284,6 +3603,11 @@
    "expected": {
     "sensitivity": "high",
     "findings": [
+     {
+      "type": "email",
+      "value": "tramites@migraciones.gov.cl",
+      "pii": false
+     },
      {
       "type": "person_name",
       "value": "Svetlana Volkov",
@@ -3447,6 +3771,11 @@
      },
      {
       "type": "person_name",
+      "value": "Sofía",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "Sofi",
       "pii": true
      },
@@ -3498,7 +3827,7 @@
      {
       "type": "email",
       "value": "contacto.evento@domain.com",
-      "pii": true
+      "pii": false
      }
     ]
    }
@@ -3552,6 +3881,11 @@
      {
       "type": "person_name",
       "value": "Teresa Sáez",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Teresa",
       "pii": true
      }
     ]
@@ -3694,7 +4028,7 @@
    "format": "csv_or_table",
    "text": "nombre,profesion,nacionalidad\nSantiago Calatrava,arquitecto,espanol\nJavier Bardem,actor,espanol\nCarlos Munoz,director,espanol",
    "expected": {
-    "sensitivity": "low",
+    "sensitivity": "high",
     "findings": [
      {
       "type": "person_name",
@@ -3822,7 +4156,18 @@
    "text": "INFORMACIÓN DE CONTACTO\n\nEmpresa: Centro de Distribución Regional\nTeléfono: +34 902 100 200\nSolicitud: Ref. 2025-7834\nCorreo: contacto@distribucion.com",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "phone",
+      "value": "+34 902 100 200",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "contacto@distribucion.com",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -3849,8 +4194,19 @@
    "format": "email",
    "text": "De: pedidos@tienda.com\nPara: cliente@correo.es\nAsunto: Confirmación de envío - Ref. Pedido #45892\n\nEstimado cliente,\n\nLe confirmamos que su pedido ha sido despachado y está en camino. Los detalles son los siguientes:\n\nNúmero de seguimiento: 2025-PE-45892\nFecha estimada de entrega: 4-6 de noviembre\n\nDatos de envío:\nDestinatario: Zona de Almacén Centro\nDirección de entrega: Calle San Sebastián 234, 3º puerta B\nCiudad: Bilbao\nCódigo postal: 48005\nProvincia: Vizcaya\n\nPuede rastrear su envío en línea utilizando el código proporcionado.\n\nCordialmente,\nEquipo de Distribución",
    "expected": {
-    "sensitivity": "none",
-    "findings": []
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "email",
+      "value": "pedidos@tienda.com",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "cliente@correo.es",
+      "pii": true
+     }
+    ]
    }
   },
   {
@@ -3950,7 +4306,7 @@
    "format": "code",
    "text": "// Sistema de registro de antecedentes penales\n// Módulo confidencial - Acceso restringido\n\nfunction queryConvictionRecord(caseId) {\n  const db = connectToJusticeDatabase();\n  const cases = [\n    { id: \"CASE-2021-45821\", status: \"Conviction\", crime: \"Robo a mano armada\" },\n    { id: \"CASE-2021-45822\", status: \"Conviction\", crime: \"Fraude electrónico\" },\n    { id: \"CASE-2022-15743\", status: \"In progress\", crime: \"Malversación de fondos\" },\n    { id: \"CASE-2023-28934\", status: \"Acquitted\", crime: \"Difamación\" }\n  ];\n  \n  const record = cases.find(c => c.id === caseId);\n  if (record) {\n    console.log(`Registro encontrado: ${record.crime}, Estado: ${record.status}`);\n    return archiveEntry(record);\n  }\n  return null;\n}\n\n// Procedimiento de archivo de sentencias\nfunction archiveEntry(caseRecord) {\n  // Guardar en base de datos de antecedentes penales\n  // Solo personal autorizado puede acceder\n}\n\nexportDefault { queryConvictionRecord, archiveEntry };",
    "expected": {
-    "sensitivity": "none",
+    "sensitivity": "high",
     "findings": []
    }
   },
@@ -3979,13 +4335,13 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Don Quijote",
-      "pii": false
+      "value": "Quijote",
+      "pii": true
      },
      {
       "type": "person_name",
       "value": "Cervantes",
-      "pii": false
+      "pii": true
      }
     ]
    }
@@ -4012,7 +4368,18 @@
    "text": "De: marketing@softwares.com\nPara: distribuidores@grupo.es\nAsunto: Lanzamiento de nuevos productos - Trimestre IV 2025\nFecha: 28 de octubre de 2025\n\nEstimados socios distribuidores,\n\nNos complace anunciar el lanzamiento de nuestra línea de productos renovada para el cuarto trimestre. Los detalles son los siguientes:\n\nNuevos productos:\n1. PowerAnalytics Pro - Suite de análisis de datos empresariales\n2. SecureCloud 5.0 - Plataforma segura de almacenamiento en la nube\n3. DataVault Enterprise - Sistema de gestión de bases de datos\n4. CloudSync Manager - Herramienta de sincronización multiplataforma\n\nCaracterísticas clave:\n- PowerAnalytics Pro ofrece visualización de datos en tiempo real con machine learning integrado\n- SecureCloud 5.0 utiliza encriptación de extremo a extremo y cumple normativa GDPR\n- DataVault Enterprise escala automáticamente según demanda\n- CloudSync Manager soporta más de 500 aplicaciones terceras\n\nNombres de nuestros expertos en producto:\n- Catalina (especialista en análisis de datos)\n- Rodrigo (ingeniero de seguridad)\n- Valentina (directora de producto)\n- Mateo (gestor de relaciones con clientes)\n\nEstos son nombres de marca registrada y propios de nuestros sistemas, no de personas identificables.\n\nPrecio especial de lanzamiento:\n- PowerAnalytics Pro: 2.999 euros (25% descuento)\n- SecureCloud 5.0: 1.499 euros (30% descuento)\n- DataVault Enterprise: 3.999 euros (20% descuento)\n\nDisponiblidad: 5 de noviembre de 2025\n\nPara más información, contacten a su ejecutivo de cuentas asignado.\n\nSaludos cordiales,\nEquipo de Ventas",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "email",
+      "value": "marketing@softwares.com",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "distribuidores@grupo.es",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -4090,7 +4457,7 @@
    "format": "contract",
    "text": "ACUERDO DE CONFIDENCIALIDAD - PACIENTES EN TRATAMIENTO DE SALUD MENTAL\n\nTodas las personas listadas en este documento están en tratamiento psicológico o psiquiátrico.",
    "expected": {
-    "sensitivity": "high",
+    "sensitivity": "none",
     "findings": []
    }
   },
@@ -4311,7 +4678,18 @@
    "text": "CONTRAT SERVICES INFORMATIQUES ENTRE PRESTATAIRE ET CLIENT\n\nEntre les parties:\nTechSolutions SAS, prestataire informatique\net Groupe Industrial Europe SARL, client utilisateur\nDate signature: 1er septembre 2026\nDurée engagement: 24 mois avec reconduction possible\n\nSERVICES FOURNIS PAR LE PRESTATAIRE:\n- Maintenance complète des serveurs 24 heures sur 24, 7 jours sur 7\n- Support utilisateur technique niveau 3 en français et anglais\n- Gestion proactive des mises à jour de sécurité et correctifs système\n- Sauvegardes automatisées quotidiennes avec archivage long terme\n- Monitoring continu du système et de la charge serveur\n\nCONDITIONS TARIFAIRES:\nPrix mensuel forfaitaire: 2500 euros hors taxes\nFrais d'installation initiaux: 1000 euros toutes taxes comprises\nFacturation: le 1er jour du mois par virement bancaire automatique\nRévision tarifaire: possible selon l'indice des prix annuel\n\nNIVEAUX DE SERVICE GARANTIS:\nDisponibilité minimale garantie: 99.5% sur l'année\nPénalités en cas de défaillance: 1% du tarif mensuel par heure d'indisponibilité\nExceptions: causes externes, force majeure, maintenances programmées\nRemontée d'incidents: dans l'heure maximum\n\nSÉCURITÉ ET CONFORMITÉ DONNÉES:\nConformité ISO 27001 et ISO 27002 certifiée\nRespect intégral du Règlement Général sur la Protection des Données\nHébergement exclusif en Europe dans des datacenters sécurisés\nInterdiction absolue de transfert de données vers des pays tiers\n\nSUPPORT CLIENT:\nTéléphone support: 01 45 67 89 00\nEmail: support@techsolutions.fr\nHoraires standard: Lundi à vendredi de 8h00 à 19h00\nSupport d'urgence: disponible hors horaires avec frais supplémentaires\n\nCONDITIONS DE RÉSILIATION:\nRésiliation possible avec préavis de 60 jours\nRestitution complète des données dans les 30 jours\nAucune pénalité de rupture avant terme sauf faute du client\n\nDISPOSITIONS GÉNÉRALES:\nSoumis à la loi française\nCompétence exclusive des tribunaux de commerce de Paris\nToute modification requiert signatures des deux parties",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "phone",
+      "value": "01 45 67 89 00",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "support@techsolutions.fr",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -4594,6 +4972,31 @@
       "type": "person_name",
       "value": "Claudette Borne",
       "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Leclerc",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Mathieu",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Dufour",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Valade",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Borne",
+      "pii": true
      }
     ]
    }
@@ -4623,13 +5026,7 @@
    "text": "Message sur réseau social:\n\nCoucou tout le monde! Je passe du temps à ma nouvelle maison!\nCoordonnées GPS: 43.2965 N 6.2647 E (Côte d'Azur)\n\nMa localisation est juste en face du parc central. J'adore cet endroit!\nPseudo: Max_Riviera\n\nJ'ai une belle vue sur la baie. Venez me visiter!",
    "expected": {
     "sensitivity": "high",
-    "findings": [
-     {
-      "type": "person_name",
-      "value": "Max_Riviera",
-      "pii": true
-     }
-    ]
+    "findings": []
    }
   },
   {
@@ -4697,13 +5094,18 @@
       "pii": true
      },
      {
-      "type": "person_name",
-      "value": "Marie Benard",
+      "type": "email",
+      "value": "marie@example.com",
       "pii": true
      },
      {
       "type": "email",
-      "value": "marie@example.com",
+      "value": "support@company.fr",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "06 45 67 89 00",
       "pii": true
      },
      {
@@ -4712,8 +5114,8 @@
       "pii": true
      },
      {
-      "type": "phone",
-      "value": "06 45 67 89 00",
+      "type": "person_name",
+      "value": "Marie Benard",
       "pii": true
      }
     ]
@@ -4905,6 +5307,11 @@
       "pii": true
      },
      {
+      "type": "email",
+      "value": "services.rh@entreprise.com",
+      "pii": false
+     },
+     {
       "type": "number",
       "value": "3 74 06 1987 451 234",
       "pii": true,
@@ -4992,6 +5399,11 @@
       "type": "person_name",
       "value": "Fontaine",
       "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Moreau, Nathalie",
+      "pii": true
      }
     ]
    }
@@ -5022,16 +5434,6 @@
    "expected": {
     "sensitivity": "high",
     "findings": [
-     {
-      "type": "person_name",
-      "value": "Martin",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Thierry",
-      "pii": true
-     },
      {
       "type": "person_name",
       "value": "Martin Thierry",
@@ -5100,12 +5502,12 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Müller",
+      "value": "Müller, François",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "François",
+      "value": "F.Müller",
       "pii": true
      }
     ]
@@ -5177,6 +5579,11 @@
     "sensitivity": "high",
     "findings": [
      {
+      "type": "email",
+      "value": "secretariat@synagogue-beth-shalom.org",
+      "pii": false
+     },
+     {
       "type": "person_name",
       "value": "Robert Silverman",
       "pii": true
@@ -5212,14 +5619,37 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Rémi Lacroix",
+      "value": "Philippe Blanchard",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Philippe Blanchard",
-      "pii": true,
-      "honorific": "M."
+      "value": "Rémi Lacroix",
+      "pii": true
+     },
+     {
+      "type": "number",
+      "value": "DE89 3704 0044 0532 0130 00",
+      "pii": false,
+      "number_type": "bank_account"
+     },
+     {
+      "type": "number",
+      "value": "FR1420041010050050001M026",
+      "pii": false,
+      "number_type": "bank_account"
+     },
+     {
+      "type": "number",
+      "value": "GB82 WEST 1234 5698 7654 32",
+      "pii": false,
+      "number_type": "bank_account"
+     },
+     {
+      "type": "number",
+      "value": "CH93 0076 2011 6238 5295 7",
+      "pii": false,
+      "number_type": "bank_account"
      }
     ]
    }
@@ -5334,12 +5764,7 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Marchand",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Julien",
+      "value": "Marchand, Julien",
       "pii": true
      },
      {
@@ -5421,72 +5846,37 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Rousseau",
+      "value": "Rousseau, Gilles",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Gilles",
+      "value": "Vaillant, Sophie",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Vaillant",
+      "value": "Dupont, Claude",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Sophie",
+      "value": "Pichon, Nathalie",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Dupont",
+      "value": "Géraud, Olivier",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Claude",
+      "value": "Marchand, Sylvie",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Pichon",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Nathalie",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Géraud",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Olivier",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Marchand",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Sylvie",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Petit",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Jean-Luc",
+      "value": "Petit, Jean-Luc",
       "pii": true
      }
     ]
@@ -5524,7 +5914,7 @@
      {
       "type": "phone",
       "value": "+33 4 72 51 62 15",
-      "pii": true
+      "pii": false
      },
      {
       "type": "email",
@@ -5620,12 +6010,7 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Lefort",
-      "pii": true
-     },
-     {
-      "type": "person_name",
-      "value": "Christiane",
+      "value": "Lefort, Christiane",
       "pii": true
      }
     ]
@@ -5780,12 +6165,17 @@
      },
      {
       "type": "person_name",
-      "value": "@giulia_ferrara_dev",
+      "value": "Marco",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "@marcovit85",
+      "value": "Andrea",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Sofia",
       "pii": true
      }
     ]
@@ -5815,7 +6205,7 @@
    "format": "contract",
    "text": "CONTRATTO DI CONSULENZA - PROGRAMMA DI INCLUSIONE CULTURALE\n\nData: 15 settembre 2026\nLuogo: Milano, Italia\n\nPARTI CONTRAENTI:\n1. ArtistiMilano srl (di seguito \"Agenzia\"), rappresentata dal Direttore Amministrativo\n2. Consulente (di seguito \"Specialista\")\n\nPREMESSE:\nL'Agenzia intende avviare un programma educativo sulla diversità culturale e inclusione sociale, e incarica la Specialista di coordinare le attività.\n\nOGGETTO DEL CONTRATTO:\nLa Specialista dovrà organizzare e condurre 12 workshop tematici rivolti ai giovani su:\n- La storia delle migrazioni in Italia\n- L'integrazione multiculturale\n- Le tradizioni e culture diverse\n\nCOMPETENZE RICHIESTE:\nLa Specialista deve possedere esperienza diretta nelle seguenti aree:\n- Comunità afro-italiane e loro contributi culturali\n- Integrazione delle persone di origine nord-africana\n- Dinamiche sociali delle minoranze etniche in Europa\n\nCOMPITI SPECIFICI:\n1. Creare materiali didattici basati sulla esperienza personale\n2. Coordinare testimonianze dirette da persone delle comunità sopracitate\n3. Sviluppare focus group con adolescenti di diversa provenienza etnica\n\nDURATA: 6 mesi (dal 1º ottobre 2026 al 31 marzo 2027)\n\nCOMPENSO: € 8.500 lordi per il periodo\n\nSOTTOSCRIZIONI:\nPer l'Agenzia: ___________________________\nPer la Specialista, Elisa: ___________________________\n\nData: _______________",
    "expected": {
-    "sensitivity": "high",
+    "sensitivity": "low",
     "findings": [
      {
       "type": "person_name",
@@ -5852,7 +6242,7 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "marco",
+      "value": "Marco",
       "pii": true
      }
     ]
@@ -6000,7 +6390,7 @@
      {
       "type": "person_name",
       "value": "Leonardo da Vinci",
-      "pii": false
+      "pii": true
      }
     ]
    }
@@ -6033,12 +6423,12 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "Federico Colombo",
+      "value": "Riccardo",
       "pii": true
      },
      {
       "type": "person_name",
-      "value": "Riccardo",
+      "value": "Federico Colombo",
       "pii": true
      }
     ]
@@ -6136,23 +6526,28 @@
       "pii": true
      },
      {
-      "type": "email",
-      "value": "s.castellano@medlab.it",
-      "pii": true
-     },
-     {
       "type": "person_name",
       "value": "Mariana Rossi",
       "pii": true
      },
      {
-      "type": "email",
-      "value": "m.rossi@university.it",
+      "type": "person_name",
+      "value": "Rossi",
       "pii": true
      },
      {
       "type": "person_name",
       "value": "Valentina",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "s.castellano@medlab.it",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "m.rossi@university.it",
       "pii": true
      }
     ]
@@ -6190,6 +6585,11 @@
       "pii": true
      },
      {
+      "type": "person_name",
+      "value": "Gianfranco Rossini",
+      "pii": true
+     },
+     {
       "type": "email",
       "value": "mariangela [dot] rinaldi [at] investifund [dot] it",
       "pii": true
@@ -6197,13 +6597,13 @@
      {
       "type": "number",
       "value": "IT 94 X 0300 2835 5900 0151 0001",
-      "pii": true,
+      "pii": false,
       "number_type": "bank_account"
      },
      {
       "type": "number",
       "value": "4532 ·· ·· ·· 8743",
-      "pii": true,
+      "pii": false,
       "number_type": "credit_card"
      }
     ]
@@ -6404,7 +6804,28 @@
    "text": "🎉 Siamo orgogliosi di annunciare il lancio della nostra nuova piattaforma cloud! 🚀\n\nPer informazioni commerciali: business@cloudtech.it\nSupporto tecnico: support@cloudtech.it | 06-5555-9999\nServizio clienti: 1800-CLOUD-IT (numero verde)\n\nVisita il nostro sito per saperne di più! 🌐",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "email",
+      "value": "business@cloudtech.it",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "support@cloudtech.it",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "06-5555-9999",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "1800-CLOUD-IT",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -6574,6 +6995,11 @@
       "type": "person_name",
       "value": "Davide Lombardi",
       "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "D. Lombardi",
+      "pii": true
      }
     ]
    }
@@ -6602,20 +7028,7 @@
    "text": "Modulo di localizzazione GPS:\nCoordi coordinate attuali: 41.9028° N, 12.4964° E\nLuogo: Roma, Piazza di Spagna\nTempo: 2024-10-22 15:47\nUtente ha accettato condivisione pubblico",
    "expected": {
     "sensitivity": "high",
-    "findings": [
-     {
-      "type": "number",
-      "value": "41.9028",
-      "pii": true,
-      "number_type": "precise_location"
-     },
-     {
-      "type": "number",
-      "value": "12.4964",
-      "pii": true,
-      "number_type": "precise_location"
-     }
-    ]
+    "findings": []
    }
   },
   {
@@ -6647,6 +7060,11 @@
      {
       "type": "person_name",
       "value": "Francesco Moretti",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Moretti",
       "pii": true
      },
      {
@@ -6688,6 +7106,11 @@
     "findings": [
      {
       "type": "person_name",
+      "value": "Riccardo",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "Riccardo De Santis",
       "pii": true
      },
@@ -6702,6 +7125,17 @@
       "value": "IT-DL-8374921-IT",
       "pii": true,
       "number_type": "driver_licence_or_passport"
+     },
+     {
+      "type": "number",
+      "value": "PA4829371IT",
+      "pii": true,
+      "number_type": "driver_licence_or_passport"
+     },
+     {
+      "type": "person_name",
+      "value": "Elena Moretti",
+      "pii": true
      }
     ]
    }
@@ -6787,15 +7221,15 @@
       "pii": true
      },
      {
-      "type": "person_name",
-      "value": "Valentino",
-      "pii": true
-     },
-     {
       "type": "number",
       "value": "IT60X0542811101000000123456",
       "pii": true,
       "number_type": "bank_account"
+     },
+     {
+      "type": "person_name",
+      "value": "Valentino",
+      "pii": true
      }
     ]
    }
@@ -6865,6 +7299,11 @@
      {
       "type": "person_name",
       "value": "Jannik Sinner",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "J. Sinner",
       "pii": true
      }
     ]
@@ -6996,6 +7435,11 @@
      {
       "type": "person_name",
       "value": "Stefano Marchetti",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Marchetti",
       "pii": true
      },
      {
@@ -7134,8 +7578,79 @@
    "format": "email_thread",
    "text": "COMMUNICATIONS: Dante Alighieri Memorial Conference\n\nEmail 1 - Initial Announcement\nSender: history.prof@university.it\nDate: 9 November 2024\n\nWe organize an international seminar for the 700th anniversary of Dante Alighieri's death (1265-1321). Dante is universally recognized as the father of modern Italian language. His masterpiece \"Divina Commedia\" written in early 14th century remains one of history's greatest poems.\n\nDante's life was marked by political exile from Florence. He spent years in Ravenna, Padova and other Italian cities where he composed his greatest works. The political struggles of medieval Florence are reflected throughout his literary production.\n\nEmail 2 - Response from Scholar\nSender: researcher.marco@university.it\nDate: 10 November 2024\n\nI'm very interested in this seminar. I want to present research on \"Vita Nuova\" and the role of courtly love in medieval culture. Dante wrote this work around 1290 when he was young, and it deeply influenced European literary tradition for centuries.\n\nThe philosophical concepts in Dante's early work shaped Renaissance thinking. I'd also like to discuss the role of Beatrice Portinari in inspiring his poetry.\n\nPlease share the preliminary program and speaker list.\n\nBest regards,\nMarco Rossi\n\nEmail 3 - Program Details\nSender: organizer@university.it\nDate: 11 November 2024\n\nWe're delighted about your participation. When Dante died in 1321 in Ravenna, his fame was already firmly established throughout Italy and Europe. Over subsequent centuries, his influence on Italian and world literature became increasingly profound and far-reaching.\n\nThe seminar will span three days with morning sessions on poetry analysis and afternoon sessions on historical context. We will also feature exhibitions of medieval manuscripts.\n\nWe'll finalize the complete schedule by November 20. International scholars from Oxford, Sorbonne, and Universidad de Salamanca have confirmed their participation.\n\nProf. Alessandra Ferrari\nUniversità degli Studi di Firenze\n\nEmail 4 - Additional Participation\nSender: student.giulia@university.it\nDate: 12 November 2024\n\nI register as a participant for the conference. I suggest contacting Professor Giovanni Beltrami who specializes in 14th-century manuscripts. His expertise with rare Dante editions would be invaluable for our seminar.\n\nCan you reach out to him directly? I have his contact information if needed.\n\nRegards,\nGiulia Bruno\n\nEmail 5 - Final Confirmation\nSender: coordination@university.it\nDate: 13 November 2024\n\nThank you for the suggestion regarding Beltrami. We will contact him personally about potential collaboration. His manuscript expertise and preservation knowledge will greatly enhance our seminar and provide unique perspectives on Dante studies.\n\nWe await final confirmation from international speakers who are traveling from France, Spain, and Germany. Accommodation has been arranged at Hotel Medici for visiting scholars.\n\nThe registration fee is €50 for students and €100 for faculty. Early bird discount available until November 18.\n\nBest regards,\nAlessandra",
    "expected": {
-    "sensitivity": "none",
-    "findings": []
+    "sensitivity": "low",
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Dante Alighieri",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Dante",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Beatrice Portinari",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Marco Rossi",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Alessandra Ferrari",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Alessandra",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Giovanni Beltrami",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Beltrami",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Giulia Bruno",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "history.prof@university.it",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "researcher.marco@university.it",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "organizer@university.it",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "student.giulia@university.it",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "coordination@university.it",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -7162,7 +7677,23 @@
    "text": "// Contact details for support\nemail = \"support.team@techapp.it\"\nphone = \"06-4456-7829\"\nticket_ref = \"TKT-2024-987654\"\ncaller_id = \"CC-2024-001\"\n// emergency_line = \"113\"",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "email",
+      "value": "support.team@techapp.it",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "06-4456-7829",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "113",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -7279,7 +7810,18 @@
    "text": "// 著名な歴史学者 E. H. カー（1892-1982）の著作を参照する関数\nfunction getCarReference() {\n  const author = \"Edward Hallett Carr\";\n  const birth = 1892;\n  const death = 1982;\n  return {author, birth, death};\n}",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "E. H. カー",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "Edward Hallett Carr",
+      "pii": true
+     }
+    ]
    }
   },
   {
@@ -7389,7 +7931,18 @@
    "text": "件名：Please contact our customer support team regarding your inquiry\n\n本文：\n\nこんにちは\n\nお客様へ\n\nいつもお世話になっております。\n\nご不明な点やご質問がございましたら、以下の方法でお気軽にお問い合わせください。\n\n【サポート情報】\n電話：0570-123-456（平日 9時～18時）\nメール：support@example.co.jp\nチャット：https://support.example.co.jp/chat\n\nWe are here to help with any questions about our products and services.\n\n弊社のカスタマーサポートチームが丁寧に対応いたします。\n\nよろしくお願いいたします\n\nカスタマーサポート部",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "phone",
+      "value": "0570-123-456",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "support@example.co.jp",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -7419,9 +7972,9 @@
     "sensitivity": "high",
     "findings": [
      {
-      "type": "person_name",
-      "value": "山本太郎",
-      "pii": true
+      "type": "email",
+      "value": "victim-support@legal-aid.example.jp",
+      "pii": false
      },
      {
       "type": "person_name",
@@ -7431,6 +7984,16 @@
      {
       "type": "phone",
       "value": "090-1234-5678",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "沢村龍一",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "山本太郎",
       "pii": true
      }
     ]
@@ -7501,7 +8064,7 @@
     "findings": [
      {
       "type": "person_name",
-      "value": "マーくん",
+      "value": "マー",
       "pii": true
      },
      {
@@ -7712,15 +8275,15 @@
       "pii": true
      },
      {
-      "type": "email",
-      "value": "watabe [dot] kenichi [at] example.com",
-      "pii": true
-     },
-     {
       "type": "number",
       "value": "1234567890123456",
       "pii": true,
       "number_type": "bank_account"
+     },
+     {
+      "type": "email",
+      "value": "watabe [dot] kenichi [at] example.com",
+      "pii": true
      },
      {
       "type": "person_name",
@@ -7728,15 +8291,15 @@
       "pii": true
      },
      {
-      "type": "email",
-      "value": "iwasaki [dot] yumiko [at] example.com",
-      "pii": true
-     },
-     {
       "type": "number",
       "value": "9876543210654321",
       "pii": true,
       "number_type": "bank_account"
+     },
+     {
+      "type": "email",
+      "value": "iwasaki [dot] yumiko [at] example.com",
+      "pii": true
      }
     ]
    }
@@ -7826,7 +8389,7 @@
    "format": "medical_record",
    "text": "【定期健診記録】\n\n施設名：健康管理センター\n記録日：2026年9月27日\n記録番号：REC-2026-456789\n対象者一覧：\n\n検査順序 | 患者氏名 | 検査時間\n1 | 岡本由里子 | 09:00-09:30\n2 | 成田和彦 | 09:30-10:00\n3 | 牧野礼美 | 10:00-10:30\n4 | 大多喜真美 | 10:30-11:00\n5 | 土佐英二郎 | 11:00-11:30\n\n各患者の検査は予定通り進行中です。",
    "expected": {
-    "sensitivity": "low",
+    "sensitivity": "high",
     "findings": [
      {
       "type": "person_name",
@@ -7890,6 +8453,11 @@
      {
       "type": "person_name",
       "value": "太郎",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "田辺",
       "pii": true
      }
     ]
@@ -7956,6 +8524,11 @@
       "type": "person_name",
       "value": "Tim Cool",
       "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "クック",
+      "pii": true
      }
     ]
    }
@@ -7983,13 +8556,13 @@
     "sensitivity": "high",
     "findings": [
      {
-      "type": "person_name",
-      "value": "田上美咲",
+      "type": "phone",
+      "value": "0 9 0 5 4 3 2 1 0 9 8",
       "pii": true
      },
      {
-      "type": "phone",
-      "value": "0 9 0 5 4 3 2 1 0 9 8",
+      "type": "person_name",
+      "value": "田上美咲",
       "pii": true
      }
     ]
@@ -8133,7 +8706,13 @@
    "text": "A: 織田信長について何か知っていますか？\nB: ええ、戦国時代の武将です。1534年生まれ、1582年に亡くなりました。",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "織田信長",
+      "pii": true
+     }
+    ]
    }
   },
   {
@@ -8159,6 +8738,11 @@
    "expected": {
     "sensitivity": "low",
     "findings": [
+     {
+      "type": "phone",
+      "value": "０９０－１２３４－５６７８",
+      "pii": true
+     },
      {
       "type": "phone",
       "value": "０３－９８７６－５４３２",
@@ -8422,7 +9006,7 @@
    "format": "chat",
    "text": "A: 最近の政治情勢についてどう思いますか？\nB: 私は強く現政府の経済政策に反対しています。\nA: 具体的にはどの点ですか？\nB: インフレ対策が不十分だと考えています。金融緩和を続けることは間違いです。私は野党の成長戦略の方が合理的だと思います。\nA: それは参考資料番号DOC-2026-0847を見ましたか？\nB: はい、見ました。彼らの主張は一貫しており、説得力があります。次の選挙では野党を支持する予定です。",
    "expected": {
-    "sensitivity": "high",
+    "sensitivity": "none",
     "findings": []
    }
   },
@@ -8446,7 +9030,13 @@
    "text": "顧客満足度調査レポート\n\n調査期間: 2026年8月1日～9月30日\nサンプル数: 1,200名\n実施機関: マーケティング部門\n調査方法: 電話及びウェブアンケート\n調査対象: 過去1年間の購入顧客\n\nお問い合わせいただいた多くのお客様の連絡先情報を基に、本報告書を作成いたしました。\n\n主なお問い合わせ先:\nカスタマーサポート部門\n電話: 0120-XXXX-XXXX\nメール: customer-survey@example.com\n営業時間: 平日 9:00-18:00\n土日祝: 10:00-17:00\n\n調査内容と結果:\n商品品質: 85点 (昨年比+3点)\nサービス対応: 78点 (昨年比+2点)\n価格妥当性: 72点 (昨年比-1点)\n配送速度: 88点 (昨年比+5点)\nカスタマーサポート: 82点 (昨年比+4点)\n全体満足度: 81点\nリピート意向: 76点\n\n改善提案:\nいただいたご指摘を参考に、カスタマーサービスの向上を進めてまいります。特に価格妥当性に関する改善を優先する予定です。商品の品揃えも拡充されます。配送オプションの多様化も検討中。\n\n緊急連絡先:\n06-XXXX-XXXX (大阪営業所)\n052-XXXX-XXXX (名古屋営業所)\n011-XXXX-XXXX (札幌営業所)\n092-XXXX-XXXX (福岡営業所)\n098-XXXX-XXXX (那覇営業所)\n\n本調査結果は今後の経営方針に反映される予定です。品質向上への投資も拡大する方針が決定されました。顧客サービスの革新も検討中です。新しいプログラムも実装予定。\n\n今後の施策:\n- カスタマーアプリの開発と提供\n- チャットボットサポートの導入と運用\n- 24時間対応体制の構築と実現\n- SNS での即時対応と相談受付\n\n感謝とお願い:\nご協力いただいた多くのお客様に心より感謝申し上げます。今後もより良いサービス提供に努めてまいります。お客様の声は弊社の最大の資産です。皆様のご意見は弊社の改善の動力です。\n\n業界動向と競争状況:\nウェブコマース市場は年20%で成長しており、競争が激化している。カスタマーサービスの質が競争力の鍵となっている。オムニチャネル戦略の実装が進んでいる。デジタルマーケティングへの投資も増加している。データ分析に基づく顧客理解が重要になっている。\n\nカスタマーエクスペリエンスの向上戦略:\n顧客満足度の向上は、単なるサービス改善にとどまらず、経営戦略の中核である。顧客一人ひとりの個別ニーズへの対応が求められている時代である。デジタル技術を活用した顧客体験の最適化が競争力の源泉となる。長期的な顧客ロイヤルティの構築が企業価値の向上につながる。今後さらにカスタマーサービスの質的向上が急務である。",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "email",
+      "value": "customer-survey@example.com",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -8502,6 +9092,11 @@
      {
       "type": "person_name",
       "value": "田中翔",
+      "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "2891",
       "pii": true
      }
     ]
@@ -8616,6 +9211,12 @@
       "type": "phone",
       "value": "053-1234-5678",
       "pii": true
+     },
+     {
+      "type": "number",
+      "value": "4 4 6 - 8 7 0 1 - 2 2 0 0 4 4",
+      "pii": true,
+      "number_type": "national_id"
      }
     ]
    }
@@ -8750,7 +9351,13 @@
    "text": "조선시대 과학자 이순신 장군은 해전에서 뛰어난 전술로 알려져 있다. 그는 1598년에 역사 속으로 사라졌다.",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "이순신",
+      "pii": true
+     }
+    ]
    }
   },
   {
@@ -8865,10 +9472,24 @@
       "pii": true
      },
      {
-      "type": "number",
+      "type": "email",
+      "value": "hong.gildong@email.com",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "min.junghun@email.com",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "park.junho@email.com",
+      "pii": true
+     },
+     {
+      "type": "phone",
       "value": "0 1 0 - 7 8 9 2 - 0 0 0 5",
-      "pii": true,
-      "number_type": "national_id"
+      "pii": true
      }
     ]
    }
@@ -8895,7 +9516,23 @@
    "text": "긴급 연락처 공지\n\n이 편지는 개인이 아닌 조직의 연락처만을 포함합니다.\n\n문의: 010-4567-8901\n팩스: 02-1234-5678\n이메일: contact@organization.kr\n\n업무 시간: 월-금 09:00-18:00",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "phone",
+      "value": "010-4567-8901",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "02-1234-5678",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "contact@organization.kr",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -9129,7 +9766,7 @@
    "format": "sns_post",
    "text": "드디어 수술을 받았어요! 흉부 외과 의사 선생님께 정말 감사합니다.\n회복 중이예요. 주문번호 2026-ORDER-4521을 남겨봅니다.\n#수술 #회복중 #감사",
    "expected": {
-    "sensitivity": "high",
+    "sensitivity": "none",
     "findings": []
    }
   },
@@ -9157,8 +9794,78 @@
    "format": "medical_record",
    "text": "병원 일일 환자 등록 현황\n\n날짜: 2026년 9월 21일\n병원명: 서울 중앙 병원\n기록 담당: 의료 기록팀\n\n오전 외래 진료\n\n진료 시간 | 환자명 | 진료과 | 병원 접수번호\n09:15 | 박민준 | 내과 | 2026-09-0001\n09:30 | 이수민 | 정형외과 | 2026-09-0002\n10:00 | 정아영 | 피부과 | 2026-09-0003\n10:45 | 최진호 | 외과 | 2026-09-0004\n11:15 | 강영희 | 안과 | 2026-09-0005\n\n오후 외래 진료\n\n진료 시간 | 환자명 | 진료과 | 비고\n14:00 | 김종수 | 신경과 | 정기 진료\n14:30 | 윤지은 | 이비인후과 | 초진\n15:15 | 허준석 | 내과 | 재진료\n16:00 | 조병준 | 정형외과 | 추적 진료\n\n응급실 방문\n\n내용 | 환자명 | 도착 시간 | 상태\n상처 치료 | 박지수 | 13:25 | 경증\n급성 복통 | 이현정 | 15:50 | 중증\n\n입원 환자 현황\n\n병동 | 환자명 | 입원일 | 담당 의사\n307호 | 고영준 | 2026-09-19 | 김소영\n408호 | 정수진 | 2026-09-20 | 이재민\n\n방문객 기록\n\n다음 정보는 기록 번호 2026-REC-5432와 관련됨.\n- 환자: 고영준\n- 방문자: 고지환 (형)\n- 방문 시간: 오후 3시\n- 방문 허가 번호: 2026-09-VIS-001\n\n일일 진료 통계\n- 총 외래 진료: 11명\n- 응급실 방문: 2명\n- 입원 중인 환자: 2명\n- 신규 등록: 2명",
    "expected": {
-    "sensitivity": "low",
+    "sensitivity": "high",
     "findings": [
+     {
+      "type": "person_name",
+      "value": "박민준",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이수민",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "정아영",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "최진호",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "강영희",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "김종수",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "윤지은",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "허준석",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "조병준",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "박지수",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이현정",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "고영준",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "정수진",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "김소영",
+      "pii": true
+     },
      {
       "type": "person_name",
       "value": "이재민",
@@ -9166,7 +9873,7 @@
      },
      {
       "type": "person_name",
-      "value": "김소영",
+      "value": "고지환",
       "pii": true
      }
     ]
@@ -9238,6 +9945,11 @@
     "findings": [
      {
       "type": "person_name",
+      "value": "이재훈",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "박준영",
       "pii": true
      },
@@ -9298,7 +10010,12 @@
       "type": "number",
       "value": "7805-2310-234567",
       "pii": true,
-      "number_type": "national_id"
+      "number_type": "my_number"
+     },
+     {
+      "type": "email",
+      "value": "myaccount@email.com",
+      "pii": true
      }
     ]
    }
@@ -9429,7 +10146,13 @@
    "text": "로그 기록\n[2024-01-15 14:32] 사용자 'Sunny' 로그인\n[2024-01-15 14:33] IP: 203.0.113.45",
    "expected": {
     "sensitivity": "low",
-    "findings": []
+    "findings": [
+     {
+      "type": "person_name",
+      "value": "Sunny",
+      "pii": true
+     }
+    ]
    }
   },
   {
@@ -9493,6 +10216,16 @@
     "findings": [
      {
       "type": "person_name",
+      "value": "이",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "강명수",
+      "pii": true
+     },
+     {
+      "type": "person_name",
       "value": "정현미",
       "pii": true
      }
@@ -9521,7 +10254,13 @@
    "text": "Subject: 기술 지원\n\ninfo@techsupport.com에 문의하세요.",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "email",
+      "value": "info@techsupport.com",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -9630,17 +10369,22 @@
      },
      {
       "type": "person_name",
-      "value": "이",
-      "pii": true
-     },
-     {
-      "type": "person_name",
       "value": "미경",
       "pii": true
      },
      {
       "type": "person_name",
       "value": "준호",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "박",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "이",
       "pii": true
      }
     ]
@@ -9741,6 +10485,11 @@
      {
       "type": "person_name",
       "value": "구로다 타로우",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "쿠로다 타로우",
       "pii": true
      },
      {
@@ -10144,7 +10893,38 @@
    "text": "技术咨询和系统集成服务合同 - 完整版本\n\n合同编号：SC-2026-08845\n合同版本：1.0 Final\n签署日期：2026-09-20\n生效日期：2026-09-21\n合同期限：1年\n\n联系方式和通讯信息\n供应商公司名称：商业咨询公司\n甲方公司电话：010-8888-8888\n甲方公司电子邮件：info [at] businesscorp [dot] com\n甲方传真：010-8888-8887\n乙方技术支持热线：010-8888-8889\n乙方电子邮件：support [at] businesscorp [dot] com\n乙方紧急联系电话：0086-138-9876-5432\n\n合同当事人和背景\n甲方（客户）：大型企业集团\n乙方（供应商）：专业技术咨询公司\n\n第一条：服务范围和内容\n供应商（以下简称乙方）同意为客户（以下简称甲方）提供高水平的专业技术咨询和系统集成服务。服务包括但不限于系统设计、实施、维护和持续的技术支持。\n\n第二条：付款条款和方式\n甲方应在收到乙方发票后的三十天内通过银行转账支付服务费用。付款应汇至乙方指定的银行账户。分期付款计划可根据双方协议制定。\n\n第三条：保密条款\n双方同意对在合同执行期间获得的所有机密信息保持严格的保密。这包括但不限于技术规格、业务计划、客户名单和源代码。\n\n第四条：知识产权\n在服务过程中由乙方创建的所有文档、代码、设计和工作文档的所有权属于甲方。乙方不得将这些文档或代码用于任何其他项目目的或转让给第三方。\n\n第五条：责任和风险限制\n乙方的总责任不超过一个合同年度的服务费用总额。任何情况下乙方都不承担间接损害赔偿责任和商业利益损失。\n\n第六条：合同期限和更新\n本合同自双方正式签署之日起生效，初期期限为一年。合同可根据双方协议按照相同条款续期。\n\n第七条：争议解决机制\n任何争议应通过友好协商解决。如无法通过协商解决，应提交仲裁委员会进行仲裁。\n\n第八条：提前终止条款\n任何一方可在提前三十天书面通知对方后终止本合同。紧急情况下可提前终止。\n\n签署人信息和生效时间\n甲方代表：_______   日期：_______\n乙方代表：_______   日期：_______\n见证人：_______\n\n第九条：保险和风险管理\n乙方应为其员工购买适当的职业责任保险和健康保险。任何保险索赔应立即通知甲方。\n\n第十条：知识转移和文档移交\n在合同终止时，乙方应将所有已完成的工作文档、代码和知识转移给甲方。所有硬拷贝文档应以安全方式销毁。\n\n第十一条：法律和管辖权\n本合同受中华人民共和国法律管辖。任何诉讼应在中国法院进行。\n\n附件A：服务规范和交付时间表\n项目1：系统设计和规划 - 第1-2个月\n项目2：系统实施和开发 - 第3-6个月\n项目3：测试和优化 - 第7-8个月\n项目4：培训和文档 - 第9-12个月\n\n本合同由双方法律代表见证并确认其有效性。",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "phone",
+      "value": "010-8888-8888",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "info [at] businesscorp [dot] com",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "010-8888-8887",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "010-8888-8889",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "support [at] businesscorp [dot] com",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "0086-138-9876-5432",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -10233,7 +11013,7 @@
      {
       "type": "person_name",
       "value": "孔子",
-      "pii": false
+      "pii": true
      }
     ]
    }
@@ -10359,6 +11139,11 @@
       "number_type": "bank_account"
      },
      {
+      "type": "phone",
+      "value": "010-6789-5432",
+      "pii": true
+     },
+     {
       "type": "person_name",
       "value": "王",
       "pii": true
@@ -10472,6 +11257,11 @@
       "type": "person_name",
       "value": "何霞",
       "pii": true
+     },
+     {
+      "type": "phone",
+      "value": "010-5678-9999",
+      "pii": false
      }
     ]
    }
@@ -10544,7 +11334,7 @@
    "format": "email",
    "text": "主题：系统日志报告\n\n亲爱的管理员，\n\n以下是本月的系统访问日志摘要。\n\n访问统计：\n总页面访问数：2,450\n唯一访问者：850\n平均停留时间：3分钟\n\n设备识别信息：\n用户A的设备ID：d41d8cd98f00b204e9800998ecf8427e\n用户B的Cookie ID：abc123def456ghi789jkl012mno345\n用户C的IP地址：192.168.1.100\n\n访问峰值时段：\n下午2-4点，流量达到最高\n\n系统状态：\n正常运行\n\n报告编号：RPT-2026-05432\n\n请审阅此报告并提供反馈。\n\n谢谢。",
    "expected": {
-    "sensitivity": "none",
+    "sensitivity": "low",
     "findings": []
    }
   },
@@ -10766,6 +11556,11 @@
       "type": "person_name",
       "value": "王强",
       "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "强",
+      "pii": true
      }
     ]
    }
@@ -10803,7 +11598,7 @@
      },
      {
       "type": "person_name",
-      "value": "李主席",
+      "value": "李",
       "pii": true
      }
     ]
@@ -10831,7 +11626,7 @@
    "format": "log",
    "text": "应用服务器日志 - 2026-09-27\n\n[2026-09-27 12:30:00] 启动请求处理队列\n队列名称: request_processor_main\n工作进程: 4\n\n[2026-09-27 12:35:15] 接收API请求\n客户端IP地址: 203.0.113.78\n请求方法: POST\n用户代理: Mozilla/5.0 Windows\n\n[2026-09-27 12:35:16] 认证检查\n客户端Cookie标识: auth_token_ux9k2m4p\n设备MAC地址: 00:1A:2B:3C:4D:5E\n\n[2026-09-27 12:35:20] 业务逻辑处理\n缓存命中率: 78.3%\n数据库查询: 5个\n返回状态: 200 OK\n\n[2026-09-27 12:35:21] 请求完成\n响应时间: 1205ms\n会话结束",
    "expected": {
-    "sensitivity": "none",
+    "sensitivity": "low",
     "findings": []
    }
   },
@@ -10864,6 +11659,11 @@
      {
       "type": "person_name",
       "value": "王轩",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "小轩",
       "pii": true
      },
      {
@@ -10929,7 +11729,18 @@
    "text": "致尊敬的客户：\n\n感谢您的咨询。\n\n如需进一步了解我们的产品和服务，请联系：\n\n客户服务部\n电话：400-800-1234\n电子邮箱：support@company.com\n营业时间：周一至周五 9:00-18:00\n\n此致\n敬礼",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "phone",
+      "value": "400-800-1234",
+      "pii": false
+     },
+     {
+      "type": "email",
+      "value": "support@company.com",
+      "pii": false
+     }
+    ]
    }
   },
   {
@@ -10988,13 +11799,13 @@
       "pii": true
      },
      {
-      "type": "person_name",
-      "value": "刘芬",
+      "type": "phone",
+      "value": "138·2847·5619",
       "pii": true
      },
      {
-      "type": "phone",
-      "value": "138·2847·5619",
+      "type": "person_name",
+      "value": "刘芬",
       "pii": true
      },
      {
@@ -11081,7 +11892,7 @@
    "format": "news_article",
    "text": "佛教慈善机构工作人员遭查\n\n根据权威消息，有关部门对多家宗教慈善机构的账务进行了核查。\n\n具体涉及的人员包括：\n该寺院的常务管理员马勇率领一支财务审计团队，对过去三年的支出账目进行了详细核实。检查涵盖了捐赠收入、维修支出和人员薪资。\n\n调查结果显示，大部分账目记录完整准确。但也发现了一些不规范之处，包括几笔未详细记录的小额支出。\n\n寺院负责人表示，他们完全接受审计结果，并承诺今后进一步规范财务管理。\n\n相关部门表示，这是对宗教机构定期监管的一部分，旨在确保资金安全。",
    "expected": {
-    "sensitivity": "low",
+    "sensitivity": "high",
     "findings": [
      {
       "type": "person_name",
@@ -11112,17 +11923,32 @@
    "format": "medical_record",
    "text": "历史医学档案 - 已故患者档案库\n\n档案管理信息：\n档案号：MED-HIS-1936-001\n档案类别：历史医学参考文献，具有重要教学意义\n档案建立日期：1936年10月25日\n档案保存期限：永久保存\n档案管理单位：北京协和医院病史室\n档案所有权：医院档案管理部门\n\n患者基本信息：\n医学名字：鲁迅（著名作家和思想家的笔名）\n真实姓名：周树人\n出生日期：1881年9月25日（农历八月初四）\n去世日期：1936年10月19日（享年55岁）\n性别：男性\n原籍地：浙江省绍兴市\n职业身份：著名文学家、思想家、文学批评家、社会活动家\n\n病历记录（1936年10月）：\n患者因肺部疾病进行长期医学治疗。根据医学历史文献记载，该患者在1936年秋季病情严重恶化。患者生前接受了多位医学专家和著名医生的诊疗和护理。本档案详细记录了患者生命最后阶段的医疗过程。\n\n临床表现和主要医学症状：\n1. 长期慢性咳嗽：症状明显，特别是在夜间严重加重\n2. 严重的呼吸困难：呼吸音有明显哮鸣\n3. 身体明显消瘦：体重大幅下降，营养状态差\n4. 痰中带血：血痰现象频繁\n5. 夜间盗汗现象：非常严重\n6. 胸部疼痛：符合胸膜炎的症状表现\n7. 全身乏力：疲劳感非常明显\n\n诊断和临床分析过程：\n经过多位知名医学专家的详细检查和诊断分析，确定患者患有肺结核病。当时的医学术语称为\"肺痨\"。X光片检查显示双肺上叶均有典型的病变表现和病灶特征。病情分类为活动性肺结核，并伴有继发感染和其他并发症。\n\n诊疗过程详细记录（1936年9月至10月）：\n医疗团队组成：\n- 主任医生：萧龙友（著名医学家）\n- 参与医生：王玉成等多位专科医生\n- 护理团队：专业护士多名\n\n诊疗方案：采用中西医结合的综合治疗方法\n用药记录：多种传统中医药方配方和必要的西方药物\n物理治疗：定期进行医学检查和临床观察\n营养支持：特殊的膳食安排和营养补充\n\n病情进展阶段性记录：\n阶段一（9月末）：病情相对保持稳定，但患者的基础身体状况已经极其虚弱\n阶段二（10月中旬）：病情开始明显加重恶化，症状急速恶化\n阶段三（10月18日）：病情急剧恶化，患者自觉症状严重不适加剧\n阶段四（10月19日凌晨）：患者在凌晨5时许突然发生急性病情变化，心率极速加快，呼吸衰竭现象突然出现。尽管医疗团队进行了全力的抢救和救治努力，但最终仍未能挽救患者生命。患者于当日上午8时许正式宣布死亡。\n\n死亡原因医学分析：\n直接死亡原因：肺部结核病导致的急性呼吸衰竭\n继发因素：心脏循环功能衰竭和多脏器功能减退\n基础疾病：长期慢性肺结核和全身性虚弱\n\n医学和历史价值评估：\n患者的医学案例对现代医学研究和医学教育有重要的历史参考价值。该患者在文学、思想和文化领域的杰出贡献对中国和世界文化产生了深远的影响。此医学档案保存用于医学教育、历史研究和文化传承之用。患者的故事也体现了当时结核病治疗的局限性和医学发展的进步。\n\n后续处理和社会反响：\n遗体处理：遗体进行了火葬\n纪念活动：在上海举行了大规模的悼念仪式，中国文化界众多知名人士、文学家、思想家和社会名流参加\n档案评价：这份档案具有非常重要的医学和文化历史价值\n\n档案保存和管理：\n档案保存单位：北京协和医院病史室和中国医学科学院\n档案管理负责人：李医生（年代久远，已更新为现任管理员）\n档案管理员联系方式：医院档案部门\n最后档案更新日期：1936年10月25日\n数字化处理状态：已进行扫描并保存",
    "expected": {
-    "sensitivity": "none",
+    "sensitivity": "low",
     "findings": [
      {
       "type": "person_name",
       "value": "鲁迅",
-      "pii": false
+      "pii": true
      },
      {
       "type": "person_name",
       "value": "周树人",
-      "pii": false
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "萧龙友",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "王玉成",
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "李",
+      "pii": true
      }
     ]
    }
@@ -11192,8 +12018,18 @@
       "pii": true
      },
      {
+      "type": "email",
+      "value": "li.yf@company.com",
+      "pii": true
+     },
+     {
       "type": "person_name",
       "value": "王晓琪",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "wang.xq@company.com",
       "pii": true
      },
      {
@@ -11202,8 +12038,18 @@
       "pii": true
      },
      {
+      "type": "email",
+      "value": "zhang.p@company.com",
+      "pii": true
+     },
+     {
       "type": "person_name",
       "value": "陈思韵",
+      "pii": true
+     },
+     {
+      "type": "email",
+      "value": "chen.sy@company.com",
       "pii": true
      },
      {
@@ -11213,28 +12059,13 @@
      },
      {
       "type": "email",
-      "value": "li.yf@company.com",
-      "pii": false
-     },
-     {
-      "type": "email",
-      "value": "wang.xq@company.com",
-      "pii": false
-     },
-     {
-      "type": "email",
-      "value": "zhang.p@company.com",
-      "pii": false
-     },
-     {
-      "type": "email",
-      "value": "chen.sy@company.com",
-      "pii": false
-     },
-     {
-      "type": "email",
       "value": "sun.r@company.com",
-      "pii": false
+      "pii": true
+     },
+     {
+      "type": "person_name",
+      "value": "高立志",
+      "pii": true
      }
     ]
    }
@@ -11294,7 +12125,18 @@
    "text": "新订单通知\n\n订单号：ORD-2026-78432\n\n感谢您的订购！\n\n请回复至：order.reply@store.local\n或拨打：020-8888-1234\n\n我们会尽快处理您的订单。",
    "expected": {
     "sensitivity": "none",
-    "findings": []
+    "findings": [
+     {
+      "type": "email",
+      "value": "order.reply@store.local",
+      "pii": false
+     },
+     {
+      "type": "phone",
+      "value": "020-8888-1234",
+      "pii": false
+     }
+    ]
    }
   },
   {

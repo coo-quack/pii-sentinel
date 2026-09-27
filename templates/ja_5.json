@@ -1,0 +1,214 @@
+{
+  "templates": [
+    {
+      "id": "f_ja_031",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "race_or_ethnic_origin",
+      "text": "捜査票\n日時：{DATE}\n被疑者：{P1}\nアラブ系コミュニティの指導者リスト確認対象"
+    },
+    {
+      "id": "f_ja_032",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "{P1}さんが本日の党討論会で発言しました。不正な選挙制度についての強い懸念を表明し、民主化改革と市民参加の拡大の必要性をはっきりと訴えました。多くの党員から共鳴の声が上がり、質疑応答の時間が延長されました。次週の総合討論会への出演も予定されています。"
+    },
+    {
+      "id": "f_ja_033",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "会議室B {DATE} 13:00-14:30\n参加者：{P1}、{P2}\n議題：次期選挙戦略\n{P1}は現政権批判を強調"
+    },
+    {
+      "id": "f_ja_034",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "race_or_ethnic_origin",
+      "text": "チェックイン票\n氏名：{P1}\n団体：アジア系文化交流センター参加者グループ"
+    },
+    {
+      "id": "f_ja_035",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "件名：給付金申請について\n\n{P1.s}様へ\n\nイスラム教関連施設の災害保険請求の手続きが完了いたしました。"
+    },
+    {
+      "id": "f_ja_036",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "identifier_only_sensitive",
+      "text": "面接記録\n患者番号：{P1.id}\nアルツハイマー型認知症と診断され、施設入居予定。今後の介護計画を策定中。"
+    },
+    {
+      "id": "f_ja_037",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "拝啓\n\n{P1}様の配偶者様の初診予約をお受けいたしました。同性配偶者としてのご家族情報を更新させていただきます。今後ともよろしくお願いいたします。"
+    },
+    {
+      "id": "f_ja_038",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "race_or_ethnic_origin",
+      "text": "大会運営委員会 {DATE}\n出席：{P1}、{P2}\nアフリカ系コミュニティと協力したチャリティマラソン計画について協議"
+    },
+    {
+      "id": "f_ja_039",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "採用面接記録\n{DATE}\n\n応募者：{P1}\n職種：カレー食品コーナースタッフ\n面接担当：{P2}\n時間：10:00-11:30\n場所：採用面接センター\n\n面接での対話では、ビザの有効期限や在留資格の更新予定について詳しく確認された。{P1}は現在の就労ビザの更新申請手続きを進めており、2ヶ月以内に完了予定と述べた。本国からの家族呼び寄せ計画や帰国予定について質問された。{P1}は今後3年間は日本に滞在予定であることを確認した。雇用契約成立時には新しい在留カード写真の提出が必要である旨説明した。その他の就労条件について確認。審査判定：採用予定。労働条件確認用紙を次回面接で提出。背景チェック完了。"
+    },
+    {
+      "id": "f_ja_040",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "第3回マラソン大会委員会 {DATE}\n出席：{P1}、{P2}、{P3}\n\n議論：政府の新スポーツ予算削減方針に対する懸念。{P1}は現政権の文化施設廃止判断を強く批判し、市民参加型の大会継続が困難になる可能性を指摘した。"
+    },
+    {
+      "id": "f_ja_041",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "{DATE} 曇り時々晴れ\n\n今日も学校終了後に聖書の勉強会に参加した。{P1}先生の講義は本当に力強かった。神の愛についての深く思慮深い解釈を聞いて、涙が出そうになった。学校の宗教教育について、保護者の中でも様々な強い意見があるようだ。いつかクリスチャン・スクールへの転校も真剣に考えてみたいと思っている。放課後の賛美歌の練習時間が私の人生で一番好きな時間であることに気づいた。信仰とは何か、本当の祈りとは何か、毎日深く思索している。来週は聖書研究会のリーダーシップトレーニングに参加予定。教会での思想的背景について深い理解が必要だ。{P2}姉妹とも一緒に参加予定。素晴らしい一週間になるだろうと期待している。楽しみだ。"
+    },
+    {
+      "id": "f_ja_042",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "16:45\nエージェント：新しい求人案件がありました\n\n{P1}：申し訳ありません。現在、うつ病治療中のため、すぐには応募できません。"
+    },
+    {
+      "id": "f_ja_043",
+      "lang": "ja",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "{DATE}\nホテル滞在記\nルーム番号：{P1.id}\nコンシェルジュのサービスは素晴らしかった。チェックアウト時間も正確だった。"
+    },
+    {
+      "id": "f_ja_044",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "【求人公告】\n進歩的政治活動を支援するメディア企画スタッフ\n左派系シンクタンクとの連携プロジェクト\n{P1}さんなど複数の運動家と協働予定"
+    },
+    {
+      "id": "f_ja_045",
+      "lang": "ja",
+      "sensitivity": "none",
+      "cell": "numbers_of_no_person",
+      "text": "ホテル設備工事申請書\n\n施設：{ORG}\nシステムID：{HASH}\nサーバー設備UIDコード：{HASH}\nネットワーク設定バックアップ：{HASH}\n会社登録番号：{ORG.regno}\n施設の振込先銀行口座：{ORG.bank}"
+    },
+    {
+      "id": "f_ja_046",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "marriage_or_partnership_record",
+      "text": "{DATE}\nメッセージグループ「秋の農場」\n\n{P1}：朗報です。{P2}とついに婚約が決まりました。\n{P3}：おめでとう。夫婦で農業を続けるんですね。\n{P1}：はい。{P2}も農業が大好きなので、来年春の挙式を予定しています。農場での自然に囲まれた結婚式になるでしょう。\n{P3}：素敵だ。家族一同での祝宴も計画しておきます。{P2}の両親とも計画を共有しましたか。\n{P1}：本当にありがとうございます。{P2}の両親も大変喜んでいます。来月一度ご両親にも会わせるつもりです。農業の話も含めて。{P2}の家族は農業経営経験があるそうです。先輩としてのアドバイスも期待しています。心待ちにしています。"
+    },
+    {
+      "id": "f_ja_047",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "marriage_or_partnership_record",
+      "text": "【お知らせ】\n本店店員{P1}と{P2}の婚姻が成立いたしました。\nお二人の幸せをお祈り申し上げます。"
+    },
+    {
+      "id": "f_ja_048",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "criminal_record_or_victim",
+      "text": "ビザ申請調査票\n申請者：{P1}\nパスポート番号：{P1.passport}\n申請日：{DATE}\n\n申告事項：\n犯罪歴なし ☒\nセキュリティクリアランス確認：完了\nボーダー統計情報チェック：完了\n在外公館職員：{P2.s}\nサインイン時刻：{DATE}\n申請区分：通常就労ビザ"
+    },
+    {
+      "id": "f_ja_049",
+      "lang": "ja",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "件名：入居予定者の情報提供\n\nご家族様へ\n\n患者ID：{P1.id}\nの入居予定日は{DATE}です。\n必要書類をお持ちください。ご質問や特別なご要望があれば、いつでもお問い合わせください。スタッフ一同、心よりお待ちしております。"
+    },
+    {
+      "id": "f_ja_050",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "配送伝票\nお客様：{P1}\nアイテム：ユダヤ教の祭日用食品セット\n配達先：宗教コミュニティセンター {PLACE}\n運送会社：{ORG}"
+    },
+    {
+      "id": "f_ja_051",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "trade_union",
+      "text": "雇用条件票\nドライバー：{P1}\n配置先：{ORG}\n労働組合加入申告書\n所属組合：物流労働組合全国本部"
+    },
+    {
+      "id": "f_ja_052",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "formal_hr_record",
+      "text": "懲戒処分記録\nケース番号：{CODE}\n従業員：{P1}\n処分日：{DATE}\n\n処分内容：パワーハラスメント容疑に基づく調査完了。部分的な事実認定。被害者との和解が成立。3ヶ月の降格処分と研修参加義務。"
+    },
+    {
+      "id": "f_ja_053",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "国際送金確認書\n{DATE}\n\n送金者：{P1}\nパスポート番号：{P1.passport}\n住所：{P1.addr}\n受取人：{P1.s}の母親\nインド、{PLACE}\n\n送金金額：{AMOUNT}円\n送金目的：家族仕送り\n送金方法：銀行電信送金\n手数料：送金者負担\n\n規制対象国への国際送金であります。送金者の滞在資格（就労ビザ）および就労許可内容の確認が正式に完了し、送金が承認されました。送金者の家族扶養親族の確認もなされ、納税記録を照合しました。本送金は海外送金シンジケート法に基づき記録保管されます。FATCA報告書類も完備。送金者本人の在籍確認済み。このたびはお手続きいただきました。以上。"
+    },
+    {
+      "id": "f_ja_054",
+      "lang": "ja",
+      "sensitivity": "none",
+      "cell": "numbers_of_no_person",
+      "text": "議事録 {DATE}\n組織コード：{CODE}\nシステムUUID：{HASH}\nバージョン管理ID：{HASH}\n\nインタビュー内容：労働環境改善に関する実地調査。\nデータバックアップID：{HASH}\n組合本部取引銀行口座：{ORG.bank}"
+    },
+    {
+      "id": "f_ja_055",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "criminal_record_or_victim",
+      "text": "件名：契約解除について\n\n{P1}様へ\n\n過去の暴力事件の記録に基づき、クラブの方針により契約を終了いたします。"
+    },
+    {
+      "id": "f_ja_056",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "table_of_numbers",
+      "text": "{DATE}\n新メンバー登録\n| 名前 | マイナンバー | クレジット | パスポート |\n| {P1} | {P1.govid} | {P1.card} | {P1.passport} |"
+    },
+    {
+      "id": "f_ja_057",
+      "lang": "ja",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "{DATE}\nオフィス日誌\n\n本日も従業員ID {P1.id} さんと{P2.id} さんがプロジェクトミーティングに参加。新しいアルゴリズムについて白熱した議論があった。両者の意見は異なるが、非常に建設的で実りある対話ができた。来週のデモに向けて、両名とも準備を急ピッチで進めている。"
+    },
+    {
+      "id": "f_ja_058",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "formal_hr_record",
+      "text": "人事処分通知\nケースID：{CODE}\n職員：{P1}\n処分日：{DATE}\n\n処分内容：違法献金隠蔽への関与疑い。党の行動規範および服務規律に対する重大な違反。3ヶ月間の職務停止処分。党の倫理委員会による最終審査は完了。"
+    },
+    {
+      "id": "f_ja_059",
+      "lang": "ja",
+      "sensitivity": "none",
+      "cell": "numbers_of_no_person",
+      "text": "【重要】農協システムメンテナンス予定\nサーバーID：{HASH}\n企業銀行口座：{ORG.bank}\n法人登録番号：{ORG.regno}\nメンテナンス予定：{DATE}"
+    },
+    {
+      "id": "f_ja_060",
+      "lang": "ja",
+      "sensitivity": "high",
+      "cell": "genetic_or_biometric",
+      "text": "拝啓\n\nご搭乗ありがとうございました。\n\n{P1}様\n\n当便の乗客セキュリティスクリーニングでご本人の虹彩認証生体データを収集させていただきました。生体認証航空保安システムへのご登録が正式に完了いたしましたので、お知らせいたします。今後のご利用時にはこのデータが使用される予定です。"
+    }
+  ]
+}

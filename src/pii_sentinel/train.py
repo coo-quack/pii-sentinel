@@ -5,7 +5,6 @@ python -m pii_sentinel.train --data data --out <output dir> [--epochs 3] [--devi
 
 import argparse
 import json
-import math
 import random
 import time
 from pathlib import Path
@@ -14,32 +13,61 @@ import torch
 from torch.nn import functional as F
 
 from . import model as M
-from .data import IGNORE, encode, read_jsonl
+from .data import IGNORE, encode_windows, read_jsonl
 from .labels import BIO
 
 
-def batches(items, size, rng):
-    # Group by length so padding stays small, then shuffle the batches.
-    order = sorted(range(len(items)), key=lambda i: len(items[i]["input_ids"]))
-    groups = [order[i : i + size] for i in range(0, len(order), size)]
+def groups_by_length(items, size, max_tokens):
+    """Batches of documents of similar length, at most `size` windows and `max_tokens` padded tokens each,
+    so a batch of long documents holds fewer of them."""
+
+    def width(i):
+        return max(len(w["input_ids"]) for w in items[i]["windows"])
+
+    order = sorted(range(len(items)), key=lambda i: (len(items[i]["windows"]), width(i)))
+    groups, cur, windows, wide = [], [], 0, 0
+    for i in order:
+        n, w = len(items[i]["windows"]), width(i)
+        if cur and (windows + n > size or (windows + n) * max(wide, w) > max_tokens):
+            groups.append(cur)
+            cur, windows, wide = [], 0, 0
+        cur.append(i)
+        windows, wide = windows + n, max(wide, w)
+    if cur:
+        groups.append(cur)
+    return groups
+
+
+def batches(items, groups, rng):
+    groups = list(groups)
     rng.shuffle(groups)
     for g in groups:
         yield [items[i] for i in g]
 
 
 def collate(batch, pad_id, device):
-    width = max(len(b["input_ids"]) for b in batch)
-    ids = torch.full((len(batch), width), pad_id, dtype=torch.long)
-    mask = torch.zeros((len(batch), width), dtype=torch.long)
-    labels = torch.full((len(batch), width), IGNORE, dtype=torch.long)
-    for i, b in enumerate(batch):
-        n = len(b["input_ids"])
-        ids[i, :n] = torch.tensor(b["input_ids"])
+    """Windows of all documents in the batch as rows, and for each row the document it belongs to."""
+    windows = [(d, w) for d, b in enumerate(batch) for w in b["windows"]]
+    width = max(len(w["input_ids"]) for _, w in windows)
+    ids = torch.full((len(windows), width), pad_id, dtype=torch.long)
+    mask = torch.zeros((len(windows), width), dtype=torch.long)
+    labels = torch.full((len(windows), width), IGNORE, dtype=torch.long)
+    for i, (_, w) in enumerate(windows):
+        n = len(w["input_ids"])
+        ids[i, :n] = torch.tensor(w["input_ids"])
         mask[i, :n] = 1
-        labels[i, :n] = torch.tensor(b["labels"])
+        labels[i, :n] = torch.tensor(w["labels"])
+    doc_index = torch.tensor([d for d, _ in windows])
     sens = torch.tensor([b["sensitivity"] for b in batch])
     cats = torch.tensor([b["categories"] for b in batch])
-    return ids.to(device), mask.to(device), labels.to(device), sens.to(device), cats.to(device)
+    return (
+        ids.to(device),
+        mask.to(device),
+        labels.to(device),
+        sens.to(device),
+        cats.to(device),
+        doc_index.to(device),
+    )
 
 
 def losses(out, labels, sens, cats):
@@ -51,15 +79,23 @@ def losses(out, labels, sens, cats):
     )
 
 
+def forward(model, ids, mask, sens, cats, doc_index, doc_pooling):
+    """window_max: the document heads see all windows of a document pooled together. per_window: every
+    window is judged on its own and carries its document's labels."""
+    if doc_pooling == "window_max":
+        return model(ids, mask, doc_index, len(sens)), sens, cats
+    return model(ids, mask), sens[doc_index], cats[doc_index]
+
+
 @torch.no_grad()
-def evaluate(model, items, pad_id, device, dtype, batch_size=32):
+def evaluate(model, items, pad_id, device, dtype, doc_pooling, batch_size=32):
     model.eval()
     tp = fp = fn = 0
     sens_ok = cat_ok = cat_n = n = 0
     for i in range(0, len(items), batch_size):
-        ids, mask, labels, sens, cats = collate(items[i : i + batch_size], pad_id, device)
+        ids, mask, labels, sens, cats, doc_index = collate(items[i : i + batch_size], pad_id, device)
         with torch.autocast(device_type=device.type, dtype=dtype, enabled=device.type == "cuda"):
-            out = model(ids, mask)
+            out, sens, cats = forward(model, ids, mask, sens, cats, doc_index, doc_pooling)
         pred = out["span"].argmax(-1)
         valid = labels != IGNORE
         tp += ((pred == labels) & valid & (labels != 0)).sum().item()
@@ -86,8 +122,22 @@ def main(argv=None):
     ap.add_argument("--lr", type=float, default=5e-5)
     ap.add_argument("--batch-size", type=int, default=16)
     ap.add_argument("--max-length", type=int, default=512)
+    ap.add_argument(
+        "--max-tokens",
+        type=int,
+        default=8192,
+        help="padded tokens per batch (long documents get smaller batches)",
+    )
+    ap.add_argument("--base", default=M.BASE_MODEL, help="Hugging Face encoder to fine-tune")
+    ap.add_argument("--base-revision", default=M.BASE_REVISION)
     ap.add_argument("--warmup", type=float, default=0.06)
     ap.add_argument("--eval-every", type=int, default=500)
+    ap.add_argument(
+        "--span-weight",
+        type=float,
+        default=1.0,
+        help="weight of the span loss against the two document losses",
+    )
     ap.add_argument(
         "--device",
         default="cuda"
@@ -96,6 +146,13 @@ def main(argv=None):
         if torch.backends.mps.is_available()
         else "cpu",
     )
+    ap.add_argument(
+        "--ema",
+        type=float,
+        default=0,
+        help="decay of a moving average of the weights to score as well (0: off)",
+    )
+    ap.add_argument("--doc-pooling", choices=["per_window", "window_max"], default="per_window")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--limit", type=int, default=0, help="use only N training documents (smoke tests)")
     a = ap.parse_args(argv)
@@ -106,13 +163,15 @@ def main(argv=None):
     device = torch.device(a.device)
     dtype = torch.bfloat16 if device.type == "cuda" else torch.float32
 
-    tok = M.load_tokenizer()
+    tok = M.load_tokenizer(a.base, a.base_revision)
     docs = read_jsonl(a.data / "train.jsonl")
-    train = [encode(tok, d, a.max_length) for d in (docs[: a.limit] if a.limit else docs)]
-    valid = [encode(tok, d, a.max_length) for d in read_jsonl(a.data / "valid.jsonl")]
-    model = M.new_model().to(device)
+    docs = docs[: a.limit] if a.limit else docs
+    train = [encode_windows(tok, d, a.max_length) for d in docs]
+    valid = [encode_windows(tok, d, a.max_length) for d in read_jsonl(a.data / "valid.jsonl")]
+    model = M.new_model(a.base, a.base_revision).to(device)
     model.train()
-    steps_per_epoch = math.ceil(len(train) / a.batch_size)
+    groups = groups_by_length(train, a.batch_size, a.max_tokens)
+    steps_per_epoch = len(groups)
     total = int(steps_per_epoch * a.epochs)
     warm = int(total * a.warmup)
     opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=0.01)
@@ -127,38 +186,61 @@ def main(argv=None):
         "lr": a.lr,
         "batch_size": a.batch_size,
         "max_length": a.max_length,
+        "max_tokens": a.max_tokens,
+        "seed": a.seed,
+        "ema": a.ema,
+        "doc_pooling": a.doc_pooling,
+        "span_weight": a.span_weight,
         "train_docs": len(train),
         "total_steps": total,
     }
 
+    # Moving average of the weights, kept in fp32 next to the trained ones; each evaluation also scores it.
+    live = [v for v in model.state_dict().values() if v.dtype.is_floating_point]
+    ema = [v.detach().clone().float() for v in live] if a.ema else []
+
     def run_eval():
         nonlocal best
-        rep = evaluate(model, valid, tok.pad_token_id, device, dtype)
-        if device.type == "mps":
-            torch.mps.empty_cache()
-        rep.update(step=step, elapsed_s=round(time.perf_counter() - started, 1))
-        history.append(rep)
-        print(json.dumps(rep), flush=True)
-        score = rep["token_f1"] + rep["sensitivity_acc"] + rep["category_acc"]
-        if best is None or score > best:
-            best = score
-            M.save(model, a.out, {**meta, "step": step, "valid": rep})
-            print(f"saved best to {a.out}", flush=True)
+        candidates = [("raw", None)]
+        if ema:
+            candidates.append(("ema", ema))
+        for name, weights in candidates:
+            backup = None
+            if weights:
+                backup = [v.detach().clone() for v in live]
+                torch._foreach_copy_(live, weights)
+            rep = evaluate(model, valid, tok.pad_token_id, device, dtype, a.doc_pooling)
+            if device.type == "mps":
+                torch.mps.empty_cache()
+            rep.update(step=step, weights=name, elapsed_s=round(time.perf_counter() - started, 1))
+            history.append(rep)
+            print(json.dumps(rep), flush=True)
+            score = rep["token_f1"] + rep["sensitivity_acc"] + rep["category_acc"]
+            if best is None or score > best:
+                best = score
+                M.save(model, a.out, {**meta, "step": step, "valid": rep}, a.base, a.base_revision)
+                print(f"saved best ({name}) to {a.out}", flush=True)
+            if backup:
+                torch._foreach_copy_(live, backup)
 
     while step < total:
-        for batch in batches(train, a.batch_size, rng):
+        for batch in batches(train, groups, rng):
             if step >= total:
                 break
-            ids, mask, labels, sens, cats = collate(batch, tok.pad_token_id, device)
+            ids, mask, labels, sens, cats, doc_index = collate(batch, tok.pad_token_id, device)
             with torch.autocast(device_type=device.type, dtype=dtype, enabled=device.type == "cuda"):
-                out = model(ids, mask)
+                out, sens, cats = forward(model, ids, mask, sens, cats, doc_index, a.doc_pooling)
             span, sl, cl = losses(out, labels, sens, cats)
-            loss = span + sl + cl
+            loss = a.span_weight * span + sl + cl
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             opt.step()
             sched.step()
             opt.zero_grad(set_to_none=True)
+            if ema:
+                with torch.no_grad():
+                    torch._foreach_mul_(ema, a.ema)
+                    torch._foreach_add_(ema, [v.float() for v in live], alpha=1 - a.ema)
             step += 1
             if step % 50 == 0:
                 print(

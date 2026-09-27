@@ -17,10 +17,12 @@ from pathlib import Path
 import torch
 
 from . import model as M
-from .predict import analyse
+from .predict import O_THRESHOLD, analyse
 
 HONORIFICS = [
     "さん",
+    "くん",
+    "ちゃん",
     "様",
     "氏",
     "君",
@@ -36,9 +38,14 @@ HONORIFICS = [
     "经理",
     "老师",
     "医生",
+    "教授",
+    "博士",
+    "主席",
     "씨",
     "님",
     "선생님",
+    "교수",
+    "박사",
     "Mr.",
     "Ms.",
     "Mrs.",
@@ -83,7 +90,21 @@ def normalise(value, ftype):
     return re.sub(r"\s+", " ", v)
 
 
+def split_reversed(findings):
+    """ "Moreau, Nathalie" is one person written surname-first; gold and predictions disagree on whether
+    that is one span or two, so both sides are compared as the two parts."""
+    out = []
+    for f in findings:
+        parts = f["value"].split(", ")
+        if f["type"] == "person_name" and len(parts) == 2 and all(p.strip() for p in parts):
+            out += [{**f, "value": p.strip()} for p in parts]
+        else:
+            out.append(f)
+    return out
+
+
 def match(predicted, expected):
+    predicted, expected = split_reversed(predicted), split_reversed(expected)
     used, rows = set(), []
     for exp in expected:
         hit = None
@@ -109,7 +130,16 @@ def match(predicted, expected):
     return rows
 
 
-def score(corpus, model, tok, device):
+def score(
+    corpus,
+    model,
+    tok,
+    device,
+    o_threshold=O_THRESHOLD,
+    max_length=512,
+    use_rules=True,
+    doc_pooling="per_window",
+):
     per_type = defaultdict(Counter)
     # Personal values only: predictions and gold with pii=false (company contacts) are left out, so
     # gaps in how completely non-personal contacts were labelled do not count against precision.
@@ -118,7 +148,16 @@ def score(corpus, model, tok, device):
     confusion = Counter()
     results, started = [], time.perf_counter()
     for t in corpus["tests"]:
-        res = analyse(model, tok, t["text"], device)
+        res = analyse(
+            model,
+            tok,
+            t["text"],
+            device,
+            max_length=max_length,
+            o_threshold=o_threshold,
+            use_rules=use_rules,
+            doc_pooling=doc_pooling,
+        )
         seen, preds = set(), []
         for f in res["findings"]:
             key = (f["type"], normalise(f["value"], f["type"]), f["pii"])
@@ -203,8 +242,16 @@ def score(corpus, model, tok, device):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--model", type=Path, required=True)
+    ap.add_argument("--no-rules", action="store_true", help="model only, without the rule set")
+    ap.add_argument("--max-length", type=int, help="window length (default: the training length)")
     ap.add_argument("corpora", nargs="+", type=Path)
     ap.add_argument("--out", type=Path)
+    ap.add_argument(
+        "--o-threshold",
+        type=float,
+        default=O_THRESHOLD,
+        help="call a token an entity unless P(O) reaches this value",
+    )
     ap.add_argument(
         "--device",
         default="cuda"
@@ -215,9 +262,19 @@ def main(argv=None):
     )
     a = ap.parse_args(argv)
     device = torch.device(a.device)
-    model, tok, _ = M.load(a.model, device)
+    model, tok, meta = M.load(a.model, device)
+    max_length = a.max_length or meta.get("max_length", 512)
     for path in a.corpora:
-        summary, results = score(json.loads(path.read_text()), model, tok, device)
+        summary, results = score(
+            json.loads(path.read_text()),
+            model,
+            tok,
+            device,
+            a.o_threshold,
+            max_length,
+            not a.no_rules,
+            meta.get("doc_pooling", "per_window"),
+        )
         t = summary["types"]
         line = "  ".join(f"{k} P{v['precision']:.1%} R{v['recall']:.1%}" for k, v in t.items())
         print(f"== {path.name}: {line}")

@@ -1,0 +1,212 @@
+{"templates": [
+  {
+    "id": "f_ko_001",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "genetic_or_biometric",
+    "text": "수사보고\n일자: {DATE}\n피의자: {P1}\n\n현장에서 확보한 증거물에 대해 법의학 센터로 제출하여 생물학적 표식 분석을 의뢰했습니다. 분석 결과는 {DATE}까지 완료될 예정입니다."
+  },
+  {
+    "id": "f_ko_002",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "table_of_numbers",
+    "text": "{DATE} 여권 {P1.passport} 신용카드 {P1.card}\n{P2.passport} 계좌 {P2.bank}\n{P3.passport} {P3.card}"
+  },
+  {
+    "id": "f_ko_003",
+    "lang": "ko",
+    "sensitivity": "low",
+    "cell": "identifier_only",
+    "text": "제목: 의뢰인 {P1.id} 사건 파일 업데이트\n\n의뢰인 {P1.id}의 서류가 모두 준비되었습니다. 계약금 지불 현황을 확인했으며, 다음 절차는 법정 공시 및 피고소인 통지입니다. 관련 미팅 일정은 별도로 공지하겠습니다. 문의사항은 언제든 연락 주시기 바랍니다."
+  },
+  {
+    "id": "f_ko_004",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "사건 보고 - {DATE}\n\n{P1}, {P2}로부터 진정. 노동 조건 관련. 담당 부서로 이관."
+  },
+  {
+    "id": "f_ko_005",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "[공지사항]\n\n채용 공고 참여자 {P1}의 자격 검증 절차에서 특정 조직 활동 기록이 발견되었습니다. 관련 서류는 인사팀에서 처리하고 있습니다."
+  },
+  {
+    "id": "f_ko_006",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "marriage_or_partnership_record",
+    "text": "혼인신고 수리증명서\n\n신고 일자: {DATE}\n남편: {P1} (생년월일: {P1.dob})\n아내: {P2} (생년월일: {P2.dob})\n신고 장소: 경찰청\n증인 1: {P3}\n증인 2: {P4}\n\n위 사항을 대한민국 혼인신고법에 따라 수리하였으니 이를 증명합니다."
+  },
+  {
+    "id": "f_ko_007",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "table_of_numbers",
+    "text": "{DATE} 작업 일지\n\n오늘은 스튜디오 보안 시스템 업데이트 회의가 있었습니다. 참석자들의 신원 확인 정보:\n- {P1}: {P1.govid}\n- {P2}: {P2.card}\n- {P3}: {P3.bank}\n\n모든 절차가 정상 완료되었습니다."
+  },
+  {
+    "id": "f_ko_008",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "criminal_record_or_victim",
+    "text": "청구서 번호: {CODE}\n발급 일자: {DATE}\n회사명: {ORG}\n담당 변호사: {P2}\n\n법률 상담 서비스 청구서 (범죄 피해자 지원)\n\n세션 1 - 피해 사건 초기 자문 및 법적 조언: {AMOUNT}\n세션 2 - 법률 대리인 준비 및 문서 작성: {AMOUNT}\n세션 3 - 검사청 제출 서류 검토 및 수정: {AMOUNT}\n세션 4 - 재판 준비 및 증거 수집 지원: {AMOUNT}\n세션 5 - 손해배상청구 절차 안내 및 상담: {AMOUNT}\n행정 수수료 및 통신비: {AMOUNT}\n\n합계 청구액: {AMOUNT}\n청구 대상: {P1} (신분증: {P1.govid})\n결제 방법: {P1.card}\n결제 예정일: {DATE}\n문의: {ORG.email}"
+  },
+  {
+    "id": "f_ko_009",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "marriage_or_partnership_record",
+    "text": "초등학교 학부모 정보 - {DATE}\n\n학생명 | 어머니 | 아버지 | 연락처\n{P1} | {P2} | {P3} | {P3.phone}\n{CODE} | {P4} | {P4} | {P4.phone}"
+  },
+  {
+    "id": "f_ko_010",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "사건 기록 - {DATE}\n레스토랑 {ORG}\n\n직원 {P1}과의 면담 내용: 근무 환경과 권익 문제에 대해 집단적 협상을 요청했습니다. 기록 보관."
+  },
+  {
+    "id": "f_ko_011",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "health",
+    "text": "{P1}: 안녕하세요, 이번주 진료 가능할까요?\n{P2}: 네. 수요일 오후 2시 가능합니다.\n{P1}: 좋습니다. 약물 복용 중인데 진료 전에 미리 말씀드려야 할 건 있나요?\n{P2}: 가져오신 처방전을 보여주세요."
+  },
+  {
+    "id": "f_ko_012",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "sex_life_or_orientation",
+    "text": "제목: 배우 캐스팅 협의\n\n{P1}님께,\n\n이번 영화 역할 관련하여 개인적 선호도와 라이프스타일이 역할 설정과 맞는지 검토가 필요합니다. 면접 때 함께 논의하겠습니다."
+  },
+  {
+    "id": "f_ko_013",
+    "lang": "ko",
+    "sensitivity": "low",
+    "cell": "identifier_only",
+    "text": "체육관 회원 관리 시스템\n\n회원번호: {P1.id}\n등록일: {DATE}\n회원 등급: 일반 회원\n수강 프로그램: 요가, 필라테스, 스피닝\n개인 트레이너 배정: 없음\n월 회비: {AMOUNT}\n자동 결제 카드 끝자리: {CODE}\n결제 상태: 정상\n\n최근 방문 기록:\n- {DATE}: 오후 3시\n- {DATE}: 오전 10시\n- {DATE}: 오전 7시\n- {DATE}: 오후 6시\n- {DATE}: 오전 9시\n\n향후 예약 클래스:\n- {DATE} 18:00 스피닝 클래스\n- {DATE} 10:00 요가 클래스\n- {DATE} 14:00 필라테스 클래스\n\n문의처: {ORG.phone}\n긴급 연락처: {ORG.email}"
+  },
+  {
+    "id": "f_ko_014",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "생명 연구소 직원 조직 명단 및 회의 기록 - {DATE}\n\n연구 협력 프로젝트 위원회 회의 참석자:\n\n조직 주요 멤버:\n{P1} (대표) - 연락처: {P1.phone}\n{P2} (부대표) - 연락처: {P2.phone}\n{P3} (서무) - 이메일: {P3.email}\n{P4} (재무) - 이메일: {P4.email}\n{ORG} 경영진 대표: {ORG.email}\n\n회의 주요 안건 및 토의 내용:\n1. 근로 조건 및 급여 구조 개정안 상세 검토\n2. 복리후생 정책 개정 및 건강보험 개선\n3. 직장 보육시설 확대 요청 및 휴가 정책\n4. 정기 회의 일정 및 협상 일정 논의\n5. 다음 전체 회의 일정: {DATE}\n\n최종 논의 결과: 경영진과 정식 재협상 예정\n기록자: {P1}\n기록 확인: {ORG}"
+  },
+  {
+    "id": "f_ko_015",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "religion_or_belief",
+    "text": "법률 상담 기록 - {DATE}\n상담자: {P1}\n\n면담 내용: {P1}님의 종교적 신앙과 관련된 직장 내 차별 사건에 대해 상담했습니다. 고용 관련 법률과 종교의 자유 보호에 대해 설명했습니다."
+  },
+  {
+    "id": "f_ko_016",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "citizenship_or_immigration",
+    "text": "{P1}: 안녕, 체크인 준비됐어?\n{P2}: 네, 여권하고 비자 서류는 다 있습니다.\n{P1}: 알겠습니다. 체류 기간이 맞는지 한 번 더 확인하겠습니다."
+  },
+  {
+    "id": "f_ko_017",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "criminal_record_or_victim",
+    "text": "자선단체 재정 지원금 영수증 - {DATE}\n\n수혜자: {P1} (신분증: {P1.govid})\n지원 사유: 폭력 범죄 피해로 인한 의료비 및 생계비 지원\n지원 금액: {AMOUNT}\n지원 기간: {DATE}부터 {DATE}까지\n담당자: {P2}\n결재자: {ORG} 이사장"
+  },
+  {
+    "id": "f_ko_018",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "trade_union",
+    "text": "{DATE} 업무 일지\n\n오늘 자선 재단에서의 회의가 있었습니다. {P1}과 {P2}는 노동자 권익 보호 프로그램에 참여하고 있으며, 회사와의 집단 협상 준비 상황을 논의했습니다."
+  },
+  {
+    "id": "f_ko_019",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "health",
+    "text": "시청 보건과 - 질병 관리 및 건강 증진 대상자 명단 {DATE}\n\n결핵 검진 필요자 및 보건 교육 대상:\n{P1} ({P1.dob}, 주소: {P1.addr})\n{P2} ({P2.dob}, 주소: {P2.addr})\n예정 검진일: {DATE}\n\n당뇨병 만성질환 관리 중:\n{P3} (혈당 관리 약물 복용)\n담당 의료진: {P2}\n\n고혈압 약물 복용 중:\n{P4}\n{P1.s} 님\n복용약: 혈압강하제\n\n폐렴 예방 접종 대상자 및 일정:\n{P2} - 예정 접종일: {DATE}\n기타 고위험군 - 예정일: {DATE}\n\n감염병 격리 필요자:\n현재 격리 대상 없음\n\n정기 경과 관찰 대상:\n{P3} - 월 1회 재검진 필요\n재검진 담당자: {P2}\n\n담당 의료기관: {ORG}\n보건과 문의: {ORG.phone}\n긴급연락: {ORG.email}"
+  },
+  {
+    "id": "f_ko_020",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "genetic_or_biometric",
+    "text": "{P1}님의 {DATE} 활동 일지: 오늘 요양원에서 새로운 보안 시스템 테스트에 참여했습니다. 얼굴 인식 기술 및 지문 등록 과정이 있었는데 모든 생체 인증 절차가 순조로 진행되었습니다. 다음 주에 최종 시스템 검증이 예정되어 있습니다."
+  },
+  {
+    "id": "f_ko_021",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "sex_life_or_orientation",
+    "text": "[{DATE} 14:23] 사용자 {P1.handle} 로그인\n[{DATE} 14:24] 채용공고 필터 적용: LGBTQ+ 친화 기업\n[{DATE} 14:45] 이력서 업로드 - 성소수자 지원자\n[{DATE} 15:01] 면접 일정 예약 완료"
+  },
+  {
+    "id": "f_ko_022",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "religion_or_belief",
+    "text": "영사관 사례 기록 - {DATE}\n\n청원인: {P1} ({P1.dob})\n국적: {P1.passport}\n사건: 종교 신앙 이유로 인한 비자 거부 이의 제기\n종교: 기독교\n진행 상황: 종교의 자유 관련 국제법 검토 중\n담당자: {P2}\n예상 결정일: {DATE}"
+  },
+  {
+    "id": "f_ko_023",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "political_opinion",
+    "text": "@{P1.handle}\n오늘 병원에서 찍은 사진입니다. 정치 활동가로서 투표권 행사에 대해 생각을 많이 하고 있습니다. #선거 #정치참여"
+  },
+  {
+    "id": "f_ko_024",
+    "lang": "ko",
+    "sensitivity": "none",
+    "cell": "numbers_of_no_person",
+    "text": "시스템 관리자: 레스토랑 시스템 백업 완료됐나?\n기술 지원: 네, 파일 {CODE}로 저장됐습니다\n관리자: 좋아. 해시값도 기록해줄래?\n지원: {HASH} 확인됨\n관리자: OK, {ORG.bank} 계좌로 청구서 보내면 돼. UUID {HASH} 참고."
+  },
+  {
+    "id": "f_ko_025",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "formal_hr_record",
+    "text": "요양원 직원 관리 청구서 - {DATE}\n\n대상자: {P1}\n사유: 근무 규정 위반에 따른 징계 조치\n처리 수수료: {AMOUNT}\n결재 확인: 원장"
+  },
+  {
+    "id": "f_ko_026",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "religion_or_belief",
+    "text": "온라인 게임 커뮤니티 멤버십 청구서 - {DATE}\n\n회원: {P1}\n종교 커뮤니티 길드 가입비: {AMOUNT}\n결제 수단: {P1.card}"
+  },
+  {
+    "id": "f_ko_027",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "identifier_only_sensitive",
+    "text": "게임 커뮤니티 계정 관리 양식\n\n계정 ID: {P1.id}\n등록 일자: {DATE}\n보안 수준: 높음 (생체 인증 등록)\nVIP 멤버십: 예 (갱신일: {DATE})\n사용자 {P1.id}는 프리미엄 컨텐츠 및 성인 콘텐츠 접근 권한 보유\n마지막 로그인: {DATE}"
+  },
+  {
+    "id": "f_ko_028",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "religion_or_belief",
+    "text": "건설 현장 종교별 노동자 명단 - {DATE}\n\n주중 작업팀 구성:\n{P1} (기독교 신앙)\n{P2} (이슬람교 신앙)\n{P3} (불교 신앙)\n\n휴무일 조정:\n금요일: {P2}님 금요 예배 참석을 위해 근무 조정\n일요일: {P1}님 주일 예배 참석을 위해 근무 조정\n초파일: {P3}님 불교 행사 참석을 위해 근무 조정\n\n현장 관리자: {P4}"
+  },
+  {
+    "id": "f_ko_029",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "formal_hr_record",
+    "text": "체육관 사건 보고 - {DATE}\n\n상황: 직원 {P1}이 규칙 위반으로 인해 무기한 정직 처분 받음"
+  },
+  {
+    "id": "f_ko_030",
+    "lang": "ko",
+    "sensitivity": "high",
+    "cell": "identifier_only_sensitive",
+    "text": "법률 상담 면접 기록\n\n의뢰자 ID: {P1.id}\n상담 내용: 동성 파트너와의 유산 상속권 관련 법적 자문"
+  }
+]}

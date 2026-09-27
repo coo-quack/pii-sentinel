@@ -64,3 +64,72 @@ def test_mask_keeps_little_of_short_values():
     assert mask("李明", "person_name") == "李…"
     assert mask("090-1234-5678", "phone") == "09…78"
     assert mask("1234567", "number") == "1…"
+
+
+def test_machine_ids_are_not_reported_as_numbers():
+    from pii_sentinel.predict import reportable
+
+    for value in [
+        "d41d8cd98f00b204e9800998ecf8427e",
+        "a4f29c31-7e2b-41d9-8a3c-5f8b2a91d4e6",
+        "00:1A:2B:3C:4D:5E",
+    ]:
+        text = f"id {value} end"
+        assert not reportable(text, 3, 3 + len(value), "NATIONAL_ID")
+
+
+def test_titles_after_single_character_surnames_are_trimmed():
+    from pii_sentinel.data import trim_particles
+
+    for text, name in [("周教授", "周"), ("이 박사", "이"), ("田中先生", "田中"), ("王思敏", "王思敏")]:
+        assert text[: trim_particles(text, 0, len(text))] == name
+
+
+def test_surname_first_names_match_either_way():
+    joined = [{"type": "person_name", "value": "Moreau, Nathalie", "pii": True}]
+    split = [
+        {"type": "person_name", "value": "Moreau", "pii": True},
+        {"type": "person_name", "value": "Nathalie", "pii": True},
+    ]
+    assert all(r["expected"] and r["predicted"] for r in match(joined, split))
+    assert all(r["expected"] and r["predicted"] for r in match(split, joined))
+
+
+def test_rules_add_what_the_model_missed_and_report_secrets_apart():
+    from pii_sentinel.predict import add_rule_findings
+
+    text = "Key AKIA3QF7TZ9KLMN2PQRS, card 4532015112830366, mail kim@example.kr"
+    findings = [{"type": "email", "value": "kim@example.kr", "start": 55, "end": 69, "pii": True}]
+    secrets, floor = add_rule_findings(text, findings)
+    assert [s["value"] for s in secrets] == ["AKIA3QF7TZ9KLMN2PQRS"]
+    assert [f["value"] for f in findings] == ["4532015112830366", "kim@example.kr"]
+    assert floor == "high"
+    role = []
+    assert add_rule_findings("Contacto: coordinador@empresa.com", role) == ([], "none")
+    assert role[0]["pii"] is False
+
+
+def test_lone_letters_and_digits_are_not_names():
+    from pii_sentinel.predict import reportable
+
+    text = "Pbro. 1 李 Ann"
+    assert not reportable(text, 0, 1, "PERSON")
+    assert not reportable(text, 6, 7, "PERSON")
+    assert reportable(text, 8, 9, "PERSON")
+    assert reportable(text, 10, 13, "PERSON")
+
+
+def test_windows_cover_the_whole_text():
+    from pii_sentinel import model as M
+    from pii_sentinel.data import windows
+
+    tok = M.load_tokenizer()
+    text = " ".join(f"Person{i} Surname{i} works in room {i}." for i in range(400))
+    parts = windows(tok, text, 128, 32)
+    assert all(len(ids) <= 128 for ids, _ in parts)
+    covered = {o for _, offs in parts for o in offs if o != (0, 0)}
+    everything = {
+        tuple(o) for o in tok(text, add_special_tokens=False, return_offsets_mapping=True)["offset_mapping"]
+    }
+    assert covered == everything
+    assert windows(tok, "short text", 128)[0][0] == tok("short text")["input_ids"]

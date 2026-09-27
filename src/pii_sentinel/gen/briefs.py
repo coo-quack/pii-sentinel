@@ -44,6 +44,40 @@ CELLS = {
         "statistics_or_news_without_people": 2,
     },
 }
+# A second round aimed at what the model still misses: sensitive facts revealed only by the heading or kind of
+# document, people identified by an identifier alone, marriage and partnership records, tables of numbers, and
+# long numbers that belong to no person.
+FOCUS = {
+    "high": {
+        "race_or_ethnic_origin": 3,
+        "political_opinion": 4,
+        "religion_or_belief": 5,
+        "trade_union": 5,
+        "health": 7,
+        "sex_life_or_orientation": 3,
+        "genetic_or_biometric": 2,
+        "criminal_record_or_victim": 3,
+        "citizenship_or_immigration": 3,
+        "formal_hr_record": 3,
+        "marriage_or_partnership_record": 4,
+        "identifier_only_sensitive": 5,
+        "table_of_numbers": 5,
+    },
+    "low": {"identifier_only": 3},
+    "none": {"numbers_of_no_person": 5},
+}
+ALWAYS_IMPLICIT = {
+    "race_or_ethnic_origin",
+    "political_opinion",
+    "religion_or_belief",
+    "trade_union",
+    "health",
+    "sex_life_or_orientation",
+    "genetic_or_biometric",
+    "criminal_record_or_victim",
+    "citizenship_or_immigration",
+    "formal_hr_record",
+}
 DOMAINS = [
     "logistics company",
     "primary school",
@@ -106,9 +140,12 @@ def main(argv=None):
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--per-language", type=int, default=120)
     ap.add_argument("--seed", type=int, default=11)
+    ap.add_argument("--focus", action="store_true", help="the second-round cells (FOCUS)")
+    ap.add_argument("--prefix", default="t")
     a = ap.parse_args(argv)
     rng = random.Random(a.seed)
-    slots = [(s, c) for s, cells in CELLS.items() for c, n in cells.items() for _ in range(n)]
+    table = FOCUS if a.focus else CELLS
+    slots = [(s, c) for s, cells in table.items() for c, n in cells.items() for _ in range(n)]
     assert len(slots) == a.per_language, len(slots)
     a.out.mkdir(parents=True, exist_ok=True)
     for lang in LANGS:
@@ -117,14 +154,16 @@ def main(argv=None):
         for i, (s, c) in enumerate(slots, 1):
             briefs.append(
                 {
-                    "id": f"t_{lang}_{i:03d}",
+                    "id": f"{a.prefix}_{lang}_{i:03d}",
                     "lang": lang,
                     "sensitivity": s,
                     "cell": c,
                     "domain": rng.choice(DOMAINS),
                     "format": rng.choice(FORMATS),
                     "length": rng.choices(list(LENGTHS), weights=list(LENGTHS.values()))[0],
-                    "implicit": s == "high"
+                    "implicit": c in ALWAYS_IMPLICIT
+                    if a.focus
+                    else s == "high"
                     and c not in ("government_id_number", "financial_account_or_credentials")
                     and rng.random() < 0.35,
                 }

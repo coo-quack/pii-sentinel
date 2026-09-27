@@ -1,7 +1,7 @@
 # Writing guide
 
 You write evaluation documents for a multilingual personal-information detector.
-The labelling rules are in `docs/labeling-policy.md` (Japanese). Follow them exactly.
+The labelling rules are in `docs/labeling-policy.md`. Follow them exactly.
 Do not read anything else in the repository except your order file and this guide.
 
 ## One document per order

@@ -31,12 +31,30 @@ templates. No real personal data and no outputs of other PII models are used.
 
 ## Evaluation
 
-Scores on a held-out multilingual test set are reported with each release.
+The test set has 320 documents, 40 in each of the eight languages, written for this project to a coverage table of
+sensitivity categories, document formats and lengths. Each document was labelled independently twice, and
+disagreements were adjudicated. A separate development set of the same size is used for error analysis.
+
+Scores are for the released tool (the model, the regex rule set and the post-processing together) and count personal
+values only.
+
+| Metric | Test |
+|---|---|
+| Person names: recall / precision | 97.9% / 96.6% |
+| Phone numbers: recall / precision | 94.7% / 90.0% |
+| E-mail addresses: recall / precision | 91.7% / 84.6% |
+| ID and account numbers: recall / precision | 83.1% / 90.1% |
+| Sensitivity (none / low / high) accuracy | 90.0% |
+| High documents judged low or none | 2 of 162 |
+| Documents with personal information judged none | 7 of 246 |
 
 ## Limitations
 
 - Trained only on synthetic text; real documents with unusual layouts may be harder.
 - Only the formats of one representative country per language are covered (for example, Simplified Chinese only).
+- The test set is also synthetic and small; a difference of one or two documents is within noise.
+- The document level is weakest where only a heading reveals the sensitive fact (a member list of a religious
+  community) and where a document holds an online identifier or an address without a name.
 
 ## License
 

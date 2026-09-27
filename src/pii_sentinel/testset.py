@@ -20,6 +20,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 CJK = {"ja", "zh", "ko"}
+NUMBER_TYPES = {"my_number", "national_id", "driver_licence_or_passport", "credit_card", "bank_account"}
 # Cells whose short and medium documents only make sense in some formats.
 CELL_FORMATS = {
     "code_log_or_config": ["code", "log"],
@@ -213,12 +214,12 @@ def cmd_finalize(a):
     r = a.root
     for name in a.names:
         raw = json.loads((r / "raw" / f"{name}.json").read_text())["tests"]
-        second = {t["id"]: t for t in json.loads((r / "labels" / f"{name}.json").read_text())["tests"]}
-        disputed = {row["id"] for row in json.loads((r / "disagreements" / f"{name}.json").read_text())}
+        second = {t["id"]: t for t in json.loads((r / a.labels / f"{name}.json").read_text())["tests"]}
+        disputed = {row["id"] for row in json.loads((r / a.disagreements / f"{name}.json").read_text())}
         decided = {}
         if disputed:
             decided = {
-                t["id"]: t for t in json.loads((r / "decisions" / f"{name}.json").read_text())["tests"]
+                t["id"]: t for t in json.loads((r / a.decisions / f"{name}.json").read_text())["tests"]
             }
         missing = sorted(disputed - set(decided))
         if missing:
@@ -231,8 +232,8 @@ def cmd_finalize(a):
                 assert f["value"] in t["text"], (t["id"], f["value"])
             changed[t["id"] in disputed] += 1
             out.append({**{k: v for k, v in t.items() if k != "expected"}, "expected": expected})
-        (r / "final").mkdir(exist_ok=True)
-        (r / "final" / f"{name}.json").write_text(
+        (r / a.final).mkdir(exist_ok=True)
+        (r / a.final / f"{name}.json").write_text(
             json.dumps({"tests": out}, ensure_ascii=False, indent=1) + "\n"
         )
         print(f"{name}: agreed {changed[False]}, adjudicated {changed[True]}")
@@ -245,6 +246,10 @@ def apply_corrections(t, fix):
     for f in fix.get("add", []):
         assert f["value"] in t["text"], (t["id"], f["value"])
         exp["findings"].append(f)
+    for change in fix.get("set_pii", []):
+        for f in exp["findings"]:
+            if f["type"] == "email" and f["value"] == change["value"]:
+                f["pii"] = change["pii"]
     if "sensitivity" in fix:
         exp["sensitivity"] = fix["sensitivity"]
 
@@ -259,7 +264,21 @@ def cmd_split(a):
         for t in json.loads(path.read_text())["tests"]:
             if t["id"] in fixes:
                 apply_corrections(t, fixes.pop(t["id"]))
-            t["expected"]["findings"] = [f for f in t["expected"]["findings"] if f["type"] in valid]
+            t["expected"]["findings"] = [
+                f
+                for f in t["expected"]["findings"]
+                if f["type"] in valid and (f["type"] != "number" or f.get("number_type") in NUMBER_TYPES)
+            ]
+            for f in t["expected"]["findings"]:
+                if f["type"] == "person_name":
+                    f["pii"] = (
+                        True  # names are always reported as personal, public and deceased people included
+                    )
+            t["expected"]["findings"] = [
+                f
+                for f in t["expected"]["findings"]
+                if not (f["type"] == "person_name" and (f["value"].startswith("@") or "_" in f["value"]))
+            ]  # SNS handles are online identifiers, not names
             out[t["split"]].append(t)
     if fixes:
         raise SystemExit(f"corrections for unknown ids: {sorted(fixes)}")
@@ -288,6 +307,10 @@ def main(argv=None):
     f = sub.add_parser("finalize")
     f.add_argument("names", nargs="+")
     f.add_argument("--root", type=Path, default=Path("eval/work"))
+    f.add_argument("--labels", default="labels", help="labelling used for agreed documents")
+    f.add_argument("--disagreements", default="disagreements")
+    f.add_argument("--decisions", default="decisions")
+    f.add_argument("--final", default="final")
     s = sub.add_parser("split")
     s.add_argument("files", nargs="+", type=Path)
     s.add_argument("--out", type=Path, required=True)

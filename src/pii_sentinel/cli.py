@@ -44,12 +44,20 @@ def main(argv=None):
     )
     a = ap.parse_args(argv)
     device = torch.device(a.device)
-    model, tok, _ = M.load(a.model, device)
-    sources = [(str(p), p.read_text()) for p in a.files] or [("stdin", sys.stdin.read())]
+    model, tok, meta = M.load(a.model, device)
+    sources = [("stdin", sys.stdin.read()) if str(p) == "-" else (str(p), p.read_text()) for p in a.files]
+    sources = sources or [("stdin", sys.stdin.read())]
     reports, worst = [], 0
     for name, text in sources:
-        res = analyse(model, tok, text, device)
-        for f in res["findings"]:
+        res = analyse(
+            model,
+            tok,
+            text,
+            device,
+            max_length=meta.get("max_length", 512),
+            doc_pooling=meta.get("doc_pooling", "per_window"),
+        )
+        for f in res["findings"] + res["secrets"]:
             if not a.show_values:
                 f["value"] = mask(f["value"], f["type"])
         reports.append({"source": name, **res})
@@ -62,6 +70,8 @@ def main(argv=None):
             for f in r["findings"]:
                 extra = f" ({f['number_type']})" if "number_type" in f else ""
                 print(f"  {f['type']}{extra}{'' if f['pii'] else ' [not PII]'}: {f['value']}")
+            for f in r["secrets"]:
+                print(f"  secret ({f['rule']}): {f['value']}")
     if a.fail_on and worst >= RANK[a.fail_on]:
         sys.exit(2)
 

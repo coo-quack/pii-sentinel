@@ -1,0 +1,214 @@
+{
+  "templates": [
+    {
+      "id": "f_en_031",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "identifier_only_sensitive",
+      "text": "Marathon Registration - Health Accommodations Report\n\nBib {P1.id}: Requires accessible restroom facilities and medical checkpoint support\nBib 4722: Insulin pump and glucose monitoring equipment needed\nBib 4723: Requires medical checkpoint staff for regular monitoring\nBib 4724: Mobility assistance equipment provisioned"
+    },
+    {
+      "id": "f_en_032",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "Incident Report - Municipal Elections\nDate: {DATE}\nLocation: City Hall Premises\nOfficer: {P1}\nObservations: The individual distributed campaign materials in municipal building during official business hours. Verbal warning issued regarding electoral activities on government property per municipal conduct policy."
+    },
+    {
+      "id": "f_en_033",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "marriage_or_partnership_record",
+      "text": "Marriage Registration Log - Consulate Records\n{DATE} 09:30 | Marriage Certificate Registered\nSpouse A: {P1}\nSpouse B: {P2}\nWitness 1: {P3}\nWitness 2: {P4}\nDocuments Verified: {P1.passport}, {P2.passport}\nOfficial Seal Issued\nRegistration Code: {CODE}"
+    },
+    {
+      "id": "f_en_034",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "citizenship_or_immigration",
+      "text": "Authorized Employment Documentation - Personnel File\n\nStaff Member 1: {P1}\nWork Visa Valid Until: {DATE}\nStaff Member 2: {P2}\nEmployment Authorization Certificate Number: {CODE}\nStaff Member 3: {P3}\nTemporary Resident Status Approved\nStaff Member 4: {P4}\nWork Permit Renewal Processed"
+    },
+    {
+      "id": "f_en_035",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "marriage_or_partnership_record",
+      "text": "Couples Financial Support Program - Intake\n\nPartner A: {P1}\nPartner B: {P2}\nRegistration Date: {DATE}"
+    },
+    {
+      "id": "f_en_036",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "Online Community Council Meeting - {DATE}\n\nAttendees: {P1}, {P2}, {P3}\n{P1} raised scheduling concerns. {P2} discussed format alternatives."
+    },
+    {
+      "id": "f_en_037",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "Interfaith Marathon Planning Committee - Minutes\nDate: {DATE}\nMembers: {P1}, {P2}, {P3}\nTopics: Prayer stations, meditation support, catering requirements for observances, holiday scheduling coordination\nAssignments: {P1} to coordinate chaplaincy services with {ORG}"
+    },
+    {
+      "id": "f_en_038",
+      "lang": "en",
+      "sensitivity": "none",
+      "cell": "numbers_of_no_person",
+      "text": "A: What's the property code?\nB: Lot reference {HASH}. Parcel ID {ORG.regno}. MLS code {CODE}."
+    },
+    {
+      "id": "f_en_039",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "identifier_only_sensitive",
+      "text": "Subject: Urgent Service Recall\nVehicle {P1.id}: Brake system contamination risk detected. Do not operate. Contact service immediately for mandatory inspection appointment."
+    },
+    {
+      "id": "f_en_040",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "genetic_or_biometric",
+      "text": "Lab ID {P1.id}: Retest needed due to sample degradation\nLab ID {P2.id}: DNA analysis scheduled {DATE}\nLab ID {P3.id}: Marker identification complete"
+    },
+    {
+      "id": "f_en_041",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "identifier_only_sensitive",
+      "text": "Property Management Records - Tenant Financial Status\n\nProperty ID | Status | Action Required\n{P1.id} | Delinquent {AMOUNT} | Collection notice sent\n{P2.id} | Eviction notice issued | Legal proceeding initiated\n{P3.id} | Good standing | No action\n{P4.id} | Payment plan active | Monitoring arrangement"
+    },
+    {
+      "id": "f_en_042",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "identifier_only_sensitive",
+      "text": "Trade Union Member Confidential File\n\nMember ID: {P1.id}\nDisciplinary Status: Under Review\nIncident Date: {DATE}\nCharge: Contract violation alleged\nHearing Scheduled: {DATE}\nUnion Representative Assigned\nGrievance Filed: {DATE}\nPrevious Warnings: On file from {DATE}\nCurrent Position Impact: Pending determination\nNotes: Member requested full confidentiality. Hearing will proceed with union rep present. Documentation complete and verified. Witness statements collected and reviewed. Case file ready for formal proceedings. Investigation ongoing and thorough. Decision expected within ten business days."
+    },
+    {
+      "id": "f_en_043",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "trade_union",
+      "text": "Great day at workers' association! Discussed fair compensation and workplace rights with {P1}. #UnionPride"
+    },
+    {
+      "id": "f_en_044",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "race_or_ethnic_origin",
+      "text": "Cultural Heritage Initiative - Participants\n\nDate: {DATE}\nParticipants: {P1}, {P2}, {P3}"
+    },
+    {
+      "id": "f_en_045",
+      "lang": "en",
+      "sensitivity": "none",
+      "cell": "numbers_of_no_person",
+      "text": "Q: How's the new kit design?\nA: Code {HASH}. Manufacturing batches {ORG.regno} through {CODE}. Production SKU line complete."
+    },
+    {
+      "id": "f_en_046",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "formal_hr_record",
+      "text": "Staff Performance Log\nDate: {DATE}\nEmployee: {P1}\n\nReviewed protocol compliance. Documented shift observations. Counseling meeting scheduled."
+    },
+    {
+      "id": "f_en_047",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Medical Assessment Announcement\n\nHealth screening required for {P1} department. Appointments {DATE}. Fitness and history review."
+    },
+    {
+      "id": "f_en_048",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "marriage_or_partnership_record",
+      "text": "Just got engaged at the most beautiful venue! {P1} and I are starting our next chapter together. The entire team at {ORG} was so supportive in making our celebration incredible. Can't wait for the wedding next year. Special thanks to {P2} and {P3} for all their help and encouragement. This is the happiest moment of my life and I'm so grateful to share it with family, friends, and colleagues who celebrated with us. The venue was perfect, the staff was attentive, and every detail came together beautifully. I feel like the luckiest person alive right now. #Engaged #LoveWins #HappilyEverAfter #NewChapter"
+    },
+    {
+      "id": "f_en_049",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "criminal_record_or_victim",
+      "text": "Security Incident Log\n{DATE} 22:45 | Alleged guest misconduct\nCase ID: {P1.id}\nAction: Incident reported to authorities"
+    },
+    {
+      "id": "f_en_050",
+      "lang": "en",
+      "sensitivity": "none",
+      "cell": "numbers_of_no_person",
+      "text": "Shipment Log - {DATE}\n\nShipment ID | Origin | Batch Ref | Tracking\n{HASH} | WH-North | {ORG.regno} | {CODE}\n{HASH} | WH-South | {ORG.regno} | {CODE}\n{HASH} | WH-East | {ORG.regno} | {CODE}\n{HASH} | WH-West | {ORG.regno} | {CODE}"
+    },
+    {
+      "id": "f_en_051",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "Member Attendance Record - {DATE}\n\nMember ID | Department | Status | Notes\n{P1.id} | Operations | Present | On time\n{P2.id} | Communications | Present | Late arrival\n{P3.id} | Finance | Present | On time\n{P4.id} | Administration | Absent | Excused leave"
+    },
+    {
+      "id": "f_en_052",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "Campaign Contribution Receipt\n\nContributor ID: {P1.id}\nDonation Date: {DATE}\nAmount: {AMOUNT}\nCampaign: Electoral Campaign {CODE}\nReceipt: DON-{CODE}\nThank you for your political participation and support."
+    },
+    {
+      "id": "f_en_053",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "criminal_record_or_victim",
+      "text": "Security Clearance Review - Case {P1.id}\nDate: {DATE}\nFlag Type: Background investigation required"
+    },
+    {
+      "id": "f_en_054",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "Hiring Interview Notes\n\nCandidate ID: {P1.id}\nDate: {DATE}\nPanel Discussion: Candidate articulated detailed positions on regulatory reform and governance frameworks. Demonstrated engagement with policy analysis and structural change discussions."
+    },
+    {
+      "id": "f_en_055",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "Chaplaincy Services Meeting\nDate: {DATE}\n\nAttendees: {P1}, {P2}\nTopics: Spiritual care expansion"
+    },
+    {
+      "id": "f_en_056",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "trade_union",
+      "text": "Another incredible day at the entertainment sector workers' collective! Collaborated with {P1} and {P2} on contract improvements and working condition documentation. Discussed industry standards with studio representatives and labor coordinators. This is solidarity in action\u2014building a stronger, fairer workplace together for everyone in production and post-production roles. Our voice matters and collective bargaining works effectively for members' welfare and rights. Grateful for union support every single day. Together we achieve more and stand stronger together. #WorkersPower #UnionStrong #FairLabor"
+    },
+    {
+      "id": "f_en_057",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Annual Medical Fitness Assessment - Police\n\nOfficer ID: {P1.id}\nDate: {DATE}\n\nFitness for Duty: ____\nPhysical Capability: ____\nClearance: ____"
+    },
+    {
+      "id": "f_en_058",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "Domestic Partnership Benefits - Premium Receipt\n\nEmployee: {P1.i}\nDomestic Partner: {P2.i}\nCoverage Effective: {DATE}\nMonthly Premium: {AMOUNT}\nReceipt: DP-{CODE}\nBenefit Status: Active and authorized"
+    },
+    {
+      "id": "f_en_059",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "identifier_only_sensitive",
+      "text": "\ud83d\udea8 URGENT ALERT - Customer {P1.id} account flagged for fraud risk. Multiple unauthorized transactions detected on {DATE}. Account access suspended pending verification. Contact our fraud team immediately for security review at {ORG.phone} or visit {ORG.email}. Your financial protection is our priority. Action required: Call fraud department to verify recent activity and restore access. We take security seriously and will restore your account once identity is confirmed. All suspicious transactions are being investigated by our security team. Please provide verification details promptly. #BankingAlert #FraudProtection #SecurityFirst"
+    },
+    {
+      "id": "f_en_060",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "table_of_numbers",
+      "text": "Consulate Credential Verification List - {DATE}\n\nSurname | Passport Number | National ID\n{P1.s} | {P1.passport} | {P2.govid}\n{P2.s} | {P2.passport} | {P3.govid}\n{P3.s} | {P3.passport} | {P4.govid}"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+ "_comment": "Personal information without a name: an online identifier or an address tied to a user or recipient (low under the labelling policy). {ID} is a device or cookie identifier, {IP} an IP address, {ADDR} a home address.",
+ "ja": [
+  "お客様の端末ID：{ID}",
+  "ユーザーAのCookie ID：{ID}",
+  "接続元IPアドレス {IP}（利用者の自宅端末）",
+  "会員のデバイス識別子：{ID}",
+  "配送先住所：{ADDR}",
+  "荷物は {ADDR} まで送ってください。",
+  "ログイン元IP：{IP}（本人のスマートフォン）"
+ ],
+ "zh": [
+  "您的设备ID：{ID}",
+  "用户A的Cookie ID：{ID}",
+  "客户端IP地址：{IP}（用户会话）",
+  "会员设备标识：{ID}",
+  "收货地址：{ADDR}",
+  "请把包裹寄到{ADDR}。",
+  "登录来源IP：{IP}（用户本人的手机）"
+ ],
+ "ko": [
+  "고객님의 기기 ID: {ID}",
+  "사용자 A의 쿠키 ID: {ID}",
+  "접속 IP 주소 {IP} (이용자 자택 단말)",
+  "회원 기기 식별자: {ID}",
+  "배송지 주소: {ADDR}",
+  "택배는 {ADDR}로 보내 주세요.",
+  "로그인 IP: {IP} (본인 휴대전화)"
+ ],
+ "en": [
+  "Your device ID: {ID}",
+  "User A's cookie ID: {ID}",
+  "Client IP address: {IP} (user session)",
+  "Member device identifier: {ID}",
+  "Shipping address: {ADDR}",
+  "Please send the package to {ADDR}.",
+  "Login from {IP} (the customer's phone)"
+ ],
+ "de": [
+  "Ihre Geräte-ID: {ID}",
+  "Cookie-ID von Nutzer A: {ID}",
+  "Client-IP-Adresse: {IP} (Nutzersitzung)",
+  "Gerätekennung des Mitglieds: {ID}",
+  "Lieferadresse: {ADDR}",
+  "Bitte schicken Sie das Paket an {ADDR}.",
+  "Anmeldung von {IP} (Handy des Kunden)"
+ ],
+ "fr": [
+  "Identifiant de votre appareil : {ID}",
+  "Cookie ID de l'utilisateur A : {ID}",
+  "Adresse IP du client : {IP} (session utilisateur)",
+  "Identifiant d'appareil du membre : {ID}",
+  "Adresse de livraison : {ADDR}",
+  "Merci d'envoyer le colis à {ADDR}.",
+  "Connexion depuis {IP} (téléphone du client)"
+ ],
+ "it": [
+  "ID del tuo dispositivo: {ID}",
+  "Cookie ID dell'utente A: {ID}",
+  "Indirizzo IP del client: {IP} (sessione utente)",
+  "Identificativo del dispositivo del socio: {ID}",
+  "Indirizzo di consegna: {ADDR}",
+  "Per favore spedisci il pacco a {ADDR}.",
+  "Accesso da {IP} (telefono del cliente)"
+ ],
+ "es": [
+  "ID de su dispositivo: {ID}",
+  "Cookie ID del usuario A: {ID}",
+  "Dirección IP del cliente: {IP} (sesión de usuario)",
+  "Identificador del dispositivo del socio: {ID}",
+  "Dirección de envío: {ADDR}",
+  "Por favor, envía el paquete a {ADDR}.",
+  "Inicio de sesión desde {IP} (teléfono del cliente)"
+ ]
+}

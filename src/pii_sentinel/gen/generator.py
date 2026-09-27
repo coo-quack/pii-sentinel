@@ -22,6 +22,8 @@ HERE = Path(__file__).parent
 LANGS = ["ja", "zh", "ko", "en", "fr", "it", "de", "es"]
 TABLES = json.loads((HERE / "tables.json").read_text())
 SENS = json.loads((HERE / "sensitive.json").read_text())
+LOOKALIKE = json.loads((HERE / "resources" / "lookalikes.json").read_text())
+NAMELESS = json.loads((HERE / "resources" / "nameless.json").read_text())
 
 rng = random.Random(1)
 
@@ -188,8 +190,18 @@ class Lang:
             form = "full" if chance(0.7) else "surname" if self.cjk else pick(["surname", "given"])
         if p.foreign or form == "full":
             name = p.full
-            if not self.cjk and not p.foreign and chance(0.04):
-                name = f"{p.given[0]}. {p.surname}"
+            if not self.cjk and not p.foreign:
+                # Written forms seen in forms and records: initials, surname first, capitalised surname.
+                name = rng.choices(
+                    [
+                        name,
+                        f"{p.given[0]}. {p.surname}",
+                        f"{p.surname}, {p.given}",
+                        f"{p.surname} {p.given}",
+                        f"{p.surname.upper()} {p.given}",
+                    ],
+                    weights=[86, 4, 4, 4, 2],
+                )[0]
         else:
             name = p.surname if form == "surname" else p.given
         if self.code in ("fr", "it", "de", "es") and chance(0.05):
@@ -427,6 +439,52 @@ DNI = "TRWAGMYFPDXBNJZSQVHLCKE"
 
 
 def gov_id(lang):
+    value, kind = _gov_id(lang)
+    return number_variant(value), kind
+
+
+def number_variant(value):
+    # Numbers are sometimes written digit by digit or with dots instead of the usual separators.
+    if chance(0.03):
+        return " ".join(c for c in value if not c.isspace())
+    if chance(0.02):
+        return re.sub(r"[\s-]", ".", value)
+    return value
+
+
+def nie():
+    first, n = pick("XYZ"), rint(0, 9999999)
+    return f"{first}{n:07d}{DNI[('XYZ'.index(first) * 10**7 + n) % 23]}"
+
+
+def _gov_id(lang):
+    # Other official formats of the same countries, so the model is not tied to one shape per language.
+    if chance(0.25):
+        other = {
+            "ja": lambda: pick(
+                [f"{letters(2)}{digits(8)}{letters(2)}", digits(12)]
+            ),  # residence card, licence
+            "zh": lambda: pick([f"E{digits(8)}", f"{digits(6)}{rint(1960, 2004)}{digits(8)}"]),
+            "ko": lambda: f"{digits(3)}-{digits(2)}-{digits(5)}",  # licence-like
+            "en": lambda: pick(
+                [
+                    f"{letters(2)} {digits(2)} {digits(2)} {digits(2)} {pick('ABCD')}",
+                    f"{digits(3)} {digits(3)} {digits(3)}",
+                ]
+            ),  # UK NI number, Canadian SIN
+            "fr": lambda: pick(
+                [f"{digits(2)}.{digits(2)}.{digits(2)}-{digits(3)}.{digits(2)}", f"{digits(12)}"]
+            ),
+            "it": lambda: pick([f"{letters(2)}{digits(7)}{letters(1)}", f"CA{digits(5)}{letters(2)}"]),
+            "de": lambda: f"{letters(1)}{digits(2)}{letters(1)}{digits(2)}{letters(1)}{digits(3)}",  # ID card
+            "es": lambda: pick(
+                [
+                    nie(),
+                    f"{rint(5, 25)}.{digits(3)}.{digits(3)}-{pick('0123456789K')}",
+                ]
+            ),  # NIE, RUT
+        }[lang]
+        return other(), "NATIONAL_ID"
     if lang == "ja":
         d = digits(12)
         return (d if chance(0.5) else group(d, [4, 4, 4], pick([" ", "-"]))), "MY_NUMBER"
@@ -459,6 +517,8 @@ def gov_id(lang):
 def card(lang):
     prefix = "62" if lang == "zh" else "35" if lang == "ja" and chance(0.4) else pick("45")
     c = luhn(prefix, 16)
+    if chance(0.03):
+        return " ".join(c)
     return group(c, [4, 4, 4, 4], " " if chance(0.7) else "-") if chance(0.6) else c
 
 
@@ -504,6 +564,12 @@ def ascii_name(s):
     return re.sub(r"[^a-z]", "", "".join(c for c in s if not unicodedata.combining(c)).lower())
 
 
+def person_email(L, who):
+    # A person's own address: usually a personal mailbox, sometimes their work address at a company domain.
+    domains = L.r["email_domains_company"] if chance(0.25) else L.r["email_domains_personal"]
+    return f"{email_local(L, who)}@{pick(domains)}"
+
+
 def email_local(L, who):
     g, f = ascii_name(who.given), ascii_name(who.surname)
     if L.cjk or who.foreign or not g or not f or chance(0.25):
@@ -516,6 +582,11 @@ def nick():
 
 
 TECH_NEG = [
+    lambda: f"request_id={machine_id()} session={machine_id()} status=200 latency_ms={rint(3, 900)}",
+    lambda: f"device:\n  mac: {machine_id()}\n  build: {machine_id()}\n  channel: stable",
+    lambda: (
+        f"Invoice payable to {pick(['Nordwind GmbH', 'Atelier Sud SARL', 'Tecnova S.L.', 'Blue Harbor Ltd'])}, account {company_account(pick(['de', 'fr', 'es', 'en']))}, {company_registration()}"
+    ),
     lambda: (
         "function validateEmail(email) {\n  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;\n  return pattern.test(email);\n}"
     ),
@@ -675,6 +746,47 @@ def gps():
     )
 
 
+def personal_identifier():
+    # Employee, member, patient or case numbers: they single out a person but are not reported as spans.
+    return pick(["E-", "M", "PT-", "No.", "ID ", "#", "C-", "EMP", ""]) + (
+        digits(pick([5, 6, 7])) if chance(0.7) else letters(2) + digits(pick([4, 5]))
+    )
+
+
+def company_account(lang):
+    # A company's own bank account: a real account number format, but no person's.
+    iban = {"fr": "FR", "it": "IT", "de": "DE", "es": "ES", "en": "GB"}.get(lang)
+    if iban and chance(0.7):
+        return group(
+            f"{iban}{digits(2)}{digits({'fr': 23, 'it': 23, 'de': 18, 'es': 20, 'en': 18}[lang])}", [4] * 7
+        )
+    return digits(pick([7, 10, 12]))
+
+
+def company_registration():
+    return pick(
+        [
+            f"HRB {digits(5)}",
+            f"RCS {digits(3)} {digits(3)} {digits(3)}",
+            f"CIF B{digits(8)}",
+            f"{digits(4)}-{digits(2)}-{digits(6)}",
+            f"Company No. {digits(8)}",
+        ]
+    )
+
+
+def machine_id():
+    hexs = "0123456789abcdef"
+    return pick(
+        [
+            "".join(pick(hexs) for _ in range(32)),
+            "-".join("".join(pick(hexs) for _ in range(n)) for n in (8, 4, 4, 4, 12)),
+            ":".join("".join(pick(hexs.upper()) for _ in range(2)) for _ in range(6)),
+            "".join(pick(hexs) for _ in range(40)),
+        ]
+    )
+
+
 def password():
     word = pick(["sakura", "Tiger", "blue", "Luna", "sunny", "Mango", "rocket", "Kimchi", "Paris", "moon"])
     return word + str(rint(1, 2027)) + pick(["!", "#", "$", "", "@", "?"]) + pick(["", letters(2).lower()])
@@ -718,7 +830,7 @@ def fill(doc, L, pool, key, who, tpl=None, public=False):
         elif ph == "HON":
             doc.add(L.honorific(who))
         elif ph == "EMAIL":
-            doc.span(email_variant(f"{email_local(L, who)}@{pick(r['email_domains_personal'])}"), "EMAIL")
+            doc.span(email_variant(person_email(L, who)), "EMAIL")
         elif ph == "GEMAIL":
             doc.span(f"{pick(r['generic_locals'])}@{pick(r['email_domains_company'])}", "EMAIL_GENERIC")
         elif ph == "PHONE":
@@ -844,7 +956,7 @@ def email_doc(doc, L, pool):
         doc.cats.add("email_or_phone")
     if chance(0.5):
         doc.add(f"\n{lab(L, 'email')}{colon(L)}")
-        doc.span(f"{email_local(L, who)}@{pick(L.r['email_domains_personal'])}", "EMAIL")
+        doc.span(person_email(L, who), "EMAIL")
         doc.cats.add("email_or_phone")
 
 
@@ -852,7 +964,7 @@ def _field(doc, L, k, who):
     if k == "phone":
         doc.span(phone_variant(L.code, personal_phone(L.code)), "PHONE")
     elif k == "email":
-        doc.span(email_variant(f"{email_local(L, who)}@{pick(L.r['email_domains_personal'])}"), "EMAIL")
+        doc.span(email_variant(person_email(L, who)), "EMAIL")
     elif k == "gov_id":
         doc.span(*gov_id(L.code))
     elif k == "passport":
@@ -940,6 +1052,9 @@ def csv(doc, L, pool):
             rng.sample(["dept", "email", "phone"] + (["diagnosis"] if patients else []), rint(0, 2))
         )
     )
+    if chance(0.25):
+        # Tables of card, account or ID numbers for several people.
+        cols.append(pick(["card", "bank", "gov_id", "passport"]))
     s = pick([",", "\t", " | "])
     doc.add(s.join([lab(L, "name")] + [lab(L, c) for c in cols]))
     for _ in range(rint(2, 4)):
@@ -951,6 +1066,8 @@ def csv(doc, L, pool):
             _field(doc, L, c, who)
     for c in cols:
         doc.cats.add(FIELD_CAT[c])
+    if set(cols) & {"card", "bank", "gov_id", "passport"}:
+        doc.high = True
     if patients or "diagnosis" in cols:
         doc.cats.add("health_info")
         doc.high = True
@@ -1025,7 +1142,7 @@ def boundary(doc, L, pool):
         doc.add(f"{title}\n{billed}{colon(L)}")
         doc.person(L.mention(who, "full"))
         doc.add(f"\n{lab(L, 'email')}{colon(L)}")
-        doc.span(f"{email_local(L, who)}@{pick(L.r['email_domains_personal'])}", "EMAIL")
+        doc.span(person_email(L, who), "EMAIL")
         doc.add(f"\n{lab(L, 'phone')}{colon(L)}")
         doc.span(personal_phone(lang), "PHONE")
         doc.add(f"\n{total}{rint(12, 980)},{rint(0, 999):03d}")
@@ -1170,7 +1287,7 @@ def slot_doc(doc, L, pool):
             elif attr == "rev":
                 doc.person(f"{p.surname}, {p.given}" if western and not p.foreign else p.full)
             elif attr == "email":
-                doc.span(email_variant(f"{email_local(L, p)}@{pick(r['email_domains_personal'])}"), "EMAIL")
+                doc.span(email_variant(person_email(L, p)), "EMAIL")
             elif attr == "phone":
                 doc.span(phone_variant(L.code, personal_phone(L.code)), "PHONE")
             elif attr == "govid":
@@ -1189,6 +1306,7 @@ def slot_doc(doc, L, pool):
                         "job": lambda: pick(r["job_titles"]),
                         "handle": lambda: "@" + re.sub(r"[.-]", "_", pick(r["email_locals"])),
                         "ip": ip,
+                        "id": personal_identifier,
                     }[attr]()
                 )
             doc.cats.add(SLOT_CATEGORY.get(attr, "person_name"))
@@ -1217,6 +1335,9 @@ def slot_doc(doc, L, pool):
                     "GPS": gps,
                     "PW": password,
                     "PRODUCT": lambda: pick(r["products"]),
+                    "ORG.bank": lambda: company_account(L.code),
+                    "ORG.regno": company_registration,
+                    "HASH": machine_id,
                 }[ph]()
             )
             if ph == "PW":
@@ -1230,7 +1351,58 @@ def slot_doc(doc, L, pool):
     doc.cats.discard("person_name") if not any(k == "PERSON" for *_, k in doc.spans) else None
 
 
-def load_slot_templates(root):
+def lookalike_doc(doc, L, pool):
+    # Words the model took for names: letter closings, contract party labels ("甲", "Party A") and common
+    # words that begin with a surname character ("유방암", "高血压"). Real names around them stay labelled.
+    lk = LOOKALIKE[L.code]
+    kind = pick(["contract", "closing", "closing", "words"])
+    if kind == "contract":
+        tpl, last = pick(lk["contract"]), 0
+        for m in re.finditer(r"\{(ORG|P2?)\}", tpl):
+            doc.add(tpl[last : m.start()])
+            last = m.end()
+            if m.group(1) == "ORG":
+                doc.add(surname_org(L, pool) if chance(0.25) else pick(L.r["orgs"]))
+            else:
+                doc.person(L.mention(L.person(pool), "full"))
+        doc.add(tpl[last:])
+    elif kind == "closing":
+        (negative if chance(0.5) else narrative)(doc, L, pool)
+        doc.add("\n\n" + pick(lk["closings"]))
+        if chance(0.5):
+            doc.add("\n")
+            doc.person(L.mention(L.person(pool), "full"))
+    else:
+        for i in range(rint(1, 3)):
+            if i:
+                join_next(doc, L)
+            doc.add(pick(lk["words"]))
+        if chance(0.5):
+            join_next(doc, L)
+            fill(doc, L, pool, "filler", L.person(pool))
+
+
+def nameless_doc(doc, L, pool):
+    # Personal information with no name: a user's device, cookie or IP address, or a recipient's address.
+    # Server and service-account lines around it stay non-personal; the document is low.
+    lines = rng.sample(NAMELESS[L.code], rint(1, 2))
+    for i, line in enumerate(lines):
+        if i or chance(0.5):
+            if doc.text:
+                doc.add("\n")
+            if chance(0.4):
+                doc.add(pick(TECH_NEG)())
+            else:
+                fill(doc, L, pool, "filler", L.person(pool))
+            doc.add("\n")
+        doc.add(
+            line.replace("{ID}", machine_id()).replace("{IP}", ip()).replace("{ADDR}", pick(L.r["addresses"]))
+        )
+        doc.cats.add("postal_address" if "{ADDR}" in line else "ip_address_of_a_person")
+    doc.personal = True
+
+
+def load_slot_templates(root, skip=frozenset()):
     from .slots import problems
 
     kept = Counter()
@@ -1241,6 +1413,9 @@ def load_slot_templates(root):
             print(f"!! skipping unreadable {path}")
             continue
         for i, t in enumerate(templates):
+            if t["cell"] in skip:
+                kept["skipped"] += 1
+                continue
             if problems(t):
                 kept["rejected"] += 1
                 continue
@@ -1263,6 +1438,8 @@ FORMATS = [
     (3, self_disclosure),
     (5, topic_article),
     (6, long_doc),
+    (6, lookalike_doc),
+    (5, nameless_doc),
 ]
 BLOCKS = [narrative, negative, negative, email_doc, transaction, form, chat, topic_article]
 
@@ -1286,6 +1463,29 @@ def make_doc(L, pool):
     }
 
 
+def packed_doc(L, pool):
+    """Several documents joined into one long one, so the model also learns from inputs longer than one
+    window. The labels are the union of the parts: the most sensitive part sets the level."""
+    target = rint(700, 2200) if L.cjk else rint(1500, 5500)
+    text, spans, level, cats = "", [], 0, set()
+    while len(text) < target:
+        d = make_doc(L, pool)
+        if text:
+            text += "\n\n"
+        spans += [[s + len(text), e + len(text), k] for s, e, k in d["spans"]]
+        text += d["text"]
+        level = max(level, d["sensitivity"])
+        cats |= set(d["categories"])
+    return {
+        "lang": L.code,
+        "format": "packed",
+        "text": text,
+        "spans": spans,
+        "sensitivity": level,
+        "categories": sorted(cats),
+    }
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", required=True, type=Path)
@@ -1296,12 +1496,19 @@ def main(argv=None):
     ap.add_argument("--exclude", default="")
     ap.add_argument("--templates", type=Path, help="directory of slot template files")
     ap.add_argument("--template-weight", type=float, default=100)
+    ap.add_argument(
+        "--packed-docs", type=int, default=0, help="long documents made of joined parts, per language"
+    )
+    ap.add_argument("--skip-cells", default="", help="slot template cells to leave out, comma-separated")
     a = ap.parse_args(argv)
     rng.seed(a.seed)
     global SLOT_WEIGHT
     SLOT_WEIGHT = a.template_weight
     if a.templates:
-        print("slot templates:", dict(load_slot_templates(a.templates)))
+        print(
+            "slot templates:",
+            dict(load_slot_templates(a.templates, set(filter(None, a.skip_cells.split(","))))),
+        )
     names, texts = reserved_names([p for p in a.exclude.split(",") if p])
     excluded = []
     # Brands and public figures seen in evaluation text are left out of training.
@@ -1322,6 +1529,8 @@ def main(argv=None):
     report = {"excluded": excluded, "pools": {}}
     for pool, n in (("train", a.train_docs), ("valid", a.valid_docs)):
         docs = [make_doc(L, pool) for L in langs for _ in range(n)]
+        packed = a.packed_docs if pool == "train" else a.packed_docs * a.valid_docs // max(1, a.train_docs)
+        docs += [packed_doc(L, pool) for L in langs for _ in range(packed)]
         rng.shuffle(docs)
         with (a.out / f"{pool}.jsonl").open("w") as f:
             for d in docs:

@@ -2,7 +2,7 @@
 
 You write realistic documents with the personal values left as placeholders. A program later fills the placeholders with invented values many times, and knows exactly where each value is. So the quality that matters is the writing: natural, varied, native text that looks like a real document of its kind.
 
-Read `docs/labeling-policy.md` (Japanese) to understand what is personal information and what is sensitive. Do not read anything else in the repository except your brief file and this guide.
+Read `docs/labeling-policy.md` to understand what is personal information and what is sensitive. Do not read anything else in the repository except your brief file and this guide.
 
 ## One template per brief
 
@@ -64,3 +64,17 @@ Write every template yourself, one by one. Do not generate text with code, loops
 ```
 
 Fix every problem it prints and run it again until it prints `0 problems`. Briefs outside your range are reported as missing; ignore that line only.
+
+## Second-round cells
+
+These briefs use a few more cells and placeholders.
+
+| Cell | What the template must contain |
+|---|---|
+| marriage_or_partnership_record (high) | a record of a marriage or partnership (a registration, certificate or contract). Mix couples of every gender combination across your templates. |
+| identifier_only_sensitive (high) | a sensitive fact about a person identified only by an identifier: use `{P1.id}` (an employee, member, patient or case number) or `.handle`, `.ip`, and no name placeholders. |
+| identifier_only (low) | a person identified only by `{P1.id}` (or `.handle`, `.ip`), with nothing sensitive, and no name placeholders. |
+| table_of_numbers (high) | a table, CSV export or list with several people and at least three of `.govid`, `.passport`, `.card`, `.bank`. |
+| numbers_of_no_person (none) | long numbers that belong to no person: `{HASH}` (a hash, UUID or MAC address), `{ORG.bank}` (the company's own bank account), `{ORG.regno}` (a company registration number), in logs, configuration, invoices or company letters. |
+
+All other cells have `implicit` set: never state the sensitive fact in a sentence; only the heading, the kind of document or the setting reveals it. Every category is judged by the same standard (see the labelling policy's "Equal treatment").

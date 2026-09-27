@@ -1,5 +1,12 @@
 # Third-party notices
 
+## coo-quack/sensitive-canary
+
+The rule set in `src/pii_sentinel/canary_rules.json` and the validator implementations in `src/pii_sentinel/rules.py` are adapted from coo-quack/sensitive-canary.
+
+- License: MIT
+- Copyright (c) 2026 coo-quack
+
 ## jhu-clsp/mmBERT-base
 
 mmBERT-pii-sentinel is fine-tuned from https://huggingface.co/jhu-clsp/mmBERT-base

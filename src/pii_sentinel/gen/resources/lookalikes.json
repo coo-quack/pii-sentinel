@@ -1,0 +1,141 @@
+{
+ "_comment": "Words that look like names to the model but are not: letter closings, contract party labels, and common words that begin with a surname character. {ORG} is an organisation, {P} a person (labelled as a name), {P2} a second person.",
+ "ja": {
+  "closings": [
+   "敬具",
+   "草々",
+   "以上",
+   "かしこ",
+   "拝具",
+   "敬白"
+  ],
+  "contract": [
+   "{ORG}（以下「甲」という）と{P}（以下「乙」という）は、次のとおり業務委託契約を締結する。\n第1条 甲は乙に対し、本契約に定める業務を委託し、乙はこれを受託する。\n第2条 乙は、業務の遂行にあたり甲の指示に従うものとする。",
+   "本契約は甲および乙の間で合意されるものとする。甲は本契約の全ての条項に同意し、乙はこれを遵守する。\n甲：{ORG}\n乙：{ORG}",
+   "賃貸人{P}（以下「甲」という）と賃借人{P2}（以下「乙」という）は、以下のとおり賃貸借契約を締結する。甲は乙に対し本物件を賃貸し、乙は賃料を支払う。丙は連帯保証人とする。"
+  ],
+  "words": [
+   "本日の議題は以上です。甲乙丙の三案から一つを選びます。",
+   "田畑の管理と水路の点検を行いました。",
+   "森林の保全に関する資料を配布します。"
+  ]
+ },
+ "zh": {
+  "closings": [
+   "此致\n敬礼",
+   "顺颂商祺",
+   "谨上",
+   "特此通知"
+  ],
+  "contract": [
+   "甲方：{ORG}\n乙方：{ORG}\n甲方与乙方经友好协商，达成如下协议。甲方负责提供场地，乙方负责技术支持。甲方联系电话见附件。",
+   "委托方（甲方）：{ORG}\n受托方（乙方）：{P}\n甲方委托乙方完成以下工作，乙方应按时交付成果，甲方应按约定支付报酬。",
+   "本合同由甲方、乙方、丙方共同签署，一式三份，甲乙丙三方各执一份。"
+  ],
+  "words": [
+   "高血压和高血脂是常见的慢性病，建议定期检查。",
+   "张力测试和李子的产量报告已经完成。",
+   "王牌产品的销量在周末明显增长。",
+   "黄金价格本周小幅上涨。"
+  ]
+ },
+ "ko": {
+  "closings": [
+   "올림",
+   "드림",
+   "배상",
+   "감사합니다"
+  ],
+  "contract": [
+   "{ORG}(이하 \"갑\")와 {P}(이하 \"을\")은 다음과 같이 용역 계약을 체결한다.\n제1조 갑은 을에게 업무를 위탁하고, 을은 이를 수행한다.\n제2조 을은 갑의 지시에 따라 업무를 처리한다.",
+   "본 계약은 갑과 을 사이에 체결되며, 갑과 을은 계약 조항을 성실히 이행한다.\n갑: {ORG}\n을: {ORG}"
+  ],
+  "words": [
+   "진료과 안내: 내과, 외과, 정형외과, 이비인후과, 피부과, 안과, 신경과, 소아과, 산부인과",
+   "유방암과 대장암은 조기 검진으로 발견할 수 있습니다.",
+   "정기 검진은 이비인후과와 정형외과에서 받을 수 있습니다.",
+   "조기 진단과 정확한 검사가 중요합니다.",
+   "이번 주 강의는 신경과 전문의가 진행합니다."
+  ]
+ },
+ "en": {
+  "closings": [
+   "Best regards",
+   "Kind regards",
+   "Sincerely",
+   "Yours faithfully",
+   "Cheers"
+  ],
+  "contract": [
+   "This agreement is made between {ORG} (\"Party A\") and {P} (\"Party B\"). Party A engages Party B to provide the services described below, and Party B agrees to perform them.",
+   "The Licensor, {ORG}, grants the Licensee, {ORG}, a non-exclusive licence. The Licensee shall pay the fees set out in Schedule 1."
+  ],
+  "words": [
+   "Hope you are well. May I ask for an update on the June budget?",
+   "The Grant Committee will review the Summer programme."
+  ]
+ },
+ "de": {
+  "closings": [
+   "Mit freundlichen Grüßen",
+   "Viele Grüße",
+   "Beste Grüße",
+   "Hochachtungsvoll"
+  ],
+  "contract": [
+   "Zwischen {ORG} (nachfolgend „Auftraggeber“) und {P} (nachfolgend „Auftragnehmer“) wird folgender Vertrag geschlossen. Der Auftragnehmer erbringt die Leistungen gemäß Anlage 1.",
+   "Der Vermieter, {ORG}, vermietet dem Mieter, {ORG}, die Räume im Erdgeschoss. Der Mieter zahlt die Miete monatlich im Voraus."
+  ],
+  "words": [
+   "Die Sitzung beginnt um neun Uhr im großen Saal."
+  ]
+ },
+ "fr": {
+  "closings": [
+   "Cordialement",
+   "Bien à vous",
+   "Salutations distinguées",
+   "Bien cordialement"
+  ],
+  "contract": [
+   "Entre {ORG}, ci-après « le Prestataire », et {P}, ci-après « le Client », il est convenu ce qui suit. Le Prestataire fournit les services décrits en annexe.",
+   "Le Bailleur, {ORG}, loue au Preneur, {ORG}, les locaux situés au rez-de-chaussée."
+  ],
+  "words": [
+   "Le boulanger ouvre à sept heures, sauf le dimanche.",
+   "Le Père Noël arrive en décembre selon la tradition."
+  ]
+ },
+ "it": {
+  "closings": [
+   "Cordiali saluti",
+   "Distinti saluti",
+   "Un caro saluto",
+   "In fede"
+  ],
+  "contract": [
+   "Tra {ORG} (di seguito «il Committente») e {P} (di seguito «il Fornitore») si conviene quanto segue. Il Fornitore svolge le attività indicate nell'allegato.",
+   "Il Locatore, {ORG}, concede in locazione al Conduttore, {ORG}, i locali indicati."
+  ],
+  "words": [
+   "Il fabbro ha riparato il cancello del cortile.",
+   "La Befana porta i dolci ai bambini."
+  ]
+ },
+ "es": {
+  "closings": [
+   "Atentamente",
+   "Saludos cordiales",
+   "Un saludo",
+   "Cordialmente"
+  ],
+  "contract": [
+   "Entre {ORG} (en adelante, «el Cliente») y {P} (en adelante, «el Proveedor») se acuerda lo siguiente. El Proveedor prestará los servicios descritos en el anexo.",
+   "El Arrendador, {ORG}, arrienda al Arrendatario, {ORG}, el local descrito."
+  ],
+  "words": [
+   "El Pbro. de la parroquia presidió la misa del domingo.",
+   "La Sra. directora y el Sr. alcalde asistieron al acto."
+  ]
+ }
+}

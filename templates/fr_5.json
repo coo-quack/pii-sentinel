@@ -1,0 +1,214 @@
+{
+  "templates": [
+    {
+      "id": "f_fr_031",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "Facture - École de langues Montpellier\n\nNom: {P1}\nDate: {DATE}\nCours: Arabe intensif (30 heures)\nMontant: {AMOUNT}\nRemise confessionnelle: Appliquée\nNotes: Accès aux locaux de prière pendant les horaires de classe reconnus\nPaiement: Complété"
+    },
+    {
+      "id": "f_fr_032",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "political_opinion",
+      "text": "Formulaire - Agence recrutement\n\nNom: {P1}\nExp: 5 ans secteur public\nPréférences politiques: Socialiste\nPriorités: Égalité, climat\nDisposition: Oui pour postes ministère Écologie"
+    },
+    {
+      "id": "f_fr_033",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "Rapport d'incident - Église Notre-Dame du Port\n\nDate: {DATE}\nIncident: Conflit interconfessionnel à la sacristie\nPersonnes impliquées: {P1}, {P2}\nDétails: Désaccord sur le partage de la salle de récréation réservée aux fidèles\nAction: Médiation proposée par le curé\nSuivi: À confirmer {DATE}"
+    },
+    {
+      "id": "f_fr_034",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "formal_hr_record",
+      "text": "Chat interne - Commissariat central\n\nMessage 14:30 Commandant: {P1}, reçu mutation disciplinaire effective {DATE}\nMessage 14:32 {P1}: Compris, merci pour la notification\nMessage 15:15 RH: Documentation transmise, délai appel: 5 jours ouvrables\nMessage 16:00 Commandant: Rencontre obligatoire mardi prochain"
+    },
+    {
+      "id": "f_fr_035",
+      "lang": "fr",
+      "sensitivity": "none",
+      "cell": "numbers_of_no_person",
+      "text": "Registre des serveurs - Cabinet juridique Martin\n\nServeur 1: {HASH}\nServeur 2: {HASH}\nBase données: {HASH}\nCompte bancaire: {ORG.bank}\nNuméro enregistrement: {ORG.regno}\nCert SSL: {HASH}\nClé chiffrement: {HASH}"
+    },
+    {
+      "id": "f_fr_036",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "Rapport d'enquête - Poste de police côtier\n\nDate: {DATE}\nIncident: Cérémonie religieuse non autorisée\nPersonnes interrogées: {P1}, {P2}, {P3}\nContexte: Rassemblement à la plage pour rituels du coucher de soleil\nConclusion: Avertissement émis, protocole religieux confidentiel"
+    },
+    {
+      "id": "f_fr_037",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "race_or_ethnic_origin",
+      "text": "Liste des bénéficiaires - GAEC Agriculture biologique\n\nProjet d'aide agricole régionale\n\n{P1} - Origines asiatiques\n{P2} - Origines nord-africaines\n{P3} - Origines subsahariennes\n{P4} - Origines moyen-orientales\n\nMontant total d'aide: {AMOUNT}"
+    },
+    {
+      "id": "f_fr_038",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Rapport d'incident - Association caritative Saint-Joseph\n\nDate: {DATE}\nBénéficiaire: {P1}\nRaison du signalement: Absent après diagnostic de diabète sévère\nAction initiée: Visite de contrôle programmée\nContexte: Suivi habituel du programme de santé\nStatut: Priorité élevée"
+    },
+    {
+      "id": "f_fr_039",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Tableau suivi résidents - EHPAD Les Lilas\n\nRésident,Pression,Traitement,Médicament principal,Consultation,Médecin,Notes\n{P1},140/90,Hypertension stabilisée,Lisinopril,Hebdo,Dr. Martin,Suivi régulier depuis 3 ans\n{P2},125/80,Diabète type 2,Metformine,Bihebdo,Dr. Leclerc,Patient coopérant\n{P3},135/85,Insuffisance cardiaque,Furosémide,Quotidien,Dr. Benoit,Surveillance étroite nécessaire\n{P4},150/95,Diabète type 2 + HTA,Chlorthalidone,Bihebdo,Dr. Rousseau,Comorbidité complexe\n{P1},145/92,Prédiabète,Atorvastatine,Mensuel,Dr. Martin,Risque cardiovasculaire élevé\n\nRevue médicale complète: {DATE}\nMédicaments stockés sécurisé\nAccès restreint personnel autorisé"
+    },
+    {
+      "id": "f_fr_040",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "Notes réunion - Cabinet juridique Lambert\n\nDate: {DATE}\nDossier n° {P1.id}\nDuration: 45 min\nDécision: Contrat prolongé\nProchaine: Février"
+    },
+    {
+      "id": "f_fr_041",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "table_of_numbers",
+      "text": "E-mail - Bureau syndical France\n\nMembre | Identité | Carte | Compte\n{P1} | {P1.govid} | {P1.card} | {P1.bank}\n{P2} | {P2.govid} | {P2.card} | {P2.bank}\nStricte"
+    },
+    {
+      "id": "f_fr_042",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "religion_or_belief",
+      "text": "E-mail - Agence recrutement\n\n{P1} très qualifié mais fréquente centre bouddhiste. Peut-il respecter horaires? Suggestion: postes sans réunions samedi."
+    },
+    {
+      "id": "f_fr_043",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "identifier_only_sensitive",
+      "text": "Entretien d'embauche - Hôtel Châteaubriant\n\nDate: {DATE}\nClient ID: {P1.id}\nCondition: Allergie sévère à la pénicilline - réservation spéciale\nRépercussions: Accès limité cafétéria\nSuivi: Vérification {DATE}"
+    },
+    {
+      "id": "f_fr_044",
+      "lang": "fr",
+      "sensitivity": "none",
+      "cell": "numbers_of_no_person",
+      "text": "Facture timing - Marathon organisateurs\n\nCourse: {CODE}\nUUID: {HASH}\nLivraison: {CODE}\nMontant: {AMOUNT}\nCompte: {ORG.bank}\nHash: {HASH}"
+    },
+    {
+      "id": "f_fr_045",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "Messages chat - Chantier BTP\n\n09:15 {P1}: Félicitations mariage! Fiancée magnifique\n09:18 {P2}: Merci, logement ce mois-ci\n09:20 {P1}: Voyage noces?\n09:25 {P2}: Oui Barcelone"
+    },
+    {
+      "id": "f_fr_046",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "trade_union",
+      "text": "Annonce - Bureau syndical France Transports\n\nGrève reconnue confédération\nDate: {DATE}\nParticipants: {P1}, {P2}, {P3}\nType: Manifestation rue\nDemande: Augmentation salaire\nLieu: Gare centrale"
+    },
+    {
+      "id": "f_fr_047",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "Notes réunion - Bureau parti politique Centre\n\nDate: {DATE}\nParticipants: Directeur, 3 conseillers\n\nPoint 1: Dossier {P1.id}\nContexte: Mise à jour administrative fichier\nDécision: Renouvellement validé\nDocumentation: Jointe avec pièces justificatives\n\nPoint 2: Réunion prochaine {DATE}\nLieu: Siège Paris\nAccès: Ouvert adhérents confirmés\nOrdre du jour: Budget annuel, élection trésorier, planification activités\nDurée estimée: 2h30\nDocuments à apporter: Cartes adhérents valides\n\nPoint 3: Affaires courantes\nDivers: Confirmations membership, cotisations annuelles\n\nPoint 4: Communications importantes\nStatut: À diffuser auprès de tous les membres\nClôture séance"
+    },
+    {
+      "id": "f_fr_048",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Mémo - Ambassade du Burundi à Paris\n\nDe: Bureau médical\nDate: {DATE}\nPersonnel: {P1}\nVisite médicale: Tuberculose inactive\nRecommandation: Retour travail autorisé\nConsultation: {DATE}"
+    },
+    {
+      "id": "f_fr_049",
+      "lang": "fr",
+      "sensitivity": "none",
+      "cell": "numbers_of_no_person",
+      "text": "Mémo - Mairie de Villeurbanne\n\nMigration serveurs administratifs\n\nMac ancien: {HASH}\nMac nouveau: {HASH}\nTicket support: {CODE}\nContrat id: {ORG.regno}\nPayeur: {ORG.bank}\nEffectivité: {DATE}"
+    },
+    {
+      "id": "f_fr_050",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Entrée journal - Musée du Louvre\n\n{DATE}\n\nRetour travail après traitement cancer sein. Radiothérapie terminée {DATE}. {P1} reconnaissante pour soutien équipe magnifique."
+    },
+    {
+      "id": "f_fr_051",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "formal_hr_record",
+      "text": "Rapport incident - Air France\n\nDate: {DATE}\nEmployé: {P1}\nMotif: Licenciement non-respect protocole sécurité\nDécision: Effective immédiatement\nRecours: Appel 30 jours"
+    },
+    {
+      "id": "f_fr_052",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "identifier_only_sensitive",
+      "text": "Dossier - Mairie Marseille\n\nPatient ID: {P1.id}\nDiagnostic clinique: Schizophrénie rémission\nMédecin: Dr. Leclerc\nAccès: Professionnels santé"
+    },
+    {
+      "id": "f_fr_053",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "race_or_ethnic_origin",
+      "text": "Note modération - Communauté jeu en ligne\n\nDate: {DATE}\nJoueur: {P1}\nRaison: Profil origine indonésienne signalé après problème conduite équipe\nContexte: Accusation ethnique chat vocal\nDécision: Bannissement 7 jours\nSignalement: Conservé"
+    },
+    {
+      "id": "f_fr_054",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "marriage_or_partnership_record",
+      "text": "Annonce interne - Chaîne supermarchés Carrefour Express\n\nCongrats!\n\nNous célébrons le mariage de {P1} et {P2} le {DATE}.\n\nCollègues invités réception le jour suivant 18h restaurant espace accueil.\n\nHeureux époux demandent cadeaux dons Médecins sans Frontières."
+    },
+    {
+      "id": "f_fr_055",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "Liste fidèles - Église de la Madeleine\n\nAssociation amis Madeleine - Groupe soutien\n\n{P1}\n{P2}\n{P3}\n{P4}\n\nRéunion: Mercredi 19h"
+    },
+    {
+      "id": "f_fr_056",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "genetic_or_biometric",
+      "text": "Post X - Chantier BTP Bretagne\n\n{DATE} 15:47\n\nFelicitations {P1} tests empreintes digitales biométriques réussis! Accréditation sécurité niveau 2 obtenue. Bienvenue équipe confiance."
+    },
+    {
+      "id": "f_fr_057",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "trade_union",
+      "text": "Note cas - Compagnie Air Inter\n\nDate: {DATE}\nSalarié: {P1}\nProblème: Refus adhésion syndicat n°1\nContexte: Réunion syndicale, affiliation obligatoire\nStatus: Plainte inspecteur travail"
+    },
+    {
+      "id": "f_fr_058",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "sex_life_or_orientation",
+      "text": "Post Instagram - Restaurant Le Marais\n\n{DATE}\n\nDate night! {P1} et moi adorons ce resto depuis 3 ans. L'ambiance parfaite pour couples. Vous le recommandez? 🍷❤️ #DateNight #Amour #Restaurant #Couple #Péripéties #Love"
+    },
+    {
+      "id": "f_fr_059",
+      "lang": "fr",
+      "sensitivity": "none",
+      "cell": "numbers_of_no_person",
+      "text": "Export données - Coopérative agricole Nouvelle-Aquitaine\n\nLot | Tracteur | Parcelle | Contrat\n2024-A | {CODE} | {CODE} | {CODE}\n2024-B | {CODE} | {CODE} | {CODE}\n2024-C | {CODE} | {CODE} | {CODE}\n2024-D | {CODE} | {CODE} | {CODE}\n\nCertification système: {HASH}\nArchivage: {DATE}\nCompte banque: {ORG.bank}\nNuméro SIREN: {ORG.regno}"
+    },
+    {
+      "id": "f_fr_060",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Post Twitter - Chantier BTP Centre-Ville\n\n{DATE} 09:23\n\nRetour TT pour {P1} qui a subi intervention cardiaque juillet. Bon courage pour convalescence post-opératoire! Équipe vous soutient 💪 #Retour #Courage"
+    }
+  ]
+}

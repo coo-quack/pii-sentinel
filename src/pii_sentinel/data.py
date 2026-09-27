@@ -61,6 +61,46 @@ def encode(tokenizer, doc, max_length):
     }
 
 
+def windows(tokenizer, text, max_length, stride=None):
+    """Overlapping windows of at most max_length tokens (special tokens included) that together cover the
+    whole text, as (input_ids, offsets) pairs; neighbouring windows share `stride` tokens.
+
+    The windows are cut here rather than with the tokenizer's return_overflowing_tokens: with the
+    transformers 5 tokenizers that option returned a short second window and dropped the rest of the text."""
+    stride = max_length // 4 if stride is None else stride
+    enc = tokenizer(text, add_special_tokens=False, return_offsets_mapping=True)
+    ids, offsets = enc["input_ids"], [tuple(o) for o in enc["offset_mapping"]]
+    specials = tokenizer("", add_special_tokens=True)["input_ids"]
+    assert len(specials) == 2, "expected one special token before and one after the text"
+    size = max_length - 2
+    out, start = [], 0
+    while True:
+        end = min(start + size, len(ids))
+        out.append(
+            (
+                [specials[0], *ids[start:end], specials[1]],
+                [(0, 0), *offsets[start:end], (0, 0)],
+            )
+        )
+        if end == len(ids):
+            return out
+        start = end - stride
+
+
+def encode_windows(tokenizer, doc, max_length, stride=None):
+    """A document as overlapping windows of at most max_length tokens (as at inference), each with its
+    token labels; the document labels are shared by all windows."""
+    windows_ = [
+        {"input_ids": ids, "labels": bio_labels(token_char_spans(offs, doc["text"]), doc["spans"])}
+        for ids, offs in windows(tokenizer, doc["text"], max_length, stride)
+    ]
+    return {
+        "windows": windows_,
+        "sensitivity": doc["sensitivity"],
+        "categories": [1.0 if c in doc["categories"] else 0.0 for c in CATEGORIES],
+    }
+
+
 def decode_spans(text, offsets, tag_ids, id_to_tag):
     """Group B-/I- runs of the same type into character spans."""
     spans, cur = [], None
@@ -132,6 +172,35 @@ HONORIFIC_TAIL = [
 ]
 
 
+# Titles after a Chinese or Korean surname, which is often a single character (周教授, 이 박사).
+TITLE_TAIL = [
+    "先生",
+    "女士",
+    "小姐",
+    "老师",
+    "医生",
+    "教授",
+    "博士",
+    "主席",
+    "经理",
+    "主任",
+    "선생님",
+    "교수",
+    "박사",
+    "부장",
+    "과장",
+    "사장",
+    "대표",
+    "팀장",
+    "씨",
+    "님",
+]
+
+
+def is_hanzi_or_hangul(ch):
+    return "\u4e00" <= ch <= "\u9fff" or "\uac00" <= ch <= "\ud7a3"
+
+
 def is_kanji_or_katakana(ch):
     return "\u4e00" <= ch <= "\u9fff" or "\u30a0" <= ch <= "\u30ff"
 
@@ -146,6 +215,14 @@ def trim_particles(text, s, e):
     changed = True
     while changed:
         changed = False
+        head = text[s:e].rstrip()
+        for p in TITLE_TAIL:
+            rest = head[: -len(p)].rstrip()
+            if head.endswith(p) and len(rest) == 1 and is_hanzi_or_hangul(rest):
+                e, changed = s + 1, True
+                break
+        if changed:
+            break
         for p in HONORIFIC_TAIL:
             if text[s:e].endswith(p) and e - len(p) - s >= 2:
                 e, changed = e - len(p), True
