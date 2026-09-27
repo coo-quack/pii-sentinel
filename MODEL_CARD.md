@@ -51,7 +51,7 @@ values only.
 
 | Metric | Test |
 |---|---|
-| Person names: recall / precision | 97.9% / 96.6% |
+| Person names: recall / precision | 97.9% / 96.7% |
 | Phone numbers: recall / precision | 94.7% / 90.0% |
 | E-mail addresses: recall / precision | 91.7% / 84.6% |
 | ID and account numbers: recall / precision | 83.1% / 90.1% |

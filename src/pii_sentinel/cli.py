@@ -17,7 +17,10 @@ RANK = {"none": 0, "low": 1, "high": 2}
 
 
 def mask(value, ftype=""):
-    # Keep only enough to tell findings apart; short values and names keep a single character.
+    # Keep only enough to tell findings apart; short values and names keep a single character, and a
+    # one-character value (a surname such as 李) is hidden entirely.
+    if len(value) <= 1:
+        return "…"
     if ftype == "person_name" or len(value) < 8:
         return f"{value[0]}…"
     return f"{value[:2]}…{value[-2:]}"

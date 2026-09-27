@@ -215,7 +215,8 @@ def score(
         for r in results
         if r["sensitivity"]["expected"] != "none" and r["sensitivity"]["predicted"] == "none"
     ]
-    person_recall = prf(per_type["person_name"])["recall"]
+    c = per_type["person_name"]
+    person_recall = c["tp"] / max(1, c["tp"] + c["fn"])
     summary = {
         "documents": len(results),
         "seconds": round(elapsed, 1),
@@ -237,6 +238,21 @@ def score(
         },
     }
     return summary, results
+
+
+def rate(c, other):
+    """Precision (other="fp") or recall (other="fn") from the counts; the rounded values in the summary would
+    be rounded twice when printed."""
+    return c.get("tp", 0) / max(1, c.get("tp", 0) + c.get(other, 0))
+
+
+def pr(c):
+    return f"P{rate(c, 'fp'):.1%} R{rate(c, 'fn'):.1%}"
+
+
+def accuracy(summary):
+    right = sum(v for k, v in summary["confusion"].items() if k.split("->")[0] == k.split("->")[1])
+    return right / max(1, summary["documents"])
 
 
 def main(argv=None):
@@ -276,19 +292,16 @@ def main(argv=None):
             meta.get("doc_pooling", "per_window"),
         )
         t = summary["types"]
-        line = "  ".join(f"{k} P{v['precision']:.1%} R{v['recall']:.1%}" for k, v in t.items())
+        line = "  ".join(f"{k} {pr(v)}" for k, v in t.items())
         print(f"== {path.name}: {line}")
         pt = summary["personal_types"]
-        print(
-            "   pii only: "
-            + "  ".join(f"{k} P{v['precision']:.1%} R{v['recall']:.1%}" for k, v in pt.items())
-        )
+        print("   pii only: " + "  ".join(f"{k} {pr(v)}" for k, v in pt.items()))
         print(
             "   person recall by lang: "
-            + " ".join(f"{k} {v['recall']:.0%}" for k, v in summary["person_by_lang"].items())
+            + " ".join(f"{k} {rate(v, 'fn'):.0%}" for k, v in summary["person_by_lang"].items())
         )
         print(
-            f"   sensitivity {summary['sensitivity_accuracy']:.1%}  high missed {len(summary['high_missed'])} "
+            f"   sensitivity {accuracy(summary):.1%}  high missed {len(summary['high_missed'])} "
             f"{summary['high_missed']}  personal->none {len(summary['personal_missed'])} "
             f"{summary['personal_missed']}  under {len(summary['under_estimated'])}  {summary['seconds']}s  "
             f"=> {'PASS' if summary['acceptance']['pass'] else 'FAIL'}"

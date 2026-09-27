@@ -1005,7 +1005,7 @@
    "Bulletin de paie – {DATE}\nSalarié : {P}\nSalaire brut : {AMT}\nRetenues : {AMT}",
    "Bon de livraison\nDestinataire : {P}\nAdresse : {ADDR}\nCommande : {CODE}",
    "Compte suspendu\nUtilisateur : {P}\nMotif : non-respect des conditions d'utilisation\nContact : {GEMAIL}",
-   "Vous recevez cet email car {EMAIL} est inscrit à notre newsletter. Se désabonner : {GEMAIL}",
+   "Ce message a été envoyé à {EMAIL}, abonné à notre lettre d'information. Se désabonner : {GEMAIL}",
    "Contrat de location\nLocataire : {P}\nLogement : {ADDR}\nLoyer mensuel : {AMT}",
    "Accord de confidentialité\nSigné par : {P}\nDate : {DATE}\nTémoin : {P2}"
   ],
