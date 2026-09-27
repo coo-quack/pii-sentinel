@@ -5,7 +5,7 @@ description = "Multilingual PII detector: span labelling and document sensitivit
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
-requires-python = "==3.14.7"
+requires-python = ">=3.12"
 dependencies = [
   "torch==2.14.0",
   "transformers==5.17.0",
