@@ -29,7 +29,7 @@ The model has its own output heads, so it is run with the pii-sentinel tool, not
 With [uv](https://docs.astral.sh/uv/getting-started/installation/):
 
 ```sh
-uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.1.1 \
+uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.1.2 \
   pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
