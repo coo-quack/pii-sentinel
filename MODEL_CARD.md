@@ -9,65 +9,135 @@ tags: [pii, personal-information, privacy, token-classification]
 
 # mmBERT-pii-sentinel
 
-A fine-tuned derivative of [jhu-clsp/mmBERT-base](https://huggingface.co/jhu-clsp/mmBERT-base)
-(revision `c5955035435e2bf121cde7f3c8863ef52ff35d82`). All encoder layers are fine-tuned; three heads are added:
+A multilingual model that finds personal information in text and tells you how sensitive a document is.
 
-- span labelling (BIO) for person names, personal and generic e-mail addresses, personal and corporate phone numbers,
-  national / government IDs, passport and driving licence numbers, card and bank account numbers, order / tracking
-  and serial numbers (order, tracking and serial numbers are learnt but not reported)
-- document sensitivity: none / low / high
-- 19 document categories (person name, contact, address, date of birth, government ID, financial account, health,
-  biometric or genetic, IP address of a person, SNS handle, employment, race or religion, political opinion or union,
-  sex life or orientation, citizenship or immigration, precise location, credentials, private communications,
-  HR or criminal record)
+Given a document, it reports:
 
-This model is not affiliated with or endorsed by the authors of mmBERT.
+- **the sensitivity level**: `none`, `low` (names, contacts, other personal data) or `high` (health, ID numbers,
+  card numbers and other special categories);
+- **the values it found**, with their character positions: person names, e-mail addresses, phone numbers, and ID,
+  card and account numbers;
+- **19 categories** of personal information the document contains, each with a probability.
 
-## Usage
+It covers Japanese, Chinese (Simplified), Korean, English, French, Italian, German and Spanish. It is the model of
+the [pii-sentinel](https://github.com/coo-quack/pii-sentinel) tool, which runs it on your own machine together with a
+set of regex rules.
 
-The checkpoint has its own heads, so it is loaded with the pii-sentinel tool rather than a transformers pipeline:
+## Quick start
+
+The model has its own output heads, so it is run with the pii-sentinel tool, not with a transformers pipeline.
+With [uv](https://docs.astral.sh/uv/getting-started/installation/):
 
 ```sh
-git clone https://github.com/coo-quack/pii-sentinel.git && cd pii-sentinel && uv sync
-uv run pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
+uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.1.1 \
+  pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
-The model files are `model.safetensors` (weights) and `pii_sentinel.json` (label sets and training settings).
+```text
+document.txt: sensitivity high
+  person_name: S…
+  person_name: D…
+  phone: 41…98
+```
 
-## Training data
+The model (about 1.2 GB) is downloaded once into the Hugging Face cache; after that the tool works offline and the
+scanned text never leaves the machine. Values are masked unless you pass `--show-values`; `--json` gives a full report
+and `--fail-on high` makes the command fail for use in CI. See the
+[README](https://github.com/coo-quack/pii-sentinel#readme) for all options.
 
-Synthetic documents generated from templates in eight languages (ja, zh, ko, en, fr, it, de, es). Every person, number
-and address is fictional, except famous historical figures used as public-figure examples. Labels are derived from the
-templates. No real personal data and no outputs of other PII models are used.
+## Intended use
+
+- Checking documents, messages, logs or datasets for personal information before they are shared, published or sent
+  to an external service.
+- Sorting documents by sensitivity so that the `high` ones get a closer look.
+
+It is a screening aid, not a guarantee: it will miss some personal information, and its output should not be the
+only safeguard for data that must not leak. It is not designed for anonymising text for legal purposes or for
+languages other than the eight above.
+
+## What it detects
+
+### Sensitivity levels
+
+| Level | Meaning | Examples |
+|---|---|---|
+| `none` | No personal information. | A release note, a product description, a company's switchboard number. |
+| `low` | Personal information. | A name with an e-mail address, a customer's postal address, a date of birth, an IP address or a social media handle tied to a person. |
+| `high` | Special categories of personal information. | Health, genetic or biometric data, religion, political opinions, sexual orientation, immigration status, ID and card numbers, HR and criminal records. |
+
+The levels follow GDPR, Japan's Act on the Protection of Personal Information and the CPRA. A famous person who has
+died is not counted as personal information; a living one is. The full rules are in the
+[labelling policy](https://github.com/coo-quack/pii-sentinel/blob/main/docs/labeling-policy.md).
+
+### Values
+
+| Value | Notes |
+|---|---|
+| Person names | Full names, surnames or given names alone, nicknames that refer to a specific person. |
+| E-mail addresses | Personal and role addresses (`support@`) are told apart. |
+| Phone numbers | Personal and corporate numbers are told apart. |
+| ID and account numbers | National IDs (such as Japan's My Number), passport and driving licence numbers, card and bank account numbers. |
+
+The tool's regex rules add postal codes, public IP addresses and checksummed ID and card numbers the model missed, and
+report secrets (API keys, tokens, passwords in connection strings) separately.
+
+### Categories
+
+Person name, e-mail or phone, postal address, date of birth, government ID, financial account, health, biometric or
+genetic data, IP address of a person, social media handle, employment, race or religion, political opinion or union
+membership, sex life or orientation, citizenship or immigration, precise location, credentials, private
+communications, HR or criminal record.
 
 ## Evaluation
 
-The test set has 320 documents, 40 in each of the eight languages, written for this project to a coverage table of
-sensitivity categories, document formats and lengths. Each document was labelled independently twice, and
-disagreements were adjudicated. A separate development set of the same size is used for error analysis.
+Measured on a held-out test set of 320 documents, 40 in each of the eight languages, written for this project to
+cover the sensitivity categories, document formats and lengths. Each document was labelled independently twice and
+disagreements were adjudicated. The scores are for the released tool (the model, the regex rules and the
+post-processing together) and count personal values only.
 
-Scores are for the released tool (the model, the regex rule set and the post-processing together) and count personal
-values only.
+| | Recall | Precision |
+|---|---|---|
+| Person names | 97.9% | 96.7% |
+| Phone numbers | 94.7% | 90.0% |
+| E-mail addresses | 91.7% | 84.6% |
+| ID and account numbers | 83.1% | 90.1% |
 
-| Metric | Test |
+| Document level | Result |
 |---|---|
-| Person names: recall / precision | 97.9% / 96.7% |
-| Phone numbers: recall / precision | 94.7% / 90.0% |
-| E-mail addresses: recall / precision | 91.7% / 84.6% |
-| ID and account numbers: recall / precision | 83.1% / 90.1% |
 | Sensitivity (none / low / high) accuracy | 90.0% |
-| High documents judged low or none | 2 of 162 |
-| Documents with personal information judged none | 7 of 246 |
+| `high` documents judged `low` or `none` | 2 of 162 |
+| Documents with personal information judged `none` | 7 of 246 |
+
+The test set is small: a difference of one or two documents is within noise.
 
 ## Limitations
 
 - Trained only on synthetic text; real documents with unusual layouts may be harder.
-- Only the formats of one representative country per language are covered (for example, Simplified Chinese only).
-- The test set is also synthetic and small; a difference of one or two documents is within noise.
+- Number and address formats are covered for one country per language (for example, Simplified Chinese only).
 - The document level is weakest where only a heading reveals the sensitive fact (a member list of a religious
   community) and where a document holds an online identifier or an address without a name.
 
+## Model details
+
+| | |
+|---|---|
+| Base model | [jhu-clsp/mmBERT-base](https://huggingface.co/jhu-clsp/mmBERT-base), revision `c5955035435e2bf121cde7f3c8863ef52ff35d82` |
+| Fine-tuning | All encoder layers, with three added heads: span labelling (BIO), document sensitivity, document categories |
+| Parameters | 307M |
+| Input | Text of any length, read in windows of 512 tokens |
+| Files | `model.safetensors` (weights), `pii_sentinel.json` (label sets and settings) |
+
+The span head also learns order, tracking and serial numbers so that they are not mistaken for ID numbers; the tool
+does not report them.
+
+## Training data
+
+Synthetic documents generated from templates in the eight languages. Every person, number and address is fictional,
+except famous historical figures used as public-figure examples. Labels come from what each template planted, not from
+a model. No real personal data and no outputs of other PII models are used.
+
 ## License
 
-MIT (see [LICENSE](LICENSE)). The base model's license terms are reproduced in
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+MIT (see [LICENSE](LICENSE)). The base model is also MIT; its notice is reproduced in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This model is not affiliated with or endorsed by the authors of
+mmBERT.

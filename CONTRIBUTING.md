@@ -26,6 +26,20 @@ uv run python -m pii_sentinel.evaluate --model <model> eval/dev.json   # Score o
 
 The three required CI checks run pip-audit (`audit`), ruff (`lint`) and pytest (`test`).
 
+## Training and Evaluation
+
+```bash
+uv run python -m pii_sentinel.gen.generator --out data --train-docs 2200 --templates templates \
+  --template-weight 110 \
+  --exclude "$(ls eval/*.json eval/reference/*.json eval/work/raw/*.json | paste -sd, -)"
+uv run python -m pii_sentinel.train --data data --out models/mmBERT-pii-sentinel
+uv run python -m pii_sentinel.evaluate --model models/mmBERT-pii-sentinel eval/dev.json eval/test.json --out runs
+# --no-rules scores the model alone, without the rule set
+```
+
+Training data is generated from templates; labels come from what each template planted, not from a model.
+Names, brands and public figures that appear in the evaluation corpora are excluded from generation.
+
 ## Branching Strategy
 
 ```
@@ -72,6 +86,7 @@ When bumping a version, open a PR from `develop` → `main` with:
 2. Add a `## vX.Y.Z (YYYY-MM-DD)` section to `CHANGELOG.md`
    - `release.yml` extracts that section as the GitHub Release notes, so the heading must start with `## vX.Y.Z`
 3. Update the evaluation table in `MODEL_CARD.md` when the model or the post-processing changed
+4. Update the version in the `uvx --from git+...@vX.Y.Z` commands of `README.md` and `MODEL_CARD.md`
 
 After merging into `main`, `release.yml` automatically:
 
