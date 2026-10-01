@@ -7,7 +7,7 @@ license = "MIT"
 license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
 requires-python = ">=3.12"
 dependencies = [
-  "torch==2.14.0",
+  "torch==2.14.1",
   "transformers==5.17.0",
   "safetensors==0.8.0",
   "regex==2026.9.29",
