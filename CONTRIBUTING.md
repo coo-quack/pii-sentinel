@@ -75,9 +75,10 @@ When a newly trained model is adopted, upload it to the `develop` branch of the 
 hashes (the weights are not kept in Git):
 
 ```bash
+(cd models/mmBERT-pii-sentinel && shasum -a 256 config.json model.safetensors document_heads.safetensors \
+  pii_sentinel.json tokenizer.json tokenizer_config.json) > model.sha256
 hf upload coo-quack/mmBERT-pii-sentinel models/mmBERT-pii-sentinel . --revision develop \
-  --include model.safetensors --include pii_sentinel.json
-(cd models/mmBERT-pii-sentinel && shasum -a 256 model.safetensors pii_sentinel.json) > model.sha256
+  $(awk '{printf " --include %s", $2}' model.sha256)
 ```
 
 When bumping a version, open a PR from `develop` → `main` with:

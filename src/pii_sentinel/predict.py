@@ -185,7 +185,7 @@ def analyse(
         ids, mask = ids.to(device), mask.to(device)
         with torch.autocast(device_type=device.type, dtype=dtype, enabled=device.type == "cuda"):
             states, pooled = model.encode(ids, mask)
-            span = model.span_head(states)
+            span = model.span_logits(states)
             if doc_pooling == "window_max":
                 pooled_all.append(pooled.float())
             else:
