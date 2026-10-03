@@ -228,7 +228,7 @@ def main(argv=None):
             score = rep["token_f1"] + rep["sensitivity_acc"] + rep["category_acc"]
             if best is None or score > best:
                 best = score
-                M.save(model, a.out, {**meta, "step": step, "valid": rep}, a.base, a.base_revision)
+                M.save(model, a.out, {**meta, "step": step, "valid": rep}, tok, a.base, a.base_revision)
                 print(f"saved best ({name}) to {a.out}", flush=True)
             if backup:
                 torch._foreach_copy_(live, backup)
