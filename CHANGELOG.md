@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.2 (2026-10-02)
+
+Documentation only; the model weights and the tool's behaviour are unchanged from v0.1.1.
+
+- The README and the model card (the Hugging Face page) are rewritten for users: what the tool reports, a one-line
+  `uvx` quick start, the options, use in CI and offline, the meaning of the levels, findings and JSON fields.
+- The training and evaluation commands move to CONTRIBUTING.md.
+
 ## v0.1.1 (2026-09-28)
 
 The model weights are unchanged from v0.1.0; this release fixes inference and the tooling around it.
