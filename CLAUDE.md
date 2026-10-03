@@ -18,7 +18,7 @@ sensitivity and categories; the sensitive-canary regex rules are combined with i
 - `uv run ruff check src tests` / `uv run ruff format src tests` — Lint and format
 - `uv run pii-sentinel scan --model <model> FILE` — Run the CLI
 - `uv run python -m pii_sentinel.evaluate --model <model> eval/dev.json eval/test.json --out runs` — Evaluate
-- `uv run python -m pii_sentinel.gen.generator --out data ...` — Generate training data (see README)
+- `uv run python -m pii_sentinel.gen.generator --out data ...` — Generate training data (see CONTRIBUTING.md)
 - `uv run python -m pii_sentinel.train --data data --out <dir>` — Train (needs a GPU)
 
 ## Project Structure
