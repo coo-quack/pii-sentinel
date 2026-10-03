@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## v0.3.0 (2026-10-03)
+
+The model weights are unchanged from v0.2.0.
 
 - `pii-sentinel serve` keeps the model loaded and scans text sent over HTTP, on a Unix socket (mode 600) or a
   loopback address. It refuses foreign `Host` headers and non-JSON bodies, never logs the text, and answers with the
