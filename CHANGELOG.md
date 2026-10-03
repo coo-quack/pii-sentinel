@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.1.2 (2026-10-02)
+## v0.1.2 (2026-10-03)
 
 The model weights and the tool's output are unchanged from v0.1.1: the development and test sets give the same
 result for every document.
