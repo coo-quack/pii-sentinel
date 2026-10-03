@@ -31,7 +31,8 @@ src/pii_sentinel/
   rules.py        # sensitive-canary rule engine (canary_rules.json)
   evaluate.py     # Scoring against eval corpora
   train.py        # Training loop
-  cli.py          # pii-sentinel scan
+  cli.py          # pii-sentinel scan / serve
+  server.py       # serve: HTTP on a Unix socket or loopback address
   testset.py      # Building and labelling the evaluation set
   gen/            # Synthetic training data generator and slot templates
 templates/        # Slot templates (hand-written documents with placeholders)

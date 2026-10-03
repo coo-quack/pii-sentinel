@@ -1,6 +1,7 @@
-"""pii-sentinel scan: find personal information in files or stdin.
+"""pii-sentinel: find personal information in text.
 
-pii-sentinel scan --model <model directory> report.txt [--json] [--show-values] [--fail-on low|high]
+pii-sentinel scan --model <model> report.txt [--json] [--show-values] [--fail-on low|high]
+pii-sentinel serve --model <model> [--socket PATH | --host 127.0.0.1 --port 8765]
 """
 
 import argparse
@@ -33,21 +34,49 @@ def main(argv=None):
     sub = ap.add_subparsers(dest="command", required=True)
     scan = sub.add_parser("scan", help="scan files (or stdin) for personal information")
     scan.add_argument("files", nargs="*", type=Path)
-    scan.add_argument("--model", required=True, help="checkpoint directory or Hugging Face model id")
     scan.add_argument("--json", action="store_true")
     scan.add_argument("--show-values", action="store_true")
     scan.add_argument("--fail-on", choices=["low", "high"])
-    scan.add_argument(
-        "--device",
-        default="cuda"
-        if torch.cuda.is_available()
-        else "mps"
-        if torch.backends.mps.is_available()
-        else "cpu",
+    serve = sub.add_parser("serve", help="keep the model loaded and scan text sent over HTTP")
+    where = serve.add_mutually_exclusive_group()
+    where.add_argument("--socket", help="listen on this Unix socket (created with mode 600)")
+    where.add_argument(
+        "--host", default="127.0.0.1", help="loopback address to listen on (default 127.0.0.1)"
     )
+    serve.add_argument("--port", type=int, default=8765)
+    serve.add_argument("--max-bytes", type=int, default=1_000_000, help="largest request body accepted")
+    serve.add_argument(
+        "--verbose", action="store_true", help="log requests (method, path, status; never the text)"
+    )
+    for p in (scan, serve):
+        p.add_argument("--model", required=True, help="checkpoint directory or Hugging Face model id")
+        p.add_argument(
+            "--device",
+            default="cuda"
+            if torch.cuda.is_available()
+            else "mps"
+            if torch.backends.mps.is_available()
+            else "cpu",
+        )
+        p.add_argument("--threads", type=int, help="CPU threads for PyTorch (default: all cores)")
     a = ap.parse_args(argv)
+    if a.command == "serve" and a.socket is None:
+        from .server import LOOPBACK_HOSTS
+
+        if a.host not in LOOPBACK_HOSTS:
+            ap.error(f"--host must be a loopback address ({', '.join(sorted(LOOPBACK_HOSTS))}), got {a.host}")
+    if a.threads:
+        torch.set_num_threads(a.threads)
     device = torch.device(a.device)
     model, tok, meta = M.load(a.model, device)
+    if a.command == "serve":
+        from .server import Scanner, serve
+
+        scanner = Scanner(model, tok, meta, device, mask)
+        serve(
+            scanner, socket_path=a.socket, host=a.host, port=a.port, max_bytes=a.max_bytes, verbose=a.verbose
+        )
+        return
     sources = [("stdin", sys.stdin.read()) if str(p) == "-" else (str(p), p.read_text()) for p in a.files]
     sources = sources or [("stdin", sys.stdin.read())]
     reports, worst = [], 0

@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- `pii-sentinel serve` keeps the model loaded and scans text sent over HTTP, on a Unix socket (mode 600) or a
+  loopback address. It refuses foreign `Host` headers and non-JSON bodies, never logs the text, and answers with the
+  report of `scan --json`.
+- `--threads` limits the CPU threads PyTorch uses.
+
 ## v0.2.0 (2026-10-03)
 
 The model is published in the layout of a transformers `ModernBertForTokenClassification` model. The weights are
