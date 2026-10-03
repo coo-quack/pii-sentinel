@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.0 (2026-10-03)
+
+The model is published in the layout of a transformers `ModernBertForTokenClassification` model. The weights are
+the same as in v0.1.x, converted: the development and test sets give the same result for every document.
+
+- The Hub repository has `config.json` and the tokenizer files, so `pipeline("token-classification")` loads the
+  model directly, without `trust_remote_code` and without fetching mmBERT-base at run time.
+- The sensitivity and category heads move to `document_heads.safetensors`, read by this tool only.
+- The model card follows the layout of the mmBERT cards and reports the scores of the transformers pipeline alone
+  next to those of the tool.
+- The tool still reads checkpoints in the earlier layout.
+
 ## v0.1.2 (2026-10-03)
 
 The model weights and the tool's output are unchanged from v0.1.1: the development and test sets give the same

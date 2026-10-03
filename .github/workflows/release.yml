@@ -49,8 +49,9 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          uv run --no-sync hf download "$HF_REPO" --revision develop \
-            --include model.safetensors --include pii_sentinel.json --local-dir release-model
+          INCLUDES=$(awk '{printf " --include %s", $2}' model.sha256)
+          # shellcheck disable=SC2086
+          uv run --no-sync hf download "$HF_REPO" --revision develop $INCLUDES --local-dir release-model
           (cd release-model && sha256sum -c ../model.sha256)
 
       - name: Publish to the Hub

@@ -21,7 +21,7 @@ You need [uv](https://docs.astral.sh/uv/getting-started/installation/). It insta
 later) by itself.
 
 ```sh
-uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.1.2 \
+uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.2.0 \
   pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
@@ -77,6 +77,22 @@ After the first download the model stays in the Hugging Face cache (`~/.cache/hu
 ```sh
 HF_HUB_OFFLINE=1 uv run pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
+
+### Use the model from transformers
+
+The model is a standard `ModernBertForTokenClassification`, so it also runs without this tool:
+
+```python
+from transformers import pipeline
+
+ner = pipeline("token-classification", model="coo-quack/mmBERT-pii-sentinel", aggregation_strategy="simple")
+print(ner("Hi, this is Emily Carter. Call me at +1 415 555 0142."))
+```
+
+This gives the names, contacts and numbers only, without the sensitivity level, the rules or the post-processing,
+and its precision for e-mail addresses and numbers is lower (see the
+[model card](https://huggingface.co/coo-quack/mmBERT-pii-sentinel#evaluation)). Texts longer than 512 tokens should
+be split first.
 
 ## What it reports
 
