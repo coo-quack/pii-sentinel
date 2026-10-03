@@ -69,7 +69,7 @@ For the document's sensitivity level and categories, the regex rules and the pos
 tool. It needs [uv](https://docs.astral.sh/uv/getting-started/installation/):
 
 ```bash
-uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.2.0 \
+uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.3.0 \
   pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
