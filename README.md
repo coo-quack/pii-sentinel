@@ -78,6 +78,30 @@ After the first download the model stays in the Hugging Face cache (`~/.cache/hu
 HF_HUB_OFFLINE=1 uv run pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
+### Keep it running as a local server
+
+Each `scan` loads the model again, which takes a few seconds. To scan many texts from another program, keep the
+model loaded with `serve`:
+
+```sh
+uv run pii-sentinel serve --model coo-quack/mmBERT-pii-sentinel --socket /tmp/pii-sentinel.sock
+```
+
+```sh
+curl --unix-socket /tmp/pii-sentinel.sock -H 'Content-Type: application/json' \
+  -d '{"text": "Hi, this is Emily Carter."}' http://localhost/scan
+```
+
+The answer is the JSON report of one document, as `scan --json` prints it. Pass `"show_values": true` for the values
+in full and `"rules": false` for the model alone. `GET /health` tells whether the server is up.
+
+- It listens on a Unix socket that only you can open (mode 600), or with `--host 127.0.0.1 --port 8765` on a
+  loopback address; other addresses are refused. Over TCP, any program on the machine can call it.
+- It never logs or stores the text it receives; `--verbose` logs only the method, path and status.
+- One request is handled at a time. Bodies above 1 MB are refused (`--max-bytes`).
+- `--threads N` limits the CPU threads PyTorch uses (also for `scan`).
+- A socket path can be at most 103 bytes long.
+
 ### Use the model from transformers
 
 The model is a standard `ModernBertForTokenClassification`, so it also runs without this tool:
