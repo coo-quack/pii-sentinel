@@ -25,7 +25,9 @@ uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.5.2 \
   pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
-The first run downloads the model and takes about a minute; later runs start in a few seconds.
+The first run downloads the model and takes about a minute; later runs start in a few seconds. Each release uses
+the model it was evaluated with, [coo-quack/mmBERT-pii-sentinel](https://huggingface.co/coo-quack/mmBERT-pii-sentinel)
+at the tag of its version.
 
 ```text
 document.txt: sensitivity high
@@ -41,13 +43,13 @@ To run it often, clone the repository instead, so that each run does not resolve
 
 ```sh
 git clone https://github.com/coo-quack/pii-sentinel.git && cd pii-sentinel && uv sync
-uv run pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
+uv run pii-sentinel scan document.txt
 ```
 
 ## Usage
 
 ```sh
-pii-sentinel scan --model MODEL [options] [FILE ...]
+pii-sentinel scan [options] [FILE ...]
 ```
 
 Pass one or more files, or `-` (or nothing) to read from standard input. Scanning many files in one run is much
@@ -55,7 +57,8 @@ faster than one run per file, because the model is loaded only once.
 
 | Option | Meaning |
 |---|---|
-| `--model MODEL` | A Hugging Face model id (`coo-quack/mmBERT-pii-sentinel`) or a local model directory. Required. |
+| `--model MODEL` | A Hugging Face model id or a local model directory. Default: `coo-quack/mmBERT-pii-sentinel`. |
+| `--revision REV` | Branch, tag or commit of a Hugging Face model. Default: the tag of this release (`v` and the version). |
 | `--json` | Print a JSON report instead of text. |
 | `--show-values` | Show the found values in full, and the offsets of secrets, instead of masked. |
 | `--fail-on low\|high` | Exit with status 2 when any document is at this level or above. |
@@ -64,7 +67,7 @@ faster than one run per file, because the model is loaded only once.
 ### Block sensitive files in CI or a Git hook
 
 ```sh
-pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel --fail-on high $(git diff --cached --name-only --diff-filter=d)
+pii-sentinel scan --fail-on high $(git diff --cached --name-only --diff-filter=d)
 ```
 
 Only text files can be scanned; a binary file stops the run. The command exits with 0 when every document is below the level and with 2 when one reaches it. Note that a wrong
@@ -76,7 +79,7 @@ After the first download the model stays in the Hugging Face cache (`~/.cache/hu
 `HF_HUB_OFFLINE=1` to run without any network access:
 
 ```sh
-HF_HUB_OFFLINE=1 uv run pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
+HF_HUB_OFFLINE=1 uv run pii-sentinel scan document.txt
 ```
 
 ### Keep it running as a local server
@@ -85,7 +88,7 @@ Each `scan` loads the model again, which takes a few seconds. To scan many texts
 model loaded with `serve`:
 
 ```sh
-uv run pii-sentinel serve --model coo-quack/mmBERT-pii-sentinel --socket /tmp/pii-sentinel.sock
+uv run pii-sentinel serve --socket /tmp/pii-sentinel.sock
 ```
 
 ```sh

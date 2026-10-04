@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- `--model` is optional and defaults to `coo-quack/mmBERT-pii-sentinel`, fetched at the tag of the installed version
+  (falling back to the main branch for a version with no tag). `--revision` picks another branch, tag or commit.
+
 ## v0.5.2 (2026-10-18)
 
 The model weights are unchanged from v0.5.0.
