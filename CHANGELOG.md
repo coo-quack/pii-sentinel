@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Published on PyPI: `uvx pii-sentinel scan document.txt`, `pip install pii-sentinel`.
+- `--model` is optional and defaults to `coo-quack/mmBERT-pii-sentinel`, fetched at the tag of the installed version
+  (falling back to the main branch for a version with no tag). `--revision` picks another branch, tag or commit.
+- The source distribution carries only the package, its tests and the notices.
+
 ## v0.3.0 (2026-10-03)
 
 The model weights are unchanged from v0.2.0.

@@ -47,3 +47,42 @@ def test_weights_load_as_modernbert_token_classification():
     assert torch.allclose(
         standard(input_ids=ids, attention_mask=mask).logits, model.span_logits(states), atol=1e-4
     )
+
+
+def test_default_model_is_fetched_at_the_release_tag(monkeypatch, tmp_path):
+    calls = []
+
+    def fake_download(repo_id, revision=None, allow_patterns=None):
+        calls.append((repo_id, revision))
+        return str(tmp_path)
+
+    monkeypatch.setattr("huggingface_hub.snapshot_download", fake_download)
+    monkeypatch.setattr(M, "released_revision", lambda: "v9.9.9")
+    M.resolve(M.DEFAULT_MODEL)
+    M.resolve("someone/other-model")
+    M.resolve(M.DEFAULT_MODEL, "main")
+    assert calls == [(M.DEFAULT_MODEL, "v9.9.9"), ("someone/other-model", None), (M.DEFAULT_MODEL, "main")]
+
+
+def test_a_release_tag_missing_on_the_hub_falls_back_to_main(monkeypatch, tmp_path):
+    import httpx
+    from huggingface_hub.errors import RevisionNotFoundError
+
+    calls = []
+
+    def fake_download(repo_id, revision=None, allow_patterns=None):
+        calls.append(revision)
+        if revision is not None:
+            raise RevisionNotFoundError(
+                "no such tag", response=httpx.Response(404, request=httpx.Request("GET", "https://hf.co"))
+            )
+        return str(tmp_path)
+
+    monkeypatch.setattr("huggingface_hub.snapshot_download", fake_download)
+    monkeypatch.setattr(M, "released_revision", lambda: "v9.9.9-dev")
+    assert M.resolve(M.DEFAULT_MODEL) == tmp_path
+    assert calls == ["v9.9.9-dev", None]
+
+
+def test_a_local_directory_is_used_as_it_is(tmp_path):
+    assert M.resolve(str(tmp_path)) == tmp_path

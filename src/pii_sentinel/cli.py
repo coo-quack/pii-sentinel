@@ -1,7 +1,7 @@
 """pii-sentinel: find personal information in text.
 
-pii-sentinel scan --model <model> report.txt [--json] [--show-values] [--fail-on low|high]
-pii-sentinel serve --model <model> [--socket PATH | --host 127.0.0.1 --port 8765]
+pii-sentinel scan report.txt [--json] [--show-values] [--fail-on low|high]
+pii-sentinel serve [--socket PATH | --host 127.0.0.1 --port 8765]
 """
 
 import argparse
@@ -49,7 +49,14 @@ def main(argv=None):
         "--verbose", action="store_true", help="log requests (method, path, status; never the text)"
     )
     for p in (scan, serve):
-        p.add_argument("--model", required=True, help="checkpoint directory or Hugging Face model id")
+        p.add_argument(
+            "--model",
+            default=M.DEFAULT_MODEL,
+            help=f"checkpoint directory or Hugging Face model id (default: {M.DEFAULT_MODEL}, at this release's tag)",
+        )
+        p.add_argument(
+            "--revision", help="branch, tag or commit of a Hugging Face model (default: this release's tag)"
+        )
         p.add_argument(
             "--device",
             default="cuda"
@@ -68,7 +75,7 @@ def main(argv=None):
     if a.threads:
         torch.set_num_threads(a.threads)
     device = torch.device(a.device)
-    model, tok, meta = M.load(a.model, device)
+    model, tok, meta = M.load(a.model, device, a.revision)
     if a.command == "serve":
         from .server import Scanner, serve
 
