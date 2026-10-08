@@ -35,6 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
@@ -64,6 +65,13 @@ jobs:
           cp LICENSE THIRD_PARTY_NOTICES.md release-model/
           uv run --no-sync hf upload "$HF_REPO" release-model . --commit-message "Release $VERSION"
           uv run --no-sync hf repos tag create "$HF_REPO" "$VERSION" --message "Release $VERSION"
+
+      # Trusted publishing: PyPI trusts this workflow through OIDC, so no token is stored. --check-url skips files
+      # already on PyPI, so a re-run after a later step failed does not stop here.
+      - name: Publish to PyPI
+        run: |
+          uv build
+          uv publish --trusted-publishing always --check-url https://pypi.org/simple/
 
       - name: Create git tag
         run: |

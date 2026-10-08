@@ -2,6 +2,23 @@
 name = "pii-sentinel"
 version = "0.3.0"
 description = "Multilingual PII detector: span labelling and document sensitivity, fine-tuned from mmBERT-base"
+keywords = ["pii", "personal-information", "privacy", "ner", "mmbert"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Natural Language :: Chinese (Simplified)",
+  "Natural Language :: English",
+  "Natural Language :: French",
+  "Natural Language :: German",
+  "Natural Language :: Italian",
+  "Natural Language :: Japanese",
+  "Natural Language :: Korean",
+  "Natural Language :: Spanish",
+  "Programming Language :: Python :: 3",
+  "Topic :: Security",
+  "Topic :: Text Processing :: Linguistic",
+]
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
@@ -12,6 +29,12 @@ dependencies = [
   "safetensors==0.8.0",
   "regex==2026.9.29",
 ]
+
+[project.urls]
+Homepage = "https://github.com/coo-quack/pii-sentinel"
+Model = "https://huggingface.co/coo-quack/mmBERT-pii-sentinel"
+Changelog = "https://github.com/coo-quack/pii-sentinel/blob/main/CHANGELOG.md"
+Issues = "https://github.com/coo-quack/pii-sentinel/issues"
 
 [project.scripts]
 pii-sentinel = "pii_sentinel.cli:main"
@@ -25,6 +48,11 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pii_sentinel"]
+
+# What the source distribution carries: the package, its tests and the notices. The evaluation sets, templates and
+# training data stay in the repository.
+[tool.hatch.build.targets.sdist]
+include = ["src/pii_sentinel", "tests", "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "pyproject.toml"]
 
 [tool.ruff]
 line-length = 110

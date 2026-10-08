@@ -94,9 +94,14 @@ After merging into `main`, `release.yml` automatically:
 - Downloads the model from the Hub's `develop` branch and checks it against `model.sha256`
 - Uploads it with `MODEL_CARD.md` (as the Hub README), `LICENSE` and `THIRD_PARTY_NOTICES.md` to the Hub's `main`
   branch and tags it `vX.Y.Z`
+- Builds the package and publishes it to PyPI with trusted publishing (OIDC), so no PyPI token is stored
 - Creates the git tag `vX.Y.Z` and a GitHub Release with the notes from `CHANGELOG.md`
 
-It needs the repository secret `HF_TOKEN`, a Hugging Face token with write access to the model repository.
+It needs the repository secret `HF_TOKEN`, a Hugging Face token with write access to the model repository. PyPI
+trusts the `release.yml` workflow of this repository as the project's trusted publisher (no environment).
+
+The CLI fetches the default model at the tag `v` + its own version, so the Hub tag created here is what a release
+of the package runs. Never move or delete a released tag on the Hub.
 
 ## Pull Requests
 

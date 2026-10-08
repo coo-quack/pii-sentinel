@@ -21,6 +21,7 @@ BASE_REVISION = "c5955035435e2bf121cde7f3c8863ef52ff35d82"
 FORMAT = "pii-sentinel/2"
 LEGACY_FORMAT = "pii-sentinel/1"
 MODEL_NAME = "mmBERT-pii-sentinel"
+DEFAULT_MODEL = "coo-quack/mmBERT-pii-sentinel"
 META_FILE = "pii_sentinel.json"
 WEIGHTS_FILE = "model.safetensors"
 DOC_HEADS_FILE = "document_heads.safetensors"
@@ -136,18 +137,40 @@ def save(model, out: Path, meta: dict, tokenizer, base=BASE_MODEL, revision=BASE
     (out / META_FILE).write_text(json.dumps(full, ensure_ascii=False, indent=2) + "\n")
 
 
-def resolve(model):
-    """A local checkpoint directory, or a Hugging Face model id (downloaded once into the local cache)."""
+def released_revision():
+    """The Hub tag of the model released with this package version, such as v0.4.0."""
+    from importlib.metadata import PackageNotFoundError, version
+
+    try:
+        return f"v{version('pii-sentinel')}"
+    except PackageNotFoundError:
+        return None
+
+
+def resolve(model, revision=None):
+    """A local checkpoint directory, or a Hugging Face model id (downloaded once into the local cache).
+
+    The default model is fetched at the tag of this package's version, so a release always runs the weights it was
+    evaluated with, and an older release is not handed a checkpoint in a newer layout. A version with no tag on the
+    Hub (a development build) falls back to the main branch."""
     path = Path(model)
     if path.exists():
         return path
     from huggingface_hub import snapshot_download
+    from huggingface_hub.errors import RevisionNotFoundError
 
-    return Path(snapshot_download(repo_id=str(model), allow_patterns=CHECKPOINT_FILES))
+    if revision is None and str(model) == DEFAULT_MODEL:
+        revision = released_revision()
+    try:
+        return Path(snapshot_download(repo_id=str(model), revision=revision, allow_patterns=CHECKPOINT_FILES))
+    except RevisionNotFoundError:
+        if str(model) != DEFAULT_MODEL:
+            raise
+        return Path(snapshot_download(repo_id=str(model), allow_patterns=CHECKPOINT_FILES))
 
 
-def load(path, device="cpu"):
-    path = resolve(path)
+def load(path=DEFAULT_MODEL, device="cpu", revision=None):
+    path = resolve(path, revision)
     meta = json.loads((path / META_FILE).read_text())
     if meta.get("format") not in (FORMAT, LEGACY_FORMAT):
         raise RuntimeError(f"{path} is not a {FORMAT} checkpoint")

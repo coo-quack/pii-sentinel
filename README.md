@@ -21,11 +21,12 @@ You need [uv](https://docs.astral.sh/uv/getting-started/installation/). It insta
 later) by itself.
 
 ```sh
-uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.3.0 \
-  pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
+uvx pii-sentinel scan document.txt
 ```
 
-The first run downloads the model and takes about a minute; later runs start in a few seconds.
+The first run downloads the model and takes about a minute; later runs start in a few seconds. Each release uses
+the model it was evaluated with, [coo-quack/mmBERT-pii-sentinel](https://huggingface.co/coo-quack/mmBERT-pii-sentinel)
+at the tag of its version.
 
 ```text
 document.txt: sensitivity high
@@ -36,17 +37,17 @@ document.txt: sensitivity high
 
 Values are masked by default so that the report itself does not leak them. Add `--show-values` to see them in full.
 
-To run it often, clone the repository instead, so that each run does not resolve the package again:
+To run it often, install it once instead, so that each run does not resolve the package again:
 
 ```sh
-git clone https://github.com/coo-quack/pii-sentinel.git && cd pii-sentinel && uv sync
-uv run pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
+uv tool install pii-sentinel   # or: pipx install pii-sentinel / pip install pii-sentinel
+pii-sentinel scan document.txt
 ```
 
 ## Usage
 
 ```sh
-pii-sentinel scan --model MODEL [options] [FILE ...]
+pii-sentinel scan [options] [FILE ...]
 ```
 
 Pass one or more files, or `-` (or nothing) to read from standard input. Scanning many files in one run is much
@@ -54,7 +55,8 @@ faster than one run per file, because the model is loaded only once.
 
 | Option | Meaning |
 |---|---|
-| `--model MODEL` | A Hugging Face model id (`coo-quack/mmBERT-pii-sentinel`) or a local model directory. Required. |
+| `--model MODEL` | A Hugging Face model id or a local model directory. Default: `coo-quack/mmBERT-pii-sentinel`. |
+| `--revision REV` | Branch, tag or commit of a Hugging Face model. Default: the tag of this release (`v` and the version). |
 | `--json` | Print a JSON report instead of text. |
 | `--show-values` | Show the found values in full instead of masked. |
 | `--fail-on low\|high` | Exit with status 2 when any document is at this level or above. |
@@ -63,7 +65,7 @@ faster than one run per file, because the model is loaded only once.
 ### Block sensitive files in CI or a Git hook
 
 ```sh
-pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel --fail-on high $(git diff --cached --name-only --diff-filter=d)
+pii-sentinel scan --fail-on high $(git diff --cached --name-only --diff-filter=d)
 ```
 
 Only text files can be scanned; a binary file stops the run. The command exits with 0 when every document is below the level and with 2 when one reaches it. Note that a wrong
@@ -75,7 +77,7 @@ After the first download the model stays in the Hugging Face cache (`~/.cache/hu
 `HF_HUB_OFFLINE=1` to run without any network access:
 
 ```sh
-HF_HUB_OFFLINE=1 uv run pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
+HF_HUB_OFFLINE=1 pii-sentinel scan document.txt
 ```
 
 ### Keep it running as a local server
@@ -84,7 +86,7 @@ Each `scan` loads the model again, which takes a few seconds. To scan many texts
 model loaded with `serve`:
 
 ```sh
-uv run pii-sentinel serve --model coo-quack/mmBERT-pii-sentinel --socket /tmp/pii-sentinel.sock
+pii-sentinel serve --socket /tmp/pii-sentinel.sock
 ```
 
 ```sh
@@ -130,7 +132,7 @@ be split first.
 
 The levels follow GDPR, Japan's Act on the Protection of Personal Information and the CPRA. A famous person who has
 died is not counted as personal information; a living one is. The full rules are in
-[docs/labeling-policy.md](docs/labeling-policy.md).
+[docs/labeling-policy.md](https://github.com/coo-quack/pii-sentinel/blob/main/docs/labeling-policy.md).
 
 ### Findings
 
@@ -201,7 +203,7 @@ Measured on a held-out test set of 320 documents, 40 in each language, with the 
 | ID and account numbers | 83.1% | 90.1% |
 
 The sensitivity level is right for 90.0% of the documents. 2 of the 162 `high` documents were judged lower, and 7 of
-the 246 documents with personal information were judged `none`. See the [model card](MODEL_CARD.md) for details.
+the 246 documents with personal information were judged `none`. See the [model card](https://huggingface.co/coo-quack/mmBERT-pii-sentinel) for details.
 
 ## Limitations
 
@@ -214,9 +216,9 @@ the 246 documents with personal information were judged `none`. See the [model c
 
 ## Contributing
 
-To train or evaluate the model, see [CONTRIBUTING.md](CONTRIBUTING.md).
+To train or evaluate the model, see [CONTRIBUTING.md](https://github.com/coo-quack/pii-sentinel/blob/main/CONTRIBUTING.md).
 
 ## License
 
 MIT. The model is a derivative of mmBERT-base, which is also MIT; its notice is in
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This project is not affiliated with the authors of mmBERT.
+[THIRD_PARTY_NOTICES.md](https://github.com/coo-quack/pii-sentinel/blob/main/THIRD_PARTY_NOTICES.md). This project is not affiliated with the authors of mmBERT.
