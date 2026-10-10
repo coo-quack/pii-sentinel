@@ -66,9 +66,9 @@ def make_handler(scanner, max_bytes, allowed_hosts, verbose):
         protocol_version = "HTTP/1.1"
 
         def log_message(self, format, *args):
-            # The request line holds only the method and path; bodies are never logged. The path is chosen by the
-            # client, so control characters are escaped as the stdlib does, keeping escape sequences and forged
-            # lines out of the operator's terminal and log.
+            # The request line holds only the method and path; bodies are never logged. The path is chosen by
+            # the client, so control characters are escaped as the stdlib does, keeping escape sequences and
+            # forged lines out of the operator's terminal and log.
             if verbose:
                 message = (format % args).translate(self._control_char_table)
                 sys.stderr.write(f"{time.strftime('%Y-%m-%dT%H:%M:%S')} {message}\n")
