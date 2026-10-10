@@ -35,6 +35,7 @@ document.txt: sensitivity high
 ```
 
 Values are masked by default so that the report itself does not leak them. Add `--show-values` to see them in full.
+Masked secrets are reported with their line number instead of their offsets (see [JSON report](#json-report)).
 
 To run it often, clone the repository instead, so that each run does not resolve the package again:
 
@@ -56,7 +57,7 @@ faster than one run per file, because the model is loaded only once.
 |---|---|
 | `--model MODEL` | A Hugging Face model id (`coo-quack/mmBERT-pii-sentinel`) or a local model directory. Required. |
 | `--json` | Print a JSON report instead of text. |
-| `--show-values` | Show the found values in full instead of masked. |
+| `--show-values` | Show the found values in full, and the offsets of secrets, instead of masked. |
 | `--fail-on low\|high` | Exit with status 2 when any document is at this level or above. |
 | `--device DEVICE` | `cuda`, `mps` or `cpu`. By default the GPU is used when there is one (including Apple silicon). |
 
@@ -92,8 +93,9 @@ curl --unix-socket /tmp/pii-sentinel.sock -H 'Content-Type: application/json' \
   -d '{"text": "Hi, this is Emily Carter."}' http://localhost/scan
 ```
 
-The answer is the JSON report of one document, as `scan --json` prints it. Pass `"show_values": true` for the values
-in full and `"rules": false` for the model alone. `GET /health` tells whether the server is up.
+The answer is the JSON report of one document, as `scan --json` prints it. Pass `"show_values": true` for the
+values in full (with the offsets of secrets) and `"rules": false` for the model alone.
+`GET /health` tells whether the server is up.
 
 - It listens on a Unix socket that only you can open (mode 600), or with `--host 127.0.0.1 --port 8765` on a
   loopback address; other addresses are refused. Over TCP, any program on the machine can call it.
@@ -175,6 +177,11 @@ probabilities):
 - `start` and `end` are character offsets into the text (`end` is exclusive).
 - `sensitivity.probabilities` is the model's own judgement. `level` can be higher than its most likely class,
   because the rules below can raise it.
+- When values are masked (the default), a secret has `"value": "…"` and a `line` instead of `start` and `end`.
+  `line` is the 1-based line of the text where the secret starts; the secret's length is not reported.
+  A masked secret looks like `{ "type": "secret", "value": "…", "line": 3, "rule": "generic-password" }`.
+  With `--show-values` or `"show_values": true`, a secret has its full value and its `start` and `end`.
+  Masked findings other than secrets keep their partial value and their `start` and `end`.
 - `windows` is the number of 512-token pieces the text was split into; any length of text can be scanned.
 
 ## How it works

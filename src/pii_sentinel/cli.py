@@ -27,6 +27,17 @@ def mask(value, ftype=""):
     return f"{value[:2]}…{value[-2:]}"
 
 
+def masked_report(res, text):
+    # The output form of a report with values hidden. A secret loses its value and its exact offsets, which
+    # would reveal its length, and gets the 1-based line it starts on instead. predict.py keeps start and end.
+    findings = [{**f, "value": mask(f["value"], f["type"])} for f in res["findings"]]
+    secrets = [
+        {"type": "secret", "value": "…", "line": text.count("\n", 0, s["start"]) + 1, "rule": s["rule"]}
+        for s in res["secrets"]
+    ]
+    return {**res, "findings": findings, "secrets": secrets}
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(
         prog="pii-sentinel", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -72,7 +83,7 @@ def main(argv=None):
     if a.command == "serve":
         from .server import Scanner, serve
 
-        scanner = Scanner(model, tok, meta, device, mask)
+        scanner = Scanner(model, tok, meta, device, masked_report)
         serve(
             scanner, socket_path=a.socket, host=a.host, port=a.port, max_bytes=a.max_bytes, verbose=a.verbose
         )
@@ -89,9 +100,8 @@ def main(argv=None):
             max_length=meta.get("max_length", 512),
             doc_pooling=meta.get("doc_pooling", "per_window"),
         )
-        for f in res["findings"] + res["secrets"]:
-            if not a.show_values:
-                f["value"] = mask(f["value"], f["type"])
+        if not a.show_values:
+            res = masked_report(res, text)
         reports.append({"source": name, **res})
         worst = max(worst, RANK[res["sensitivity"]["level"]])
     if a.json:
@@ -103,7 +113,8 @@ def main(argv=None):
                 extra = f" ({f['number_type']})" if "number_type" in f else ""
                 print(f"  {f['type']}{extra}{'' if f['pii'] else ' [not PII]'}: {f['value']}")
             for f in r["secrets"]:
-                print(f"  secret ({f['rule']}): {f['value']}")
+                where = f" on line {f['line']}" if "line" in f else ""
+                print(f"  secret ({f['rule']}){where}: {f['value']}")
     if a.fail_on and worst >= RANK[a.fail_on]:
         sys.exit(2)
 
