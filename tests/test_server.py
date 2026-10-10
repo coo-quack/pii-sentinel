@@ -159,3 +159,33 @@ def test_stale_socket_is_replaced_but_live_one_and_files_are_not(tmp_path, runni
 def test_too_long_socket_path_is_refused():
     with pytest.raises(SystemExit, match="too long"):
         S.build_server(FakeScanner(), socket_path="/tmp/" + "x" * 120)
+
+
+def test_scanner_masks_secrets_by_default_and_keeps_offsets_with_show_values(monkeypatch):
+    from pii_sentinel.cli import masked_report
+
+    text = "Hello\nSecond line\npassword=hunter22\n"
+    secret = text.index("hunter22")
+
+    def fake_analyse(*args, **kwargs):
+        return {
+            "sensitivity": {"level": "high"},
+            "findings": [],
+            "secrets": [
+                {
+                    "type": "secret",
+                    "value": "hunter22",
+                    "start": secret,
+                    "end": secret + 8,
+                    "rule": "generic-password",
+                }
+            ],
+        }
+
+    monkeypatch.setattr(S, "analyse", fake_analyse)
+    scanner = S.Scanner(None, None, {}, None, masked_report)
+    assert scanner.scan(text)["secrets"] == [
+        {"type": "secret", "value": "…", "line": 3, "rule": "generic-password"}
+    ]
+    raw = scanner.scan(text, show_values=True)["secrets"][0]
+    assert raw["value"] == "hunter22" and raw["start"] == secret and raw["end"] == secret + 8

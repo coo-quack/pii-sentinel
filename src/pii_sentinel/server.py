@@ -38,8 +38,9 @@ def package_version():
 class Scanner:
     """The loaded model and how to call it; the lock keeps one inference at a time."""
 
-    def __init__(self, model, tokenizer, meta, device, mask):
-        self.model, self.tokenizer, self.meta, self.device, self.mask = model, tokenizer, meta, device, mask
+    def __init__(self, model, tokenizer, meta, device, masked_report):
+        self.model, self.tokenizer, self.meta, self.device = model, tokenizer, meta, device
+        self.masked_report = masked_report
         self.lock = threading.Lock()
 
     def scan(self, text, use_rules=True, show_values=False):
@@ -54,8 +55,7 @@ class Scanner:
                 doc_pooling=self.meta.get("doc_pooling", "per_window"),
             )
         if not show_values:
-            for f in res["findings"] + res["secrets"]:
-                f["value"] = self.mask(f["value"], f["type"])
+            res = self.masked_report(res, text)
         return res
 
 
