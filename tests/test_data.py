@@ -158,3 +158,106 @@ def test_printed_rates_come_from_the_counts():
 
     assert pr({"tp": 621, "fp": 22, "fn": 13}) == "P96.6% R97.9%"
     assert pr({"tp": 3}) == "P100.0% R100.0%"
+
+
+def _report_with_secret(text):
+    # A report as analyse() returns it: PII with a name, and a secret that starts on line 3.
+    name = text.index("Emily Carter")
+    secret = text.index("hunter22")
+    return {
+        "sensitivity": {"level": "high", "probabilities": {"none": 0.0, "low": 0.0, "high": 1.0}},
+        "categories": {},
+        "findings": [
+            {"type": "person_name", "value": "Emily Carter", "start": name, "end": name + 12, "pii": True}
+        ],
+        "secrets": [
+            {
+                "type": "secret",
+                "value": "hunter22",
+                "start": secret,
+                "end": secret + 8,
+                "rule": "generic-password",
+            }
+        ],
+        "windows": 1,
+    }
+
+
+def test_masked_secret_has_line_and_no_offsets():
+    from pii_sentinel.cli import masked_report
+
+    text = "Hello, Emily Carter.\nSecond line\npassword=hunter22\n"
+    res = _report_with_secret(text)
+    out = masked_report(res, text)
+    assert out["secrets"] == [{"type": "secret", "value": "…", "line": 3, "rule": "generic-password"}]
+    name = text.index("Emily Carter")
+    assert out["findings"] == [
+        {"type": "person_name", "value": "E…", "start": name, "end": name + 12, "pii": True}
+    ]
+    # The report that was passed in is left as it was, so a later caller still sees the raw values.
+    assert res["secrets"][0]["value"] == "hunter22" and res["secrets"][0]["start"] == text.index("hunter22")
+
+
+def test_masked_multiline_secret_reports_its_start_line():
+    from pii_sentinel.cli import masked_report
+
+    # A private key block that starts on line 2 and ends on line 4.
+    text = "Header\n-----BEGIN PRIVATE KEY-----\nMIIFAKEKEYDATA\n-----END PRIVATE KEY-----\n"
+    start = text.index("-----BEGIN")
+    end = text.index("-----END") + len("-----END PRIVATE KEY-----")
+    res = {
+        "findings": [],
+        "secrets": [
+            {"type": "secret", "value": text[start:end], "start": start, "end": end, "rule": "private-key"}
+        ],
+    }
+    out = masked_report(res, text)
+    assert out["secrets"] == [{"type": "secret", "value": "…", "line": 2, "rule": "private-key"}]
+
+
+def test_masked_secret_at_offset_zero_reports_line_one():
+    from pii_sentinel.cli import masked_report
+
+    text = "hunter22\nSecond line\n"
+    res = {
+        "findings": [],
+        "secrets": [
+            {"type": "secret", "value": "hunter22", "start": 0, "end": 8, "rule": "generic-password"}
+        ],
+    }
+    out = masked_report(res, text)
+    assert out["secrets"] == [{"type": "secret", "value": "…", "line": 1, "rule": "generic-password"}]
+
+
+def test_cli_masks_secrets_unless_show_values(tmp_path, monkeypatch, capsys):
+    import json
+
+    from pii_sentinel import cli
+
+    text = "Hello, Emily Carter.\nSecond line\npassword=hunter22\n"
+    path = tmp_path / "doc.txt"
+    path.write_text(text, encoding="utf-8")
+    monkeypatch.setattr(cli.M, "load", lambda *args: (None, None, {}))
+    monkeypatch.setattr(cli, "analyse", lambda model, tok, text, device, **kwargs: _report_with_secret(text))
+
+    cli.main(["scan", "--model", "x", "--device", "cpu", "--json", str(path)])
+    (report,) = json.loads(capsys.readouterr().out)
+    assert report["secrets"] == [{"type": "secret", "value": "…", "line": 3, "rule": "generic-password"}]
+    assert report["findings"][0]["value"] == "E…" and report["findings"][0]["start"] == text.index("Emily")
+
+    cli.main(["scan", "--model", "x", "--device", "cpu", "--show-values", "--json", str(path)])
+    (report,) = json.loads(capsys.readouterr().out)
+    secret = text.index("hunter22")
+    assert report["secrets"] == [
+        {
+            "type": "secret",
+            "value": "hunter22",
+            "start": secret,
+            "end": secret + 8,
+            "rule": "generic-password",
+        }
+    ]
+    assert report["findings"][0]["value"] == "Emily Carter"
+
+    cli.main(["scan", "--model", "x", "--device", "cpu", str(path)])
+    assert "  secret (generic-password) on line 3: …" in capsys.readouterr().out

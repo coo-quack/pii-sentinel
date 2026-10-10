@@ -1,6 +1,6 @@
 [project]
 name = "pii-sentinel"
-version = "0.3.0"
+version = "0.4.0"
 description = "Multilingual PII detector: span labelling and document sensitivity, fine-tuned from mmBERT-base"
 readme = "README.md"
 license = "MIT"
@@ -8,7 +8,7 @@ license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
 requires-python = ">=3.12"
 dependencies = [
   "torch==2.14.1",
-  "transformers==5.18.0",
+  "transformers==5.19.0",
   "safetensors==0.8.0",
   "regex==2026.9.29",
 ]
