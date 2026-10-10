@@ -66,9 +66,12 @@ def make_handler(scanner, max_bytes, allowed_hosts, verbose):
         protocol_version = "HTTP/1.1"
 
         def log_message(self, format, *args):
-            # The request line holds only the method and path; bodies are never logged.
+            # The request line holds only the method and path; bodies are never logged. The path is chosen by
+            # the client, so control characters are escaped as the stdlib does, keeping escape sequences and
+            # forged lines out of the operator's terminal and log.
             if verbose:
-                sys.stderr.write(f"{time.strftime('%Y-%m-%dT%H:%M:%S')} {format % args}\n")
+                message = (format % args).translate(self._control_char_table)
+                sys.stderr.write(f"{time.strftime('%Y-%m-%dT%H:%M:%S')} {message}\n")
 
         def send_json(self, status, body):
             data = json.dumps(body, ensure_ascii=False).encode()
