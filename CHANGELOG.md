@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.4.0 (2026-10-10)
+
+The model weights are unchanged from v0.2.0.
+
+- When values are masked (the default), a secret is reported with the 1-based `line` it starts on instead of its
+  `start` and `end`, which revealed its length. With `--show-values` or `"show_values": true` a secret still has
+  `start` and `end`. Readers of the JSON report that used the offsets of masked secrets need to change.
+- `serve --verbose` escapes control characters in the request line it logs again, as the standard library does, so
+  a local client can no longer send terminal escape sequences or forge log lines.
+- Update transformers to 5.19.0.
+
 ## v0.3.0 (2026-10-03)
 
 The model weights are unchanged from v0.2.0.
