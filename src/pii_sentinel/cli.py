@@ -113,10 +113,8 @@ def main(argv=None):
                 extra = f" ({f['number_type']})" if "number_type" in f else ""
                 print(f"  {f['type']}{extra}{'' if f['pii'] else ' [not PII]'}: {f['value']}")
             for f in r["secrets"]:
-                if "line" in f:
-                    print(f"  secret ({f['rule']}) on line {f['line']}: {f['value']}")
-                else:
-                    print(f"  secret ({f['rule']}): {f['value']}")
+                where = f" on line {f['line']}" if "line" in f else ""
+                print(f"  secret ({f['rule']}){where}: {f['value']}")
     if a.fail_on and worst >= RANK[a.fail_on]:
         sys.exit(2)
 
