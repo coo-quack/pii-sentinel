@@ -124,6 +124,17 @@ def test_tcp_refuses_foreign_host_header(running):
     assert request(conn, "GET", "/health", headers={"Host": "evil.example.com"})[0] == 403
 
 
+def test_verbose_log_escapes_control_characters(capsys):
+    handler_class = S.make_handler(FakeScanner(), 10, None, True)
+    handler = handler_class.__new__(handler_class)
+    line = "GET /\x1b]0;x\x07\r\n2000-01-01T00:00:00 fake HTTP/1.1"
+    handler.log_message('"%s" %s %s', line, "404", "-")
+    err = capsys.readouterr().err
+    assert "\x1b" not in err and "\x07" not in err and "\r" not in err
+    assert err.count("\n") == 1
+    assert r"/\x1b]0;x\x07\x0d\x0a2000" in err
+
+
 def test_non_loopback_host_is_refused():
     with pytest.raises(SystemExit):
         S.build_server(FakeScanner(), host="0.0.0.0", port=0)
