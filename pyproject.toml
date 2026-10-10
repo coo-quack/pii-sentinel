@@ -1,6 +1,6 @@
 [project]
 name = "pii-sentinel"
-version = "0.3.0"
+version = "0.4.0"
 description = "Multilingual PII detector: span labelling and document sensitivity, fine-tuned from mmBERT-base"
 readme = "README.md"
 license = "MIT"
