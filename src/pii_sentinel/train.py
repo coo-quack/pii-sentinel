@@ -280,6 +280,9 @@ def main(argv=None):
             print(json.dumps(rep), flush=True)
             key = selection_key(rep, step, total, dev is not None)
             if key is None:
+                # Not eligible yet; the live weights still have to be put back when an EMA copy was scored.
+                if backup:
+                    torch._foreach_copy_(live, backup)
                 continue
             if best is None or key > best:
                 best = key
