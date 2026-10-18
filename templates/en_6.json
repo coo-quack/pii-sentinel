@@ -1,0 +1,102 @@
+{
+  "templates": [
+    {
+      "id": "t_en_601",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Subject: October safety training schedule\n\nHi team,\n\nPlease find the October safety training schedule below. We need to book the training room, so kindly confirm your attendance by Friday. I will upload the slides to the shared drive after each session.\n\nThanks,\n\n{P1}\n{P1.org}\n{P1.dept}\n{P1.job}"
+    },
+    {
+      "id": "t_en_602",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "MEETING MINUTES - Product Planning Review\nDate: {DATE}\nLocation: Conference Room B\n\nAttendees:\n{P1} ({P1.dept})\n{P2} ({P2.dept})\n{P3} ({P3.dept})\n\nAgenda: Release schedule for next quarter\n\nDiscussion: The design review window will be extended by one week. Development timelines stay the same, and the impact of the change will be checked again at next week's meeting.\n\nMinutes recorded by: {P1.s}"
+    },
+    {
+      "id": "t_en_603",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "[Team chat - #welcome]\n{P1.g}: Hi everyone! I just started as {P1.job} at {P1.org} this week, so I'm still finding my way around.\n{P2.g}: Welcome aboard, {P1.g}! Happy to show you the ropes.\n{P1.g}: Thanks! Is there a good place to grab lunch nearby?\n{P2.g}: The noodle place on the second floor is the usual favorite. Let's go Thursday."
+    },
+    {
+      "id": "t_en_604",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Local Business Weekly - {DATE}\n\n{P1}, {P1.job} at {P1.org}, said the regional small business support program will open to applications next month. “We want the process to be simpler for owners who have never applied for a grant before,” {P1.s} told reporters after the briefing.\n\nApplications will be accepted at the district office starting in the fall. Questions can be directed to {ORG}'s information desk at {ORG.phone}."
+    },
+    {
+      "id": "t_en_605",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "DELIVERY CONFIRMATION\n\nRecipient: {P1}\nDelivery address: {P1.addr}\nOrder reference: {CODE}\nService: Standard ground delivery\nDelivery date: {DATE}\nLeft at: Building lobby, with the recipient's agreement\n\nCourier note: Recipient was not at home during the first attempt. Package was checked for damage and found to be in good condition.\n\nThis confirmation may be used as proof of delivery if a dispute arises.\n\nRecipient signature on file: {P1.s}"
+    },
+    {
+      "id": "t_en_606",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "{P1}\n{P1.addr}\n\n{DATE}\n\nDear {P1.s}:\n\nThank you for submitting your application. We have reviewed the documents you provided and will send a written decision within fourteen days. If we need any additional information, we will contact you at the address above.\n\nSincerely,\n\n{ORG}\nCustomer Services Team\nTelephone: {ORG.phone}"
+    },
+    {
+      "id": "t_en_607",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "date_of_birth",
+      "text": "MEMBERSHIP REGISTRATION FORM\n\nFull Name: {P1}\nDate of Birth: {P1.dob}\nPhone: {P1.phone}\nAddress: To be confirmed by mail\nPreferred Activity: Weekend hiking group\nNewsletter Opt-in: Yes\n\nSubmitted on {DATE}\nReceived by: {P2.s}"
+    },
+    {
+      "id": "t_en_608",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "date_of_birth",
+      "text": "Community Spotlight\n\n{P1} was born on {P1.dob} in a small river town and grew up helping a relative repair furniture. For the past twenty years, they have run a neighborhood woodworking studio that teaches local teenagers the basics of the craft. The spring open house will feature a dozen chairs and shelves built by hand.\n\nDetails are posted at {PLACE} and on the studio's notice board."
+    },
+    {
+      "id": "t_en_609",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "[auth-gateway] {DATE}\nnode={HASH}\nINFO login success user={P1.handle} src={P1.ip} agent=Chrome/Windows\nINFO session created, ttl=7200s\nINFO second factor check passed\nWARN token refresh delayed by 3s\nINFO logout user={P1.handle}, session closed"
+    },
+    {
+      "id": "t_en_610",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Just got back from the {PLACE} trail run! Ten miles in the cold, but worth every step. Huge thanks to everyone who kept pace with me at the back. The group photos are up on the club page. The photographer's handle is {P1.handle} if you want to tag them. Next session is next Saturday, see you there! #trailrun #weekendmiles"
+    },
+    {
+      "id": "t_en_611",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "SUPPORT TICKET {CODE}\nOpened: {DATE}\nCustomer ID: {P1.id}\nAccount name: {P1.handle}\nCategory: Billing, points not credited\nPriority: Normal\n\nCustomer message: I paid for the bundle last Tuesday, but the points never showed up on my account. I attached the payment screenshot. Please let me know what is happening.\n\nAgent note: Payment confirmed in the billing system. Points are being re-issued manually, and a confirmation email will follow.\nAssigned to: {P2.s}"
+    },
+    {
+      "id": "t_en_612",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "MEMBERSHIP RENEWAL NOTICE\n\nMember number: {P1.id}\nCurrent tier: Standard\nRenewal due: {DATE}\n\nYour membership is due for renewal. To keep your current benefits without interruption, please renew through the member portal before the due date. Renewal takes less than five minutes and no new forms are required.\n\nIf your membership lapses, reinstatement fees may apply. Reply to this notice or visit the help page if you have questions about your renewal."
+    },
+    {
+      "id": "t_en_613",
+      "lang": "en",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "Thank you for reading this month's newsletter. We appreciate your continued support.\n\n{ORG}\nHeadquarters and branch information is available on our website.\nMain line: {ORG.phone}\nGeneral enquiries: {ORG.email}\nTo unsubscribe, reply to this message with UNSUBSCRIBE in the subject line."
+    },
+    {
+      "id": "t_en_614",
+      "lang": "en",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "JOB OPENING\n\n{ORG} is looking for a Customer Data Analyst to join our growing team.\n\nResponsibilities: build monthly reporting dashboards, review data quality, and support the product team with analysis.\nRequirements: three or more years in analytics, strong SQL skills, and experience with a visualization tool.\nEmployment type: Full-time, five days a week\nLocation: Head office, with hybrid working available\nClosing date: {DATE}\n\nTo apply, send your CV and portfolio to {ORG.email}. For recruitment questions, call {ORG.phone}. {ORG} is an equal opportunity employer."
+    }
+  ]
+}

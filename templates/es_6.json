@@ -1,0 +1,102 @@
+{
+  "templates": [
+    {
+      "id": "t_es_601",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Asunto: Confirmación de la reunión del {DATE}\n\nHola,\n\nGracias por tu respuesta. Confirmo que el equipo revisará la propuesta el próximo lunes y te enviaremos los comentarios antes del jueves.\n\nUn saludo,\n\n{P1}\n{P1.org}\n{P1.dept}\n{P1.job}"
+    },
+    {
+      "id": "t_es_602",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Acta de la reunión de coordinación\nFecha: {DATE}\nLugar: sala de juntas 2\n\nAsistentes:\n- {P1} ({P1.dept})\n- {P2} ({P2.dept})\n- {P3} ({P3.dept})\n\nAcuerdos:\n1. {P2} presentará el calendario de entregas antes del {DATE}.\n2. Se aprobó el presupuesto de la segunda fase, sujeto a revisión.\n3. {P1} coordinará la capacitación de los nuevos colaboradores.\n\nPróxima reunión: {DATE}, 10:00 h"
+    },
+    {
+      "id": "t_es_603",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "{P1}: ¡Hola a todos! Soy nuevo en el equipo y quería presentarme.\n{P2}: ¡Bienvenido! ¿A qué te dedicas?\n{P1}: Acabo de empezar como {P1.job} en {P1.org}, así que todavía me estoy orientando.\n{P2}: Genial, cualquier duda me escribes. Mañana te paso el acceso a la carpeta compartida.\n{P1}: ¡Muchas gracias, nos vemos en la reunión del {DATE}!"
+    },
+    {
+      "id": "t_es_604",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Diario regional, sección económica, {DATE}\n\n{P1}, {P1.job} de {P1.org}, anunció ayer la apertura de una nueva planta de envasado en la zona industrial norte. Según explicó, la inversión permitirá crear unos 150 empleos durante el próximo año.\n\n{P2}, responsable de desarrollo local, destacó que el proyecto forma parte del plan regional de reactivación industrial. La construcción comenzará en {DATE}."
+    },
+    {
+      "id": "t_es_605",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "SOLICITUD DE ALTA - SERVICIO DE ENTREGA A DOMICILIO\n\nSolicitante: {P1}\nDomicilio para entregas: {P1.addr}\nFecha de solicitud: {DATE}\nFrecuencia prevista: dos envíos por semana\nObservaciones: no dejar paquetes en portería\nEstado: pendiente de verificación\n\nEl plazo de tramitación es de cinco días hábiles."
+    },
+    {
+      "id": "t_es_606",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "{P1}\n{P1.addr}\n\n{DATE}\n\nEstimado cliente:\n\nLe comunicamos que su contrato de suministro se ha actualizado a partir del próximo mes. No es necesario realizar ningún trámite adicional.\n\nSi tiene preguntas sobre la facturación, puede llamar a nuestro servicio de atención al cliente en el número {ORG.phone}, de lunes a viernes de 9 a 18 h.\n\nAtentamente,\n\n{ORG}"
+    },
+    {
+      "id": "t_es_607",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "date_of_birth",
+      "text": "FORMULARIO DE INSCRIPCIÓN - CURSO DE INICIACIÓN AL PÁDEL\n\nNombre y apellidos: {P1}\nFecha de nacimiento: {P1.dob}\nTeléfono de contacto: {P1.phone}\nNivel previo: principiante\nHorario preferido: martes y jueves por la tarde\nFecha de inicio: {DATE}\nCuota del curso: {AMOUNT}\n\nAl firmar, acepto las normas del club.\nFirma: ____________"
+    },
+    {
+      "id": "t_es_608",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "date_of_birth",
+      "text": "Crónica del club de montaña, boletín de {DATE}\n\n{P1} nació el {P1.dob} en {PLACE} y se unió a la asociación en 1994. Durante más de dos décadas coordinó las rutas de otoño y formó a decenas de guías voluntarios.\n\nEn el homenaje celebrado el sábado, varios socios recordaron su paciencia con los principiantes y su costumbre de anotar cada sendero en un cuaderno."
+    },
+    {
+      "id": "t_es_609",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "{DATE} 09:02:17 INFO auth: inicio de sesión correcto usuario={P1.handle} origen={P1.ip} método=contraseña\n{DATE} 09:02:21 INFO sesión creada id={HASH} caducidad=3600\n{DATE} 09:15:44 WARN auth: tres intentos fallidos usuario={P1.handle}\n{DATE} 09:16:02 INFO sesión cerrada id={HASH} motivo=inactividad"
+    },
+    {
+      "id": "t_es_610",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "¡Qué gran tarde en la feria del barrio! Gracias a {P1.handle} por las fotos del concurso de dibujo, han quedado preciosas. Ya estamos preparando la siguiente edición para el {DATE}.\n#Barrio #Feria #Comunidad"
+    },
+    {
+      "id": "t_es_611",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Ticket n.º {CODE}\nAsunto: No puedo recuperar el acceso a mi cuenta\nNúmero de socio: {P1.id}\nUsuario: {P1.handle}\nDescripción: El cliente indica que la aplicación pide un código que nunca llega al correo. Solicita revisar la configuración del envío.\nPrioridad: media\nEstado: asignado al equipo de soporte\nÚltima actualización: {DATE}"
+    },
+    {
+      "id": "t_es_612",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "AVISO DE RENOVACIÓN\n\nNúmero de socio: {P1.id}\nSu cuota anual vence el {DATE}. Para mantener sus servicios sin interrupción, le rogamos realizar el pago antes de esa fecha.\nImporte a abonar: {AMOUNT}\nPuede renovar en la oficina del club o a través de la aplicación.\nCuando nos contacte, indique siempre su número de socio."
+    },
+    {
+      "id": "t_es_613",
+      "lang": "es",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "Esta comunicación es confidencial y va dirigida exclusivamente a su destinatario. Si la ha recibido por error, le rogamos que nos lo comunique y la elimine.\n\n{ORG}\nDepartamento de Atención Comercial\nTeléfono: {ORG.phone}\nCorreo electrónico: {ORG.email}\nRegistro mercantil: {ORG.regno}"
+    },
+    {
+      "id": "t_es_614",
+      "lang": "es",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "OFERTA DE EMPLEO\n\n{ORG} busca incorporar un/a técnico/a de mantenimiento para su planta de {PLACE}, con incorporación prevista para {DATE}.\n\nRequisitos: formación profesional en electricidad o mecánica, carné de conducir B y disponibilidad para trabajar a turnos.\nSe ofrece: contrato indefinido, formación continua y comedor en la planta.\n\nEnvíe su candidatura a {ORG.email} o llame al {ORG.phone} para más información."
+    }
+  ]
+}

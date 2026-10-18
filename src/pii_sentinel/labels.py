@@ -1,7 +1,9 @@
 """Label sets shared by the data generator, training, inference and evaluation."""
 
 # Span types. Non-PII contacts and numbers are labelled too, so the detector can report them as
-# pii=false instead of silently dropping them (a company hotline is still a phone number).
+# pii=false instead of silently dropping them (a company hotline is still a phone number). Non-personal
+# counterparts of the attribute types are labelled so that the model reports them as pii=false instead of
+# guessing: a company address, a brand handle, a server IP.
 SPAN_TYPES = [
     "PERSON",
     "EMAIL",
@@ -15,6 +17,15 @@ SPAN_TYPES = [
     "BANK_ACCOUNT",
     "ORDER_TRACKING",
     "SERIAL",
+    "ADDRESS",
+    "ADDRESS_CORPORATE",
+    "DATE_OF_BIRTH",
+    "EMPLOYMENT",
+    "HANDLE",
+    "HANDLE_BRAND",
+    "IP_PERSONAL",
+    "IP_SERVER",
+    "MEMBER_ID",
 ]
 
 # BIO tags over tokens: index 0 is O, then B-/I- per span type.
@@ -59,4 +70,13 @@ REPORT = {
     "BANK_ACCOUNT": ("number", True, "bank_account"),
     "ORDER_TRACKING": ("number", False, "order_or_tracking_number"),
     "SERIAL": ("number", False, "product_serial"),
+    "ADDRESS": ("postal_address", True, None),
+    "ADDRESS_CORPORATE": ("postal_address", False, None),
+    "DATE_OF_BIRTH": ("date_of_birth", True, None),
+    "EMPLOYMENT": ("employment_info", True, None),
+    "HANDLE": ("sns_handle", True, None),
+    "HANDLE_BRAND": ("sns_handle", False, None),
+    "IP_PERSONAL": ("ip_address", True, None),
+    "IP_SERVER": ("ip_address", False, None),
+    "MEMBER_ID": ("number", True, "member_or_customer"),
 }

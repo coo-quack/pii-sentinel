@@ -14,7 +14,7 @@ from transformers import AutoConfig, AutoModel, AutoTokenizer
 from transformers.initialization import no_init_weights
 from transformers.models.modernbert.modeling_modernbert import ModernBertPredictionHead
 
-from .labels import BIO, CATEGORIES, SENSITIVITY
+from .labels import BIO, CATEGORIES, SENSITIVITY, SPAN_TYPES
 
 BASE_MODEL = "jhu-clsp/mmBERT-base"
 BASE_REVISION = "c5955035435e2bf121cde7f3c8863ef52ff35d82"
@@ -35,27 +35,30 @@ CHECKPOINT_FILES = [
 ]
 
 
-def token_classification_config(config):
-    """The base config set up for ModernBertForTokenClassification with the BIO labels. The prediction head is
-    linear (dense, then LayerNorm) so that it can reproduce the span classifier exactly; see sync_head."""
-    config.num_labels = len(BIO)
-    config.id2label = dict(enumerate(BIO))
-    config.label2id = {tag: i for i, tag in enumerate(BIO)}
+def token_classification_config(config, bio=BIO):
+    """The base config set up for ModernBertForTokenClassification with the given BIO labels (the current label set
+    by default). The prediction head is linear (dense, then LayerNorm) so that it can reproduce the span classifier
+    exactly; see sync_head."""
+    config.num_labels = len(bio)
+    config.id2label = dict(enumerate(bio))
+    config.label2id = {tag: i for i, tag in enumerate(bio)}
     config.classifier_activation = "linear"
     config.architectures = ["ModernBertForTokenClassification"]
     return config
 
 
 class PiiSentinel(nn.Module):
-    def __init__(self, encoder):
+    def __init__(self, encoder, bio=BIO):
         super().__init__()
         self.model = encoder
+        # The span labels this model predicts, in output order. A checkpoint carries its own list.
+        self.bio = list(bio)
         config = encoder.config
         hidden = config.hidden_size
         self.dropout = nn.Dropout(0.1)
         self.head = ModernBertPredictionHead(config)
         self.head.requires_grad_(False)
-        self.classifier = nn.Linear(hidden, len(BIO))
+        self.classifier = nn.Linear(hidden, len(self.bio))
         self.sensitivity_head = nn.Linear(hidden, len(SENSITIVITY))
         self.category_head = nn.Linear(hidden, len(CATEGORIES))
         # Training scores the span classifier on the encoder states directly; a saved or loaded checkpoint goes
@@ -121,6 +124,7 @@ def save(model, out: Path, meta: dict, tokenizer, base=BASE_MODEL, revision=BASE
     tc = {k: v for k, v in state.items() if k not in heads}
     save_file(tc, str(out / WEIGHTS_FILE), metadata={"format": "pt"})
     save_file(heads, str(out / DOC_HEADS_FILE), metadata={"format": "pt"})
+    token_classification_config(model.model.config, model.bio)
     model.model.config.save_pretrained(out)
     tokenizer.save_pretrained(out)
     full = {
@@ -128,7 +132,7 @@ def save(model, out: Path, meta: dict, tokenizer, base=BASE_MODEL, revision=BASE
         "model_name": MODEL_NAME,
         "base_model": base,
         "base_revision": revision,
-        "bio": BIO,
+        "bio": model.bio,
         "categories": CATEGORIES,
         "sensitivity": SENSITIVITY,
         **meta,
@@ -151,17 +155,23 @@ def load(path, device="cpu"):
     meta = json.loads((path / META_FILE).read_text())
     if meta.get("format") not in (FORMAT, LEGACY_FORMAT):
         raise RuntimeError(f"{path} is not a {FORMAT} checkpoint")
-    if meta["bio"] != BIO or meta["categories"] != CATEGORIES:
-        raise RuntimeError(f"{path} was trained with a different label set")
+    if meta["categories"] != CATEGORIES:
+        raise RuntimeError(f"{path} was trained with different document categories")
+    # The span labels are the checkpoint's own (an older checkpoint has fewer span types), so every tag must
+    # name a span type this package knows; the decoding and the reporting use them.
+    bio = meta["bio"]
+    unknown = [t for t in bio if t != "O" and (t[:2] not in ("B-", "I-") or t[2:] not in SPAN_TYPES)]
+    if unknown:
+        raise RuntimeError(f"{path} has span labels this package does not know: {unknown}")
     state = load_file(str(path / WEIGHTS_FILE))
     if meta["format"] == FORMAT:
         state |= load_file(str(path / DOC_HEADS_FILE))
-        config = AutoConfig.from_pretrained(path)
+        config = token_classification_config(AutoConfig.from_pretrained(path), bio)
         tokenizer = AutoTokenizer.from_pretrained(path)
     else:
         # Releases up to 0.1.x: encoder.* and span_head.*, with the config and tokenizer of the base model.
         config = token_classification_config(
-            AutoConfig.from_pretrained(meta["base_model"], revision=meta["base_revision"])
+            AutoConfig.from_pretrained(meta["base_model"], revision=meta["base_revision"]), bio
         )
         tokenizer = load_tokenizer(meta["base_model"], meta["base_revision"])
         renames = {"encoder.": "model.", "span_head.": "classifier."}
@@ -171,7 +181,7 @@ def load(path, device="cpu"):
         }
     # The weights are loaded right after, so skip the random initialisation (about 25 s on a laptop CPU).
     with no_init_weights():
-        model = PiiSentinel(AutoModel.from_config(config))
+        model = PiiSentinel(AutoModel.from_config(config), bio=bio)
     if meta["format"] == FORMAT:
         model.load_state_dict(state)
         model.use_head = True

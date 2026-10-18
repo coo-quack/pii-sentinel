@@ -61,7 +61,7 @@ PHONE +1 415 555 0142 0.98
 EMAIL emily.carter@example.org 1.0
 ```
 
-The model was fine-tuned on windows of 512 tokens; split longer texts, or use the tool below, which does it for you.
+The model was fine-tuned on windows of 1024 tokens; split longer texts, or use the tool below, which does it for you.
 
 ### Full analysis with the pii-sentinel tool
 
@@ -69,7 +69,7 @@ For the document's sensitivity level and categories, the regex rules and the pos
 tool. It needs [uv](https://docs.astral.sh/uv/getting-started/installation/):
 
 ```bash
-uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.4.0 \
+uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.5.0 \
   pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
@@ -129,6 +129,15 @@ The token-classification head uses BIO tags over these entity groups:
 | `BANK_ACCOUNT` | A bank account number. |
 | `ORDER_TRACKING` | An order or tracking number (not personal; learnt so that it is not mistaken for an ID). |
 | `SERIAL` | A product serial number (not personal; same reason). |
+| `ADDRESS` | A person's street-level postal address. |
+| `ADDRESS_CORPORATE` | A company's, shop's or venue's address (not personal). |
+| `DATE_OF_BIRTH` | A person's date of birth. |
+| `EMPLOYMENT` | A person's employer, department, job title or role, including a title written next to the name. |
+| `HANDLE` | A person's social-media handle or login name. |
+| `HANDLE_BRAND` | A brand's or organisation's account (not personal). |
+| `IP_PERSONAL` | An IP address tied to a person. |
+| `IP_SERVER` | A server's or device's IP address (not personal). |
+| `MEMBER_ID` | A member, customer, employee or patient number. |
 
 ## Evaluation
 
@@ -136,20 +145,32 @@ Measured on a held-out test set of 320 documents, 40 in each of the eight langua
 cover the sensitivity categories, document formats and lengths. Each document was labelled independently twice and
 disagreements were adjudicated. Only personal values are counted.
 
-| Recall / precision | pii-sentinel tool | transformers pipeline |
-|:-------------------|:------------------|:----------------------|
-| Person names | 97.9% / 96.7% | 97.0% / 96.7% |
-| Phone numbers | 94.7% / 90.0% | 94.7% / 90.0% |
-| E-mail addresses | 91.7% / 84.6% | 87.5% / 63.6% |
-| ID and account numbers | 83.1% / 90.1% | 76.6% / 50.0% |
+| Recall / precision | pii-sentinel tool |
+|:-------------------|:------------------|
+| Person names | 97.5% / 98.6% |
+| Phone numbers | 94.7% / 94.7% |
+| E-mail addresses | 83.3% / 76.9% |
+| ID and account numbers | 88.3% / 93.2% |
 
 The tool column is the model with the regex rules and the post-processing (which, for example, drops hashes and UUIDs
-that look like numbers); the pipeline column is this model alone with `aggregation_strategy="simple"`.
+that look like numbers, and reports a role address or a company's address as not personal). The transformers
+pipeline alone (`aggregation_strategy="simple"`) was not re-measured for this version.
+
+Attributes, measured per document (a document counts as found when a finding of that type with `pii: true` is
+reported):
+
+| Recall / precision | pii-sentinel tool | Documents containing it |
+|:-------------------|:------------------|:------------------------|
+| Workplace (`employment_info`) | 55% / 88% | 112 |
+| Date of birth | 90% / 86% | 20 |
+| Postal address | 94% / 70% | 17 |
+| Handle | 3 of 4 / 3 of 6 | 4 |
+| IP address of a person | 4 of 4 / 4 of 6 | 4 |
 
 | Document level (tool only) | Result |
 |:---------------------------|:-------|
-| Sensitivity (none / low / high) accuracy | 90.0% |
-| `high` documents judged `low` or `none` | 2 of 162 |
+| Sensitivity (none / low / high) accuracy | 90.9% |
+| `high` documents judged `low` or `none` | 4 of 162 |
 | Documents with personal information judged `none` | 7 of 246 |
 
 The test set is small: a difference of one or two documents is within noise.
@@ -165,7 +186,7 @@ The test set is small: a difference of one or two documents is within noise.
 | Attention heads | 12 |
 | Parameters | 308M |
 | Vocabulary size | 256,000 (Gemma 2 tokenizer) |
-| Fine-tuning window | 512 tokens |
+| Fine-tuning window | 1024 tokens |
 | Languages trained and evaluated | ja, zh (Simplified), ko, en, fr, it, de, es |
 
 All encoder layers are fine-tuned. The files are `model.safetensors` and `config.json` (the token-classification

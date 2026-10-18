@@ -141,6 +141,16 @@ def score(
     doc_pooling="per_window",
 ):
     per_type = defaultdict(Counter)
+    # A predicted type the corpus never labels has nothing to be right or wrong about, so it is counted apart.
+    gold_types = {f["type"] for t in corpus["tests"] for f in t["expected"]["findings"]}
+    # Numbers are split by number_type, so a number type the corpus never labels is unscored on its own.
+    gold_numbers = {
+        f.get("number_type")
+        for t in corpus["tests"]
+        for f in t["expected"]["findings"]
+        if f["type"] == "number"
+    }
+    unscored = Counter()
     # Personal values only: predictions and gold with pii=false (company contacts) are left out, so
     # gaps in how completely non-personal contacts were labelled do not count against precision.
     personal = defaultdict(Counter)
@@ -166,6 +176,14 @@ def score(
                 preds.append(f)
         rows = match(preds, t["expected"]["findings"])
         for r in rows:
+            if r["expected"] is None and r["type"] == "number":
+                number_type = r["predicted"].get("number_type")
+                if number_type not in gold_numbers:
+                    unscored[f"number:{number_type}"] += 1
+                    continue
+            if r["expected"] is None and r["type"] not in gold_types:
+                unscored[r["type"]] += 1
+                continue
             c = per_type[r["type"]]
             outcome = "tp" if r["expected"] and r["predicted"] else "fn" if r["expected"] else "fp"
             c[outcome] += 1
@@ -223,6 +241,7 @@ def score(
         "types": {k: prf(v) for k, v in sorted(per_type.items())},
         "personal_types": {k: prf(v) for k, v in sorted(personal.items())},
         "person_by_lang": {k: prf(v) for k, v in sorted(person_by_lang.items())},
+        "unscored": dict(sorted(unscored.items())),
         "sensitivity_accuracy": round(
             sum(v for (e, p), v in confusion.items() if e == p) / max(1, len(results)), 4
         ),
@@ -303,7 +322,8 @@ def main(argv=None):
         print(
             f"   sensitivity {accuracy(summary):.1%}  high missed {len(summary['high_missed'])} "
             f"{summary['high_missed']}  personal->none {len(summary['personal_missed'])} "
-            f"{summary['personal_missed']}  under {len(summary['under_estimated'])}  {summary['seconds']}s  "
+            f"{summary['personal_missed']}  under {len(summary['under_estimated'])}  "
+            f"unscored {summary['unscored']}  {summary['seconds']}s  "
             f"=> {'PASS' if summary['acceptance']['pass'] else 'FAIL'}"
         )
         if a.out:

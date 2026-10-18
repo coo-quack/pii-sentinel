@@ -1,0 +1,88 @@
+{
+  "templates": [
+    {
+      "id": "t_en_701",
+      "lang": "en",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "PATIENT RECORD\n\nPatient: {P1}\nDate of birth: {P1.dob}\nVisit date: {DATE}\nNursing staff: {P3}\nAttending physician: {P2}\n\nChief complaint: Cough and fever for five days, with shortness of breath on the stairs.\n\nDiagnosis: Community-acquired pneumonia in the right lower lobe. The chest X-ray showed increased opacity in the same area. No signs of respiratory failure at the time of the visit.\n\nPlan: Oral antibiotics for seven days, rest, and plenty of fluids. Follow-up in one week. Return sooner if the fever lasts longer than 72 hours.\n\n{P2.job} {P2}\nRecorded: {DATE}, 10:20"
+    },
+    {
+      "id": "t_en_702",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "[Local News] {DATE}\n\n{P1.job} {P1} announced on Tuesday that bus service will expand to the {PLACE} district next spring. Speaking at a press conference held at {ORG}, the {P1.job} described the plan as the first step in a three-year transport program.\n\nThe proposal adds 14 new routes and extends evening hours on existing lines. Funding will come from municipal bonds and a federal grant that has not yet been formally approved.\n\nOpposition members questioned the cost estimate, and a council vote is expected in November. The full budget will be presented at the next public hearing."
+    },
+    {
+      "id": "t_en_703",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "SERVICE AGREEMENT (EXCERPT)\n\nThis Agreement is made on {DATE} between:\n\n(1) {ORG}, represented by {P1} ({P1.job}) (the “Provider”); and\n\n(2) {P2}, residing at {P2.addr} (the “Client”).\n\n1. Scope. The Provider shall deliver the services in Schedule A.\n2. Fees. The Client shall pay {AMOUNT} within thirty days of each invoice.\n3. Term. This Agreement continues for twelve months unless terminated in writing.\n\nSigned for {ORG}\n\nName: {P1}\nTitle: {P1.job}\nEmployer: {P1.org}\nSignature: ______________________\n\nSigned by the Client\n\nName: {P2}\nClient signature: ______________________"
+    },
+    {
+      "id": "t_en_704",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Team roster - Q4 operations\nUpdated: {DATE}\n\nname | department | role\n--- | --- | ---\n{P1} | {P1.dept} | {P1.job}\n{P2} | {P2.dept} | {P2.job}\n{P3} | {P3.dept} | {P3.job}\n\nPlease tell the team coordinator if any entry is out of date. Contact details are kept in the HR directory and are not listed here."
+    },
+    {
+      "id": "t_en_705",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "APPLICATION FORM - Regional Sales Coordinator\n\nName: {P1}\nOccupation: {P1.job}\nEmployer: {P1.org}\nPhone: {P1.phone}\nPreferred start date: {DATE}\nYears of experience: 6\nReason for applying: Looking for a role with more client contact and a clearer path into management.\n\nDeclaration: I confirm that the information above is accurate to the best of my knowledge.\n\nSignature: ____________________   Date: {DATE}"
+    },
+    {
+      "id": "t_en_706",
+      "lang": "en",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "{ORG}\n{ORG.addr}\nTel: {ORG.phone}\nEmail: {ORG.email}\n\nBusiness hours: Monday to Friday, 9:00 a.m. to 6:00 p.m. Closed on weekends and public holidays.\n\nFor order enquiries, please email {ORG.email} or call during business hours. We usually reply within one business day.\n\n© {ORG}. All rights reserved."
+    },
+    {
+      "id": "t_en_707",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "INVOICE\n\nInvoice number: {CODE}\nIssue date: {DATE}\n\nBill to:\n{ORG}\nAttn: {P1}\n{ORG.addr}\n\nDescription | Quantity | Unit price | Amount\nOffice cleaning service, September | 1 | {AMOUNT} | {AMOUNT}\nSupplies handling fee | 1 | {AMOUNT} | {AMOUNT}\n\nSubtotal: {AMOUNT}\nTax: {AMOUNT}\nTotal due: {AMOUNT}\n\nPayment terms: Net 30. Please transfer to the account on the attached statement and quote the invoice number.\n\nQuestions about this invoice: {ORG.email}"
+    },
+    {
+      "id": "t_en_708",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "DELIVERY NOTICE\n\nDeliver to:\n{P1}\n{P1.addr}\n\nShipped from:\n{ORG}\n{ORG.addr}\n\nTracking reference: {CODE}\nShipment date: {DATE}\nPackages: 2 (boxed, fragile)\nDelivery window: 10:00 to 16:00\n\nThe courier will call the recipient before arriving. If nobody is available, the parcel will be left with the building's front desk and a notice will be placed in the mailbox.\n\nTo change the delivery, call {ORG.phone} with the tracking reference."
+    },
+    {
+      "id": "t_en_709",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "MINUTES OF THE QUALITY COMMITTEE\n\nDate: {DATE}\nVenue: Room 4, Building 2\n\nAttendees:\n{P1} ({P1.org}, {P1.job})\n{P2} ({P2.dept})\n\nModerator: {P3}\n\nItem 1: Review of the March audit findings. The committee confirmed that two of the four findings are closed. The remaining two will be checked again at the next meeting.\n\nItem 2: Training schedule for new inspection staff. The first session will be held in the second week of next month.\n\nNext meeting: {DATE}\nMinutes prepared by the secretariat."
+    },
+    {
+      "id": "t_en_710",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "{P1} works as a {P1.job} at {P1.org} starting Monday, and I am so happy for them. Two years of applications and a lot of coffee later, it finally happened lol #newjob #finallyyes\n\n↳ {P2.handle}: Congrats!! Your portfolio was the reason they said yes, you know that. Drinks this Friday?"
+    },
+    {
+      "id": "t_en_711",
+      "lang": "en",
+      "sensitivity": "none",
+      "cell": "code_log_or_config",
+      "text": "# deploy/prod.env (excerpt)\nPROJECT_ID=ledger_core_prod\nSERVICE_ACCOUNT_NAME=svc_ingest_batch_01\nBUCKET_NAME=raw_event_archive_eu\nLOG_LEVEL=info\nRETRY_MAX_ATTEMPTS=5\nCACHE_TTL_SECONDS=900\n\n[{DATE}] INFO ingest_worker started image_digest={HASH} env=prod_eu\n[{DATE}] INFO bucket_check bucket=raw_event_archive_eu status=ok\n[{DATE}] WARN retry_scheduled job_id=batch_nightly_a attempt=2\n[{DATE}] INFO batch_done job_id=batch_nightly_a rows_written=412"
+    },
+    {
+      "id": "t_en_712",
+      "lang": "en",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "SPEAKERS\n\n{P1} ({P1.job}, {P1.org})\n{P1.s} will explain how the team rebuilt its release pipeline after three outages in one quarter. The session covers the tooling choices and the rollback rules that made the biggest difference.\n\nTrack B, Room 2, 11:30\n\n{P2} (former {P2.job}, now retired)\n{P2.s} spent twenty-five years in public-sector procurement before moving into teaching. This talk looks back at lessons from large contracts and asks what changes when the buyer is also the builder.\n\nTrack A, Room 1, 15:00"
+    }
+  ]
+}
