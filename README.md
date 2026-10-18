@@ -21,7 +21,7 @@ You need [uv](https://docs.astral.sh/uv/getting-started/installation/). It insta
 later) by itself.
 
 ```sh
-uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.5.1 \
+uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.5.2 \
   pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
@@ -175,7 +175,7 @@ carry the value and its position, and a `postal_address`, `date_of_birth` or `sn
 | `postal_address` | 94% | 70% | 17 |
 | `ip_address` (pii) | 4 of 4 | 4 of 6 | 4 |
 | `sns_handle` | 3 of 4 | 3 of 6 | 4 |
-| `employment_info` | 55% | 88% | 112 |
+| `employment_info` | 51% | 93% | 112 |
 
 To block on a date of birth or a postal address, use those findings. An address is reported as personal only
 when the text ties it to a person (a name, a personal contact or a member number within a few lines); an address

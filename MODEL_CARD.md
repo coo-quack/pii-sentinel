@@ -69,7 +69,7 @@ For the document's sensitivity level and categories, the regex rules and the pos
 tool. It needs [uv](https://docs.astral.sh/uv/getting-started/installation/):
 
 ```bash
-uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.5.1 \
+uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.5.2 \
   pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
@@ -161,7 +161,7 @@ reported):
 
 | Recall / precision | pii-sentinel tool | Documents containing it |
 |:-------------------|:------------------|:------------------------|
-| Workplace (`employment_info`) | 55% / 88% | 112 |
+| Workplace (`employment_info`) | 51% / 93% | 112 |
 | Date of birth | 90% / 86% | 20 |
 | Postal address | 94% / 70% | 17 |
 | Handle | 3 of 4 / 3 of 6 | 4 |
