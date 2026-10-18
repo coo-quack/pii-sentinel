@@ -155,7 +155,7 @@ class TestCardLuhnValidator:
 
     def test_valid_real_card(self):
         """Real card numbers should pass."""
-        assert is_real_card_number("4000000000000002")
+        assert is_real_card_number("4539148803436467")
 
     def test_test_card_numbers_rejected(self):
         """Published test card numbers should be rejected."""
@@ -163,6 +163,8 @@ class TestCardLuhnValidator:
         assert not is_real_card_number("4242424242424242")
         assert not is_real_card_number("4111111111111111")
         assert not is_real_card_number("5555555555554444")
+        # Stripe's declined-card number is published test data since sensitive-canary 0.12.0.
+        assert not is_real_card_number("4000000000000002")
 
     def test_invalid_checksum(self):
         """Cards with invalid Luhn checksums should fail."""
@@ -420,7 +422,7 @@ class TestScanCreditCard:
 
     def test_detects_valid_card(self):
         """Should detect valid credit card."""
-        matches = scan("card: 4000000000000002")
+        matches = scan("card: 4539148803436467")
         cc_matches = [m for m in matches if m.rule == "pii-credit-card"]
         assert len(cc_matches) == 1
 

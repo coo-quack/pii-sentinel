@@ -121,6 +121,9 @@ RULE_REPORT = {
     "pii-postal-cn": ("postal_code", True, None, "none"),
     "pii-ipv4-public": ("ip_address", True, None, "none"),
     "pii-ipv6": ("ip_address", True, None, "none"),
+    "pii-iban": ("number", True, "bank_account", "high"),
+    "pii-phone-intl": ("phone", True, None, "none"),
+    "pii-nino-uk": ("number", True, "national_id", "high"),
     **{
         f"pii-phone-{c}": ("phone", True, None, "none")
         for c in ("us", "jp", "fr", "it", "de", "es", "kr", "cn")
