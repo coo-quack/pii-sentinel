@@ -295,11 +295,50 @@ def _luhn(s: str) -> bool:
     return total % 10 == 0
 
 
+def is_test_card_number(s: str) -> bool:
+    """Whether a card number is published test data, or a piece of one of at least 12 digits (a span the
+    model cut short, such as "5555 5555 4444" from a sandbox number)."""
+    digits = regex.sub(r"\D", "", s)
+    if digits in _TEST_CARD_NUMBERS:
+        return True
+    return len(digits) >= 12 and any(digits in test for test in _TEST_CARD_NUMBERS)
+
+
 def is_real_card_number(s: str) -> bool:
     """Check if a card number is real (not test data) and passes Luhn."""
-    if regex.sub(r"\D", "", s) in _TEST_CARD_NUMBERS:
+    if is_test_card_number(s):
         return False
     return _luhn(s)
+
+
+def is_unissued_ssn(value: str) -> bool:
+    """Whether a value in the US Social Security Number form has a group that the SSA never issues: area 000,
+    666 or 900 to 999, group 00, or serial 0000."""
+    m = regex.fullmatch(r"(\d{3})[- ]?(\d{2})[- ]?(\d{4})", value.strip())
+    if not m:
+        return False
+    area, group, serial = m.groups()
+    return area in ("000", "666") or area[0] == "9" or group == "00" or serial == "0000"
+
+
+# UK National Insurance prefixes that HMRC never issues, and letters that never begin or appear in one.
+_UNISSUED_NI_PREFIXES = frozenset({"BG", "GB", "KN", "NK", "NT", "TN", "ZZ"})
+_UNISSUED_NI_LETTERS = frozenset("DFIQUV")
+
+
+def is_unissued_uk_ni(value: str) -> bool:
+    """Whether a UK National Insurance number has a prefix that is never issued (QQ 12 34 56 C is the sample)."""
+    m = regex.fullmatch(r"([A-Z]{2})\d{6}[A-D]", regex.sub(r"\s", "", value).upper())
+    if not m:
+        return False
+    prefix = m.group(1)
+    return prefix in _UNISSUED_NI_PREFIXES or bool(_UNISSUED_NI_LETTERS & set(prefix))
+
+
+def is_placeholder_number(value: str) -> bool:
+    """Whether a number is filler: one digit repeated (0000 0000 0000 0000), optionally after one or two letters
+    (the X0000000 of a specimen passport)."""
+    return bool(regex.fullmatch(r"[A-Za-z]{0,2}(\d)\1+", regex.sub(r"[\s-]", "", value)))
 
 
 def is_real_aws_key(s: str) -> bool:

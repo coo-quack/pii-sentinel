@@ -55,6 +55,24 @@ CATEGORIES = [
     "hr_or_criminal_record",
 ]
 SENSITIVITY = ["none", "low", "high"]
+# Categories that make a document high (sensitive personal information about a specific person), as listed in
+# docs/labeling-policy.md. The others (names, contacts, addresses, dates of birth, employment) make it low at most.
+HIGH_CATEGORIES = frozenset(
+    {
+        "race_or_religion",
+        "political_or_union",
+        "health_info",
+        "sex_life_or_orientation",
+        "biometric_or_genetic",
+        "hr_or_criminal_record",
+        "citizenship_or_immigration",
+        "government_id",
+        "financial_account",
+        "credentials",
+        "precise_location",
+        "private_communications",
+    }
+)
 
 # How each span type is reported: (finding type, pii, number_type).
 REPORT = {
