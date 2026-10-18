@@ -245,3 +245,13 @@ def test_long_documents_sometimes_have_a_section_heading(monkeypatch):
     heads.add(G.MINUTES_LABELS["en"]["agenda"])
     docs = _docs_from(G.long_doc, lang, 40)
     assert any(line in heads for d in docs for line in d.text.split("\n"))
+
+
+def test_every_template_passes_problems():
+    # The generator drops any template that has a problem when it loads the slot templates; this keeps the
+    # shipped files free of them, so none is dropped silently.
+    failures = []
+    for path in sorted((ROOT / "templates").glob("*.json")):
+        for t in json.loads(path.read_text())["templates"]:
+            failures += [f"{t['id']} ({path.name}): {p}" for p in problems(t)]
+    assert failures == [], "\n".join(failures)

@@ -189,3 +189,64 @@ def test_scanner_masks_secrets_by_default_and_keeps_offsets_with_show_values(mon
     ]
     raw = scanner.scan(text, show_values=True)["secrets"][0]
     assert raw["value"] == "hunter22" and raw["start"] == secret and raw["end"] == secret + 8
+
+
+def test_new_finding_types_come_back_intact_in_the_json_body(tmp_path, monkeypatch):
+    from pii_sentinel.cli import masked_report
+
+    text = "Born 1985-04-12, server 192.0.2.10, member M-48213"
+
+    def fake_analyse(*args, **kwargs):
+        ip, member = text.index("192.0.2.10"), text.index("M-48213")
+        return {
+            "sensitivity": {"level": "high"},
+            "findings": [
+                {
+                    "type": "date_of_birth",
+                    "value": "1985-04-12",
+                    "start": 5,
+                    "end": 15,
+                    "pii": True,
+                    "label": "DATE_OF_BIRTH",
+                },
+                {
+                    "type": "ip_address",
+                    "value": "192.0.2.10",
+                    "start": ip,
+                    "end": ip + 10,
+                    "pii": False,
+                    "label": "IP_SERVER",
+                },
+                {
+                    "type": "number",
+                    "value": "M-48213",
+                    "start": member,
+                    "end": member + 7,
+                    "pii": True,
+                    "label": "MEMBER_ID",
+                    "number_type": "member_or_customer",
+                },
+            ],
+            "secrets": [],
+        }
+
+    monkeypatch.setattr(S, "analyse", fake_analyse)
+    path = tmp_path / "ps.sock"
+    server, _ = S.build_server(S.Scanner(None, None, {}, None, masked_report), socket_path=str(path))
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    try:
+        body = json.dumps({"text": text, "show_values": True})
+        status, reply = request(
+            UnixConnection(str(path)), "POST", "/scan", body, {"Content-Type": "application/json"}
+        )
+    finally:
+        server.shutdown()
+        server.server_close()
+    assert status == 200
+    assert [(f["type"], f["value"], f["pii"]) for f in reply["findings"]] == [
+        ("date_of_birth", "1985-04-12", True),
+        ("ip_address", "192.0.2.10", False),
+        ("number", "M-48213", True),
+    ]
+    assert reply["findings"][1]["label"] == "IP_SERVER"
+    assert reply["findings"][2]["number_type"] == "member_or_customer"

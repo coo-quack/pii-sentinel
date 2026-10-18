@@ -563,3 +563,76 @@ def test_role_addresses_are_not_personal():
     )
     role_addresses(findings)
     assert [f["pii"] for f in findings] == [False, False, True, False]
+
+
+NEW_TYPES_TEXT = (
+    "Shipping to: Taro Yamada\n"
+    "1-2-3 Chiyoda, Tokyo\n"
+    "Born 1985-04-12, handle @taro_y, Bürgermeister, server 192.0.2.10, member M-48213\n"
+)
+
+
+def _report_with_new_types(text):
+    # A report as analyse() returns it, with the finding types beyond names and secrets: an address, a birth
+    # date, a job, a handle, an address that is not personal, and a member number.
+    def finding(ftype, value, pii, **extra):
+        start = text.index(value)
+        return {"type": ftype, "value": value, "start": start, "end": start + len(value), "pii": pii, **extra}
+
+    return {
+        "sensitivity": {"level": "high", "probabilities": {"none": 0.0, "low": 0.0, "high": 1.0}},
+        "categories": {},
+        "findings": [
+            finding("postal_address", "1-2-3 Chiyoda, Tokyo", True, label="ADDRESS"),
+            finding("date_of_birth", "1985-04-12", True, label="DATE_OF_BIRTH"),
+            finding("employment_info", "Bürgermeister", True, label="EMPLOYMENT"),
+            finding("sns_handle", "@taro_y", True, label="HANDLE"),
+            finding("ip_address", "192.0.2.10", False, label="IP_SERVER"),
+            finding("number", "M-48213", True, label="MEMBER_ID", number_type="member_or_customer"),
+        ],
+        "secrets": [],
+        "windows": 1,
+    }
+
+
+def test_cli_text_report_marks_non_personal_lines_and_number_types(tmp_path, monkeypatch, capsys):
+    from pii_sentinel import cli
+
+    path = tmp_path / "doc.txt"
+    path.write_text(NEW_TYPES_TEXT, encoding="utf-8")
+    monkeypatch.setattr(cli.M, "load", lambda *args: (None, None, {}))
+    monkeypatch.setattr(
+        cli, "analyse", lambda model, tok, text, device, **kwargs: _report_with_new_types(text)
+    )
+
+    cli.main(["scan", "--model", "x", "--device", "cpu", str(path)])
+    lines = capsys.readouterr().out.splitlines()
+    assert [line for line in lines if "[not PII]" in line] == ["  ip_address [not PII]: 19…10"]
+    assert "  number (member_or_customer): M…" in lines
+    assert "  postal_address: 1-…yo" in lines
+
+
+def test_cli_masked_json_masks_each_new_value_and_keeps_the_kind(tmp_path, monkeypatch, capsys):
+    import json
+
+    from pii_sentinel import cli
+
+    path = tmp_path / "doc.txt"
+    path.write_text(NEW_TYPES_TEXT, encoding="utf-8")
+    monkeypatch.setattr(cli.M, "load", lambda *args: (None, None, {}))
+    monkeypatch.setattr(
+        cli, "analyse", lambda model, tok, text, device, **kwargs: _report_with_new_types(text)
+    )
+
+    cli.main(["scan", "--model", "x", "--device", "cpu", "--json", str(path)])
+    (report,) = json.loads(capsys.readouterr().out)
+    assert [(f["type"], f["value"], f["pii"]) for f in report["findings"]] == [
+        ("postal_address", "1-…yo", True),
+        ("date_of_birth", "19…12", True),
+        ("employment_info", "Bü…er", True),
+        ("sns_handle", "@…", True),
+        ("ip_address", "19…10", False),
+        ("number", "M…", True),
+    ]
+    assert report["findings"][-1]["number_type"] == "member_or_customer"
+    assert report["findings"][-1]["label"] == "MEMBER_ID"
