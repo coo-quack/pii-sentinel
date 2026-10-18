@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.5.1 (2026-10-18)
 
 The model weights are unchanged from v0.5.0.
 
