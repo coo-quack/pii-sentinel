@@ -4,6 +4,15 @@
 
 The model weights are unchanged from v0.5.0.
 
+- Numbers written as test data or placeholders are no longer reported as personal information or as a reason for
+  a high level: published test card numbers (including a piece of one that the model cut short), SSNs the SSA never
+  issues, UK National Insurance numbers with a prefix HMRC never issues, and filler numbers such as X0000000.
+  Such a finding is reported with `"pii": false`. E-mail addresses and phone numbers are always personal, whatever
+  their domain or number range.
+- A high that rests only on an identifier number falls to none when a number of the document was judged not to be
+  real and no number finding, secret, name, contact, address, handle or IP address is left. A low that came only
+  from values judged not personal falls to none when no address, date of birth, employer, name, contact, handle or
+  IP address is above the threshold. Any other high is unchanged.
 - The rule set follows sensitive-canary 0.12.0. Twelve rules are added: `aws-secret-near-key-id`, `docker-hub-pat`,
   `http-basic-auth`, `http-bearer-token`, `password-cli-flag`, `password-netrc`, `password-prose`, `password-json-key`,
   `redis-auth`, `pii-iban`, `pii-phone-intl` and `pii-nino-uk`. Five change: `telegram-bot-token`,

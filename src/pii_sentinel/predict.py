@@ -6,7 +6,7 @@ import torch
 
 from . import rules
 from .data import decode_spans, is_hanzi_or_hangul, token_char_spans, windows
-from .labels import CATEGORIES, REPORT, SENSITIVITY
+from .labels import CATEGORIES, HIGH_CATEGORIES, REPORT, SENSITIVITY
 
 # Order, tracking and serial numbers are labelled in training so the model can tell them apart from IDs,
 # but they are not personal information and are not reported.
@@ -16,6 +16,16 @@ MIN_NUMBER_DIGITS = 6
 MIN_MEMBER_DIGITS = 4
 # Chosen on the development set: raises name recall and precision over plain argmax.
 O_THRESHOLD = 0.8
+# A high-level category counts as the reason for a high above this probability.
+REASON_THRESHOLD = 0.5
+# High categories whose reason is a number alone (an identifier or an account number).
+NUMBER_CATEGORIES = frozenset({"government_id", "financial_account"})
+# Categories that tie a value to a specific person (a name, a contact, an address, a handle, an IP address).
+TIED_CATEGORIES = frozenset(
+    {"person_name", "email_or_phone", "postal_address", "sns_handle", "ip_address_of_a_person"}
+)
+# Attribute categories that make a low on their own. A low stays unless none of these is above REASON_THRESHOLD.
+ATTRIBUTE_CATEGORIES = TIED_CATEGORIES | {"date_of_birth", "employment_info"}
 # Machine identifiers that look like long numbers but belong to no person.
 MACHINE_ID = re.compile(
     r"^(?:[0-9a-f]{32,}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|(?:[0-9a-f]{2}[:-]){4,}[0-9a-f]{2})$",
@@ -250,12 +260,71 @@ def role_addresses(findings):
             f["pii"] = False
 
 
+def is_non_personal(ftype, number_type, value):
+    """Whether a number written as a test or a placeholder is judged not to be a real identifier.
+
+    Such a value is reported as not personal information and does not raise the level. The checks follow the test
+    card numbers, the never-issued ranges (SSA, HMRC) and the filler digits, so a real identifier of the same shape
+    is still reported. E-mail addresses and phone numbers are not judged here: a contact is personal whatever its
+    domain or number range."""
+    if ftype != "number":
+        return False
+    if rules.is_placeholder_number(value):
+        return True
+    if number_type == "credit_card":
+        return rules.is_test_card_number(value)
+    if number_type == "national_id":
+        return rules.is_unissued_ssn(value) or rules.is_unissued_uk_ni(value)
+    return False
+
+
+def settle_level(level, probs, findings, secrets, excluded):
+    """Lower a level that the findings and the category probabilities do not support. Returns the level.
+
+    excluded is the set of finding types judged not to be real identifiers in this document.
+
+    A high falls to none when its reasons are only identifier numbers, a number of the document was judged not to be
+    a real identifier, and nothing ties the document to a person: no name, contact, address, handle, IP address,
+    number finding or secret. A high without a judged number is kept, since a model that finds a government ID
+    category without a span may be right (an unmarked Aadhaar number, for instance). Any other reason (health,
+    religion, precise location and so on), or none at all, leaves the high as the model judged it. A low that came
+    with findings judged not personal falls to none only when no personal finding is left and no attribute category
+    (name, contact, address, date of birth, employment, handle, IP address) is above REASON_THRESHOLD: the address or
+    the date of birth in the same document keeps the low."""
+    personal = [f for f in findings if f["pii"]]
+    if level == "high":
+        reasons = {c for c, p in probs.items() if c in HIGH_CATEGORIES and p > REASON_THRESHOLD}
+        tied = (
+            bool(secrets)
+            or any(f["type"] in ("person_name", "email", "phone", "number") for f in personal)
+            or any(probs[c] > REASON_THRESHOLD for c in TIED_CATEGORIES)
+        )
+        if reasons and reasons <= NUMBER_CATEGORIES and "number" in excluded and not tied:
+            return "none"
+        return level
+    if (
+        level == "low"
+        and excluded
+        and not personal
+        and not any(probs[c] > REASON_THRESHOLD for c in ATTRIBUTE_CATEGORIES)
+    ):
+        return "none"
+    return level
+
+
 def add_rule_findings(text, findings):
     """Values the model did not mark but the rule set recognises (checksummed IDs, contact formats), and
-    secrets, which are reported apart from personal information. Returns (secrets, level floor).
+    secrets, which are reported apart from personal information. Returns (secrets, level floor)."""
+    secrets, floor, _ = _add_rule_findings(text, findings)
+    return secrets, floor
 
-    Every matching rule raises the floor, whether or not the model already found the value. Findings inside a
-    secret are dropped: the password before the "@" of a connection string is not an e-mail address."""
+
+def _add_rule_findings(text, findings):
+    """As add_rule_findings, and the types of the rule matches judged not to be real identifiers.
+
+    Every matching rule raises the floor, whether or not the model already found the value, unless the value is
+    judged not to be a real identifier. Findings inside a secret are dropped: the password before the "@" of a
+    connection string is not an e-mail address."""
     matches = rules.scan(text)
     secrets = [
         {"type": "secret", "value": m.value, "start": m.start, "end": m.end, "rule": m.rule}
@@ -264,6 +333,7 @@ def add_rule_findings(text, findings):
     ]
     findings[:] = [f for f in findings if not any(_overlaps(f, x) for x in secrets)]
     floor = "none"
+    excluded = set()
     for m in matches:
         span = {"start": m.start, "end": m.end}
         if m.rule not in RULE_REPORT or any(_overlaps(span, x) for x in secrets):
@@ -271,6 +341,9 @@ def add_rule_findings(text, findings):
         ftype, pii, number_type, level = RULE_REPORT[m.rule]
         if ftype == "email" and GENERIC_LOCAL.match(m.value):
             pii, level = False, "none"
+        if pii and is_non_personal(ftype, number_type, m.value):
+            pii, level = False, "none"
+            excluded.add(ftype)
         floor = max(floor, level, key=RANK.get)
         if any(_overlaps(span, f) for f in findings):
             continue
@@ -279,7 +352,7 @@ def add_rule_findings(text, findings):
             f["number_type"] = number_type
         findings.append(f)
     findings.sort(key=lambda f: f["start"])
-    return secrets, floor
+    return secrets, floor, excluded
 
 
 @torch.no_grad()
@@ -300,7 +373,9 @@ def analyse(
     pools all windows before the document heads. Windows go through the encoder batch_size at a time.
 
     The reported probabilities are the model's judgement that decided the level (the most sensitive window);
-    the rules and a personal contact or number can raise the level above it."""
+    the rules and a personal contact or number can raise the level above it. Values judged not to be real
+    identifiers (test cards, example addresses, never-issued numbers) are reported as not personal, and a level
+    that rests only on them is lowered by settle_level."""
     parts = windows(tok, text, max_length, stride)
     dtype = torch.bfloat16 if device.type == "cuda" else torch.float32
     tags, window_probs, pooled_all = [], [], []
@@ -367,10 +442,14 @@ def analyse(
         text, decode_spans(text, keys, [best[k][1] for k in keys], dict(enumerate(model.bio)))
     )
     findings = []
+    excluded = set()
     for s, e, kind in spans:
         if not reportable(text, s, e, kind):
             continue
         ftype, pii, number_type = REPORT[kind]
+        if pii and is_non_personal(ftype, number_type, text[s:e]):
+            pii = False
+            excluded.add(ftype)
         f = {"type": ftype, "value": text[s:e], "start": s, "end": e, "pii": pii, "label": kind}
         if number_type:
             f["number_type"] = number_type
@@ -383,8 +462,12 @@ def analyse(
     cats = cats.max(0).values.tolist()
     secrets = []
     if use_rules:
-        secrets, floor = add_rule_findings(text, findings)
+        secrets, floor, rule_excluded = _add_rule_findings(text, findings)
+        excluded |= rule_excluded
         level = max(level, floor, key=RANK.get)
+    level = settle_level(level, dict(zip(CATEGORIES, cats, strict=True)), findings, secrets, excluded)
+    # A personal contact, number, address, date of birth or handle makes the document at least low,
+    # whatever settle_level left: a judged-fake number next to a real address is still personal.
     level = max(level, personal_floor(findings), key=RANK.get)
     return {
         "sensitivity": {
