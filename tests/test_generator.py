@@ -142,6 +142,22 @@ def test_every_language_has_title_name_carriers():
     assert all(G.TITLE_NAME_T[lang] for lang in G.LANGS)
 
 
+def test_every_language_has_a_title_shape_with_a_place():
+    assert set(G.TITLE_SHAPE) == set(G.LANGS)
+    for lang, shapes in G.TITLE_SHAPE.items():
+        assert any("{PLACE}" in shape for shape in shapes), lang
+
+
+def test_job_title_lists_hold_no_bare_courtesy_title():
+    from pii_sentinel.predict import _is_courtesy_title
+
+    for lang in G.LANGS:
+        res = json.loads((G.HERE / "resources" / f"{lang}.json").read_text())
+        titles = (res.get("title_suffixes") or []) + res["job_titles"] + (res.get("role_labels") or [])
+        bare = [t for t in titles if _is_courtesy_title(t)]
+        assert not bare, (lang, bare)
+
+
 def test_a_job_title_written_beside_a_name_is_an_employment_span(tmp_path):
     G.main(
         [

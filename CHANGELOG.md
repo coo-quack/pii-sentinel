@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.5.2 (2026-10-18)
+
+The model weights are unchanged from v0.5.0.
+
+- An `employment_info` finding that is only courtesy titles or academic degrees (`Dr.`, `Prof. Dr.`, `Herr`,
+  `Dott.ssa`, `Ph.D.`, `氏`, `박사`) or only a city from a built-in list of major cities (`Berlin`, `東京`) is no
+  longer reported: neither is an employer or a role, but the model marked both beside a titled name. On the
+  held-out test set the per-document precision of `employment_info` rises from 88% to 93%; recall falls from 55%
+  to 51%. The recall loss is accepted: in those documents the model had marked only the courtesy title and missed
+  the role label before it ("Behandelnder Arzt: Dr. …"), so the finding was wrong even where the document was
+  counted as found. The category probabilities and the level are not changed. The other findings are unchanged.
+- Training data: a job title beside a name can be followed by a place in parentheses (`Mayor Weber (Berlin)`) as
+  plain text, and bare courtesy titles are no longer used as job titles. Both take effect with the next training run.
+
 ## v0.5.1 (2026-10-18)
 
 The model weights are unchanged from v0.5.0.

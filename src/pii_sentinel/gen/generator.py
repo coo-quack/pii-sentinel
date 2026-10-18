@@ -768,15 +768,16 @@ def person_weights(L):
 # A name written with a job title beside it. A shape is the name-title block, filled by fill(): {P} is the
 # name, {PS} the surname and {TITLE} the title. A carrier is the sentence or line around the block, where
 # {NAME} stands for the block and {DAY} is filled by fill().
+# A place in parentheses after the titled name (Mayor Weber (Berlin)) is plain text, not a role.
 TITLE_SHAPE = {
-    "ja": ["{P}{TITLE}", "{PS}{TITLE}", "{TITLE}の{P}"],
-    "zh": ["{P}{TITLE}", "{PS}{TITLE}", "{TITLE}{P}"],
-    "ko": ["{P} {TITLE}", "{PS} {TITLE}", "{TITLE} {P}"],
-    "en": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})"],
-    "fr": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})"],
-    "it": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})"],
-    "de": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})"],
-    "es": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})"],
+    "ja": ["{P}{TITLE}", "{PS}{TITLE}", "{TITLE}の{P}", "{P}{TITLE}（{PLACE}）"],
+    "zh": ["{P}{TITLE}", "{PS}{TITLE}", "{TITLE}{P}", "{P}{TITLE}（{PLACE}）"],
+    "ko": ["{P} {TITLE}", "{PS} {TITLE}", "{TITLE} {P}", "{P} {TITLE} ({PLACE})"],
+    "en": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})", "{TITLE} {P} ({PLACE})"],
+    "fr": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})", "{TITLE} {P} ({PLACE})"],
+    "it": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})", "{TITLE} {P} ({PLACE})"],
+    "de": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})", "{TITLE} {P} ({PLACE})"],
+    "es": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})", "{TITLE} {P} ({PLACE})"],
 }
 TITLE_NAME_T = {
     "ja": ["{NAME}が会議を開会しました。", "出席：{NAME}", "{NAME}が{DAY}までに回答します。"],
