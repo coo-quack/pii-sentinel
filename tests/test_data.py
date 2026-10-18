@@ -636,3 +636,71 @@ def test_cli_masked_json_masks_each_new_value_and_keeps_the_kind(tmp_path, monke
     ]
     assert report["findings"][-1]["number_type"] == "member_or_customer"
     assert report["findings"][-1]["label"] == "MEMBER_ID"
+
+
+def test_bare_employment_drops_courtesy_titles_and_places():
+    from pii_sentinel.predict import bare_employment
+
+    def emp(value, start):
+        return {
+            "type": "employment_info",
+            "value": value,
+            "start": start,
+            "end": start + len(value),
+            "pii": True,
+            "label": "EMPLOYMENT",
+        }
+
+    dropped = [
+        "Berlin",
+        "Dr.",
+        "Dr",
+        " Dr. ",
+        "DR.",
+        "Ph.D.",
+        "PhD",
+        "Dott.ssa",
+        "Herr",
+        "Prof. Dr.",
+        "Herr Dr.,",
+        "氏",
+        "東京",
+        "박사",
+        "님",
+    ]
+    kept = [
+        "Mayor",
+        "Oberärztin at Klinikum Mitte",
+        "CEO",
+        "Prof. Dr. Weber",
+        "Ing.",
+        "Don",
+        "先生",
+        "Herr Direktor",
+    ]
+    findings = [emp(v, i * 40) for i, v in enumerate(dropped + kept)]
+    findings.insert(
+        1,
+        {
+            "type": "person_name",
+            "value": "Klaus Weber",
+            "start": 6,
+            "end": 17,
+            "pii": True,
+            "label": "PERSON",
+        },
+    )
+    bare_employment(findings)
+    assert [f["value"] for f in findings] == ["Klaus Weber", *kept]
+
+
+def test_bare_employment_leaves_the_categories_alone():
+    # The drop happens on the findings only; the category probabilities come from the model and stay as they were.
+    from pii_sentinel.predict import bare_employment
+
+    findings = [
+        {"type": "employment_info", "value": "Dr.", "start": 0, "end": 3, "pii": True, "label": "EMPLOYMENT"}
+    ]
+    categories = {"employment_info": 0.9}
+    bare_employment(findings)
+    assert findings == [] and categories == {"employment_info": 0.9}

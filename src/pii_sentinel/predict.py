@@ -1,5 +1,8 @@
 """Inference: findings and document sensitivity for arbitrary-length text."""
 
+import functools
+import importlib.resources
+import json
 import re
 
 import torch
@@ -260,6 +263,56 @@ def role_addresses(findings):
             f["pii"] = False
 
 
+# Courtesy titles and academic degrees: written beside a name, they are not a role (docs/labeling-policy.md).
+# Latin forms are compared case-insensitively and without a final period ("Dr.", "DR", "prof.").
+COURTESY_TITLES = frozenset(
+    {
+        "mr", "ms", "mrs", "miss", "mx", "dr", "prof", "sir", "dame",
+        "m", "mme", "mlle", "pr",
+        "sig", "sig.ra", "dott", "dott.ssa",
+        "herr", "frau", "fräulein",
+        "sr", "sra", "srta", "dra",
+        "phd", "ph.d", "md", "m.d",
+        "氏", "様", "さん", "君", "殿", "博士",
+        "女士", "小姐",
+        "씨", "님", "박사",
+    }
+)  # fmt: skip
+_TITLE_SPLIT = re.compile(r"[\s\u3000]+")
+
+
+def _is_courtesy_title(value):
+    """Whether the value is nothing but courtesy titles and degrees ("Dr.", "Prof. Dr.", "Herr Dr.", "氏")."""
+    words = [w.strip(",:;、，：") for w in _TITLE_SPLIT.split(value.strip())]
+    words = [w for w in words if w]
+    return bool(words) and all(w.casefold().removesuffix(".") in COURTESY_TITLES for w in words)
+
+
+_PLACE_LANGS = ("ja", "zh", "ko", "en", "fr", "it", "de", "es")
+
+
+@functools.cache
+def _places():
+    """The city names of the generator's resources, one list per language."""
+    res = importlib.resources.files("pii_sentinel.gen").joinpath("resources")
+    out = set()
+    for lang in _PLACE_LANGS:
+        out.update(json.loads(res.joinpath(f"{lang}.json").read_text(encoding="utf-8")).get("places", []))
+    return frozenset(out)
+
+
+def bare_employment(findings):
+    """Drop an employment_info finding that is only a courtesy title (Dr., Herr, 氏) or only a city from the
+    generator's lists (Berlin): neither is an employer or a role, but the model marks both when they stand beside
+    a titled name. The category probabilities and the level are not changed: they come from the model alone."""
+    findings[:] = [
+        f
+        for f in findings
+        if f["type"] != "employment_info"
+        or not (_is_courtesy_title(f["value"]) or f["value"].strip() in _places())
+    ]
+
+
 def is_non_personal(ftype, number_type, value):
     """Whether a number written as a test or a placeholder is judged not to be a real identifier.
 
@@ -456,6 +509,7 @@ def analyse(
         findings.append(f)
     address_context(text, findings)
     role_addresses(findings)
+    bare_employment(findings)
     # The most sensitive window decides; between windows of the same level, the more confident one.
     decisive = max(range(len(sens)), key=lambda w: (int(sens[w].argmax()), float(sens[w].max())))
     level = SENSITIVITY[int(sens[decisive].argmax())]

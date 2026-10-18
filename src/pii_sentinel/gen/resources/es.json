@@ -361,10 +361,8 @@
   "Juez",
   "Enfermero",
   "Enfermera",
-  "Ing.",
-  "Dr.",
-  "Dra.",
-  "Presidente"
+  "Presidente",
+  "Ing."
  ],
  "role_labels": [
   "Médico de cabecera",

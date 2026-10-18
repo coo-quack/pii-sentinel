@@ -75,3 +75,11 @@ def test_role_mailbox_is_not_personal(scan):
 def test_member_id_is_a_member_or_customer_number(scan):
     res = scan("Member ID: M-48213 (Anna Rossi)")
     assert has(res, "number", number_type="member_or_customer"), listing(res)
+
+
+def test_courtesy_title_and_place_after_a_titled_name_are_not_employment(scan):
+    res = scan("Attendees: Mayor Klaus Weber (Berlin), Dr. Anna Rossi, Oberärztin at Klinikum Mitte.")
+    assert has(res, "employment_info", value="Mayor"), listing(res)
+    assert not has(res, "employment_info", value="Berlin"), listing(res)
+    assert not has(res, "employment_info", value="Dr."), listing(res)
+    assert has(res, "person_name", value="Anna Rossi"), listing(res)
