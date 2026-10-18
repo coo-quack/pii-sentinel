@@ -1,0 +1,88 @@
+{
+  "templates": [
+    {
+      "id": "t_de_701",
+      "lang": "de",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Patientenakte\nPatient: {P1}\nGeburtsdatum: {P1.dob}\nTelefon: {P1.phone}\n\nBehandelnder Arzt: {P2.job} {P2}\n\nBefund vom {DATE}: Bei der Untersuchung wurde eine essenzielle Hypertonie festgestellt. Der Blutdruck lag in Ruhe bei 165 zu 102 mmHg. Seit zwei Wochen bestehen Kopfschmerzen und Schwindel beim Aufstehen.\n\nDiagnose: Bluthochdruck, Grad 2\nTherapie: Anpassung der Medikation und Blutdruckkontrolle zu Hause\nKontrolltermin: in vier Wochen, Überweisung an die Kardiologie"
+    },
+    {
+      "id": "t_de_702",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "Lokalnachrichten, {DATE}\n\n{P1.job} {P1} hat am Montag im Rathaus von {PLACE} die Pläne für den neuen Radweg vorgestellt. Der Ausbau soll bis zum Frühjahr des kommenden Jahres abgeschlossen sein. Wie {ORG} mitteilte, wird die Maßnahme aus dem städtischen Haushalt finanziert.\n\nIn der anschließenden Fragerunde äußerten sich vor allem Anwohner kritisch zur Parkplatzsituation. {P1} sagte zu, die Einwände im Ausschuss prüfen zu lassen."
+    },
+    {
+      "id": "t_de_703",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "Vertrag über die Lieferung von Büromöbeln\n\nZwischen\n{ORG}, vertreten durch {P1}, {P1.job},\nnachfolgend „Auftragnehmer“,\n\nund\n{P2}, wohnhaft {P2.addr},\nnachfolgend „Auftraggeber“.\n\n§ 1 Vertragsgegenstand: Der Auftragnehmer liefert bis zum {DATE} die im Angebot {CODE} aufgeführten Büromöbel zum Gesamtpreis von {AMOUNT} netto.\n\nOrt, Datum: {PLACE}, {DATE}\n\n______________________\n{P1}\n{P1.job}\n{P1.org}"
+    },
+    {
+      "id": "t_de_704",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Personalliste Abteilung Technik, Stand {DATE}\n\nName | Abteilung | Funktion\n{P1} | {P1.dept} | {P1.job}\n{P2} | {P2.dept} | {P2.job}\n{P3} | {P3.dept} | {P3.job}\n\nÄnderungen bitte bis zum {DATE} an die Personalabteilung melden."
+    },
+    {
+      "id": "t_de_705",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Bewerbungsformular Traineeprogramm\n\nName: {P1}\nBeruf: {P1.job}\nArbeitgeber: {P1.org}\nTelefon: {P1.phone}\nEingegangen am: {DATE}\nBemerkungen: keine\n\nBitte das Formular vollständig ausgefüllt bis zum {DATE} an die Personalabteilung senden."
+    },
+    {
+      "id": "t_de_706",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "{ORG}\n{ORG.addr}\nTelefon: {ORG.phone}\nE-Mail: {ORG.email}\n\nGeschäftszeiten: Montag bis Freitag von 8:00 bis 17:00 Uhr, samstags geschlossen.\nFür Zustellungen per Post nutzen Sie bitte die Anschrift oben.\n\nDiese Nachricht wurde automatisch erstellt."
+    },
+    {
+      "id": "t_de_707",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "RECHNUNG\n\nRechnungsempfänger:\n{ORG}\nz. Hd. {P1}\n{ORG.addr}\n\nRechnungsdatum: {DATE}\nRechnungsnummer: {CODE}\nLeistungszeitraum: {DATE} bis {DATE}\n\nPos. 1: Beratungsleistung Projekt Frühjahr, 12 Std., {AMOUNT}\nPos. 2: Reisekosten, Pauschale, {AMOUNT}\n\nNettobetrag: {AMOUNT}\nUmsatzsteuer: {AMOUNT}\nRechnungsbetrag: {AMOUNT}\n\nZahlbar binnen 14 Tagen ohne Abzug auf das Konto laut Vertrag."
+    },
+    {
+      "id": "t_de_708",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "Lieferschein und Versandbestätigung\n\nSendungsnummer: {CODE}\nVersand von: {ORG}, {ORG.addr}\nEmpfänger: {P1}\nLieferadresse: {P1.addr}\nVersanddatum: {DATE}\nPaket: 1 Karton, 4,2 kg\n\nDie Sendung wird per Paketdienst zugestellt. Bitte halten Sie beim Zustellversuch Ihre Sendungsnummer bereit. Bei Fragen zur Lieferung wenden Sie sich an den Versandservice von {ORG}."
+    },
+    {
+      "id": "t_de_709",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Protokoll der Sitzung des Arbeitskreises Datenschutz, {DATE}\nOrt: Videokonferenz\n\nTeilnehmende: {P1} ({P1.org}, {P1.job}), {P2} ({P2.dept})\nModeration: {P3}\n\nTOP 1: Überarbeitung der Löschfristen. {P2} legt bis {DATE} einen Entwurf vor.\nTOP 2: Schulung der neuen Kolleginnen und Kollegen. Der Termin wird per E-Mail bekannt gegeben.\nTOP 3: Verschiedenes. Keine Wortmeldungen.\n\nNächste Sitzung: {DATE}, 11:00 Uhr"
+    },
+    {
+      "id": "t_de_710",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "{P1.handle} schreibt: Kurze Vorstellung, weil ich so oft danach gefragt werde. {P1} arbeitet als {P1.job} bei {P1.org}, und seit dem Umzug nach {PLACE} bin ich fast nur im Homeoffice. Wer in der Gegend ist, darf sich gern melden.\n\nAntwort von {P2.handle}: Hab dich schon im Feed gesehen. Lass uns endlich mal einen Kaffee trinken, wie wäre es am {DATE}?"
+    },
+    {
+      "id": "t_de_711",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "code_log_or_config",
+      "text": "# Auszug aus config/staging.env\nAPP_ENV=staging\nLOG_LEVEL=info\nREPORT_BUCKET=reports_raw_eu_west\nSERVICE_ACCOUNT=svc_report_export\nSECRET_REF={HASH}\n\n[{DATE} 06:12:09] INFO job=nightly_export status=started bucket=reports_raw_eu_west\n[{DATE} 06:14:37] WARN retry_count=2 target=ml_training_snapshots\n[{DATE} 06:15:02] INFO job=nightly_export status=done"
+    },
+    {
+      "id": "t_de_712",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Programm, Session 4: Datenflüsse im Mittelstand\n\n{P1} ({P1.job}, {P1.org})\nDer Vortrag zeigt, wie kleine Teams ihre Datenflüsse mit überschaubarem Aufwand dokumentieren und prüfen. Anhand von zwei Praxisbeispielen werden typische Fehlerquellen und ihre Behebung vorgestellt.\nZeit: {DATE}, 14:30 Uhr, Raum Nord\n\n{P2} war früher als {P2.job} tätig und ist inzwischen im Ruhestand. Im Anschluss an die Session steht {P2} für Fragen zur Verfügung."
+    }
+  ]
+}

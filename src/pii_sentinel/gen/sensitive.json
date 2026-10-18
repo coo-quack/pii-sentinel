@@ -1076,52 +1076,52 @@
  },
  "PUBLIC_ROLE_T": {
   "ja": [
-   "{ORG}の社長、{P}氏は記者会見で新製品を発表した。",
-   "{P}首相は{PLACE}で演説し、経済対策を説明した。",
-   "サッカー日本代表の{P}選手が2得点を挙げた。",
-   "歌手の{P}さんが{PLACE}でコンサートを開いた。"
+   "{ORG}の{TITLE}、{P}氏は記者会見で新製品を発表した。",
+   "{P}{TITLE}は{PLACE}で演説し、経済対策を説明した。",
+   "サッカー日本代表の{P}{TITLE}が2得点を挙げた。",
+   "{TITLE}の{P}さんが{PLACE}でコンサートを開いた。"
   ],
   "zh": [
-   "{ORG}总裁{P}在发布会上宣布了新产品。",
-   "{P}市长在{PLACE}发表讲话，介绍了经济措施。",
-   "国家队球员{P}在比赛中攻入两球。",
-   "歌手{P}在{PLACE}举办了演唱会。"
+   "{ORG}{TITLE}{P}在发布会上宣布了新产品。",
+   "{P}{TITLE}在{PLACE}发表讲话，介绍了经济措施。",
+   "国家队{TITLE}{P}在比赛中攻入两球。",
+   "{TITLE}{P}在{PLACE}举办了演唱会。"
   ],
   "ko": [
-   "{ORG} 대표 {P}는 기자회견에서 신제품을 발표했다.",
-   "{P} 시장은 {PLACE}에서 경제 대책을 설명했다.",
-   "국가대표 {P} 선수가 두 골을 넣었다.",
-   "가수 {P}가 {PLACE}에서 콘서트를 열었다."
+   "{ORG} {TITLE} {P}는 기자회견에서 신제품을 발표했다.",
+   "{P} {TITLE}은 {PLACE}에서 경제 대책을 설명했다.",
+   "국가대표 {P} {TITLE}가 두 골을 넣었다.",
+   "{TITLE} {P}가 {PLACE}에서 콘서트를 열었다."
   ],
   "en": [
-   "{ORG} CEO {P} unveiled the new product at a press conference.",
-   "Mayor {P} spoke in {PLACE} about the city budget.",
-   "Striker {P} scored twice for the national team.",
-   "Singer {P} played a sold-out show in {PLACE}."
+   "{ORG} {TITLE} {P} unveiled the new product at a press conference.",
+   "{TITLE} {P} spoke in {PLACE} about the city budget.",
+   "{TITLE} {P} scored twice for the national team.",
+   "{TITLE} {P} played a sold-out show in {PLACE}."
   ],
   "fr": [
-   "Le PDG de {ORG}, {P}, a présenté le nouveau produit.",
-   "Le maire {P} a présenté le budget à {PLACE}.",
-   "L'attaquant {P} a marqué deux buts pour l'équipe de France.",
-   "La chanteuse {P} a donné un concert à {PLACE}."
+   "{TITLE} de {ORG}, {P}, a présenté le nouveau produit.",
+   "{TITLE} {P} a présenté le budget à {PLACE}.",
+   "{TITLE} {P} a marqué deux buts pour l'équipe de France.",
+   "{TITLE} {P} a donné un concert à {PLACE}."
   ],
   "it": [
-   "L'amministratore delegato di {ORG}, {P}, ha presentato il nuovo prodotto.",
-   "Il sindaco {P} ha illustrato il bilancio a {PLACE}.",
-   "L'attaccante {P} ha segnato due gol per la Nazionale.",
-   "La cantante {P} ha tenuto un concerto a {PLACE}."
+   "{TITLE} di {ORG}, {P}, ha presentato il nuovo prodotto.",
+   "{TITLE} {P} ha illustrato il bilancio a {PLACE}.",
+   "{TITLE} {P} ha segnato due gol per la Nazionale.",
+   "{TITLE} {P} ha tenuto un concerto a {PLACE}."
   ],
   "de": [
-   "{ORG}-Chef {P} stellte das neue Produkt vor.",
-   "Bürgermeister {P} erläuterte in {PLACE} den Haushalt.",
-   "Stürmer {P} erzielte zwei Tore für die Nationalmannschaft.",
-   "Die Sängerin {P} gab ein Konzert in {PLACE}."
+   "{ORG}-{TITLE} {P} stellte das neue Produkt vor.",
+   "{TITLE} {P} erläuterte in {PLACE} den Haushalt.",
+   "{TITLE} {P} erzielte zwei Tore für die Nationalmannschaft.",
+   "{TITLE} {P} gab ein Konzert in {PLACE}."
   ],
   "es": [
-   "El consejero delegado de {ORG}, {P}, presentó el nuevo producto.",
-   "El alcalde {P} explicó el presupuesto en {PLACE}.",
-   "El delantero {P} marcó dos goles con la selección.",
-   "La cantante {P} dio un concierto en {PLACE}."
+   "{TITLE} de {ORG}, {P}, presentó el nuevo producto.",
+   "{TITLE} {P} explicó el presupuesto en {PLACE}.",
+   "{TITLE} {P} marcó dos goles con la selección.",
+   "{TITLE} {P} dio un concierto en {PLACE}."
   ]
  },
  "NEUTRAL_HEADS": {

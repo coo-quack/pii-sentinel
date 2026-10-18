@@ -261,3 +261,305 @@ def test_cli_masks_secrets_unless_show_values(tmp_path, monkeypatch, capsys):
 
     cli.main(["scan", "--model", "x", "--device", "cpu", str(path)])
     assert "  secret (generic-password) on line 3: …" in capsys.readouterr().out
+
+
+def test_employment_pieces_join_like_contact_pieces():
+    from pii_sentinel.predict import merge_pieces
+
+    text = "東京商事営業部へ"
+    assert merge_pieces(text, [(0, 4, "EMPLOYMENT"), (4, 7, "EMPLOYMENT")]) == [(0, 7, "EMPLOYMENT")]
+
+
+def test_server_ip_labelled_non_personal_suppresses_the_rule():
+    from pii_sentinel.predict import add_rule_findings
+
+    # A public address, because the rule skips reserved ranges such as the documentation networks.
+    text = "ip host: 8.8.8.8"
+    start = text.index("8.8.8.8")
+    alone = []
+    add_rule_findings(text, alone)
+    assert [f["value"] for f in alone] == ["8.8.8.8"]
+    labelled = [
+        {
+            "type": "ip_address",
+            "value": "8.8.8.8",
+            "start": start,
+            "end": start + 7,
+            "pii": False,
+            "label": "IP_SERVER",
+        }
+    ]
+    add_rule_findings(text, labelled)
+    assert [f["label"] for f in labelled] == ["IP_SERVER"]
+
+
+def test_birth_dates_and_addresses_raise_a_none_document_to_low():
+    from pii_sentinel.predict import personal_floor
+
+    assert personal_floor([{"type": "date_of_birth", "pii": True}]) == "low"
+    assert personal_floor([{"type": "postal_address", "pii": True}]) == "low"
+    assert personal_floor([{"type": "date_of_birth", "pii": False}]) == "none"
+    assert personal_floor([{"type": "person_name", "pii": True}]) == "none"
+
+
+def test_attribute_values_must_have_the_shape_of_their_kind():
+    from pii_sentinel.predict import reportable
+
+    text = "ip 203.0.113.9 ref E-12345 x"
+    s = text.index("203")
+    assert reportable(text, s, s + 11, "IP_SERVER")
+    assert not reportable(text, s, s + 4, "IP_SERVER")
+    m = text.index("E-12345")
+    assert reportable(text, m, m + 7, "MEMBER_ID")
+    assert not reportable(text, len(text) - 1, len(text), "EMPLOYMENT")
+
+
+def test_predicted_types_the_corpus_never_labels_are_unscored(monkeypatch):
+    from pii_sentinel import evaluate
+
+    corpus = {
+        "tests": [
+            {
+                "id": "t1",
+                "lang": "en",
+                "text": "Kim Lee mail x@example.com",
+                "expected": {
+                    "sensitivity": "low",
+                    "findings": [{"type": "person_name", "value": "Kim Lee", "pii": True}],
+                },
+            }
+        ]
+    }
+    predicted = [
+        {"type": "person_name", "value": "Kim Lee", "start": 0, "end": 7, "pii": True},
+        {"type": "email", "value": "x@example.com", "start": 16, "end": 29, "pii": True},
+    ]
+    monkeypatch.setattr(
+        evaluate,
+        "analyse",
+        lambda *args, **kwargs: {"findings": predicted, "sensitivity": {"level": "low"}, "categories": {}},
+    )
+    summary, _ = evaluate.score(corpus, None, None, "cpu")
+    assert summary["unscored"] == {"email": 1}
+    assert "email" not in summary["types"]
+    assert summary["types"]["person_name"]["tp"] == 1
+
+
+def test_number_types_the_corpus_never_labels_are_unscored(monkeypatch):
+    from pii_sentinel import evaluate
+
+    corpus = {
+        "tests": [
+            {
+                "id": "t1",
+                "lang": "en",
+                "text": "card 4111 1111 1111 1111 member 12345678",
+                "expected": {
+                    "sensitivity": "high",
+                    "findings": [
+                        {
+                            "type": "number",
+                            "value": "4111111111111111",
+                            "pii": True,
+                            "number_type": "credit_card",
+                        }
+                    ],
+                },
+            }
+        ]
+    }
+    predicted = [
+        {
+            "type": "number",
+            "value": "4111111111111111",
+            "start": 5,
+            "end": 24,
+            "pii": True,
+            "number_type": "credit_card",
+        },
+        {
+            "type": "number",
+            "value": "12345678",
+            "start": 32,
+            "end": 40,
+            "pii": True,
+            "number_type": "member_or_customer",
+        },
+    ]
+    monkeypatch.setattr(
+        evaluate,
+        "analyse",
+        lambda *args, **kwargs: {"findings": predicted, "sensitivity": {"level": "high"}, "categories": {}},
+    )
+    summary, _ = evaluate.score(corpus, None, None, "cpu")
+    assert summary["unscored"] == {"number:member_or_customer": 1}
+    assert summary["types"]["number"]["tp"] == 1
+    assert summary["types"]["number"].get("fp", 0) == 0
+    assert summary["personal_types"]["number"].get("fp", 0) == 0
+
+
+def test_address_beside_a_person_stays_personal():
+    from pii_sentinel.predict import address_context
+
+    text = "Shipping to: Taro Yamada\n1-2-3 Chiyoda, Tokyo"
+    findings = [
+        {
+            "type": "person_name",
+            "value": "Taro Yamada",
+            "start": 13,
+            "end": 24,
+            "pii": True,
+            "label": "PERSON",
+        },
+        {
+            "type": "postal_address",
+            "value": "1-2-3 Chiyoda, Tokyo",
+            "start": 25,
+            "end": 45,
+            "pii": True,
+            "label": "ADDRESS",
+        },
+    ]
+    address_context(text, findings)
+    assert findings[1]["pii"] is True
+
+
+def test_company_address_with_only_a_hotline_is_not_personal():
+    from pii_sentinel.predict import address_context
+
+    text = "Acme GmbH\nParadeplatz 55, 68161 Mannheim\nTel 0800 123456"
+    findings = [
+        {
+            "type": "postal_address",
+            "value": "Paradeplatz 55, 68161 Mannheim",
+            "start": 10,
+            "end": 40,
+            "pii": True,
+            "label": "ADDRESS",
+        },
+        {
+            "type": "phone",
+            "value": "0800 123456",
+            "start": 45,
+            "end": 56,
+            "pii": False,
+            "label": "PHONE_CORPORATE",
+        },
+    ]
+    address_context(text, findings)
+    assert findings[0]["pii"] is False
+
+
+def test_company_address_with_two_names_far_above_is_not_personal():
+    from pii_sentinel.predict import address_context
+
+    text = "Anna Rossi\nMarco Bianchi\n\n\n\nMainkai 15, 60311 Frankfurt"
+    findings = [
+        {"type": "person_name", "value": "Anna Rossi", "start": 0, "end": 10, "pii": True, "label": "PERSON"},
+        {
+            "type": "person_name",
+            "value": "Marco Bianchi",
+            "start": 11,
+            "end": 24,
+            "pii": True,
+            "label": "PERSON",
+        },
+        {
+            "type": "postal_address",
+            "value": "Mainkai 15, 60311 Frankfurt",
+            "start": 28,
+            "end": 55,
+            "pii": True,
+            "label": "ADDRESS",
+        },
+    ]
+    address_context(text, findings)
+    assert findings[2]["pii"] is False
+
+
+def test_letter_with_one_signing_name_keeps_the_address_personal():
+    from pii_sentinel.predict import address_context
+
+    text = "Dear Sir,\n...\n...\n...\nMainkai 15, 60311 Frankfurt\n\nAnna Rossi"
+    findings = [
+        {
+            "type": "postal_address",
+            "value": "Mainkai 15, 60311 Frankfurt",
+            "start": 22,
+            "end": 49,
+            "pii": True,
+            "label": "ADDRESS",
+        },
+        {
+            "type": "person_name",
+            "value": "Anna Rossi",
+            "start": 51,
+            "end": 61,
+            "pii": True,
+            "label": "PERSON",
+        },
+    ]
+    address_context(text, findings)
+    assert findings[0]["pii"] is True
+
+
+def test_company_marker_far_above_blocks_the_one_person_fallback():
+    from pii_sentinel.predict import address_context
+
+    text = "Acme Inc.\nLine two\nLine three\nLine four\nMainkai 15, 60311 Frankfurt\n\nAnna Rossi"
+    findings = [
+        {
+            "type": "postal_address",
+            "value": "Mainkai 15, 60311 Frankfurt",
+            "start": 40,
+            "end": 67,
+            "pii": True,
+            "label": "ADDRESS",
+        },
+        {
+            "type": "person_name",
+            "value": "Anna Rossi",
+            "start": 69,
+            "end": 79,
+            "pii": True,
+            "label": "PERSON",
+        },
+    ]
+    address_context(text, findings)
+    assert findings[0]["pii"] is False
+
+
+def test_role_addresses_are_not_personal():
+    from pii_sentinel.predict import role_addresses
+
+    findings = [
+        {"type": "email", "value": "rh@entreprise.com", "start": 0, "end": 17, "pii": True, "label": "EMAIL"},
+        {
+            "type": "email",
+            "value": "ops [at] services.fr",
+            "start": 20,
+            "end": 40,
+            "pii": True,
+            "label": "EMAIL",
+        },
+        {
+            "type": "email",
+            "value": "anna.rossi@mail.example",
+            "start": 50,
+            "end": 73,
+            "pii": True,
+            "label": "EMAIL",
+        },
+    ]
+    findings.append(
+        {
+            "type": "email",
+            "value": "hr-team@company.com",
+            "start": 80,
+            "end": 99,
+            "pii": True,
+            "label": "EMAIL",
+        }
+    )
+    role_addresses(findings)
+    assert [f["pii"] for f in findings] == [False, False, True, False]

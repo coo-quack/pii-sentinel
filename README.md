@@ -21,7 +21,7 @@ You need [uv](https://docs.astral.sh/uv/getting-started/installation/). It insta
 later) by itself.
 
 ```sh
-uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.4.0 \
+uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.5.0 \
   pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
@@ -117,7 +117,7 @@ print(ner("Hi, this is Emily Carter. Call me at +1 415 555 0142."))
 
 This gives the names, contacts and numbers only, without the sensitivity level, the rules or the post-processing,
 and its precision for e-mail addresses and numbers is lower (see the
-[model card](https://huggingface.co/coo-quack/mmBERT-pii-sentinel#evaluation)). Texts longer than 512 tokens should
+[model card](https://huggingface.co/coo-quack/mmBERT-pii-sentinel#evaluation)). Texts longer than 1024 tokens should
 be split first.
 
 ## What it reports
@@ -141,48 +141,50 @@ died is not counted as personal information; a living one is. The full rules are
 | `person_name` | A person's name. | |
 | `email` | An e-mail address. | |
 | `phone` | A phone number. | |
-| `number` | An ID, card or account number. | `my_number`, `national_id`, `driver_licence_or_passport`, `credit_card`, `bank_account`, `business_registration` |
+| `number` | An ID, card, account, member or customer number. | `my_number`, `national_id`, `driver_licence_or_passport`, `credit_card`, `bank_account`, `member_or_customer`, `business_registration` |
 | `postal_code` | A postal code. | |
-| `ip_address` | A public IP address. | |
+| `ip_address` | An IP address. | |
+| `postal_address` | A street-level postal address. | |
+| `date_of_birth` | A date of birth. | |
+| `employment_info` | A person's employer, department, job title or role. | |
+| `sns_handle` | A social-media handle or login name. | |
 
 Each finding has `pii`: `true` when it points to a person, `false` when it does not (a company's hotline, an address
-such as `support@`). In the text report the latter are marked `[not PII]`.
+such as `support@`, a company's postal address, a brand's handle, a server's IP address). In the text report the
+latter are marked `[not PII]`.
 
 Secrets are listed separately under `secrets` with the rule that matched them. They do not change the sensitivity
 level, which is about personal information only.
 
-### JSON report
+### Categories
 
-`--json` prints one object per document (`categories` trimmed here; the report lists all 19 with their
-probabilities):
+`categories` (JSON report and server only) gives, for each of 19 kinds of personal information, the model's
+probability that the document contains it. The values are independent of each other (they do not add up to 1),
+come from the model alone (the rules do not adjust them) and are the highest value over the 1024-token pieces of
+the text. Read a category by comparing its value with a threshold: `postal_address >= 0.5` means "this document
+probably contains someone's postal address".
 
-```json
-{
-  "source": "document.txt",
-  "sensitivity": {
-    "level": "high",
-    "probabilities": { "none": 0.0000079, "low": 0.0000080, "high": 0.9999841 }
-  },
-  "categories": { "person_name": 0.9995, "email_or_phone": 0.9963, "health_info": 0.9982 },
-  "findings": [
-    { "type": "person_name", "value": "S…", "start": 3, "end": 8, "pii": true, "label": "PERSON" },
-    { "type": "person_name", "value": "D…", "start": 30, "end": 42, "pii": true, "label": "PERSON" },
-    { "type": "phone", "value": "41…98", "start": 117, "end": 129, "pii": true, "label": "PHONE" }
-  ],
-  "secrets": [],
-  "windows": 1
-}
-```
+For a postal address, a date of birth, a workplace, a handle or a person's IP address, prefer the findings: they
+carry the value and its position, and a `postal_address`, `date_of_birth` or `sns_handle` finding with
+`pii: true` also raises the level to at least `low`. Measured per document on the same 320 held-out documents
+(a document counts as found when the model reports a finding of that type with `pii: true`):
 
-- `start` and `end` are character offsets into the text (`end` is exclusive).
-- `sensitivity.probabilities` is the model's own judgement. `level` can be higher than its most likely class,
-  because the rules below can raise it.
-- When values are masked (the default), a secret has `"value": "…"` and a `line` instead of `start` and `end`.
-  `line` is the 1-based line of the text where the secret starts; the secret's length is not reported.
-  A masked secret looks like `{ "type": "secret", "value": "…", "line": 3, "rule": "generic-password" }`.
-  With `--show-values` or `"show_values": true`, a secret has its full value and its `start` and `end`.
-  Masked findings other than secrets keep their partial value and their `start` and `end`.
-- `windows` is the number of 512-token pieces the text was split into; any length of text can be scanned.
+| Finding | Recall | Precision | Documents containing it |
+|---|---|---|---|
+| `date_of_birth` | 90% | 86% | 20 |
+| `postal_address` | 94% | 70% | 17 |
+| `ip_address` (pii) | 4 of 4 | 4 of 6 | 4 |
+| `sns_handle` | 3 of 4 | 3 of 6 | 4 |
+| `employment_info` | 55% | 88% | 112 |
+
+To block on a date of birth or a postal address, use those findings. An address is reported as personal only
+when the text ties it to a person (a name, a personal contact or a member number within a few lines); an address
+with no person near it, or under a company name, is reported with `pii: false`. The handle and IP-address types
+were measured on too few documents to rely on. `employment_info` still misses about half of the workplaces written inside
+long records and minutes, so it cannot block on its own, but what it reports is usually right. The
+category probabilities of these five kinds are less accurate than the findings; the other categories
+(`person_name`, `email_or_phone`, `government_id`, `financial_account`, the `high` categories) overlap with the
+findings and the sensitivity level, which are measured under [Accuracy](#accuracy).
 
 ## How it works
 
@@ -202,13 +204,14 @@ Measured on a held-out test set of 320 documents, 40 in each language, with the 
 
 | | Recall | Precision |
 |---|---|---|
-| Person names | 97.9% | 96.7% |
-| Phone numbers | 94.7% | 90.0% |
-| E-mail addresses | 91.7% | 84.6% |
-| ID and account numbers | 83.1% | 90.1% |
+| Person names | 97.5% | 98.6% |
+| Phone numbers | 94.7% | 94.7% |
+| E-mail addresses | 83.3% | 76.9% |
+| ID and account numbers | 88.3% | 93.2% |
 
-The sensitivity level is right for 90.0% of the documents. 2 of the 162 `high` documents were judged lower, and 7 of
-the 246 documents with personal information were judged `none`. See the [model card](MODEL_CARD.md) for details.
+The sensitivity level is right for 90.9% of the documents. 4 of the 162 `high` documents were judged lower, and 7 of
+the 246 documents with personal information were judged `none`. The attribute findings are measured under
+[Categories](#categories). See the [model card](MODEL_CARD.md) for details.
 
 ## Limitations
 

@@ -1,0 +1,102 @@
+{
+  "templates": [
+    {
+      "id": "t_it_601",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Oggetto: Aggiornamento ordine di fornitura\n\nBuongiorno,\n\nLe scrivo per confermare la consegna dei materiali entro la fine della settimana. In caso di ritardi, La prego di avvisarmi con almeno due giorni di anticipo, così da riorganizzare i turni del cantiere. Resto a disposizione per qualsiasi chiarimento.\n\nCordiali saluti,\n\n{P1}\n{P1.job}\n{P1.dept}\n{P1.org}"
+    },
+    {
+      "id": "t_it_602",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "VERBALE DELLA RIUNIONE DEL {DATE}\n\nPartecipanti:\n- {P1} ({P1.dept})\n- {P2} ({P2.dept})\n- {P3} ({P3.dept})\n- {P4} ({P4.dept})\n\nPunti discussi: revisione del piano di manutenzione e tempi di intervento sugli impianti.\nDecisione: il piano è approvato con una modifica, il controllo passa da semestrale a trimestrale.\nProssimo incontro: {DATE}."
+    },
+    {
+      "id": "t_it_603",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Canale #benvenuti - {DATE}\n\n[09:14] {P1}: Buongiorno a tutti! Ho appena iniziato come {P1.job} presso {P1.org}.\n[09:16] {P2}: Benvenuto/a! In quale team lavorerai?\n[09:17] {P1}: Lavoro nel {P1.dept}, quindi ci vedremo spesso sui progetti di primavera.\n[09:18] {P2}: Perfetto, ci vediamo a pranzo!"
+    },
+    {
+      "id": "t_it_604",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "ECONOMIA LOCALE - {DATE}\n\n{P1}, {P1.job} di {P1.org}, ha annunciato martedì l'apertura di un secondo stabilimento in Veneto. Secondo la società, l'investimento da {AMOUNT} porterà circa cento nuovi posti di lavoro entro il 2028. {P2}, responsabile del progetto per il gruppo, presenterà il piano alla giunta regionale la prossima settimana."
+    },
+    {
+      "id": "t_it_605",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "CONFERMA DI CONSEGNA - Spedizione n. {CODE}\n\nDestinatario: {P1}\nIndirizzo di consegna: {P1.addr}\nData prevista: {DATE}\nCorriere: Espresso nazionale\nNote: suonare al citofono. In caso di assenza il pacco viene lasciato al portiere.\nGrazie per aver scelto il nostro servizio."
+    },
+    {
+      "id": "t_it_606",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "{P1}\n{P1.addr}\n\n{DATE}\n\nOggetto: Rinnovo del contratto di servizio\n\nGentile {P1},\n\nLe invio in allegato il nuovo contratto da sottoscrivere entro trenta giorni. Per qualsiasi dubbio può scrivere al nostro ufficio clienti oppure chiamare il numero {ORG.phone}.\n\nCordiali saluti,\n\n{ORG}\nUfficio clienti"
+    },
+    {
+      "id": "t_it_607",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "date_of_birth",
+      "text": "MODULO DI ISCRIZIONE - Associazione Sportiva Dilettantistica\n\nNome e cognome: {P1}\nData di nascita: {P1.dob}\nTelefono: {P1.phone}\nCorso scelto: Nuoto per adulti\nQuota annuale: {AMOUNT}\nData della richiesta: {DATE}\nFirma: ____________"
+    },
+    {
+      "id": "t_it_608",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "date_of_birth",
+      "text": "STORIE DEL QUARTIERE - Il giardino comune\n\n{P1} è nato il {P1.dob}. Da trent'anni cura l'orto accanto alla scuola elementare, e ogni primavera insegna ai bambini come piantare i pomodori. Quest'anno ha portato anche delle piantine di zucca da regalare ai vicini."
+    },
+    {
+      "id": "t_it_609",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "LOG DI ACCESSO - server-web-03\n\n{DATE} 08:41:12 INFO auth: login riuscito utente={P1.handle} origine={P1.ip} metodo=form\n{DATE} 08:41:55 INFO sessione: creata sessione id={HASH}\n{DATE} 08:52:03 INFO auth: logout utente={P1.handle}\n{DATE} 09:10:17 WARN auth: tentativo non riuscito utente={P1.handle}"
+    },
+    {
+      "id": "t_it_610",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Grazie di cuore a {P1.handle} per il laboratorio di ieri sera! Il vostro entusiasmo ha reso speciale il primo incontro del corso. Ci vediamo sabato alla biblioteca civica. #Comunità #Volontariato"
+    },
+    {
+      "id": "t_it_611",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Ticket n. {CODE} - Problema di accesso\n\nCliente: {P1.id}\nNome utente: {P1.handle}\nData apertura: {DATE}\nDescrizione: dopo l'ultimo aggiornamento dell'app il cliente non riesce più ad accedere all'area riservata. Chiede il ripristino dell'accesso e la verifica delle ultime modifiche al profilo.\nPriorità: media\nAssegnato a: supporto di primo livello"
+    },
+    {
+      "id": "t_it_612",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "AVVISO DI RINNOVO - Tessera socio\n\nNumero socio: {P1.id}\nScadenza attuale: {DATE}\nNuova scadenza: {DATE}\nQuota da versare: {AMOUNT}\nPer rinnovare, effettuare il bonifico entro la data indicata oppure presentarsi allo sportello della sede. Dopo la scadenza l'accesso agli impianti sarà sospeso fino al pagamento."
+    },
+    {
+      "id": "t_it_613",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "Newsletter di ottobre\n\nGrazie ai nostri clienti per la fiducia accordata in questi mesi. Dal {DATE} il punto vendita osserva il nuovo orario, con chiusura alle 19:30.\n\n{ORG}\nSede legale e servizio clienti\nTelefono: {ORG.phone}\nEmail: {ORG.email}\nPer disdire l'iscrizione è sufficiente rispondere a questo messaggio."
+    },
+    {
+      "id": "t_it_614",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "ANNUNCIO DI LAVORO - {ORG}\n\nRicerchiamo un addetto o un'addetta alla segreteria tecnica a tempo indeterminato.\nSede: Bologna, ufficio centrale\nCompiti: gestione dell'agenda, supporto ai responsabili di progetto, archiviazione documenti.\nRequisiti: diploma di scuola superiore e buona conoscenza dei programmi di videoscrittura e fogli di calcolo.\nCandidature entro il {DATE} all'indirizzo {ORG.email}, oppure telefonando allo {ORG.phone}."
+    }
+  ]
+}

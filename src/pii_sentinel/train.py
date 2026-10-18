@@ -12,6 +12,7 @@ from pathlib import Path
 import torch
 from torch.nn import functional as F
 
+from . import evaluate as scoring
 from . import model as M
 from .data import IGNORE, encode_windows, read_jsonl
 from .labels import BIO
@@ -70,8 +71,13 @@ def collate(batch, pad_id, device):
     )
 
 
-def losses(out, labels, sens, cats):
-    span = F.cross_entropy(out["span"].flatten(0, 1).float(), labels.flatten(), ignore_index=IGNORE)
+def losses(out, labels, sens, cats, label_smoothing):
+    span = F.cross_entropy(
+        out["span"].flatten(0, 1).float(),
+        labels.flatten(),
+        ignore_index=IGNORE,
+        label_smoothing=label_smoothing,
+    )
     return (
         span,
         F.cross_entropy(out["sensitivity"].float(), sens),
@@ -141,6 +147,12 @@ def main(argv=None):
     ap.add_argument("--base", default=M.BASE_MODEL, help="Hugging Face encoder to fine-tune")
     ap.add_argument("--base-revision", default=M.BASE_REVISION)
     ap.add_argument("--warmup", type=float, default=0.06)
+    ap.add_argument(
+        "--label-smoothing",
+        type=float,
+        default=0.1,
+        help="label smoothing of the span cross-entropy (0: off)",
+    )
     ap.add_argument("--eval-every", type=int, default=500)
     ap.add_argument(
         "--span-weight",
@@ -163,6 +175,12 @@ def main(argv=None):
         help="decay of a moving average of the weights to score as well (0: off)",
     )
     ap.add_argument("--doc-pooling", choices=["per_window", "window_max"], default="per_window")
+    ap.add_argument(
+        "--select-on",
+        type=Path,
+        help="score each candidate on this corpus (as evaluate.py does) and keep the one that passes the "
+        "acceptance criteria best, instead of the synthetic valid score",
+    )
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--limit", type=int, default=0, help="use only N training documents (smoke tests)")
     a = ap.parse_args(argv)
@@ -178,6 +196,7 @@ def main(argv=None):
     docs = docs[: a.limit] if a.limit else docs
     train = [encode_windows(tok, d, a.max_length) for d in docs]
     valid = [encode_windows(tok, d, a.max_length) for d in read_jsonl(a.data / "valid.jsonl")]
+    dev = json.loads(a.select_on.read_text()) if a.select_on else None
     model = M.new_model(a.base, a.base_revision).to(device)
     model.train()
     groups = groups_by_length(train, a.batch_size, a.max_tokens)
@@ -194,6 +213,7 @@ def main(argv=None):
     meta = {
         "epochs": a.epochs,
         "lr": a.lr,
+        "label_smoothing": a.label_smoothing,
         "batch_size": a.batch_size,
         "max_length": a.max_length,
         "max_tokens": a.max_tokens,
@@ -204,6 +224,8 @@ def main(argv=None):
         "train_docs": len(train),
         "total_steps": total,
     }
+    if a.select_on:
+        meta["select_on"] = str(a.select_on)
 
     # Moving average of the weights, kept in fp32 next to the trained ones; each evaluation also scores it.
     live = [v for v in model.state_dict().values() if v.dtype.is_floating_point]
@@ -220,14 +242,40 @@ def main(argv=None):
                 backup = [v.detach().clone() for v in live]
                 torch._foreach_copy_(live, weights)
             rep = evaluate(model, valid, tok.pad_token_id, device, dtype, a.doc_pooling)
+            if dev is not None:
+                # evaluate() leaves the model in training mode, and scoring needs dropout off.
+                model.eval()
+                summary, _ = scoring.score(
+                    dev,
+                    model,
+                    tok,
+                    device,
+                    max_length=a.max_length,
+                    use_rules=True,
+                    doc_pooling=a.doc_pooling,
+                )
+                model.train()
+                rep.update(
+                    dev_high_missed=len(summary["high_missed"]),
+                    dev_personal_missed=len(summary["personal_missed"]),
+                    dev_person_recall=summary["types"].get("person_name", {}).get("recall", 0.0),
+                )
             if device.type == "mps":
                 torch.mps.empty_cache()
             rep.update(step=step, weights=name, elapsed_s=round(time.perf_counter() - started, 1))
             history.append(rep)
             print(json.dumps(rep), flush=True)
             score = rep["token_f1"] + rep["sensitivity_acc"] + rep["category_acc"]
-            if best is None or score > best:
-                best = score
+            # With a development corpus the synthetic score is penalised per high document and per personal
+            # document judged too low, and only the last 40% of the steps are eligible: ranking on the counts
+            # alone picked half-trained weights that missed few high documents by over-tagging everything.
+            key = score
+            if dev is not None:
+                if step < 0.6 * total:
+                    continue
+                key = score - 0.02 * rep["dev_high_missed"] - 0.01 * rep["dev_personal_missed"]
+            if best is None or key > best:
+                best = key
                 M.save(model, a.out, {**meta, "step": step, "valid": rep}, tok, a.base, a.base_revision)
                 print(f"saved best ({name}) to {a.out}", flush=True)
             if backup:
@@ -240,7 +288,7 @@ def main(argv=None):
             ids, mask, labels, sens, cats, doc_index = collate(batch, tok.pad_token_id, device)
             with torch.autocast(device_type=device.type, dtype=dtype, enabled=device.type == "cuda"):
                 out, sens, cats = forward(model, ids, mask, sens, cats, doc_index, a.doc_pooling)
-            span, sl, cl = losses(out, labels, sens, cats)
+            span, sl, cl = losses(out, labels, sens, cats, a.label_smoothing)
             loss = a.span_weight * span + sl + cl
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)

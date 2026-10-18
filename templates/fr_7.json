@@ -1,0 +1,88 @@
+{
+  "templates": [
+    {
+      "id": "t_fr_701",
+      "lang": "fr",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Dossier médical - Cabinet de médecine générale\n\nPatient : {P1}\nDate de naissance : {P1.dob}\nMédecin traitant : {P2}\nVisite spécialisée : {P3}\n\nMotif de consultation : douleurs thoraciques à l'effort depuis trois semaines.\nDiagnostic : hypertension artérielle de stade 2, sans atteinte rénale à ce stade.\nTraitement : adaptation de la posologie et surveillance de la tension à domicile pendant quatre semaines.\nCompte rendu établi par {P2}, {P2.job}, le {DATE}."
+    },
+    {
+      "id": "t_fr_702",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "{P1.job} {P1} a annoncé jeudi, lors d'une conférence de presse à {PLACE}, la création d'un fonds de soutien aux petits commerces de la commune. Selon une note de {ORG}, le dispositif sera géré en partenariat avec cette structure et doté de {AMOUNT} sur trois ans.\n\n« Nous voulons que les commerçants puissent investir sans attendre la fin de la crise », a déclaré {P1} devant les journalistes. Le texte doit être débattu en séance dans le courant du mois prochain.\n\n{P2}, qui préside la commission des finances, a salué une mesure « utile mais insuffisante »."
+    },
+    {
+      "id": "t_fr_703",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "CONTRAT DE PRESTATION DE SERVICES\n\nEntre les soussignés :\n\n{ORG}, en la personne de {P1}, {P1.job}, dûment habilité à cet effet, ci-après « le Client » ;\n\net\n\n{P2}, demeurant au {P2.addr}, agissant en qualité de personne physique, ci-après « le Prestataire ».\n\nArticle 1 : Le Prestataire s'engage à réaliser la mission de conseil décrite en annexe, pour un montant total de {AMOUNT} hors taxes.\n\nFait à {PLACE}, le {DATE}, en deux exemplaires.\n\nPour le Client : {P1}, {P1.job}, {P1.org}\nPour le Prestataire : {P2}"
+    },
+    {
+      "id": "t_fr_704",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Liste des membres de l'équipe - {ORG}\n\n| Nom | Service | Fonction |\n|---|---|---|\n| {P1} | {P1.dept} | {P1.job} |\n| {P2} | {P2.dept} | {P2.job} |\n| {P3} | {P3.dept} | {P3.job} |\n\nDernière mise à jour : {DATE}. Les demandes d'accès aux locaux passent par le service des ressources humaines."
+    },
+    {
+      "id": "t_fr_705",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Formulaire d'adhésion - {ORG}\n\nNom : {P1}\nProfession : {P1.job}\nEmployeur : {P1.org}\nTéléphone : {P1.phone}\nDate de la demande : {DATE}\n\nJe certifie que les informations ci-dessus sont exactes.\nSignature :"
+    },
+    {
+      "id": "t_fr_706",
+      "lang": "fr",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "{ORG}\n{ORG.addr}\nTéléphone : {ORG.phone}\nCourriel : {ORG.email}\n\nHoraires d'ouverture : du lundi au vendredi, de 9 h à 18 h, et le samedi de 10 h à 12 h. Fermé les jours fériés.\n\nLes demandes de devis peuvent être envoyées par courriel ou via le formulaire du site. Nous répondons dans un délai de deux jours ouvrés.\n\nCe message et ses pièces jointes sont confidentiels. Si vous l'avez reçu par erreur, merci de le supprimer et d'en informer l'expéditeur."
+    },
+    {
+      "id": "t_fr_707",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "FACTURE n° {CODE}\n\nDate d'émission : {DATE}\n\nFacturé à :\n{ORG}\nAdresse de facturation :\n{ORG.addr}\nÀ l'attention de : {P1}\n\nDésignation | Quantité | Montant HT\nLicence annuelle, espace de stockage | 1 | {AMOUNT}\nFormation à distance, deux sessions | 2 | {AMOUNT}\n\nTotal HT : {AMOUNT}\nTVA : {AMOUNT}\nTotal TTC : {AMOUNT}\n\nModalités de paiement : virement à 30 jours à compter de la date d'émission.\nRéférence de la commande du {DATE}."
+    },
+    {
+      "id": "t_fr_708",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "Avis d'expédition - Colis n° {CODE}\n\nExpéditeur : {ORG}\n{ORG.addr}\n\nDestinataire : {P1}\n{P1.addr}\n\nDate d'expédition : {DATE}\nPoids : 2,4 kg\nContenu : vêtements et accessoires\nTransporteur : service express\nLivraison prévue : {DATE}. En cas d'absence, le colis peut être retiré au point relais indiqué dans le suivi."
+    },
+    {
+      "id": "t_fr_709",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Compte rendu de la réunion du comité de pilotage - {DATE}\n\nModérateur : {P3}\n\nParticipants : {P1} ({P1.org}, {P1.job}), {P2} ({P2.dept})\n\nOrdre du jour\n1. Bilan du troisième trimestre et écarts budgétaires.\n2. Calendrier de migration du système de facturation.\n3. Choix du prestataire pour la formation des équipes.\n\nDécision : le calendrier de migration est repoussé de deux mois. {P2} rédigera le cahier des charges d'ici au {DATE}.\n\nAction : {P1} transmettra les chiffres consolidés avant vendredi."
+    },
+    {
+      "id": "t_fr_710",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Journée de dingue 😩 {P1} travaille comme {P1.job} chez {P1.org} et on m'a demandé de refaire la présentation pour demain matin. Merci la vie. #bureau #lundi\n\nEn réponse à cette publication : Haha courage ! Tu as prévenu {P2.handle} ? {P2.handle} devait relire les slides, non ?"
+    },
+    {
+      "id": "t_fr_711",
+      "lang": "fr",
+      "sensitivity": "none",
+      "cell": "code_log_or_config",
+      "text": "# deploy/staging.env (extrait)\nAPP_ENV=staging\nLOG_LEVEL=info\nREPORT_BUCKET=gs_reports_staging_eu\nUPLOAD_PREFIX=exports/monthly_batch\nSERVICE_ACCOUNT=svc_report_uploader\nDB_POOL_MAX=8\n\n[{DATE} 14:02:11] INFO job_runner: démarrage du lot export_monthly build_id={HASH}\n[{DATE} 14:02:19] INFO uploader: envoi vers gs_reports_staging_eu/exports/monthly_batch terminé\n[{DATE} 14:02:20] WARN retry_policy: nouvelle tentative pour svc_report_uploader (attempt=2)"
+    },
+    {
+      "id": "t_fr_712",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Programme de la journée - Forum des données ouvertes\n\n10 h 30 - Salle Ampère\n\n{P1} ({P1.job}, {P1.org})\nLa présentation revient sur trois ans de migration des jeux de données vers un format commun. Elle détaille les erreurs de conception qui ont coûté le plus de temps et les solutions retenues.\n\n11 h 15 - Table ronde\n\n{P2}, précédemment {P2.job} pendant vingt-cinq ans, aujourd'hui à la retraite, participera à la discussion sur la conservation des archives publiques."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "templates": [
+    {
+      "id": "t_es_701",
+      "lang": "es",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Historia clínica\nPaciente: {P1}\nFecha de nacimiento: {P1.dob}\nTeléfono de contacto: {P1.phone}\n\nMédico tratante: {P2.job} {P2}\n\nEvolución del {DATE}: se confirma hipertensión arterial esencial, con cifras de 165/102 mmHg en reposo. Desde hace dos semanas refiere cefalea y mareo al ponerse de pie.\n\nDiagnóstico: hipertensión arterial, grado 2.\nTratamiento: ajuste de la medicación y control de la presión arterial en casa.\nRevisión: en cuatro semanas, con control de la función renal."
+    },
+    {
+      "id": "t_es_702",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "Crónica local, {DATE}\n\n{P1.job} {P1} presentó ayer en {PLACE} el proyecto de remodelación de la plaza central. Según informó {ORG}, las obras comenzarán en primavera y durarán unos ocho meses.\n\nDurante el turno de preguntas, varios vecinos cuestionaron la reducción de plazas de aparcamiento. {P1} aseguró que el asunto se revisará en la próxima sesión del pleno municipal."
+    },
+    {
+      "id": "t_es_703",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "Contrato de suministro de mobiliario de oficina\n\nREUNIDOS\n\nDe una parte, {ORG} (en adelante, el Suministrador), representada por {P1}, en calidad de {P1.job}.\nDe otra parte, {P2}, con domicilio en {P2.addr} (en adelante, el Cliente).\n\nCLÁUSULA PRIMERA. El Suministrador entregará antes del {DATE} los bienes detallados en el presupuesto {CODE}, por un importe total de {AMOUNT} más impuestos.\n\nY para que conste, firman el presente documento en {PLACE}, a {DATE}.\n\n_______________________\n{P1}\n{P1.job}, {P1.org}"
+    },
+    {
+      "id": "t_es_704",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Cuadro de personal del área técnica, actualizado el {DATE}\n\nNombre | Departamento | Cargo\n{P1} | {P1.dept} | {P1.job}\n{P2} | {P2.dept} | {P2.job}\n{P3} | {P3.dept} | {P3.job}\n\nCualquier cambio debe comunicarse a Recursos Humanos antes del {DATE}."
+    },
+    {
+      "id": "t_es_705",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Formulario de solicitud para el programa de prácticas\n\nNombre: {P1}\nProfesión: {P1.job}\nEmpleador: {P1.org}\nTeléfono de contacto: {P1.phone}\nFecha de recepción: {DATE}\nObservaciones: ninguna"
+    },
+    {
+      "id": "t_es_706",
+      "lang": "es",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "{ORG}\n{ORG.addr}\nTel.: {ORG.phone} | Correo: {ORG.email}\n\nHorario de atención: de lunes a viernes, de 9:00 a 18:00 h. Los sábados solo atendemos por correo electrónico.\nLas consultas recibidas fuera de horario se responderán el siguiente día laborable.\n\nEste mensaje es confidencial. Si lo ha recibido por error, le rogamos que nos lo comunique y lo elimine."
+    },
+    {
+      "id": "t_es_707",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "FACTURA\n\nFacturar a:\n{ORG}\nA la atención de {P1}\n{ORG.addr}\n\nFecha de factura: {DATE}\nNúmero de factura: {CODE}\nPeriodo: del {DATE} al {DATE}\n\n1. Servicio de consultoría del proyecto, 12 horas: {AMOUNT}\n2. Gastos de desplazamiento: {AMOUNT}\n\nBase imponible: {AMOUNT}\nIVA: {AMOUNT}\nTotal: {AMOUNT}\n\nForma de pago: transferencia bancaria en un plazo de 30 días."
+    },
+    {
+      "id": "t_es_708",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "Aviso de entrega\n\nNúmero de envío: {CODE}\nRemitente: {ORG}, {ORG.addr}\nDestinatario: {P1}\nDirección de entrega: {P1.addr}\nFecha de envío: {DATE}\nBulto: 1 caja, 4,2 kg\n\nEl envío se entregará mediante servicio de mensajería. Si no hay nadie en el domicilio, el repartidor dejará un aviso con la hora del próximo intento. Para cualquier consulta sobre la entrega, contacte con el servicio de atención al cliente de {ORG}."
+    },
+    {
+      "id": "t_es_709",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Acta de la sesión del grupo de trabajo de protección de datos, {DATE}\nLugar: videoconferencia\n\nAsistentes: {P1} ({P1.org}, {P1.job}), {P2} ({P2.dept})\nModeración: {P3}\n\nPunto 1: revisión de los plazos de conservación. {P2} presentará un borrador antes del {DATE}.\nPunto 2: formación para las nuevas incorporaciones. La fecha se comunicará por correo.\nPunto 3: ruegos y preguntas. No hubo intervenciones.\n\nPróxima sesión: {DATE}, 11:00 h"
+    },
+    {
+      "id": "t_es_710",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "{P1.handle}: Como me lo preguntáis mucho, lo cuento por aquí. {P1} trabaja como {P1.job} en {P1.org}, y desde que nos mudamos a {PLACE} casi todo es videollamada. Si alguien anda por la zona, que escriba.\n\n{P2.handle}: Te vi en la foto del congreso. ¿Estás por {PLACE} el {DATE}? Tomamos un café, ¿vale?"
+    },
+    {
+      "id": "t_es_711",
+      "lang": "es",
+      "sensitivity": "none",
+      "cell": "code_log_or_config",
+      "text": "# Extracto de configuración del entorno de pruebas\nAPP_ENV=staging\nLOG_LEVEL=info\nREPORT_BUCKET=reportes_brutos_eu\nSERVICE_ACCOUNT=svc_exportador_informes\nSECRET_REF={HASH}\n\n[{DATE} 06:12:09] INFO job=exportacion_nocturna estado=iniciado destino=reportes_brutos_eu\n[{DATE} 06:14:37] WARN reintento=2 destino=snapshots_entrenamiento\n[{DATE} 06:15:02] INFO job=exportacion_nocturna estado=finalizado"
+    },
+    {
+      "id": "t_es_712",
+      "lang": "es",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Programa del congreso, sesión 4: flujos de datos en la pequeña empresa\n\n{P1} ({P1.job}, {P1.org})\nLa charla muestra cómo los equipos pequeños pueden documentar y revisar sus flujos de datos sin grandes inversiones. Con dos casos prácticos, se repasan los errores más frecuentes y la forma de corregirlos.\nFecha: {DATE}, 14:30 h, sala norte\n\n{P2} trabajó durante años como {P2.job} y hoy está jubilado. Después de la sesión atenderá preguntas en el pasillo principal."
+    }
+  ]
+}

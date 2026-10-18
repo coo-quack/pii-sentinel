@@ -5,10 +5,12 @@ sensitivity level and category set from the facts it contains. Nothing is labell
 
     python -m pii_sentinel.gen.generator --out data [--train-docs 2000] [--valid-docs 150]
         [--langs ja,zh,ko,en,fr,it,de,es] [--seed 1] [--exclude eval/a.json,eval/b.json] [--templates templates]
+        [--coverage coverage.json] [--pool-factor 2.0]
 """
 
 import argparse
 import json
+import math
 import random
 import re
 import unicodedata
@@ -16,7 +18,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from ..labels import CATEGORIES
+from ..labels import CATEGORIES, SENSITIVITY, SPAN_TYPES
 
 HERE = Path(__file__).parent
 LANGS = ["ja", "zh", "ko", "en", "fr", "it", "de", "es"]
@@ -24,6 +26,8 @@ TABLES = json.loads((HERE / "tables.json").read_text())
 SENS = json.loads((HERE / "sensitive.json").read_text())
 LOOKALIKE = json.loads((HERE / "resources" / "lookalikes.json").read_text())
 NAMELESS = json.loads((HERE / "resources" / "nameless.json").read_text())
+COVERAGE_PATH = HERE / "coverage.json"
+COVERAGE = json.loads(COVERAGE_PATH.read_text())  # main() replaces it with --coverage
 
 rng = random.Random(1)
 
@@ -581,31 +585,62 @@ def email_local(L, who):
     return pick([f"{g}.{f}", f"{g[0]}.{f}", f"{f}.{g}", f"{g}{f}{rint(1, 99)}", f"{g[0]}{f}"])
 
 
+def handle(r):
+    # A social-media handle is usually written with "@", sometimes bare.
+    local = re.sub(r"[.-]", "_", pick(r["email_locals"]))
+    return "@" + local if chance(0.7) else local
+
+
 def nick():
     return f"{pick(TABLES['NICK_A'])}{pick(TABLES['NICK_B'])}{rint(1, 2026) if chance(0.6) else ''}"
 
 
+# Technical lines with numbers and addresses but no person: machine IDs, server hosts, service accounts.
+# {IP} is a server address (IP_SERVER) and {ID} a plain machine identifier; the rest come from TECH_VALUES.
 TECH_NEG = [
-    lambda: f"request_id={machine_id()} session={machine_id()} status=200 latency_ms={rint(3, 900)}",
-    lambda: f"device:\n  mac: {machine_id()}\n  build: {machine_id()}\n  channel: stable",
-    lambda: (
-        f"Invoice payable to {pick(['Nordwind GmbH', 'Atelier Sud SARL', 'Tecnova S.L.', 'Blue Harbor Ltd'])}, account {company_account(pick(['de', 'fr', 'es', 'en']))}, {company_registration()}"
-    ),
-    lambda: (
-        "function validateEmail(email) {\n  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;\n  return pattern.test(email);\n}"
-    ),
-    lambda: (
-        f"{rint(2024, 2026)}-0{rint(1, 9)}-1{rint(0, 9)} 1{rint(0, 9)}:{rint(10, 59)}:{rint(10, 59)} | IP: {ip()} | User: "
-        f"{pick(['svc_backup', 'cron', 'deploy-bot', 'healthcheck', 'system'])} | Action: {pick(['connect', 'sync', 'rotate', 'ping'])} | Status: success"
-    ),
-    lambda: (
-        f"server:\n  host: {ip()}\n  port: {rint(1024, 9999)}\n  admin_email: {pick(['ops', 'admin', 'noreply', 'alerts'])}@example.com\n  timeout: {rint(5, 60)}"
-    ),
-    lambda: (
-        f"SELECT id, name, email FROM users WHERE created_at > '{rint(2024, 2026)}-01-01' LIMIT {rint(10, 500)};"
-    ),
-    lambda: "const phoneRegex = /^0\\d{1,4}-\\d{1,4}-\\d{4}$/; // matches numbers like 0X-XXXX-XXXX",
+    "request_id={ID} session={ID} status=200 latency_ms={NUM}",
+    "device:\n  mac: {ID}\n  build: {ID}\n  channel: stable",
+    "Invoice payable to {CO}, account {CO_ACCOUNT}, {CO_REG}",
+    "function validateEmail(email) {\n  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;\n  return pattern.test(email);\n}",
+    "{TS} | IP: {IP} | User: {SVC} | Action: {ACTION} | Status: success",
+    "server:\n  host: {IP}\n  port: {PORT}\n  admin_email: {ROLE}@example.com\n  timeout: {TIMEOUT}",
+    "SELECT id, name, email FROM users WHERE created_at > '{YEAR}-01-01' LIMIT {LIMIT};",
+    "const phoneRegex = /^0\\d{1,4}-\\d{1,4}-\\d{4}$/; // matches numbers like 0X-XXXX-XXXX",
+    # Service names and credential-like values: snake_case, but not handles.
+    "export DB_USER=app_service_{NUM}\nexport DB_PASS={PW}\nexport API_HOST={IP}",
+    "config:\n  owner: platform_team\n  bucket: backups_{YEAR}\n  key_id: {ID}",
+    "[INFO] worker_pool_{NUM} started by scheduler_bot at {TS}",
 ]
+TECH_VALUES = {
+    "PW": lambda: password(),
+    "ID": lambda: machine_id(),
+    "NUM": lambda: str(rint(3, 900)),
+    "TS": lambda: (
+        f"{rint(2024, 2026)}-0{rint(1, 9)}-1{rint(0, 9)} 1{rint(0, 9)}:{rint(10, 59)}:{rint(10, 59)}"
+    ),
+    "CO": lambda: pick(["Nordwind GmbH", "Atelier Sud SARL", "Tecnova S.L.", "Blue Harbor Ltd"]),
+    "CO_ACCOUNT": lambda: company_account(pick(["de", "fr", "es", "en"])),
+    "CO_REG": lambda: company_registration(),
+    "SVC": lambda: pick(["svc_backup", "cron", "deploy-bot", "healthcheck", "system"]),
+    "ACTION": lambda: pick(["connect", "sync", "rotate", "ping"]),
+    "PORT": lambda: str(rint(1024, 9999)),
+    "ROLE": lambda: pick(["ops", "admin", "noreply", "alerts"]),
+    "TIMEOUT": lambda: str(rint(5, 60)),
+    "YEAR": lambda: str(rint(2024, 2026)),
+    "LIMIT": lambda: str(rint(10, 500)),
+}
+
+
+def tech_neg(doc):
+    last, line = 0, pick(TECH_NEG)
+    for m in re.finditer(r"\{([A-Z_]+)\}", line):
+        doc.add(line[last : m.start()])
+        last = m.end()
+        if m.group(1) == "IP":
+            doc.span(ip(), "IP_SERVER")
+        else:
+            doc.add(TECH_VALUES[m.group(1)]())
+    doc.add(line[last:])
 
 
 # ---------------------------------------------------------------- documents
@@ -634,6 +669,7 @@ class Doc:
 
 FACT_CATS = {
     "person_mention": [],
+    "member_id": [],
     "email_personal": ["email_or_phone"],
     "phone_personal": ["email_or_phone"],
     "address_personal": ["postal_address"],
@@ -647,6 +683,8 @@ FACT_CATS = {
     "ip_personal": ["ip_address_of_a_person"],
     "sns_personal": ["sns_handle"],
     "employment": ["employment_info"],
+    "role_label": ["employment_info"],
+    "title_name": ["employment_info"],
     "religion": ["race_or_religion"],
     "hr_record": ["hr_or_criminal_record"],
     **{k: [v["cat"]] for k, v in SENS["FACTS"].items()},
@@ -668,10 +706,22 @@ PERSON_WEIGHTS = {
     "email_personal": 5,
     "phone_personal": 5,
     "employment": 5,
+    "role_label": 3,
+    "title_name": 5,
     "address_personal": 3,
     "dob": 3,
     "ip_personal": 2,
     "sns_personal": 2,
+    "member_id": 2,
+    # Attribute facts added in this branch had diluted the high-sensitivity share; these weights restore it.
+    "gov_id": 2,
+    "passport": 1.5,
+    "credit_card": 1.5,
+    "bank_account": 1.5,
+    "health": 2,
+    "biometric": 1,
+    "religion": 1,
+    "hr_record": 1,
     **{k: 0.5 for k in SENS["FACTS"]},
 }
 NEG_FACTS = [
@@ -695,15 +745,62 @@ NEG_FACTS = [
     "public_mention",
     "general_sensitive",
 ]
-NEG_WEIGHTS = {"filler": 3, "place_distractor": 2, "brand_mention": 2, "general_sensitive": 2}
+NEG_WEIGHTS = {
+    "filler": 3,
+    "place_distractor": 2,
+    "brand_mention": 2,
+    "general_sensitive": 2,
+    "address_company": 3,
+}
 
 
 def weighted(keys, weights):
     return rng.choices(keys, weights=[weights.get(k, 1) for k in keys])[0]
 
 
+def person_weights(L):
+    # A language without "role_labels" in its resources gets no role_label documents yet.
+    if "role_labels" in L.r:
+        return PERSON_WEIGHTS
+    return {**PERSON_WEIGHTS, "role_label": 0}
+
+
+# A name written with a job title beside it. A shape is the name-title block, filled by fill(): {P} is the
+# name, {PS} the surname and {TITLE} the title. A carrier is the sentence or line around the block, where
+# {NAME} stands for the block and {DAY} is filled by fill().
+TITLE_SHAPE = {
+    "ja": ["{P}{TITLE}", "{PS}{TITLE}", "{TITLE}の{P}"],
+    "zh": ["{P}{TITLE}", "{PS}{TITLE}", "{TITLE}{P}"],
+    "ko": ["{P} {TITLE}", "{PS} {TITLE}", "{TITLE} {P}"],
+    "en": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})"],
+    "fr": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})"],
+    "it": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})"],
+    "de": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})"],
+    "es": ["{TITLE} {P}", "{P}, {TITLE}", "{P} ({TITLE})"],
+}
+TITLE_NAME_T = {
+    "ja": ["{NAME}が会議を開会しました。", "出席：{NAME}", "{NAME}が{DAY}までに回答します。"],
+    "zh": ["{NAME}主持了会议。", "出席：{NAME}", "{NAME}将在{DAY}前回复。"],
+    "ko": ["{NAME} 주재로 회의가 열렸습니다.", "참석: {NAME}", "{NAME}에게 {DAY}까지 답변 부탁드립니다."],
+    "en": ["{NAME} opened the meeting.", "Present: {NAME}", "{NAME}, will reply by {DAY}."],
+    "fr": ["{NAME} a ouvert la réunion.", "Présents : {NAME}", "Réponse attendue : {DAY}."],
+    "it": ["{NAME} ha aperto la riunione.", "Presenti: {NAME}", "Scadenza: {DAY}."],
+    "de": ["{NAME} eröffnete die Sitzung.", "Anwesend: {NAME}", "Frist: {DAY}."],
+    "es": ["{NAME} abrió la reunión.", "Asistentes: {NAME}", "Fecha límite: {DAY}."],
+}
+
+
+def job_title_list(L):
+    # Title suffixes ("Mayor", "部長") are preferred; a language without them uses the job titles.
+    return L.r.get("title_suffixes") or L.r["job_titles"]
+
+
 def template_for(L, key):
     lang = L.code
+    if key == "role_label":
+        return "{ROLE}" + colon(L) + "{P}"
+    if key == "title_name":
+        return pick(TITLE_NAME_T[lang]).replace("{NAME}", pick(TITLE_SHAPE[lang]))
     if key == "brand_mention":
         return pick(TABLES["BRAND_T"][lang])
     if key == "public_mention":
@@ -751,7 +848,7 @@ def gps():
 
 
 def personal_identifier():
-    # Employee, member, patient or case numbers: they single out a person but are not reported as spans.
+    # Employee, member, patient or case numbers: they single out a person, so they are labelled MEMBER_ID.
     return pick(["E-", "M", "PT-", "No.", "ID ", "#", "C-", "EMP", ""]) + (
         digits(pick([5, 6, 7])) if chance(0.7) else letters(2) + digits(pick([4, 5]))
     )
@@ -812,6 +909,12 @@ def fill(doc, L, pool, key, who, tpl=None, public=False):
         doc.cats.add(c)
     if key in HIGH_FACTS:
         doc.high = True
+    if key == "member_id":
+        # A member number alone identifies a person.
+        doc.personal = True
+    if key == "public_role":
+        # A living public figure's office is employment information; its {TITLE} span is the office.
+        doc.cats.add("employment_info")
     has_hon = "{HON}" in tpl
     pm = (
         L.mention(who, "surname")
@@ -860,37 +963,68 @@ def fill(doc, L, pool, key, who, tpl=None, public=False):
         elif ph in ("B", "D"):
             doc.add(str(years[ph]))
         elif ph == "NICK":
-            doc.add(nick())
+            doc.span(nick(), "HANDLE")
             doc.cats.add("sns_handle")
             doc.personal = True
+        elif ph == "MID":
+            doc.span(personal_identifier(), "MEMBER_ID")
+        elif ph == "PS":
+            doc.person(L.mention(who, "surname"))
+        elif ph == "TITLE":
+            doc.span(pick(job_title_list(L)), "EMPLOYMENT")
+        elif ph == "ROLE":
+            doc.span(pick(r["role_labels"]), "EMPLOYMENT")
+        elif ph == "ADDR":
+            doc.span(pick(r["addresses"]), "ADDRESS_CORPORATE" if key in NEG_FACTS else "ADDRESS")
+        elif ph == "DATE":
+            if key == "dob":
+                doc.span(date_str(r, True), "DATE_OF_BIRTH")
+            else:
+                doc.add(date_str(r, False))
+        elif ph == "IP":
+            doc.span(ip(), "IP_PERSONAL" if key == "ip_personal" else "IP_SERVER")
+        elif ph == "HANDLE":
+            doc.span(handle(r), "HANDLE_BRAND" if key == "sns_brand" else "HANDLE")
         else:
-            doc.add(
-                {
-                    "ADDR": lambda: pick(r["addresses"]),
-                    "DATE": lambda: date_str(r, key == "dob"),
-                    "DIAG": lambda: pick(r["diagnoses"]),
-                    "IP": ip,
-                    "HANDLE": lambda: "@" + re.sub(r"[.-]", "_", pick(r["email_locals"])),
-                    "ORG": lambda: surname_org(L, pool) if chance(0.25) else pick(r["orgs"]),
-                    "DEPT": lambda: pick(r["depts"]),
-                    "JOB": lambda: pick(r["job_titles"]),
-                    "REL": lambda: pick(r["religions"]),
-                    "PRODUCT": lambda: pick(r["products"]),
-                    "PLACE": lambda: pick(r["places"]),
-                    "AMB": lambda: pick(r["ambiguous_surname_places"]),
-                    "WORD": lambda: pick(r["common_words"]),
-                    "DAY": lambda: pick(r["days"]),
-                    "BRAND": lambda: pick(TABLES["BRANDS"]),
-                    "GPS": gps,
-                    "PW": password,
-                    "AMT": lambda: amount(L.code),
-                }[ph]()
-            )
+            value = {
+                "DIAG": lambda: pick(r["diagnoses"]),
+                "ORG": lambda: surname_org(L, pool) if chance(0.25) else pick(r["orgs"]),
+                "DEPT": lambda: pick(r["depts"]),
+                "JOB": lambda: pick(r["job_titles"]),
+                "REL": lambda: pick(r["religions"]),
+                "PRODUCT": lambda: pick(r["products"]),
+                "PLACE": lambda: pick(r["places"]),
+                "AMB": lambda: pick(r["ambiguous_surname_places"]),
+                "WORD": lambda: pick(r["common_words"]),
+                "DAY": lambda: pick(r["days"]),
+                "BRAND": lambda: pick(TABLES["BRANDS"]),
+                "GPS": gps,
+                "PW": password,
+                "AMT": lambda: amount(L.code),
+            }[ph]()
+            if key == "employment" and ph in ("ORG", "DEPT", "JOB"):
+                doc.span(value, "EMPLOYMENT")
+            else:
+                doc.add(value)
     doc.add(tpl[last:])
 
 
 def sep(L):
     return "" if L.cjk and L.code != "ko" else " "
+
+
+def titled_name(doc, L, who, form="full"):
+    # The title goes after the name in CJK (no space in ja and zh) and before it in the other languages.
+    title = pick(job_title_list(L))
+    if L.cjk:
+        doc.person(L.mention(who, form))
+        doc.add(sep(L))
+        doc.span(title, "EMPLOYMENT")
+    else:
+        doc.span(title, "EMPLOYMENT")
+        doc.add(" ")
+        doc.person(L.mention(who, form))
+    doc.cats.add("employment_info")
 
 
 def join_next(doc, L):
@@ -913,7 +1047,7 @@ def narrative(doc, L, pool):
     facts = set()
     n = rint(1, 3)
     while len(facts) < n:
-        facts.add(weighted(PERSON_FACTS, PERSON_WEIGHTS))
+        facts.add(weighted(PERSON_FACTS, person_weights(L)))
     facts = sorted(facts) + [weighted(NEG_FACTS, NEG_WEIGHTS) for _ in range(rint(0, 2))]
     rng.shuffle(facts)
     for i, k in enumerate(facts):
@@ -937,7 +1071,7 @@ def email_doc(doc, L, pool):
         [weighted(NEG_FACTS, NEG_WEIGHTS)]
         if chance(0.5)
         else [
-            weighted([k for k in PERSON_FACTS if k != "employment"], PERSON_WEIGHTS),
+            weighted([k for k in PERSON_FACTS if k != "employment"], person_weights(L)),
             weighted(NEG_FACTS, NEG_WEIGHTS),
         ]
     )
@@ -950,8 +1084,10 @@ def email_doc(doc, L, pool):
     doc.add("\n")
     doc.person(L.mention(who, "full"))
     if chance(0.7):
-        doc.add(
-            "\n" + pick(L.r["orgs"]) + " " + (pick(L.r["depts"]) if chance(0.5) else pick(L.r["job_titles"]))
+        doc.add("\n")
+        doc.span(
+            pick(L.r["orgs"]) + " " + (pick(L.r["depts"]) if chance(0.5) else pick(L.r["job_titles"])),
+            "EMPLOYMENT",
         )
         doc.cats.add("employment_info")
     if chance(0.6):
@@ -962,6 +1098,12 @@ def email_doc(doc, L, pool):
         doc.add(f"\n{lab(L, 'email')}{colon(L)}")
         doc.span(person_email(L, who), "EMAIL")
         doc.cats.add("email_or_phone")
+    if chance(0.3):
+        # A company footer: its address and switchboard are corporate, so they add no category.
+        doc.add("\n" + pick(L.r["orgs"]) + " · ")
+        doc.span(pick(L.r["addresses"]), "ADDRESS_CORPORATE")
+        doc.add(" · ")
+        doc.span(corporate_phone(L.code), "PHONE_CORPORATE")
 
 
 def _field(doc, L, k, who):
@@ -977,18 +1119,20 @@ def _field(doc, L, k, who):
         doc.span(card(L.code), "CREDIT_CARD")
     elif k == "bank":
         doc.span(bank(L.code), "BANK_ACCOUNT")
+    elif k == "address":
+        doc.span(pick(L.r["addresses"]), "ADDRESS")
+    elif k == "dob":
+        doc.span(date_str(L.r, True), "DATE_OF_BIRTH")
+    elif k == "dept":
+        doc.span(pick(L.r["depts"]), "EMPLOYMENT")
+    elif k == "job":
+        doc.span(pick(L.r["job_titles"]), "EMPLOYMENT")
+    elif k == "ip":
+        doc.span(ip(), "IP_PERSONAL")
+    elif k == "sns":
+        doc.span(handle(L.r), "HANDLE")
     else:
-        doc.add(
-            {
-                "address": lambda: pick(L.r["addresses"]),
-                "dob": lambda: date_str(L.r, True),
-                "dept": lambda: pick(L.r["depts"]),
-                "job": lambda: pick(L.r["job_titles"]),
-                "diagnosis": lambda: pick(L.r["diagnoses"]),
-                "ip": ip,
-                "sns": lambda: "@" + re.sub(r"[.-]", "_", pick(L.r["email_locals"])),
-            }[k]()
-        )
+        doc.add(pick(L.r["diagnoses"]))
 
 
 FIELD_CAT = {
@@ -1024,10 +1168,21 @@ def form(doc, L, pool):
         else:
             doc.add(pick(SENS["FORM_HEADS_LOW"][L.code]) + "\n")
     doc.add(f"{lab(L, 'name')}{colon(L)}")
-    doc.person(L.mention(who, "full"))
+    if chance(0.2):
+        titled_name(doc, L, who)
+    else:
+        doc.person(L.mention(who, "full"))
+    if chance(0.3):
+        # A staff line under the name, such as "Attending physician: <name>" on a patient form.
+        doc.add(nl)
+        doc.span(pick(L.r["role_labels"]), "EMPLOYMENT")
+        doc.add(colon(L))
+        doc.person(L.mention(L.person(pool), "full"))
+        doc.cats.add("employment_info")
     if chance(0.2):
         staff = f"{pick(['E-', 'M', '', 'No.'])}{digits(pick([5, 6, 7]))}"
-        doc.add(f"{nl}{pick(SENS['STAFF_ID'][L.code])}{colon(L)}{staff}")
+        doc.add(f"{nl}{pick(SENS['STAFF_ID'][L.code])}{colon(L)}")
+        doc.span(staff, "MEMBER_ID")
     if chance(0.12):
         labels, countries = SENS["NATIONALITY"][L.code]
         doc.add(f"{nl}{pick(labels)}{colon(L)}{pick(countries)}")
@@ -1053,7 +1208,7 @@ def csv(doc, L, pool):
         doc.add(pick(L.r["labels"]["patient_list_titles" if patients else "attendee_list_titles"]) + "\n")
     cols = list(
         dict.fromkeys(
-            rng.sample(["dept", "email", "phone"] + (["diagnosis"] if patients else []), rint(0, 2))
+            rng.sample(["dept", "job", "email", "phone"] + (["diagnosis"] if patients else []), rint(0, 2))
         )
     )
     if chance(0.25):
@@ -1064,7 +1219,11 @@ def csv(doc, L, pool):
     for _ in range(rint(2, 4)):
         doc.add("\n")
         who = L.person(pool)
-        doc.person(L.mention(who, "full"))
+        # Without a job column, a name cell sometimes carries the title.
+        if "job" not in cols and chance(0.2):
+            titled_name(doc, L, who)
+        else:
+            doc.person(L.mention(who, "full"))
         for c in cols:
             doc.add(s)
             _field(doc, L, c, who)
@@ -1083,7 +1242,12 @@ def chat(doc, L, pool):
         if i:
             doc.add("\n")
         who = people[i % 2]
-        doc.person(L.mention(who, "surname" if L.cjk else pick(["given", "full"])))
+        form = "surname" if L.cjk else pick(["given", "full"])
+        # Sometimes the speaker label carries the job title as well.
+        if chance(0.3):
+            titled_name(doc, L, who, form)
+        else:
+            doc.person(L.mention(who, form))
         doc.add(colon(L))
         k = (
             weighted(NEG_FACTS, NEG_WEIGHTS)
@@ -1134,7 +1298,7 @@ def boundary(doc, L, pool):
         fill(doc, L, pool, "brand", who, pick(TABLES["BRAND_T"][lang]))
         filler()
     elif kind == "tech":
-        doc.add(pick(TECH_NEG)())
+        tech_neg(doc)
     elif kind == "bare":
         fill(doc, L, pool, "bare", who, pick(TABLES["BARE_T"][lang]))
         doc.cats.add("email_or_phone")
@@ -1160,25 +1324,157 @@ def heading_list(doc, L, pool):
     spec = SENS["HEAD_LISTS"][kind]
     title = pick(SENS["NEUTRAL_HEADS"][L.code]) if neutral else pick(spec["titles"][L.code])
     doc.add(title + pick([":\n", "\n", "：\n", " "]))
-    extra = pick([None, None, "phone", "dept"])
+    extra = pick([None, None, "phone", "dept", "job"])
     inline = chance(0.3)
+    # Decided once per list: either every row carries its job title or none does.
+    titled = chance(0.3)
     for i in range(rint(2, 5)):
         if i:
             doc.add(pick([", ", "、" if L.cjk else "; "]) if inline else "\n")
         who = L.person(pool)
         if not inline and chance(0.4):
             doc.add(f"{i + 1}. ")
-        doc.person(L.mention(who, "full"))
+        if titled:
+            titled_name(doc, L, who)
+        else:
+            doc.person(L.mention(who, "full"))
         if extra == "phone":
             doc.add(" ")
             doc.span(personal_phone(L.code), "PHONE")
             doc.cats.add("email_or_phone")
-        elif extra == "dept":
-            doc.add(f" ({pick(L.r['depts'])})")
+        elif extra in ("dept", "job"):
+            doc.add(" (")
+            doc.span(pick(L.r["depts" if extra == "dept" else "job_titles"]), "EMPLOYMENT")
+            doc.add(")")
             doc.cats.add("employment_info")
     if not neutral:
         doc.cats.add(spec["cat"])
         doc.high = True
+
+
+# Fixed labels of the meeting minutes, per language.
+MINUTES_LABELS = {
+    "ja": {"date": "日時", "place": "場所", "attendees": "出席者", "chair": "司会", "agenda": "議題"},
+    "zh": {"date": "日期", "place": "地点", "attendees": "出席人员", "chair": "主持人", "agenda": "议题"},
+    "ko": {"date": "일시", "place": "장소", "attendees": "참석자", "chair": "사회", "agenda": "안건"},
+    "en": {"date": "Date", "place": "Place", "attendees": "Attendees", "chair": "Chair", "agenda": "Agenda"},
+    "fr": {
+        "date": "Date",
+        "place": "Lieu",
+        "attendees": "Participants",
+        "chair": "Président de séance",
+        "agenda": "Ordre du jour",
+    },
+    "it": {
+        "date": "Data",
+        "place": "Luogo",
+        "attendees": "Presenti",
+        "chair": "Moderatore",
+        "agenda": "Ordine del giorno",
+    },
+    "de": {
+        "date": "Datum",
+        "place": "Ort",
+        "attendees": "Teilnehmer",
+        "chair": "Leitung",
+        "agenda": "Tagesordnung",
+    },
+    "es": {
+        "date": "Fecha",
+        "place": "Lugar",
+        "attendees": "Asistentes",
+        "chair": "Moderador",
+        "agenda": "Orden del día",
+    },
+}
+
+
+def minutes(doc, L, pool):
+    # Meeting minutes: a title, the date and place, the attendees and chair, then agenda lines. An agenda line
+    # can carry a personal fact about an attendee, so the minutes take the fact's level.
+    ml = MINUTES_LABELS[L.code]
+    if chance(0.3):
+        kind = pick(sorted(SENS["HEAD_LISTS"]))
+        spec = SENS["HEAD_LISTS"][kind]
+        doc.add(pick(spec["titles"][L.code]))
+        doc.cats.add(spec["cat"])
+        doc.high = True
+    else:
+        doc.add(pick(SENS["NEUTRAL_HEADS"][L.code]))
+    doc.add(f"\n{ml['date']}{colon(L)}{date_str(L.r, False)}")
+    doc.add(f"\n{ml['place']}{colon(L)}{pick(L.r['places'])}")
+    attendees = [L.person(pool) for _ in range(rint(2, 4))]
+    doc.add(f"\n{ml['attendees']}{colon(L)}")
+    for i, who in enumerate(attendees):
+        if i:
+            doc.add(pick([", ", "、" if L.cjk else "; "]))
+        shape = pick(["plain", "titled", "dept", "org_job"])
+        if shape == "titled":
+            titled_name(doc, L, who)
+            continue
+        doc.person(L.mention(who, "full"))
+        if shape == "dept":
+            doc.add(" (")
+            doc.span(pick(L.r["depts"]), "EMPLOYMENT")
+            doc.add(")")
+            doc.cats.add("employment_info")
+        elif shape == "org_job":
+            doc.add(" (")
+            doc.span(pick(L.r["orgs"]), "EMPLOYMENT")
+            doc.add(", ")
+            doc.span(pick(L.r["job_titles"]), "EMPLOYMENT")
+            doc.add(")")
+            doc.cats.add("employment_info")
+    if chance(0.5):
+        doc.add(f"\n{ml['chair']}{colon(L)}")
+        chair = L.person(pool)
+        if chance(0.5):
+            titled_name(doc, L, chair)
+        else:
+            doc.person(L.mention(chair, "full"))
+    doc.add(f"\n{ml['agenda']}{colon(L).rstrip()}")
+    for _ in range(rint(1, 3)):
+        doc.add("\n")
+        fill(doc, L, pool, weighted(PERSON_FACTS, person_weights(L)), pick(attendees))
+
+
+def record(doc, L, pool):
+    # A record about one person under a heading that names a sensitive kind: the subject's fields, the staff
+    # who handled the case, and the facts of that kind about the subject.
+    kind = pick(sorted(SENS["FORM_HEADS_HIGH"]))
+    spec = SENS["FORM_HEADS_HIGH"][kind]
+    doc.add(pick(spec["titles"][L.code]) + "\n")
+    doc.cats.add(spec["cat"])
+    doc.high = True
+    who = L.person(pool)
+    doc.add(f"{lab(L, 'name')}{colon(L)}")
+    doc.person(L.mention(who, "full"))
+    basic = [k for k in FIELD_CAT if k not in HIGH_FIELDS]
+    for k in rng.sample(basic, rint(1, 3)):
+        doc.add(f"\n{lab(L, k)}{colon(L)}")
+        _field(doc, L, k, who)
+        doc.cats.add(FIELD_CAT[k])
+    staff = ["role", "titled"]
+    rng.shuffle(staff)
+    for s in staff[: rint(1, 2)]:
+        doc.add("\n")
+        if s == "role":
+            doc.span(pick(L.r["role_labels"]), "EMPLOYMENT")
+            doc.add(colon(L))
+            doc.person(L.mention(L.person(pool), "full"))
+            doc.cats.add("employment_info")
+        else:
+            titled_name(doc, L, L.person(pool))
+    if kind == "health":
+        fact = "health"
+    elif kind == "hr":
+        fact = "hr_record"
+    else:
+        same_cat = [k for k, v in SENS["FACTS"].items() if v["cat"] == spec["cat"]]
+        fact = pick(same_cat) if same_cat else "person_mention"
+    for _ in range(rint(1, 2)):
+        doc.add("\n")
+        fill(doc, L, pool, fact, who)
 
 
 def transaction(doc, L, pool):
@@ -1219,12 +1515,20 @@ def topic_article(doc, L, pool):
 
 
 def long_doc(doc, L, pool):
-    # Several blocks in one document, so the deciding fact can sit anywhere in a long text; nearly half are
-    # longer than one 512-token window.
-    limit = rint(420, 1600) if L.cjk else rint(1300, 4800)
-    while len(doc.text) < limit * 0.6:
+    # Several blocks in one document, so the deciding fact can sit anywhere in a long text. The text grows until
+    # it reaches a target length from the table's long or very_long bucket. Half the documents are sectioned: a
+    # heading line sits between blocks.
+    lo, hi = draw_long_bucket(L.code)
+    target = rint(lo, hi - 1)
+    sectioned = chance(0.5)
+    heads = (
+        SENS["NEUTRAL_HEADS"][L.code] + SENS["FORM_HEADS_LOW"][L.code] + [MINUTES_LABELS[L.code]["agenda"]]
+    )
+    while len(doc.text) < target:
         if doc.text:
             doc.add("\n\n")
+            if sectioned:
+                doc.add(pick(heads) + "\n")
         pick(BLOCKS)(doc, L, pool)
 
 
@@ -1269,6 +1573,7 @@ def slot_doc(doc, L, pool):
     born = rint(1500, 1925)
     years = {"DEAD.born": born, "DEAD.died": born + rint(38, 88)}
     others = {}
+    orgs = {}
 
     def who(key):
         if key not in people:
@@ -1303,17 +1608,25 @@ def slot_doc(doc, L, pool):
                 doc.span(card(L.code), "CREDIT_CARD")
             elif attr == "bank":
                 doc.span(bank(L.code), "BANK_ACCOUNT")
-            else:
-                doc.add(
-                    {
-                        "addr": lambda: pick(r["addresses"]),
-                        "dob": lambda: date_str(r, True),
-                        "job": lambda: pick(r["job_titles"]),
-                        "handle": lambda: "@" + re.sub(r"[.-]", "_", pick(r["email_locals"])),
-                        "ip": ip,
-                        "id": personal_identifier,
-                    }[attr]()
-                )
+            elif attr == "org":
+                # One employer per person, so every mention of that person in the document matches.
+                if n not in orgs:
+                    orgs[n] = surname_org(L, pool) if chance(0.25) else pick(r["orgs"])
+                doc.span(orgs[n], "EMPLOYMENT")
+            elif attr == "dept":
+                doc.span(pick(r["depts"]), "EMPLOYMENT")
+            elif attr == "job":
+                doc.span(pick(r["job_titles"]), "EMPLOYMENT")
+            elif attr == "addr":
+                doc.span(pick(r["addresses"]), "ADDRESS")
+            elif attr == "dob":
+                doc.span(date_str(r, True), "DATE_OF_BIRTH")
+            elif attr == "handle":
+                doc.span(handle(r), "HANDLE")
+            elif attr == "ip":
+                doc.span(ip(), "IP_PERSONAL")
+            elif attr == "id":
+                doc.span(personal_identifier(), "MEMBER_ID")
             doc.cats.add(SLOT_CATEGORY.get(attr, "person_name"))
         elif ph in ("PUB", "PUB.s"):
             p = others.setdefault("PUB", L.person(pool))
@@ -1326,6 +1639,8 @@ def slot_doc(doc, L, pool):
             doc.span(f"{pick(r['generic_locals'])}@{pick(r['email_domains_company'])}", "EMAIL_GENERIC")
         elif ph == "ORG.phone":
             doc.span(corporate_phone(L.code), "PHONE_CORPORATE")
+        elif ph == "ORG.addr":
+            doc.span(pick(r["addresses"]), "ADDRESS_CORPORATE")
         elif ph == "CODE":
             doc.span(doc_code(), "ORDER_TRACKING")
         else:
@@ -1398,13 +1713,22 @@ def nameless_doc(doc, L, pool):
             if doc.text:
                 doc.add("\n")
             if chance(0.4):
-                doc.add(pick(TECH_NEG)())
+                tech_neg(doc)
             else:
                 fill(doc, L, pool, "filler", L.person(pool))
             doc.add("\n")
-        doc.add(
-            line.replace("{ID}", machine_id()).replace("{IP}", ip()).replace("{ADDR}", pick(L.r["addresses"]))
-        )
+        last = 0
+        for m in re.finditer(r"\{([A-Z_]+)\}", line):
+            doc.add(line[last : m.start()])
+            last = m.end()
+            ph = m.group(1)
+            if ph == "IP":
+                doc.span(ip(), "IP_PERSONAL")
+            elif ph == "ADDR":
+                doc.span(pick(L.r["addresses"]), "ADDRESS")
+            elif ph == "ID":
+                doc.add(machine_id())
+        doc.add(line[last:])
         doc.cats.add("postal_address" if "{ADDR}" in line else "ip_address_of_a_person")
     doc.personal = True
 
@@ -1450,8 +1774,10 @@ FORMATS = [
     (6, long_doc),
     (6, lookalike_doc),
     (5, nameless_doc),
+    (10, minutes),
+    (8, record),
 ]
-BLOCKS = [narrative, negative, negative, email_doc, transaction, form, chat, topic_article]
+BLOCKS = [narrative, negative, negative, email_doc, transaction, form, chat, topic_article, minutes, record]
 
 
 def make_doc(L, pool):
@@ -1474,13 +1800,21 @@ def make_doc(L, pool):
     }
 
 
-def packed_doc(L, pool):
+def packed_doc(L, pool, cap=None):
     """Several documents joined into one long one, so the model also learns from inputs longer than one
-    window. The labels are the union of the parts: the most sensitive part sets the level."""
-    target = rint(700, 2200) if L.cjk else rint(1500, 5500)
+    window. The target length comes from the table's long or very_long bucket. Parts are joined until the text
+    reaches the target, and a part that would take it more than 30% past the bucket's upper edge is left out. The
+    labels are the union of the parts: the most sensitive part sets the level. With cap, every part is at most
+    that sensitivity level, so the packed document can be a low or none one."""
+    lo, hi = draw_long_bucket(L.code)
+    target = rint(lo, hi - 1)
     text, spans, level, cats = "", [], 0, set()
     while len(text) < target:
         d = make_doc(L, pool)
+        while cap is not None and d["sensitivity"] > cap:
+            d = make_doc(L, pool)
+        if text and len(text) + 2 + len(d["text"]) > hi * 1.3:
+            break
         if text:
             text += "\n\n"
         spans += [[s + len(text), e + len(text), k] for s, e, k in d["spans"]]
@@ -1497,6 +1831,198 @@ def packed_doc(L, pool):
     }
 
 
+# ---------------------------------------------------------------- coverage
+# CJK text carries more meaning per character, so its length buckets use half the edges.
+HALVED_LENGTH_LANGS = {"ja", "zh", "ko"}
+LONG_BUCKETS = ("long", "very_long")
+
+
+def check_coverage(cov):
+    """Reject a coverage table whose shares do not sum to 1 or that leaves out a span kind or a category."""
+    if not 0 <= cov["pool_packed_share"] <= 1:
+        raise ValueError("coverage pool_packed_share must be between 0 and 1")
+    if set(cov["sensitivity"]) != set(SENSITIVITY):
+        raise ValueError(f"coverage sensitivity keys must be {SENSITIVITY}")
+    shares = {
+        "sensitivity": list(cov["sensitivity"].values()),
+        "length": [bucket[2] for bucket in cov["length"].values()],
+        "formats": list(cov["formats"].values()),
+    }
+    for dim, xs in shares.items():
+        if abs(sum(xs) - 1) > 1e-6:
+            raise ValueError(f"coverage {dim} shares sum to {sum(xs):.4f}, not 1")
+    for key, names in (("spans_per_1000", SPAN_TYPES), ("categories_per_1000", CATEGORIES)):
+        missing = [name for name in names if name not in cov[key]]
+        if missing:
+            raise ValueError(f"coverage {key} has no minimum for {', '.join(missing)}")
+
+
+def length_buckets(lang, cov):
+    scale = 0.5 if lang in HALVED_LENGTH_LANGS else 1
+    return [(name, int(lo * scale), int(hi * scale)) for name, (lo, hi, _) in cov["length"].items()]
+
+
+def length_bucket(lang, chars, cov):
+    buckets = length_buckets(lang, cov)
+    for name, lo, hi in buckets:
+        if lo <= chars < hi:
+            return name
+    return buckets[-1][0]  # longer than the last edge counts as the last bucket
+
+
+def draw_long_bucket(lang):
+    """Edges (low, high) of a long or very_long bucket for lang, chosen with the table's shares as weights."""
+    buckets = {name: (lo, hi) for name, lo, hi in length_buckets(lang, COVERAGE) if name in LONG_BUCKETS}
+    name = rng.choices(list(buckets), weights=[COVERAGE["length"][k][2] for k in buckets])[0]
+    return buckets[name]
+
+
+def apportion(n, shares):
+    """Whole counts that sum to n: each share rounded down, then the largest remainders take the rest."""
+    raw = {k: n * s for k, s in shares.items()}
+    counts = {k: int(v) for k, v in raw.items()}
+    rest = n - sum(counts.values())
+    for k in sorted(raw, key=lambda k: raw[k] - counts[k], reverse=True)[: max(rest, 0)]:
+        counts[k] += 1
+    return counts
+
+
+def draw(xs):
+    """Remove and return a random element, so that a candidate is chosen at most once."""
+    return xs.pop(rng.randrange(len(xs)))
+
+
+def cell_name(key):
+    return f"{SENSITIVITY[key[0]]}/{key[1]}"
+
+
+def candidate_pool(L, pool, size, cov):
+    """Candidates for one language. The table's pool_packed_share is made of packed documents, split across the
+    sensitivity levels in the table's proportions, because long documents are otherwise almost all high. The rest
+    come from make_doc(). The "packed" format target is a reporting target only."""
+    packed = round(cov["pool_packed_share"] * size)
+    levels = apportion(packed, {level: cov["sensitivity"][name] for level, name in enumerate(SENSITIVITY)})
+    docs = [packed_doc(L, pool, cap=level) for level, count in levels.items() for _ in range(count)]
+    return docs + [make_doc(L, pool) for _ in range(size - packed)]
+
+
+def select(docs, n, cov):
+    """Choose n of one language's candidates so that each sensitivity x length cell gets its target count.
+
+    Every cell first takes what its own candidates supply. A cell that falls short then takes the rest from the
+    spare candidates of the cells with the same sensitivity and the nearest length, then from any cell. Lengths
+    scale multiplicatively, so the distance between two buckets is the log ratio of their centres. Returns the
+    chosen documents and the cells that needed the fallback.
+    """
+    centres = {name: math.log(math.sqrt(max(lo, 1) * hi)) for name, (lo, hi, _) in cov["length"].items()}
+    cells = {(s, name): [] for s in range(len(SENSITIVITY)) for name in centres}
+    for d in docs:
+        cells[(d["sensitivity"], length_bucket(d["lang"], len(d["text"]), cov))].append(d)
+    shares = {(s, name): cov["sensitivity"][SENSITIVITY[s]] * cov["length"][name][2] for s, name in cells}
+    targets = apportion(n, shares)
+    chosen, short = [], []
+    for key in cells:
+        own = min(targets[key], len(cells[key]))
+        chosen += [draw(cells[key]) for _ in range(own)]
+        if own < targets[key]:
+            short.append((key, own))
+    shortfalls = []
+    for key, own in short:
+        need, borrowed = targets[key] - own, {}
+        neighbours = sorted(
+            (k for k in cells if k != key),
+            key=lambda k: (k[0] != key[0], abs(centres[k[1]] - centres[key[1]])),
+        )
+        for k in neighbours:
+            take = min(need, len(cells[k]))
+            chosen += [draw(cells[k]) for _ in range(take)]
+            if take:
+                borrowed[cell_name(k)] = take
+            need -= take
+            if need == 0:
+                break
+        shortfalls.append(
+            {
+                "cell": cell_name(key),
+                "target": targets[key],
+                "own": own,
+                "borrowed": borrowed,
+                "unfilled": need,
+            }
+        )
+    return chosen, shortfalls
+
+
+def measure(docs, cov):
+    """Actual shares and rates of one pool, next to the table's targets and minimums."""
+    total = len(docs) or 1
+    sens = Counter(SENSITIVITY[d["sensitivity"]] for d in docs)
+    lengths = Counter(length_bucket(d["lang"], len(d["text"]), cov) for d in docs)
+    formats = Counter(d["format"] for d in docs)
+    spans = Counter(s[2] for d in docs for s in d["spans"])
+    cats = Counter(c for d in docs for c in d["categories"])
+    format_names = list(cov["formats"]) + [f for f in formats if f not in cov["formats"]]
+
+    def shares(counts, targets):
+        return {k: {"target": t, "actual": round(counts[k] / total, 4)} for k, t in targets.items()}
+
+    def rates(counts, minimums):
+        return {k: {"min": m, "actual": round(counts[k] * 1000 / total, 1)} for k, m in minimums.items()}
+
+    return {
+        "docs": len(docs),
+        "sensitivity": shares(sens, {k: cov["sensitivity"][k] for k in SENSITIVITY}),
+        "length": shares(lengths, {k: v[2] for k, v in cov["length"].items()}),
+        "formats": shares(formats, {f: cov["formats"].get(f, 0) for f in format_names}),
+        "spans_per_1000": rates(spans, {k: cov["spans_per_1000"][k] for k in SPAN_TYPES}),
+        "categories_per_1000": rates(cats, {k: cov["categories_per_1000"][k] for k in CATEGORIES}),
+    }
+
+
+def coverage_warnings(pool, m):
+    out = []
+    for dim in ("sensitivity", "length", "formats"):
+        for k, v in m[dim].items():
+            t, a = v["target"], v["actual"]
+            if t == 0 and a == 0:
+                continue
+            if t == 0 or abs(a - t) > 0.2 * t:
+                out.append(f"{pool} {dim} {k}: actual {a:.4f}, target {t:.4f}")
+    for dim, label in (("spans_per_1000", "span"), ("categories_per_1000", "category")):
+        for k, v in m[dim].items():
+            if v["actual"] < v["min"]:
+                out.append(
+                    f"{pool} {label} {k}: {v['actual']} per 1000 documents, below the minimum {v['min']}"
+                )
+    return out
+
+
+def shortfall_warning(s):
+    text = f"{s['pool']} {s['lang']} {s['cell']}: {s['own']} of {s['target']} from its own cell"
+    if s["borrowed"]:
+        text += ", the rest from " + ", ".join(f"{k} ({v})" for k, v in s["borrowed"].items())
+    if s["unfilled"]:
+        text += f", {s['unfilled']} could not be filled"
+    return text
+
+
+def coverage_table(measured):
+    lines = ["coverage, actual/target for shares and actual/minimum for rates per 1000 documents:"]
+    for pool, m in measured.items():
+        lines.append(f"{pool} ({m['docs']} documents)")
+        for dim in ("sensitivity", "length", "formats"):
+            cells = " ".join(
+                f"{k} {v['actual']:.3f}/{v['target']:.2f}"
+                for k, v in m[dim].items()
+                if v["target"] or v["actual"]
+            )
+            lines.append(f"  {dim:<20}{cells}")
+        for dim, label in (("spans_per_1000", "spans"), ("categories_per_1000", "categories")):
+            cells = " ".join(f"{k} {v['actual']:g}/{v['min']:g}" for k, v in m[dim].items())
+            lines.append(f"  {label:<20}{cells}")
+    return "\n".join(lines)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", required=True, type=Path)
@@ -1508,9 +2034,18 @@ def main(argv=None):
     ap.add_argument("--templates", type=Path, help="directory of slot template files")
     ap.add_argument("--template-weight", type=float, default=100)
     ap.add_argument(
-        "--packed-docs", type=int, default=0, help="long documents made of joined parts, per language"
+        "--packed-docs",
+        type=int,
+        default=0,
+        help="long documents made of joined parts, per language, added after the coverage selection",
     )
     ap.add_argument("--skip-cells", default="", help="slot template cells to leave out, comma-separated")
+    ap.add_argument(
+        "--coverage", type=Path, default=COVERAGE_PATH, help="target distribution (coverage.json)"
+    )
+    ap.add_argument(
+        "--pool-factor", type=float, default=2.0, help="candidates generated per kept document, per language"
+    )
     a = ap.parse_args(argv)
     rng.seed(a.seed)
     # main() filters these tables and fills SLOT_T, so start each run from the files.
@@ -1541,9 +2076,18 @@ def main(argv=None):
         for c in a.langs.split(",")
     ]
     a.out.mkdir(parents=True, exist_ok=True)
+    global COVERAGE
+    COVERAGE = json.loads(a.coverage.read_text())
+    cov = COVERAGE
+    check_coverage(cov)
     report = {"excluded": excluded, "pools": {}}
+    measured, shortfalls = {}, []
     for pool, n in (("train", a.train_docs), ("valid", a.valid_docs)):
-        docs = [make_doc(L, pool) for L in langs for _ in range(n)]
+        docs = []
+        for L in langs:
+            chosen, short = select(candidate_pool(L, pool, round(a.pool_factor * n), cov), n, cov)
+            docs += chosen
+            shortfalls += [{"pool": pool, "lang": L.code, **s} for s in short]
         packed = a.packed_docs if pool == "train" else a.packed_docs * a.valid_docs // max(1, a.train_docs)
         docs += [packed_doc(L, pool) for L in langs for _ in range(packed)]
         rng.shuffle(docs)
@@ -1558,12 +2102,26 @@ def main(argv=None):
             "categories": Counter(c for d in docs for c in d["categories"]),
             "max_chars": max(len(d["text"]) for d in docs),
         }
+        measured[pool] = measure(docs, cov)
     unknown = {c for p in report["pools"].values() for c in p["categories"]} - set(CATEGORIES)
     if unknown:
         raise ValueError(f"unknown categories: {sorted(unknown)}")
+    warnings = [w for pool, m in measured.items() for w in coverage_warnings(pool, m)]
+    warnings += [shortfall_warning(s) for s in shortfalls]
+    report["coverage"] = {
+        "source": str(a.coverage),
+        "pool_factor": a.pool_factor,
+        "pools": measured,
+        "shortfalls": shortfalls,
+        "warnings": warnings,
+    }
     (a.out / "stats.json").write_text(json.dumps(report, ensure_ascii=False, indent=1))
     print(json.dumps(report["pools"], ensure_ascii=False, indent=1))
     print("excluded:", len(excluded))
+    print(coverage_table(measured))
+    print("coverage warnings:" if warnings else "coverage warnings: none")
+    for w in warnings:
+        print("  " + w)
 
 
 if __name__ == "__main__":
