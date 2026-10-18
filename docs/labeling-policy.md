@@ -78,6 +78,28 @@ The test is whether the document shows that the person belongs to the group or h
 **Rosters**: a list of names alone is high when its heading or context reveals one of the facts above ("patients of X clinic", "staff going on maternity leave", "church member list").
 A roster under a neutral heading (meeting attendees, department contacts) is low.
 
+## Attribute and identifier spans
+
+Besides names, contacts and numbers, the detector marks the attributes and identifiers below as spans. A span is
+labelled when the value belongs to a specific living person; the same kind of value about an organisation, a
+server or a brand is labelled as its non-personal counterpart, so that the detector can report it with
+`pii: false` instead of guessing.
+
+| Span | Labelled when | Not labelled (or non-personal counterpart) |
+|---|---|---|
+| Postal address | A street- or building-level address of a person: home, delivery or billing address of a named customer, address on a form about a person. | A company's, shop's, clinic's or venue's address, including a company billing address with an "Attn:" person, is `ADDRESS_CORPORATE`. A city, ward, region or postal code alone is not an address. |
+| Date of birth | A person's date of birth with at least month and year, in any format and after any label. | An age, a birth year alone, a date that is not a birth date. |
+| Employment | A person's employer, department, job title, occupation or role, in any form: a signature block, "works as", a field ("Occupation:"), a title written next to the name (Mayor Weber, 山田部長, 김 과장), a role label before a name (担当医：, Médecin :), a public figure's office (Prime Minister, CEO of X). | An organisation, department or job posting with no person attached. A courtesy title alone (Mr., Dr., Prof.) without a role. |
+| Handle | A person's social-media handle or account name (with or without "@"), a nickname used as a login. | A brand's or organisation's account is `HANDLE_BRAND`. A login that is simply the person's own name is a name, not a handle. Hashtags, e-mail addresses, service accounts, code identifiers. |
+| IP address | An IP address tied to a person: a user's login record, "my IP is", a connection from a home device. | A server, gateway, DNS or infrastructure address, and an address in a configuration or code example, is `IP_SERVER`. |
+| Member number | An employee, member, customer, patient or account number that singles out a person. | Order, tracking, invoice, serial and company registration numbers. |
+
+**Deceased and historical persons**: their attributes are not labelled, as their names do not make a document
+personal (see above). A date of birth or an office of a historical figure is plain text.
+
+**Partial values**: a label with an empty or truncated value is not a span. A value split by a line break is one
+span.
+
 ## Examples
 
 | Document | Level | Reason |

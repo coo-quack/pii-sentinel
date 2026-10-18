@@ -1,0 +1,88 @@
+{
+  "templates": [
+    {
+      "id": "t_it_701",
+      "lang": "it",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "Cartella clinica - Ambulatorio di medicina generale\n\nPaziente: {P1}\nData di nascita: {P1.dob}\nMedico curante: {P2}\nVisita specialistica: {P3}\n\nMotivo della visita: dolore toracico durante lo sforzo da circa tre settimane.\nDiagnosi: ipertensione arteriosa di secondo grado, senza danno renale per il momento.\nTerapia: modifica del dosaggio e controllo della pressione a domicilio per quattro settimane.\nReferto firmato da {P2}, {P2.job}, il {DATE}."
+    },
+    {
+      "id": "t_it_702",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "{P1.job} {P1} ha annunciato ieri, durante una conferenza stampa a {PLACE}, la creazione di un fondo di sostegno per le piccole attività del territorio. Secondo una nota di {ORG}, il fondo sarà gestito in collaborazione con questa struttura e avrà una dotazione di {AMOUNT} in tre anni.\n\n«Vogliamo che i commercianti possano investire senza aspettare la fine della crisi», ha dichiarato {P1} davanti ai giornalisti. Il provvedimento sarà discusso in aula nel corso del mese prossimo.\n\n{P2}, che guida la commissione bilancio, ha definito la misura «utile ma insufficiente»."
+    },
+    {
+      "id": "t_it_703",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "CONTRATTO DI PRESTAZIONE DI SERVIZI\n\nTra le parti:\n\n{ORG}, nella persona di {P1}, {P1.job}, munito dei necessari poteri, di seguito «il Committente»;\n\ne\n\n{P2}, residente in {P2.addr}, che agisce in qualità di persona fisica, di seguito «il Prestatore».\n\nArticolo 1 - Oggetto. Il Prestatore si impegna a svolgere l'incarico di consulenza descritto nell'allegato A, per un corrispettivo complessivo di {AMOUNT} al netto di IVA.\n\nFatto a {PLACE}, il {DATE}, in due originali.\n\nPer il Committente: {P1}, {P1.job}, {P1.org}\nPer il Prestatore: {P2}"
+    },
+    {
+      "id": "t_it_704",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Elenco del personale - {ORG}\n\n| Nome | Reparto | Ruolo |\n|---|---|---|\n| {P1} | {P1.dept} | {P1.job} |\n| {P2} | {P2.dept} | {P2.job} |\n| {P3} | {P3.dept} | {P3.job} |\n\nAggiornato al {DATE}. Per le richieste di accesso ai locali rivolgersi all'ufficio risorse umane."
+    },
+    {
+      "id": "t_it_705",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Modulo di iscrizione - {ORG}\n\nNome: {P1}\nProfessione: {P1.job}\nDatore di lavoro: {P1.org}\nTelefono: {P1.phone}\nData della domanda: {DATE}\n\nDichiaro che le informazioni sopra riportate sono veritiere.\nFirma:"
+    },
+    {
+      "id": "t_it_706",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "{ORG}\n{ORG.addr}\nTel. {ORG.phone}\nEmail: {ORG.email}\n\nOrari di apertura: dal lunedì al venerdì, dalle 9 alle 18; il sabato dalle 9 alle 13. Chiuso la domenica e nei giorni festivi.\n\nLe richieste di preventivo possono essere inviate per posta elettronica o tramite il modulo sul sito. Rispondiamo entro due giorni lavorativi.\n\nQuesto messaggio e i suoi allegati sono riservati. Se lo avete ricevuto per errore, vi preghiamo di eliminarlo e di avvisare il mittente."
+    },
+    {
+      "id": "t_it_707",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "FATTURA n. {CODE}\n\nData di emissione: {DATE}\n\nIntestata a:\n{ORG}\nIndirizzo di fatturazione:\n{ORG.addr}\nAll'attenzione di: {P1}\n\nDescrizione | Quantità | Importo\nLicenza annuale, spazio di archiviazione | 1 | {AMOUNT}\nFormazione online, due sessioni | 2 | {AMOUNT}\n\nImponibile: {AMOUNT}\nIVA: {AMOUNT}\nTotale: {AMOUNT}\n\nModalità di pagamento: bonifico bancario entro 30 giorni dalla data di emissione.\nRiferimento dell'ordine del {DATE}."
+    },
+    {
+      "id": "t_it_708",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "Avviso di spedizione - Collo n. {CODE}\n\nMittente: {ORG}\n{ORG.addr}\n\nDestinatario: {P1}\n{P1.addr}\n\nData di spedizione: {DATE}\nPeso: 2,4 kg\nContenuto: abbigliamento e accessori\nCorriere: servizio express\nConsegna prevista: {DATE}. In caso di assenza il pacco può essere ritirato presso il punto di ritiro indicato nel tracciamento."
+    },
+    {
+      "id": "t_it_709",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Verbale della riunione del comitato di coordinamento - {DATE}\n\nModeratore: {P3}\n\nPartecipanti: {P1} ({P1.org}, {P1.job}), {P2} ({P2.dept})\n\nOrdine del giorno\n1. Consuntivo del terzo trimestre e scostamenti di budget.\n2. Calendario della migrazione del sistema di fatturazione.\n3. Scelta del fornitore per la formazione dei team.\n\nDecisione: il calendario della migrazione slitta di due mesi. {P2} preparerà il capitolato entro il {DATE}.\n\nAzione: {P1} invierà i dati consolidati entro venerdì."
+    },
+    {
+      "id": "t_it_710",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Giornata infernale 😩 {P1} lavora come {P1.job} in {P1.org} e mi hanno chiesto di rifare la presentazione per domani mattina. Grazie tante #ufficio #lunedì\n\nRisposta: Dai, coraggio! Hai avvisato {P2.handle}? Doveva rivedere le slide, no? 😅"
+    },
+    {
+      "id": "t_it_711",
+      "lang": "it",
+      "sensitivity": "none",
+      "cell": "code_log_or_config",
+      "text": "# deploy/staging.env (estratto)\nAPP_ENV=staging\nLOG_LEVEL=info\nREPORT_BUCKET=gs_reports_staging_eu\nUPLOAD_PREFIX=exports/monthly_batch\nSERVICE_ACCOUNT=svc_report_uploader\nDB_POOL_MAX=8\n\n[{DATE} 14:02:11] INFO job_runner: avvio del lotto export_monthly build_id={HASH}\n[{DATE} 14:02:19] INFO uploader: invio verso gs_reports_staging_eu/exports/monthly_batch completato\n[{DATE} 14:02:20] WARN retry_policy: nuovo tentativo per svc_report_uploader (attempt=2)"
+    },
+    {
+      "id": "t_it_712",
+      "lang": "it",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Programma della giornata - Forum sui dati aperti\n\n10:30 - Sala Volta\n\n{P1} ({P1.job}, {P1.org})\nLa presentazione ripercorre tre anni di migrazione dei dataset verso un formato comune. Illustra gli errori di progettazione che hanno richiesto più tempo e le soluzioni adottate.\n\n11:15 - Tavola rotonda\n\n{P2}, già {P2.job} per venticinque anni, ora in pensione, parteciperà alla discussione sulla conservazione degli archivi pubblici."
+    }
+  ]
+}

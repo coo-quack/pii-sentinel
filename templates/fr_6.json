@@ -1,0 +1,102 @@
+{
+  "templates": [
+    {
+      "id": "t_fr_601",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Objet : Suivi de la commande fournisseur\n\nBonjour,\n\nJe reviens vers vous au sujet de la livraison prévue la semaine dernière. Pourriez-vous me confirmer la date d'arrivée des pièces avant vendredi ? En cas de retard, merci de me prévenir au plus tôt afin que nous puissions adapter le planning.\n\nBien cordialement,\n\n{P1}\n{P1.job}\n{P1.dept}\n{P1.org}"
+    },
+    {
+      "id": "t_fr_602",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Compte rendu de la réunion du {DATE}\n\nPrésents :\n- {P1} ({P1.dept})\n- {P2} ({P2.dept})\n- {P3} ({P3.dept})\n\nPoints abordés : révision du plan de maintenance et délais d'intervention sur les équipements.\nDécision : le plan est validé, avec un contrôle trimestriel au lieu de semestriel.\nProchaine réunion : {DATE}."
+    },
+    {
+      "id": "t_fr_603",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Canal #bienvenue - {DATE}\n\n[09:14] {P1} : Bonjour à tous ! Je viens de commencer comme {P1.job} chez {P1.org}.\n[09:16] {P2} : Bienvenue ! Tu es dans quelle équipe ?\n[09:17] {P1} : Je travaille au {P1.dept}, on va collaborer sur les projets du printemps.\n[09:18] {P2} : Parfait, on se retrouve au déjeuner !"
+    },
+    {
+      "id": "t_fr_604",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Économie régionale - {DATE}\n\n{P1}, {P1.job} chez {P1.org}, a annoncé mardi l'ouverture d'un second site de production dans le Nord. Selon l'entreprise, cet investissement de {AMOUNT} doit créer une centaine d'emplois d'ici 2028. {P2}, responsable du projet au sein du groupe, présentera le dossier au conseil municipal la semaine prochaine."
+    },
+    {
+      "id": "t_fr_605",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "Confirmation de livraison - Colis n° {CODE}\n\nDestinataire : {P1}\nAdresse de livraison : {P1.addr}\nDate de livraison prévue : {DATE}\nTransporteur : Service express\nInstructions : sonner à l'interphone. En cas d'absence, le colis est déposé chez le gardien de l'immeuble.\nMerci de votre confiance."
+    },
+    {
+      "id": "t_fr_606",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "{P1}\n{P1.addr}\n\n{DATE}\n\nObjet : Renouvellement de votre contrat de service\n\nBonjour {P1},\n\nVous trouverez ci-joint le nouveau contrat à signer avant le {DATE}. Pour toute question, vous pouvez écrire à notre service client ou appeler le {ORG.phone}.\n\nCordialement,\n\n{ORG}\nService client"
+    },
+    {
+      "id": "t_fr_607",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "date_of_birth",
+      "text": "Formulaire d'inscription - Club de tennis municipal\n\nNom et prénom : {P1}\nDate de naissance : {P1.dob}\nTéléphone : {P1.phone}\nCatégorie : Adultes loisir\nCotisation annuelle : {AMOUNT}\nAutorisation de photographie : oui\nDate de la demande : {DATE}"
+    },
+    {
+      "id": "t_fr_608",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "date_of_birth",
+      "text": "Portrait - Les anciens du quartier\n\n{P1} est né le {P1.dob}. Après des études d'ingénieur, {P1} a repris en 2003 l'atelier de menuiserie de son père. Chaque année, l'atelier organise la fête de la rue avec les commerçants du secteur."
+    },
+    {
+      "id": "t_fr_609",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Journal d'authentification - serveur web-03\n\n{DATE} 08:41:12 INFO auth: connexion réussie utilisateur={P1.handle} source={P1.ip} méthode=formulaire\n{DATE} 08:41:55 INFO session: jeton créé id={HASH}\n{DATE} 08:52:03 INFO auth: déconnexion utilisateur={P1.handle}\n{DATE} 09:10:17 WARN auth: échec de connexion utilisateur={P1.handle}"
+    },
+    {
+      "id": "t_fr_610",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Grand merci à {P1.handle} pour la séance de samedi ! Grâce à votre aide, les photos du marché sont enfin en ligne. On repart la semaine prochaine, rendez-vous à {PLACE}. #Bénévolat #Photo"
+    },
+    {
+      "id": "t_fr_611",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Ticket n° {CODE} - Problème de connexion\n\nClient : {P1.id}\nIdentifiant de connexion : {P1.handle}\nDate d'ouverture : {DATE}\nDescription : depuis la mise à jour de l'application, le client ne peut plus accéder à son espace personnel. Le client demande la réactivation du compte et la vérification de ses dernières modifications de profil.\nPriorité : moyenne\nAffecté à : support niveau 1"
+    },
+    {
+      "id": "t_fr_612",
+      "lang": "fr",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "Avis de renouvellement - Carte adhérent\n\nNuméro d'adhérent : {P1.id}\nFin de validité actuelle : {DATE}\nNouvelle échéance : {DATE}\nMontant de la cotisation : {AMOUNT}\nMerci de régler avant la date limite par virement ou au guichet de l'association. Sans renouvellement, l'accès aux installations sera suspendu jusqu'au paiement."
+    },
+    {
+      "id": "t_fr_613",
+      "lang": "fr",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "Lettre d'information - Octobre\n\nNous remercions nos clients pour leur fidélité. À partir du {DATE}, le magasin adopte ses nouveaux horaires et ferme à 19 h 30.\n\n{ORG}\nSiège et service client\nTéléphone : {ORG.phone}\nCourriel : {ORG.email}\nPour vous désabonner, répondez simplement à ce message."
+    },
+    {
+      "id": "t_fr_614",
+      "lang": "fr",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "Offre d'emploi - {ORG}\n\nPoste : Chargé de relations clientèles (CDI)\nLieu : Lyon, site principal\nMissions : accueil téléphonique, suivi des demandes et reporting hebdomadaire.\nProfil : formation bac+2 minimum, à l'aise avec les outils bureautiques. Une première expérience en service client est appréciée.\nCandidature : envoyer CV et lettre de motivation à {ORG.email} avant le {DATE}.\nRenseignements : {ORG.phone}"
+    }
+  ]
+}

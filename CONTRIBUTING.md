@@ -33,11 +33,16 @@ uv run python -m pii_sentinel.gen.generator --out data --train-docs 2200 --templ
   --template-weight 110 \
   --exclude "$(ls eval/*.json eval/reference/*.json eval/work/raw/*.json | paste -sd, -)"
 uv run python -m pii_sentinel.train --data data --out models/mmBERT-pii-sentinel
+# --select-on eval/dev.json picks the checkpoint by the acceptance criteria on the development set
 uv run python -m pii_sentinel.evaluate --model models/mmBERT-pii-sentinel eval/dev.json eval/test.json --out runs
 # --no-rules scores the model alone, without the rule set
 ```
 
+Training uses label smoothing of 0.1 on the span loss by default (`--label-smoothing`, 0 turns it off).
+`python -m pii_sentinel.average models/run/s0 models/run/s1 --out models/run/avg` averages the weights of several seeds into one checkpoint (a "model soup"); evaluate the averaged checkpoint like any other before adopting it.
+
 Training data is generated from templates; labels come from what each template planted, not from a model.
+The distribution follows `src/pii_sentinel/gen/coverage.json`, and the generator's `stats.json` reports the deviations from it.
 Names, brands and public figures that appear in the evaluation corpora are excluded from generation.
 
 ## Branching Strategy

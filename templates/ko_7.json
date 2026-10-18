@@ -1,0 +1,88 @@
+{
+  "templates": [
+    {
+      "id": "t_ko_701",
+      "lang": "ko",
+      "sensitivity": "high",
+      "cell": "health",
+      "text": "[진료 기록]\n\n환자: {P1}\n생년월일: {P1.dob}\n진료일: {DATE}\n진료과: 내과\n담당 간호사: {P3}\n담당의: {P2}\n\n주호소: 닷새째 기침과 발열이 이어지고, 계단을 오르면 숨이 찬다고 함.\n\n진단: 우측 하엽의 지역사회획득 폐렴. 흉부 X선에서 같은 부위의 음영 증가를 확인했다. 내원 시점에서 호흡부전 징후는 없었다.\n\n치료 계획: 항생제 경구 투여 7일, 충분한 휴식과 수분 섭취를 권고했다. 1주 후 재진. 발열이 72시간 이상 지속되면 바로 내원하도록 안내했다.\n\n{P2.job} {P2}\n기록 일시: {DATE} 10:20"
+    },
+    {
+      "id": "t_ko_702",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "living_public_figure",
+      "text": "[지역 뉴스] {DATE}\n\n{P1.job} {P1}의 발표에 따르면, 내년 봄부터 {PLACE} 지역 버스 노선이 확대된다. 이날 {ORG} 기자실에서 열린 기자회견에서는 이번 계획이 3년짜리 교통 개선 사업의 첫 단계라는 설명이 있었다.\n\n신규 노선은 14개이며, 기존 노선의 야간 운행 시간도 늘어난다. 재원은 지방채와 아직 최종 승인되지 않은 국고 보조금으로 마련할 예정이다.\n\n야당 의원들은 비용 추계의 근거를 문제 삼았으며, 시의회 표결은 11월로 잡혀 있다. {P1.job} {P1}의 전체 예산안은 다음 공청회에서 공개될 예정이다."
+    },
+    {
+      "id": "t_ko_703",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "용역 계약서 (발췌)\n\n본 계약은 {DATE}에 아래 당사자 사이에 체결된다.\n\n1. 갑: {ORG} (대표 {P1}, 직위 {P1.job})\n2. 을: {P2} (주소: {P2.addr})\n\n제1조 (목적) 갑은 별첨 A에 기재한 컨설팅 용역을 을에게 제공한다.\n제2조 (대금) 대금 지급액: {AMOUNT} (부가가치세 별도). 을은 청구서 발행일로부터 30일 이내에 지급한다.\n제3조 (기간) 본 계약은 체결일부터 12개월간 유효하며, 제9조에 따라 서면으로 해지하지 않는 한 같은 기간으로 연장된다.\n\n갑\n회사명: {ORG}\n성명: {P1}\n직위: {P1.job}\n소속: {P1.org}\n서명: ______________________\n\n을\n성명: {P2}\n날인: ______________________"
+    },
+    {
+      "id": "t_ko_704",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "사내 인력 현황 (2026년 4분기)\n기준일: {DATE}\n\n이름 | 소속 부서 | 직무\n--- | --- | ---\n{P1} | {P1.dept} | {P1.job}\n{P2} | {P2.dept} | {P2.job}\n{P3} | {P3.dept} | {P3.job}\n\n변경 사항이 있으면 인사팀 총무 담당에게 알려 주세요. 연락처는 사내 인명부에서 확인할 수 있습니다."
+    },
+    {
+      "id": "t_ko_705",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "입사 지원서\n\n지원 직무: 지역 영업 조정 담당\n\n성명: {P1}\n직업: {P1.job}\n근무처: {P1.org}\n연락처: {P1.phone}\n입사 가능일: {DATE}\n경력: 6년\n지원 동기: 고객과 직접 소통하는 업무를 더 많이 하고 관리직으로 가는 길을 찾고 싶습니다.\n\n위 내용은 제가 알고 있는 사실과 다르지 않음을 확인합니다.\n\n서명: ______________________   작성일: {DATE}"
+    },
+    {
+      "id": "t_ko_706",
+      "lang": "ko",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "{ORG}\n주소: {ORG.addr}\n대표 전화: {ORG.phone}\n이메일: {ORG.email}\n\n영업시간: 평일 오전 9시 ~ 오후 6시 (토요일, 일요일 및 공휴일 휴무)\n\n주문과 배송 문의는 위 이메일로 보내 주시거나 영업시간에 전화해 주십시오. 보통 영업일 기준 하루 안에 답변드립니다.\n\n© {ORG}. 무단 전재 및 재배포를 금합니다."
+    },
+    {
+      "id": "t_ko_707",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "business_paperwork",
+      "text": "청구서 (INVOICE)\n\n청구 번호: {CODE}\n발행일: {DATE}\n\n청구처: {ORG}\n담당: {P1} 귀하\n청구 주소: {ORG.addr}\n\n품목 | 수량 | 단가 | 금액\n9월분 사무실 청소 용역 | 1 | {AMOUNT} | {AMOUNT}\n자재 관리 수수료 | 1 | {AMOUNT} | {AMOUNT}\n\n공급가액: {AMOUNT}\n부가세: {AMOUNT}\n합계: {AMOUNT}\n\n결제 조건: 발행일로부터 30일 이내. 첨부한 거래명세서의 계좌로 송금해 주시고, 송금 시 청구 번호를 적어 주십시오.\n\n문의: {ORG.email}"
+    },
+    {
+      "id": "t_ko_708",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "배송 안내서\n\n받는 분: {P1}\n받는 주소: {P1.addr}\n\n보내는 곳: {ORG}\n보내는 주소: {ORG.addr}\n\n운송장 번호: {CODE}\n발송일: {DATE}\n포장: 2박스 (깨지기 쉬운 물품)\n배송 시간: 오전 10시 ~ 오후 4시\n\n배송 기사가 도착 전에 수령인에게 전화합니다. 부재 시에는 공동현관 경비실에 맡기고, 우편함에 안내문을 넣어 드립니다.\n\n배송 변경은 운송장 번호를 가지고 {ORG.phone}에 연락해 주십시오."
+    },
+    {
+      "id": "t_ko_709",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "회의록: 품질위원회 정기 회의\n일시: {DATE} 15:00\n장소: 2동 4층 회의실\n\n참석자\n{P1} ({P1.org}, {P1.job})\n{P2} ({P2.dept})\n\n사회자: {P3}\n\n안건 1. 3월 감사 지적 사항 점검\n위원회는 지적 4건 중 2건의 조치가 끝난 것을 확인했다. 나머지 2건은 다음 회의에서 다시 점검한다.\n\n안건 2. 신규 검사 인력 교육 일정\n첫 교육은 다음 달 둘째 주에 실시한다.\n\n다음 회의: {DATE}\n작성: 사무국"
+    },
+    {
+      "id": "t_ko_710",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "{P1} 님 드디어 {P1.org}에서 {P1.job} 일 시작!! 지원서만 열 군데 넘게 냈는데 결국 됐네요 ㅠㅠ 커피만 마시면서 기다린 시간이 길었어요 ㅋㅋ\n#이직성공 #드디어\n\n↳ {P2.handle}: 축하해요!! 포트폴리오 얘기 제가 몇 번 했잖아요. 이번 주 금요일에 한잔해요."
+    },
+    {
+      "id": "t_ko_711",
+      "lang": "ko",
+      "sensitivity": "none",
+      "cell": "code_log_or_config",
+      "text": "# 배포 설정 (발췌, 운영 환경)\nPROJECT_ID=ledger_core_prod\nSERVICE_ACCOUNT_NAME=svc_ingest_batch_01\nBUCKET_NAME=raw_event_archive_eu\nLOG_LEVEL=info\nRETRY_MAX_ATTEMPTS=5\nCACHE_TTL_SECONDS=900\n\n[{DATE}] INFO ingest_worker 시작 image_digest={HASH} env=prod_eu\n[{DATE}] INFO bucket_check bucket=raw_event_archive_eu status=ok\n[{DATE}] WARN retry_scheduled job_id=batch_nightly_a attempt=2\n[{DATE}] INFO batch_done job_id=batch_nightly_a rows_written=412"
+    },
+    {
+      "id": "t_ko_712",
+      "lang": "ko",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "연사 소개\n\n{P1} ({P1.job}, {P1.org})\n{P1.s} 님은 올해 세 차례 장애를 겪은 뒤 릴리스 파이프라인을 다시 만든 과정을 설명합니다. 세션에서는 도구 선택과 롤백 기준 가운데 효과가 가장 컸던 부분을 중심으로 다룹니다.\n\n세션: B 트랙, 2번 방, 11:30\n\n{P2} (은퇴한 {P2.job})\n{P2.s} 님은 공공 조달 분야에서 25년을 일한 뒤 강단에 섰습니다. 이번 발표는 대형 계약에서 얻은 교훈을 돌아보고, 발주자가 곧 구축자가 될 때 무엇이 달라지는지 묻습니다.\n\n세션: A 트랙, 1번 방, 15:00"
+    }
+  ]
+}

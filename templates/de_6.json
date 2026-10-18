@@ -1,0 +1,102 @@
+{
+  "templates": [
+    {
+      "id": "t_de_601",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Betreff: Rückfrage zum Angebot {CODE}\n\nSehr geehrte Damen und Herren,\n\nvielen Dank für Ihre Anfrage vom {DATE}. Die überarbeiteten Unterlagen schicken wir Ihnen bis Freitag zu.\n\nMit freundlichen Grüßen\n\n{P1}\n{P1.org}\n{P1.dept}\n{P1.job}"
+    },
+    {
+      "id": "t_de_602",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Protokoll der Projektsitzung vom {DATE}\nOrt: Konferenzraum B, Hauptgebäude\n\nAnwesend:\n- {P1} ({P1.dept})\n- {P2} ({P2.dept})\n- {P3} ({P3.dept})\n\nTOP 1: Terminplan für den Relaunch. {P2} stellt den Zeitplan bis {DATE} vor.\nTOP 2: Budgetfreigabe. Die Entscheidung wird in der nächsten Woche erwartet.\nNächste Sitzung: {DATE}, 10:00 Uhr"
+    },
+    {
+      "id": "t_de_603",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "{P1}: Hallo zusammen, ich bin neu im Team! Ich habe gerade als {P1.job} bei {P1.org} angefangen.\n{P2}: Willkommen! Wir sitzen am Ende des Flurs in Raum 3, komm einfach vorbei.\n{P1}: Danke, mache ich nach der Mittagspause. Schön, dass hier alle so hilfsbereit sind.\n{P2}: Das ist hier so üblich. Frag einfach, wenn etwas unklar ist."
+    },
+    {
+      "id": "t_de_604",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "employer_or_job",
+      "text": "Regionalzeitung, Wirtschaftsteil, {DATE}\n\n{P1}, {P1.job} bei {P1.org}, hat am Dienstag die neue Produktionslinie im Werk Süd eröffnet. Nach Angaben des Unternehmens sollen dort ab dem nächsten Quartal rund 120 Stellen entstehen.\n\n{P2}, Leiter der Standortentwicklung, sprach von einem wichtigen Schritt für die Region. Die Eröffnung ist Teil des Investitionsprogramms, das {ORG} im vergangenen Jahr angekündigt hatte."
+    },
+    {
+      "id": "t_de_605",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "Zustellbestätigung\nSendungsnummer: {CODE}\nEmpfänger: {P1}\nLieferadresse: {P1.addr}\nZustellung: {DATE}, 14:12 Uhr\nAbgelegt: persönlich übergeben\nHinweis: Keine Ablage vor der Tür gewünscht\nRückfragen bitte über das Kundenkonto klären."
+    },
+    {
+      "id": "t_de_606",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "postal_address",
+      "text": "{P1}\n{P1.addr}\n\n{ORG}\nKundenservice\n\n{DATE}\n\nBetreff: Bestätigung der Vertragsänderung\n\nSehr geehrte Damen und Herren,\n\nhiermit bestätigen wir die Änderung Ihres Vertrags zum {DATE}. Die neuen Konditionen gelten ab dem Folgemonat, eine Unterschrift ist nicht erforderlich.\n\nFür Rückfragen erreichen Sie unseren Kundenservice unter {ORG.phone}, werktags von 8 bis 17 Uhr.\n\nMit freundlichen Grüßen\n\nIhr Kundenservice-Team"
+    },
+    {
+      "id": "t_de_607",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "date_of_birth",
+      "text": "Anmeldeformular Schwimmkurs Wintersaison\n\nTeilnehmer/in: {P1}\nGeburtsdatum: {P1.dob}\nTelefon: {P1.phone}\nKursbeginn: {DATE}\nVorkenntnisse: keine\nKursgebühr: {AMOUNT}, bitte bis {DATE} überweisen\nEinverständnis: Ich bestätige die Richtigkeit der Angaben.\nUnterschrift: ____________"
+    },
+    {
+      "id": "t_de_608",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "date_of_birth",
+      "text": "Chronik des Schützenvereins, Ausgabe {DATE}\n\n{P1} wurde am {P1.dob} in {PLACE} geboren und trat dem Verein 1985 bei. Über dreißig Jahre leitete er die Jugendabteilung und organisierte die jährlichen Preisschießen.\n\nZu seinem Jubiläum zeigte das Vereinsheim eine Ausstellung mit alten Fotos. Die Mitglieder danken ihm für sein Engagement."
+    },
+    {
+      "id": "t_de_609",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "{DATE} 08:14:53 INFO auth: login success user={P1.handle} src={P1.ip} method=password\n{DATE} 08:14:58 INFO session: created id={HASH} ttl=3600\n{DATE} 08:21:04 WARN auth: password expires in 7 days user={P1.handle}\n{DATE} 08:33:19 INFO session: closed id={HASH} reason=logout"
+    },
+    {
+      "id": "t_de_610",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Schöne Bilder vom Sommerfest, danke an {P1.handle} fürs Hochladen! Die Stimmung war super, nächstes Jahr bin ich wieder dabei. Wer kommt zum Stammtisch am {DATE} mit?\n#Sommerfest #Nachbarschaft"
+    },
+    {
+      "id": "t_de_611",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "online_identifier",
+      "text": "Ticket-Nr. {CODE}\nBetreff: Zugang zum Kundenportal gesperrt\nKundennummer: {P1.id}\nBenutzername: {P1.handle}\nKundenangabe: Nach dreimaliger Falscheingabe ist das Konto gesperrt. Bitte prüfen und entsperren.\nStatus: In Bearbeitung\nBearbeitung durch: Support-Team 2\nAntwort bis: {DATE}"
+    },
+    {
+      "id": "t_de_612",
+      "lang": "de",
+      "sensitivity": "low",
+      "cell": "identifier_only",
+      "text": "Verlängerung Ihrer Mitgliedschaft\n\nMitgliedsnummer: {P1.id}\nIhre Mitgliedschaft läuft am {DATE} aus. Damit Ihre Vorteile ohne Unterbrechung bestehen bleiben, bitten wir um rechtzeitige Verlängerung.\nDer Jahresbeitrag von {AMOUNT} wird am Fälligkeitstag abgebucht, sofern Sie kein anderes Zahlungsverfahren gewählt haben.\nBitte nennen Sie bei allen Rückfragen die Mitgliedsnummer."
+    },
+    {
+      "id": "t_de_613",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "Diese Nachricht enthält vertrauliche Informationen. Sollten Sie sie irrtümlich erhalten haben, informieren Sie uns bitte und löschen Sie sie.\n\n{ORG}\nHauptverwaltung\nTelefon: {ORG.phone}\nE-Mail: {ORG.email}\nHandelsregisternummer: {ORG.regno}"
+    },
+    {
+      "id": "t_de_614",
+      "lang": "de",
+      "sensitivity": "none",
+      "cell": "company_contact_only",
+      "text": "Stellenangebot\n\n{ORG} sucht zum {DATE} Verstärkung im Bereich Kundenservice am Standort Süd.\n\nIhre Aufgaben: Betreuung von Anfragen per Telefon und E-Mail, Pflege der Kundendaten im System, Abstimmung mit der Buchhaltung.\nIhr Profil: Ausbildung im Dienstleistungsbereich, sicherer Umgang mit Office-Anwendungen, Freude am Kontakt mit Menschen.\n\nBewerbungen bitte an {ORG.email}. Für Rückfragen erreichen Sie uns unter {ORG.phone}."
+    }
+  ]
+}

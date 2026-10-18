@@ -1,5 +1,33 @@
 # Changelog
 
+## v0.5.0 (2026-10-18)
+
+The model is retrained (21 span types, 1024-token windows, label smoothing) and the post-processing changed.
+
+- The model marks six more kinds of personal information as findings: `postal_address`, `date_of_birth`,
+  `employment_info` (employer, department, job title or a title next to the name), `sns_handle` (handle or
+  login name), `ip_address` with `pii` telling a person's address from a server's, and `number` with
+  `number_type: member_or_customer`. Company addresses, brand accounts and server IPs are reported with
+  `pii: false`.
+- A personal postal address, date of birth or handle makes the document at least `low`, as a personal contact or
+  number already did.
+- `categories` is documented: the values are probabilities, and the README says which ones to read and at what
+  threshold.
+- A checkpoint carries its own span label set, so the published model (12 span types) and the new one (21) both
+  load.
+- The evaluation leaves out predicted finding types and number types that the corpus does not label, and reports
+  them as `unscored`.
+- The training data generator labels the new span types, with new slot templates for addresses, dates of birth,
+  workplaces, handles, IPs and member numbers in all eight languages, and larger job title lists.
+- The generator draws its distribution from `src/pii_sentinel/gen/coverage.json` (sensitivity, length and format
+  shares, minimum span and category rates) and reports the deviations after a run.
+- An address is reported as personal only when a person is named within a few lines of it; an e-mail address
+  with a role word in its local part (hr-team, services.rh) is reported as not personal.
+- Training: `--label-smoothing` (default 0.1), `--select-on eval/dev.json` to choose the checkpoint by the
+  acceptance criteria on the development set, and `python -m pii_sentinel.average` to average checkpoints.
+- The labelling policy gains a section on attribute and identifier spans (company addresses, deceased persons,
+  public figures' offices, login names, partial addresses).
+
 ## v0.4.0 (2026-10-10)
 
 The model weights are unchanged from v0.2.0.
