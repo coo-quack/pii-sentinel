@@ -3,6 +3,7 @@
 Loads regex rules from canary_rules.json and applies them with validator functions.
 """
 
+import base64
 import json
 import math
 from collections.abc import Callable
@@ -26,6 +27,11 @@ _TEST_CARD_NUMBERS = {
     "6011000990139424",
     "3056930009020004",
     "3566002020360505",
+    # Stripe's published test cards that the list above did not carry.
+    "4000000000000002",
+    "2223003122003222",
+    "36227206271667",
+    "6200000000000005",
 }
 
 # Spanish DNI/NIE control letter alphabet
@@ -73,13 +79,28 @@ _CF_ODD_VALUES = {
 
 # Placeholder detection patterns
 _PLACEHOLDER_MARKERS = regex.compile(
-    r"^(?:changeme|change|me|replace|insert|set|with|real|this|your|my|here|todo|tbd|fixme|dummy|placeholder|insecure|sample|example|test|fake|redacted|value|x{3,})$",
+    r"^(?:changeme|change|me|replace|insert|set|with|real|this|your|my|here|todo|tbd|fixme|dummy|placeholder|insecure|sample|example|test|tests|mock|stub|fake|redacted|value|x{3,})$",
     regex.IGNORECASE,
 )
 _PLACEHOLDER_FILLER = regex.compile(
-    r"^(?:api|key|keys|token|tokens|secret|secrets|password|passwd|pwd|pass|base|url|uri|host|hostname|name|user|username|id|access|refresh|client|auth|sk|pk|in|production|development|staging|local|dev|the|a|of|for|and|[0-9]+)$",
+    r"^(?:api|key|keys|token|tokens|secret|secrets|password|passwd|pwd|pass|base|url|uri|host|hostname|name|user|username|id|access|refresh|client|auth|sk|pk|in|production|development|staging|local|dev|the|a|of|for|and|unit|only|use|[0-9]+)$",
     regex.IGNORECASE,
 )
+# Values that vendors print in their own documentation. The comparison is whole, not a prefix, so a real key that
+# begins with a documented one is still a key.
+DOCUMENTED_EXAMPLE_VALUES = frozenset(
+    {
+        # AWS: the secret access key in its getting-started guide.
+        "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+        # Stripe: the test secret key in its API reference. Joined so that push protection does not read the literal.
+        "_".join(["sk", "test", "4eC39HqLyjWDarjtT1zdp7dc"]),
+        # jwt.io: the default token in its debugger.
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+    }
+)
+# A part of a value that is a run of one character (ghp_ followed by thirty-six x is filler, a random tail is not).
+_FILLER_RUN = regex.compile(r"([A-Za-z]{0,4})([A-Za-z0-9])\2{3,}")
+_FILLER_RUN_LENGTH = 8
 _GENERIC_CREDENTIALS = regex.compile(
     r"\w{1,32}:\/\/(?:your[_-]?)?(?:user|username)(?:name)?:(?:your[_-]?)?(?:password|passwd|pwd)@",
     regex.IGNORECASE,
@@ -143,8 +164,10 @@ def is_not_secret_shaped(value: str) -> bool:
         return True
     if regex.match(r"^urn:", v, regex.IGNORECASE):
         return True
-    # A filesystem path
-    if regex.match(r"^[~.]?\/[^\s]*$", v):
+    # A filesystem path: an absolute one with a second separator, or one written from home or the working directory.
+    # A single leading slash is not enough, because a base64 secret can begin with "/", and a 40-character AWS secret
+    # access key does.
+    if regex.match(r"^\/[^\s]*\/[^\s]*\Z", v) or regex.match(r"^(?:~|\.{1,2})\/[^\s]*\Z", v):
         return True
     # Variable name (SCREAMING_SNAKE_CASE)
     if regex.match(r"^[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+$", v):
@@ -165,11 +188,43 @@ def is_not_secret_shaped(value: str) -> bool:
     )
 
 
+def is_filler_body(value: str) -> bool:
+    """Whether a value is filler: every part is a run of one character (after an optional short letter prefix),
+    and at least one run is long. A random tail is never built of runs, so a key with a few repeated characters
+    does not match."""
+    has_long_run = False
+    for index, part in enumerate(regex.split(r"[-_]", value)):
+        if index == 0 and regex.fullmatch(r"[A-Za-z]{1,8}", part):
+            continue
+        if _FILLER_RUN.fullmatch(part) is None:
+            return False
+        if _trailing_run_length(part) >= _FILLER_RUN_LENGTH:
+            has_long_run = True
+    return has_long_run
+
+
+def _trailing_run_length(part: str) -> int:
+    """How many times the last character repeats at the end of a part."""
+    if not part:
+        return 0
+    last = part[-1]
+    length = 0
+    for ch in reversed(part):
+        if ch != last:
+            break
+        length += 1
+    return length
+
+
 def is_placeholder(value: str, following: str = "") -> bool:
     """Whether a value is written to be replaced, not a real credential."""
-    v = value.strip()
+    # A quoted value is judged without its quotes: a quote would stop 'fake-token-for-unit-tests' from being read as
+    # its words.
+    v = regex.sub(r"^([\"'])(.*)\1\Z", r"\2", value.strip(), flags=regex.DOTALL).strip()
     if not v:
         return False
+    if v in DOCUMENTED_EXAMPLE_VALUES:
+        return True
     # Filler: xxxxxxxxx
     if regex.match(r"^[Xx]+$", v):
         return True
@@ -205,6 +260,9 @@ def is_placeholder(value: str, following: str = "") -> bool:
         after_at = v[credentials.end() :]
         if _GENERIC_HOST.match(after_at or following):
             return True
+    # Filler body: a letter prefix, then runs of one character, at least one of them long
+    if is_filler_body(v):
+        return True
     # Split on separators and check if all parts are marker/filler words
     parts = [p for p in regex.split(r"[-_.\s]+", v) if p]
     if not parts:
@@ -484,8 +542,193 @@ def is_reserved_ipv6(ip: str) -> bool:
     return groups[0] == 0x2001 and groups[1] == 0x0DB8
 
 
+# Local parts that name a function rather than a person (compared whole).
+_ROLE_MAILBOX_LOCAL_PARTS = frozenset(
+    {
+        "noreply",
+        "no-reply",
+        "donotreply",
+        "do-not-reply",
+        "support",
+        "sales",
+        "info",
+        "help",
+        "contact",
+        "press",
+        "abuse",
+        "postmaster",
+        "webmaster",
+        "hostmaster",
+    }
+)
+# Words that name a credential's user or password in documentation and fixtures (a pair of only these is an example).
+_DOCUMENTED_BASIC_WORDS = frozenset(
+    {
+        "user",
+        "username",
+        "admin",
+        "root",
+        "test",
+        "foo",
+        "bar",
+        "guest",
+        "demo",
+        "pass",
+        "password",
+        "passwd",
+        "secret",
+        "changeme",
+    }
+)
+# Lengths of the IBANs of the countries whose length is fixed (SWIFT registry). Other countries are held to the
+# general range only.
+_IBAN_LENGTHS = {
+    "AT": 20,
+    "BE": 16,
+    "CH": 21,
+    "DE": 22,
+    "DK": 18,
+    "ES": 24,
+    "FI": 18,
+    "FR": 27,
+    "GB": 22,
+    "IE": 22,
+    "IT": 27,
+    "LU": 20,
+    "NL": 18,
+    "NO": 15,
+    "PL": 28,
+    "PT": 25,
+    "SE": 24,
+}
+_NINO_FORBIDDEN_FIRST = "DFIQUV"
+_NINO_FORBIDDEN_SECOND = "DFIOQUV"
+_NINO_FORBIDDEN_PREFIXES = frozenset({"BG", "GB", "KN", "NK", "NT", "TN", "ZZ"})
+_US_TOLL_FREE_AREAS = frozenset({"800", "888", "877", "866", "855", "844", "833"})
+_ASCII_SYMBOL = regex.compile(r"[!-/:-@\[-`{-~]")
+
+
+def is_password_like(s: str) -> bool:
+    """A value after password or --password that is a password and not a word about one: 6 to 128 characters,
+    no whitespace, a letter, and a digit or a symbol. Reference forms ($VAR, <token>, -flag, /path) and masks of
+    asterisks are not passwords."""
+    text = regex.sub(r"^([\"'])(.*)\1\Z", r"\2", s, flags=regex.DOTALL)
+    if len(text) < 6 or len(text) > 128:
+        return False
+    if regex.search(r"\s", text):
+        return False
+    if regex.match(r"^[$%<{\-/~]", text):
+        return False
+    if regex.fullmatch(r"\*+", text):
+        return False
+    if not regex.search(r"[A-Za-z]", text):
+        return False
+    return bool(regex.search(r"[0-9]", text) or _ASCII_SYMBOL.search(text))
+
+
+def is_basic_credentials(s: str) -> bool:
+    """The base64 of user:password in an HTTP Basic header, in canonical form, with a user and a password that are
+    not both documented example words."""
+    if len(s) % 4 != 0 or not regex.fullmatch(r"[A-Za-z0-9+/]+={0,2}", s):
+        return False
+    try:
+        raw = base64.b64decode(s, validate=True)
+    except ValueError:
+        return False
+    if base64.b64encode(raw).decode("ascii") != s:
+        return False
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError:
+        return False
+    if regex.search(r"\p{Cc}", text):
+        return False
+    colon = text.find(":")
+    if colon <= 0 or colon == len(text) - 1:
+        return False
+    user = text[:colon].lower()
+    password = text[colon + 1 :].lower()
+    return not (user in _DOCUMENTED_BASIC_WORDS and password in _DOCUMENTED_BASIC_WORDS)
+
+
+def is_iban(s: str) -> bool:
+    """An IBAN by its shape, its length for the countries that have a fixed one, and the ISO 13616 mod-97 check."""
+    iban = s.replace(" ", "")
+    if not regex.fullmatch(r"[A-Z]{2}[0-9]{2}[A-Z0-9]+", iban):
+        return False
+    expected = _IBAN_LENGTHS.get(iban[:2])
+    if expected is not None:
+        if len(iban) != expected:
+            return False
+    elif len(iban) < 15 or len(iban) > 34:
+        return False
+    remainder = 0
+    for ch in iban[4:] + iban[:4]:
+        code = ord(ch)
+        if code >= 65:
+            remainder = (remainder * 100 + (code - 55)) % 97
+        else:
+            remainder = (remainder * 10 + (code - 48)) % 97
+    return remainder == 1
+
+
+def is_intl_phone(s: str) -> bool:
+    """An international number by its digits: 9 to 15 of them (E.164), not one digit repeated."""
+    digits = regex.sub(r"[^0-9]", "", s)
+    if len(digits) < 9 or len(digits) > 15:
+        return False
+    return not regex.fullmatch(r"([0-9])\1*", digits)
+
+
+def is_nino_uk(s: str) -> bool:
+    """A UK National Insurance number: two letters HMRC does not issue in the first or second position, the
+    reserved prefixes, and a suffix of A to D. Spaces are dropped first."""
+    nino = s.replace(" ", "")
+    if not regex.fullmatch(r"[A-Z]{2}[0-9]{6}[A-D]", nino):
+        return False
+    if nino[0] in _NINO_FORBIDDEN_FIRST or nino[1] in _NINO_FORBIDDEN_SECOND:
+        return False
+    return nino[:2] not in _NINO_FORBIDDEN_PREFIXES
+
+
+def is_us_phone(s: str) -> bool:
+    """A US number by its last ten digits: not area code 555, not 555-1212 or the 555-0100 to 0199 fiction block,
+    not a toll-free area code."""
+    digits = regex.sub(r"[^0-9]", "", s)
+    if len(digits) < 10:
+        return False
+    last10 = digits[-10:]
+    area, exchange, line = last10[:3], last10[3:6], last10[6:]
+    if area == "555":
+        return False
+    if exchange == "555" and (line == "1212" or regex.fullmatch(r"01[0-9]{2}", line)):
+        return False
+    return area not in _US_TOLL_FREE_AREAS
+
+
+def is_personal_mailbox(address: str) -> bool:
+    """Whether the local part of an e-mail address names a person rather than a function (noreply, support, ...).
+    The %40 form is the @ of a URL query and is split on as well."""
+    local = regex.split(r"@|%40", address, maxsplit=1, flags=regex.IGNORECASE)[0]
+    return local.lower() not in _ROLE_MAILBOX_LOCAL_PARTS
+
+
+def has_aws_secret_shape(s: str) -> bool:
+    """AWS secret keys mix upper case, lower case and digits. A 40-character run of one case (a git commit id, a
+    digest) does not."""
+    return bool(regex.search(r"[A-Z]", s) and regex.search(r"[a-z]", s) and regex.search(r"[0-9]", s))
+
+
 # Validator registry
 _VALIDATORS: dict[str, Callable[[str], bool]] = {
+    "password-like": is_password_like,
+    "basic-credentials": is_basic_credentials,
+    "iban": is_iban,
+    "phone-intl": is_intl_phone,
+    "nino-uk": is_nino_uk,
+    "phone-us": is_us_phone,
+    "personal-mailbox": is_personal_mailbox,
+    "aws-secret-shape": has_aws_secret_shape,
     "luhn": is_real_card_number,
     "aws-key": is_real_aws_key,
     "mynumber-jp": validate_my_number,

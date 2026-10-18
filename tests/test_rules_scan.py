@@ -29,7 +29,7 @@ class TestScanSecretFiltering:
 
     def test_valid_credit_card_not_ignored(self):
         """Valid credit cards should pass all filters."""
-        matches = scan("payment card 4000000000000002 for processing")
+        matches = scan("payment card 4539148803436467 for processing")
         cc_matches = [m for m in matches if m.rule == "pii-credit-card"]
         assert len(cc_matches) == 1
 
@@ -99,7 +99,7 @@ def text_at_span(text: str, match) -> str:
 def test_a_rule_raises_the_level_even_when_the_model_found_the_value():
     from pii_sentinel.predict import add_rule_findings
 
-    text = "Card: 4000 0000 0000 0002"
+    text = "Card: 4539 1488 0343 6467"
     found = [{"type": "number", "value": text[6:], "start": 6, "end": len(text), "pii": True}]
     assert add_rule_findings(text, [])[1] == "high"
     assert add_rule_findings(text, found)[1] == "high"
