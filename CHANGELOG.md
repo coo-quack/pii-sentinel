@@ -1,5 +1,37 @@
 # Changelog
 
+## v0.5.1 (2026-10-18)
+
+The model weights are unchanged from v0.5.0.
+
+- Numbers written as test data or placeholders are no longer reported as personal information or as a reason for
+  a high level: published test card numbers (including a piece of one that the model cut short), SSNs the SSA never
+  issues, UK National Insurance numbers with a prefix HMRC never issues, and filler numbers such as X0000000.
+  Such a finding is reported with `"pii": false`. E-mail addresses and phone numbers are always personal, whatever
+  their domain or number range.
+- A high that rests only on an identifier number falls to none when a number of the document was judged not to be
+  real and no number finding, secret, name, contact, address, handle or IP address is left. A low that came only
+  from values judged not personal falls to none when no address, date of birth, employer, name, contact, handle or
+  IP address is above the threshold. Any other high is unchanged.
+- The rule set follows sensitive-canary 0.12.0. Twelve rules are added: `aws-secret-near-key-id`, `docker-hub-pat`,
+  `http-basic-auth`, `http-bearer-token`, `password-cli-flag`, `password-netrc`, `password-prose`, `password-json-key`,
+  `redis-auth`, `pii-iban`, `pii-phone-intl` and `pii-nino-uk`. Five change: `telegram-bot-token`,
+  `connection-string`, `pii-email`, `pii-phone-us` and `pii-mynumber-jp`.
+- A rule with a `validate` name checks the value with the same logic as sensitive-canary: the password, basic
+  credential, IBAN, international phone, UK National Insurance, US phone and personal mailbox checks are added.
+  The US phone check no longer reports numbers in area code 555, the 555-0100 to 555-0199 block, 555-1212 or a
+  toll-free area code, and the personal mailbox check no longer reports role addresses such as `noreply@` or
+  `support@`.
+- Test card numbers include Stripe's published test numbers 4000000000000002, 2223003122003222, 36227206271667 and
+  6200000000000005.
+- A quoted value is judged without its quotes. Placeholder words `tests`, `mock`, `stub`, `unit`, `only` and `use`
+  are recognised. A value of documented example credentials (the AWS and Stripe documentation keys and the jwt.io
+  sample token) is a placeholder. A filler body such as `ghp_` followed by a long run of one character is a
+  placeholder.
+- A filesystem path is only recognised as one when it is absolute with a second separator, or starts with `~/`, `./`
+  or `../`. A secret that begins with a single `/` is no longer taken for a path.
+- `pii-iban` and `pii-nino-uk` raise a document to high, and `pii-phone-intl` reports a phone number.
+
 ## v0.5.0 (2026-10-18)
 
 The model is retrained (21 span types, 1024-token windows, label smoothing) and the post-processing changed.

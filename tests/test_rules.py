@@ -4,10 +4,14 @@ from pii_sentinel.rules import (
     entropy,
     is_not_secret_shaped,
     is_placeholder,
+    is_placeholder_number,
     is_real_aws_key,
     is_real_card_number,
     is_reserved_ipv4,
     is_reserved_ipv6,
+    is_test_card_number,
+    is_unissued_ssn,
+    is_unissued_uk_ni,
     key_describes_rather_than_holds,
     scan,
     validate_chinese_id,
@@ -155,7 +159,7 @@ class TestCardLuhnValidator:
 
     def test_valid_real_card(self):
         """Real card numbers should pass."""
-        assert is_real_card_number("4000000000000002")
+        assert is_real_card_number("4539148803436467")
 
     def test_test_card_numbers_rejected(self):
         """Published test card numbers should be rejected."""
@@ -163,6 +167,8 @@ class TestCardLuhnValidator:
         assert not is_real_card_number("4242424242424242")
         assert not is_real_card_number("4111111111111111")
         assert not is_real_card_number("5555555555554444")
+        # Stripe's declined-card number is published test data since sensitive-canary 0.12.0.
+        assert not is_real_card_number("4000000000000002")
 
     def test_invalid_checksum(self):
         """Cards with invalid Luhn checksums should fail."""
@@ -420,7 +426,7 @@ class TestScanCreditCard:
 
     def test_detects_valid_card(self):
         """Should detect valid credit card."""
-        matches = scan("card: 4000000000000002")
+        matches = scan("card: 4539148803436467")
         cc_matches = [m for m in matches if m.rule == "pii-credit-card"]
         assert len(cc_matches) == 1
 
@@ -515,3 +521,61 @@ class TestScanNoFalsePositives:
         postal_matches = [m for m in matches if m.rule == "pii-postal-code"]
         # Postal codes require context, so 12345 pattern alone shouldn't match
         assert len(postal_matches) == 0
+
+
+class TestTestCardNumber:
+    """Published test card numbers, including a piece of one that the model cut short."""
+
+    def test_published_test_numbers_are_test_data(self):
+        assert is_test_card_number("4242 4242 4242 4242")
+        assert is_test_card_number("378282246310005")
+
+    def test_a_long_piece_of_a_test_number_is_test_data(self):
+        assert is_test_card_number("5555 5555 4444")
+
+    def test_a_short_piece_is_not_test_data(self):
+        assert not is_test_card_number("4242 4242")
+
+    def test_an_unpublished_number_is_not_test_data(self):
+        assert not is_test_card_number("4532 0151 1283 0366")
+
+
+class TestUnissuedSSN:
+    """Groups the Social Security Administration never issues."""
+
+    def test_never_issued_groups(self):
+        assert is_unissued_ssn("000-00-0000")
+        assert is_unissued_ssn("666-12-3456")
+        assert is_unissued_ssn("900-12-3456")
+        assert is_unissued_ssn("123-00-4567")
+        assert is_unissued_ssn("123-45-0000")
+
+    def test_issued_groups(self):
+        assert not is_unissued_ssn("123-45-6789")
+        assert not is_unissued_ssn("899-45-6789")
+
+
+class TestUnissuedUKNI:
+    """National Insurance prefixes HMRC never issues."""
+
+    def test_prefixes_with_unissued_letters_or_pairs(self):
+        assert is_unissued_uk_ni("QQ 12 34 56 C")
+        assert is_unissued_uk_ni("GB123456A")
+        assert is_unissued_uk_ni("ZZ 12 34 56 A")
+
+    def test_issued_prefixes(self):
+        assert not is_unissued_uk_ni("AB 12 34 56 C")
+        assert not is_unissued_uk_ni("JG 12 34 56 A")
+
+
+class TestPlaceholderNumber:
+    """One repeated digit, optionally after one or two letters."""
+
+    def test_filler_numbers(self):
+        assert is_placeholder_number("X0000000")
+        assert is_placeholder_number("0000 0000 0000 0000")
+        assert is_placeholder_number("AC00000000000000000000000000000000")
+
+    def test_numbers_with_different_digits(self):
+        assert not is_placeholder_number("1000 0000 0000 0001")
+        assert not is_placeholder_number("0x8007000E")

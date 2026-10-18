@@ -130,6 +130,19 @@ def evaluate(model, items, pad_id, device, dtype, doc_pooling, batch_size=32):
     }
 
 
+def selection_key(rep, step, total, dev_based):
+    """The key a checkpoint is ranked by, or None when it is not eligible. Without a development corpus the
+    key is the synthetic valid score. With one, the score is penalised per high document and per personal
+    document judged too low, and only the last 40% of the steps are eligible: ranking on the counts alone
+    picked half-trained weights that missed few high documents by over-tagging everything."""
+    score = rep["token_f1"] + rep["sensitivity_acc"] + rep["category_acc"]
+    if not dev_based:
+        return score
+    if step < 0.6 * total:
+        return None
+    return score - 0.02 * rep["dev_high_missed"] - 0.01 * rep["dev_personal_missed"]
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--data", type=Path, required=True)
@@ -265,15 +278,12 @@ def main(argv=None):
             rep.update(step=step, weights=name, elapsed_s=round(time.perf_counter() - started, 1))
             history.append(rep)
             print(json.dumps(rep), flush=True)
-            score = rep["token_f1"] + rep["sensitivity_acc"] + rep["category_acc"]
-            # With a development corpus the synthetic score is penalised per high document and per personal
-            # document judged too low, and only the last 40% of the steps are eligible: ranking on the counts
-            # alone picked half-trained weights that missed few high documents by over-tagging everything.
-            key = score
-            if dev is not None:
-                if step < 0.6 * total:
-                    continue
-                key = score - 0.02 * rep["dev_high_missed"] - 0.01 * rep["dev_personal_missed"]
+            key = selection_key(rep, step, total, dev is not None)
+            if key is None:
+                # Not eligible yet; the live weights still have to be put back when an EMA copy was scored.
+                if backup:
+                    torch._foreach_copy_(live, backup)
+                continue
             if best is None or key > best:
                 best = key
                 M.save(model, a.out, {**meta, "step": step, "valid": rep}, tok, a.base, a.base_revision)
