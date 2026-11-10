@@ -10,7 +10,7 @@ dependencies = [
   "torch==2.15.0",
   "transformers==5.22.2",
   "safetensors==0.8.0",
-  "regex==2026.11.8",
+  "regex==2026.11.9",
 ]
 
 [project.scripts]
