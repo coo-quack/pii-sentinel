@@ -21,7 +21,7 @@ You need [uv](https://docs.astral.sh/uv/getting-started/installation/). It insta
 later) by itself.
 
 ```sh
-uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.5.2 \
+uvx --from git+https://github.com/coo-quack/pii-sentinel@v0.6.0 \
   pii-sentinel scan --model coo-quack/mmBERT-pii-sentinel document.txt
 ```
 
