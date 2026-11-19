@@ -103,6 +103,9 @@ After merging into `main`, `release.yml` automatically:
 
 It needs the repository secret `HF_TOKEN`, a Hugging Face token with write access to the model repository.
 
+The CLI fetches the default model at the tag `v` + its own version, so the Hub tag created here is what a release
+of the package runs. Never move or delete a released tag on the Hub.
+
 ## Pull Requests
 
 - Feature PRs target `develop`, release/hotfix PRs target `main`

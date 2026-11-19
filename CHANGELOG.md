@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.6.0 (2026-11-20)
+
+The model weights are unchanged from v0.5.0.
+
+- `--model` is optional and defaults to `coo-quack/mmBERT-pii-sentinel`, fetched at the tag of the installed version
+  (falling back to the main branch for a version with no tag). `--revision` picks another branch, tag or commit.
+- Update transformers to 5.23.0 (#61, #68, #74, #75, #76, #81, #88), torch to 2.15.0 (#72), regex to 2026.11.18
+  (#82, #84, #85, #89, #90) and setuptools to 84.2.1.
+- Run the dependency audit weekly as well as on pull requests (#87), keep automated pull requests up to date with
+  `develop`, and skip test fixtures and the changelog in secret scanning.
+- Update the development tools and CI actions (#63, #64, #65, #69, #70, #71, #73, #80, #86), and lock file maintenance
+  (#60, #67, #77, #83).
+
 ## v0.5.2 (2026-10-18)
 
 The model weights are unchanged from v0.5.0.
