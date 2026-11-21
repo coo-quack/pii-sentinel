@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.6.1 (2026-11-22)
+
+The model weights are unchanged from v0.5.0.
+
+- Update regex to 2026.11.19 (#95).
+- Update the development tool ruff to 0.17.6 (#96) and the CI action actions/create-github-app-token to 3.4.0 (#92).
+
 ## v0.6.0 (2026-11-20)
 
 The model weights are unchanged from v0.5.0.
