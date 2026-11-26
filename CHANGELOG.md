@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.6.2 (2026-11-26)
+
+The model weights are unchanged from v0.5.0.
+
+- Update transformers to 5.24.1 (#101, #104) and regex to 2026.11.24 (#103, #105).
+- Update the CI action astral-sh/setup-uv to 10.4.0 (#98) and run lock file maintenance (#102).
+
 ## v0.6.1 (2026-11-22)
 
 The model weights are unchanged from v0.5.0.
