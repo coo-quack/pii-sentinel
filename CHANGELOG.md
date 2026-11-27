@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.6.3 (2026-11-28)
+
+The model weights are unchanged from v0.5.0.
+
+- Update regex to 2026.11.25 (#109).
+
 ## v0.6.2 (2026-11-26)
 
 The model weights are unchanged from v0.5.0.
